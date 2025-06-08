@@ -50,10 +50,13 @@ def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: flo
         csf.params.interations = 500
 
         # Perform the filtering
-        csf.set_points(points)
-        ground_indices = csf.extract_points(csf.get_ground())
+        csf.setPointCloud(points)
+        ground = CSF.VecInt()
+        non_ground = CSF.VecInt()
+        csf.do_filtering(ground, non_ground)
+        ground_indices = np.array(ground)
         
-        if not ground_indices:
+        if ground_indices.size == 0:
             print(f"Warning: CSF could not extract any ground points from {lidar_file_path}. Skipping.")
             return
 
