@@ -1,6 +1,9 @@
 laspy[lazrs,laszip]
 nbformat>=4.2.0
 pyproj
-rasterio
 plotly
 numpy
+matplotlib
+folium
+rasterio
+scipy
