@@ -6,6 +6,7 @@ import os
 import glob
 from pathlib import Path
 import CSF
+import json
 
 def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: float = 0.5):
     """
@@ -91,6 +92,26 @@ def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: flo
         plt.close()
         
         print(f"  -> Saved DTM to {output_path}")
+
+        # 5. Save metadata
+        metadata = {
+            'lidar_file': lidar_file_path,
+            'dtm_image': output_path,
+            'bounds': {
+                'min_x': min_x,
+                'min_y': min_y,
+                'max_x': max_x,
+                'max_y': max_y,
+            },
+            'resolution': resolution,
+            'ground_points': len(ground_points)
+        }
+        
+        metadata_path = os.path.join(output_dir, f"{file_name}_dtm_csf.json")
+        with open(metadata_path, 'w') as f:
+            json.dump(metadata, f, indent=4)
+            
+        print(f"  -> Saved metadata to {metadata_path}")
 
     except Exception as e:
         print(f"Error processing {lidar_file_path}: {e}")
