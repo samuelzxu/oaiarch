@@ -7,5 +7,5 @@ matplotlib
 folium
 rasterio
 scipy
-CSF
 Pillow
+cloth-simulation-filter
