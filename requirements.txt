@@ -7,4 +7,4 @@ matplotlib
 folium
 rasterio
 scipy
-CSF
+cloth-simulation-filter
