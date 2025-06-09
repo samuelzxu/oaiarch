@@ -78,25 +78,31 @@ def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: flo
         )
         
         # Handle areas with no data by filling with the mean of the valid data
-        dtm = np.nan_to_num(dtm, nan=np.nanmean(dtm))
+        dtm_filled = np.nan_to_num(dtm, nan=np.nanmean(dtm))
 
-        # 4. Save DTM as an image
+        # 4. Save raw DTM data as .npy file
+        file_name = Path(lidar_file_path).stem
+        npy_output_path = os.path.join(output_dir, f"{file_name}_dtm_csf.npy")
+        np.save(npy_output_path, dtm) # Save the array with NaNs
+        print(f"  -> Saved raw DTM data to {npy_output_path}")
+
+        # 5. Save a visualized DTM as a PNG image for preview
         plt.figure(figsize=(15, 15))
         # Using a high-contrast grayscale colormap which is often better for spotting subtle anomalies
-        plt.imshow(dtm.T, cmap='gray', origin='lower')
+        plt.imshow(dtm_filled.T, cmap='gray', origin='lower')
         plt.axis('off')
         
-        file_name = Path(lidar_file_path).stem
-        output_path = os.path.join(output_dir, f"{file_name}_dtm_csf.png")
-        plt.savefig(output_path, bbox_inches='tight', pad_inches=0, dpi=300) # Higher DPI for better detail
+        png_output_path = os.path.join(output_dir, f"{file_name}_dtm_csf.png")
+        plt.savefig(png_output_path, bbox_inches='tight', pad_inches=0, dpi=300) # Higher DPI for better detail
         plt.close()
         
-        print(f"  -> Saved DTM to {output_path}")
+        print(f"  -> Saved preview DTM to {png_output_path}")
 
-        # 5. Save metadata
+        # 6. Save metadata
         metadata = {
             'lidar_file': lidar_file_path,
-            'dtm_image': output_path,
+            'dtm_preview_image': png_output_path,
+            'dtm_raw_data': npy_output_path,
             'bounds': {
                 'min_x': min_x,
                 'min_y': min_y,

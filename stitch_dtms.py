@@ -91,17 +91,15 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     print(f"  - Creating canvas of size: {stitched_width} x {stitched_height} pixels.")
     
     # Create a blank canvas. We use a float array for NaN support.
-    # Using a value like -1 to represent "no data" areas.
-    stitched_array = np.full((stitched_height, stitched_width), -1.0, dtype=np.float32)
+    stitched_array = np.full((stitched_height, stitched_width), np.nan, dtype=np.float32)
 
     for metadata in group_metadata:
-        dtm_image_path = metadata['dtm_image']
-        if not os.path.exists(dtm_image_path):
-            print(f"  - Warning: DTM image {dtm_image_path} not found. Skipping.")
+        raw_data_path = metadata.get('dtm_raw_data')
+        if not raw_data_path or not os.path.exists(raw_data_path):
+            print(f"  - Warning: Raw DTM data for {metadata['lidar_file']} not found. Skipping.")
             continue
             
-        with Image.open(dtm_image_path) as img:
-            dtm_array = np.array(img, dtype=np.uint8)
+        dtm_array = np.load(raw_data_path)
         
         h, w = dtm_array.shape
         bounds = metadata['bounds']
@@ -121,21 +119,27 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         # Combine the images, only overwriting the "no data" areas
         # This basic pasting assumes non-overlapping tiles. For overlaps, more complex blending would be needed.
         target_slice = stitched_array[y_pos:y_pos+h, x_offset:x_offset+w]
-        target_slice[dtm_array != 0] = dtm_array[dtm_array != 0] # Use grayscale values, avoid pure black if it's a border effect
+        # We paste the new tile only where the canvas is currently empty (NaN)
+        target_slice[np.isnan(target_slice)] = dtm_array[np.isnan(target_slice)]
 
     # Normalize the array to 0-255 for saving as an image
-    # We ignore the -1 "no data" values during normalization
-    valid_pixels = stitched_array[stitched_array != -1.0]
+    # We ignore the NaN "no data" values during normalization
+    valid_pixels = stitched_array[~np.isnan(stitched_array)]
     if valid_pixels.size > 0:
         min_val = np.min(valid_pixels)
         max_val = np.max(valid_pixels)
         if max_val > min_val:
+            # Normalize to 0-255
             normalized_array = (stitched_array - min_val) * (255.0 / (max_val - min_val))
-            normalized_array[stitched_array == -1.0] = 0 # Set "no data" to black
+            # Set "no data" areas (which are still NaN) to black
+            normalized_array[np.isnan(normalized_array)] = 0
         else:
-            normalized_array = stitched_array
+            # Handle case where all valid pixels have the same value
+            normalized_array = np.full(stitched_array.shape, 128)
+            normalized_array[np.isnan(stitched_array)] = 0
     else:
-        normalized_array = stitched_array # Should be all -1
+        # Handle case where there are no valid pixels at all
+        normalized_array = np.zeros(stitched_array.shape)
 
     final_image = Image.fromarray(normalized_array.astype(np.uint8), mode='L')
     
