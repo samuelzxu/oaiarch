@@ -1,12 +1,15 @@
 import laspy
 import numpy as np
 from scipy.interpolate import griddata
+import matplotlib
+matplotlib.use('Agg')  # Use non-interactive backend for multiprocessing safety
 import matplotlib.pyplot as plt
 import os
 import glob
 from pathlib import Path
 import CSF
 import json
+import multiprocessing
 
 def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: float = 0.5):
     """
@@ -135,6 +138,7 @@ def main():
     
     # Processing parameters
     dtm_resolution = 0.5     # DTM resolution in meters/pixel (lower is higher res)
+    num_workers = 6          # Max number of parallel processes
     # ---------------------
 
     print("Starting LiDAR DTM Generation with Cloth Simulation Filter")
@@ -163,12 +167,14 @@ def main():
         
     print(f"\nFound {len(lidar_files)} LiDAR files to process.\n")
 
-    for lidar_file in lidar_files:
-        create_dtm_from_lidar(
-            lidar_file_path=lidar_file,
-            output_dir=output_directory,
-            resolution=dtm_resolution
-        )
+    # Create a list of arguments for each task
+    tasks = [(lidar_file, output_directory, dtm_resolution) for lidar_file in lidar_files]
+
+    # Use a pool of workers to process files in parallel
+    print(f"Starting parallel processing with {num_workers} workers...")
+    with multiprocessing.Pool(processes=num_workers) as pool:
+        # starmap is used for functions that take multiple arguments
+        pool.starmap(create_dtm_from_lidar, tasks)
 
     print("\n" + "=" * 60)
     print("Processing complete.")
