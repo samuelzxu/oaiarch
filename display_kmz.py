@@ -4,6 +4,7 @@ import folium
 from folium import plugins
 import re
 from typing import List, Tuple, Dict, Any
+import os
 
 def extract_kmz_content(kmz_file_path: str) -> str:
     """
@@ -177,7 +178,32 @@ def create_map_with_polygons(polygons: List[Dict[str, Any]], output_file: str = 
     
     return m
 
-def main():
+
+def get_item_name_from_filename(filename):
+    num_underscores = filename.count('_')
+    split_at = max(min(3,num_underscores),0)
+    return '_'.join(filename.split('_')[:split_at])
+
+def get_polygon_bounds(polygon_name, polygons):
+    max_lat = -180
+    max_lon = -180
+    min_lat = 180
+    min_lon = 180
+    for poly in polygons:
+        p_id = get_item_name_from_filename(poly["name"])
+        if p_id == polygon_name:
+            max_lat = max(max_lat, max([coord[0] for coord in poly['coordinates']]))
+            max_lon = max(max_lon, max([coord[1] for coord in poly['coordinates']]))
+            min_lat = min(min_lat, min([coord[0] for coord in poly['coordinates']]))
+            min_lon = min(min_lon, min([coord[1] for coord in poly['coordinates']]))
+    return {
+        "max_lat": max_lat,
+        "max_lon": max_lon,
+        "min_lat": min_lat,
+        "min_lon": min_lon
+    }
+
+def extract_coordinates():
     """
     Main function to demonstrate the KMZ reading and mapping functionality.
     """
@@ -195,13 +221,21 @@ def main():
         
         # Print summary of found polygons
         for i, polygon in enumerate(polygons):
-            print(f"Polygon {i+1}: {polygon['name']} ({len(polygon['coordinates'])} points)")
+            print(f"Polygon {i+1}: {polygon['name']} ({polygon['coordinates']})")
         
-        print("Creating map...")
-        map_obj = create_map_with_polygons(polygons)
+        all_polygon_names = set([get_item_name_from_filename(polygon['name']) for polygon in polygons])
         
-        if map_obj:
-            print("Map created successfully! Open 'kmz_polygons_map.html' in your browser to view.")
+        # print("Creating map...")
+        stitched_dir = 'stitched_images'
+        stitched_items = list(map(get_item_name_from_filename,filter(lambda x: '.png' in x, os.listdir(stitched_dir))))
+        polygon_bounds = {}
+        for item in stitched_items:
+            
+            if not(item in all_polygon_names):
+                print('Item found not in polygons: ',item)
+            else:
+                polygon_bounds[item] = get_polygon_bounds(item, polygons)
+        return polygon_bounds
         
     except FileNotFoundError:
         print(f"Error: Could not find file '{kmz_file_path}'")
@@ -210,16 +244,4 @@ def main():
         print(f"Error processing KMZ file: {str(e)}")
 
 if __name__ == "__main__":
-    # Example usage
-    print("KMZ Polygon Reader and Map Display")
-    print("=" * 40)
-    
-    # You can also use the functions individually:
-    
-    # Example of how to use with a specific file:
-    # kmz_path = "path/to/your/file.kmz"
-    # kml_content = extract_kmz_content(kmz_path)
-    # polygons = extract_polygons_from_kml(kml_content)
-    # create_map_with_polygons(polygons, "my_custom_map.html")
-    
-    main()
+    extract_coordinates()
