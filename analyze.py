@@ -329,7 +329,7 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
     
     return visual_png, nir_png
 
-def process_single_file(filename: str, polygons_dict: dict, polygons_object) -> None:
+def process_single_file(filename: str, exp_name: str, polygons_object) -> None:
     """
     Process a single file, gathering all available data sources and performing analysis.
     
@@ -340,7 +340,7 @@ def process_single_file(filename: str, polygons_dict: dict, polygons_object) -> 
     print(f"Processing {filename}...")
     
     # Skip if analysis already exists
-    if os.path.exists(f"analysis_fine/{filename}_analysis.txt"):
+    if os.path.exists(f"{exp_name}/{filename}_analysis.txt"):
         print(f"Analysis for {filename} already exists, skipping...")
         return
 
@@ -369,7 +369,7 @@ def process_single_file(filename: str, polygons_dict: dict, polygons_object) -> 
         out_path_1 = fetch_raster_tile_from_opentopography(
             api_key, dataset, north, south, east, west, 
             source="globaldem", 
-            dest=Path(f"out_v3/{item_name}_opentopo.tif")
+            dest=Path(f"{exp_name}/{item_name}_opentopo.tif")
         )
         data_url_1 = raster_to_png_data_url(out_path_1)
         data_urls.append(data_url_1)
@@ -384,7 +384,7 @@ def process_single_file(filename: str, polygons_dict: dict, polygons_object) -> 
     data_url_2 = png_to_data_url(png_file)
     data_urls.append(data_url_2)
     data_descriptions.append("A digital terrain model extracted from LiDAR data using cloth simulation")
-    shutil.copy(png_file, f"out_v3/{item_name}_lidar.png")
+    shutil.copy(png_file, f"{exp_name}/{item_name}_lidar.png")
     # 3. Try to get Sentinel-2 Visual and NIR data
     try:
         visual_png, nir_png = fetch_sentinel_data(
@@ -392,7 +392,7 @@ def process_single_file(filename: str, polygons_dict: dict, polygons_object) -> 
             south=south,
             east=east,
             west=west,
-            output_dir="out_v3",
+            output_dir="sentinel_dls",
             prefix=filename
         )
         
@@ -400,13 +400,13 @@ def process_single_file(filename: str, polygons_dict: dict, polygons_object) -> 
         data_url_3 = png_to_data_url(visual_png)
         data_urls.append(data_url_3)
         data_descriptions.append("A true-color (visual) Sentinel-2 satellite image")
-        shutil.copy(visual_png, f"out_v3/{item_name}_visual.png")
+        shutil.copy(visual_png, f"{exp_name}/{item_name}_visual.png")
         
         # Add NIR band
         data_url_4 = png_to_data_url(nir_png)
         data_urls.append(data_url_4)
         data_descriptions.append("A near-infrared (NIR) Sentinel-2 band image")
-        shutil.copy(nir_png, f"out_v3/{item_name}_nir.png")
+        shutil.copy(nir_png, f"{exp_name}/{item_name}_nir.png")
         print("Successfully retrieved Sentinel-2 data")
     except Exception as e:
         print(f"Warning: Failed to fetch Sentinel data: {e}")
@@ -431,13 +431,9 @@ def process_single_file(filename: str, polygons_dict: dict, polygons_object) -> 
         )
         
         print(f"Writing analysis for {filename}...")
-        with open(f"analysis_fine/{filename}_analysis.txt", "w") as f:
+        with open(f"{exp_name}/{item_name}_prompt.txt", "w") as f:
             f.write(f"{str(analysis_dict['prompt'])}\n\n")
-            f.write("==="*30 + "\n\n")
-            f.write(f"{str(analysis_dict['response'])}\n")
-        with open(f"out_v3/{item_name}_analysis.txt", "w") as f:
-            f.write(f"{str(analysis_dict['prompt'])}\n\n")
-            f.write("==="*30 + "\n\n")
+        with open(f"{exp_name}/{item_name}_analysis.txt", "w") as f:
             f.write(f"{str(analysis_dict['response'])}\n")
     except Exception as e:
         print(f"Error during analysis of {filename}: {e}")
@@ -447,6 +443,9 @@ def main():
     # Load KMZ data
     print("Extracting KML content from KMZ file...")
     kml_content = extract_kmz_content(kmz_file_path)
+
+    exp_name = "exp_v4"
+    os.makedirs(exp_name, exist_ok=True)
 
     print("Parsing polygons from KML...")
     polygons = extract_polygons_from_kml(kml_content)
@@ -463,7 +462,7 @@ def main():
 
     # Process each file
     for filename in all_files:
-        process_single_file(filename, polygons_dict, polygons)
+        process_single_file(filename, exp_name, polygons)
 
 if __name__ == "__main__":
     api_key = os.environ.get("OPENTOPOGRAPHY_API_KEY")
