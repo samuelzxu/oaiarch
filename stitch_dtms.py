@@ -75,9 +75,9 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         print(f"  - Warning: Invalid bounds for group {group_key}. Skipping.")
         return
 
-    # Set resolution in degrees (approximate, will be refined)
-    # Using a small value to get good resolution - about 0.5m at this latitude
-    resolution_deg = 0.000005  # approximately 0.5m at equator
+    # Use a more reasonable resolution - about 5m per pixel
+    # This prevents creating massive canvases
+    resolution_deg = 0.00005  # approximately 5m at equator
     
     # Calculate canvas size based on polygon bounds
     width_deg = group_bounds["max_lon"] - group_bounds["min_lon"]
@@ -88,17 +88,18 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     
     print(f"  - Group bounds: lat({group_bounds['min_lat']:.6f}, {group_bounds['max_lat']:.6f}), lon({group_bounds['min_lon']:.6f}, {group_bounds['max_lon']:.6f})")
     print(f"  - Canvas size: {canvas_width} x {canvas_height} pixels")
+    print(f"  - Resolution: {resolution_deg:.6f} degrees/pixel (~{resolution_deg * 111000:.1f}m at equator)")
     
     # Check for reasonable dimensions
-    if canvas_width > 50000 or canvas_height > 50000:
+    if canvas_width > 10000 or canvas_height > 10000:
         print(f"  - Warning: Canvas too large ({canvas_width} x {canvas_height}). Skipping group {group_key}.")
         return
     
     # Create blank canvas
     stitched_array = np.full((canvas_height, canvas_width), np.nan, dtype=np.float32)
     
-    # Process each polygon in the group
-    tiles_processed = 0
+    # Collect valid tiles first
+    valid_tiles = []
     for name in polygon_names:
         # Find corresponding polygon
         polygon = next((p for p in polygons if p['name'] == name), None)
@@ -114,66 +115,104 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
             continue
             
         # Load DTM data
-        dtm_array = np.load(dtm_path)
-        if dtm_array.size == 0:
-            print(f"  - Warning: Empty DTM array for {name}")
+        try:
+            dtm_array = np.load(dtm_path)
+            if dtm_array.size == 0:
+                print(f"  - Warning: Empty DTM array for {name}")
+                continue
+        except Exception as e:
+            print(f"  - Warning: Failed to load DTM for {name}: {e}")
             continue
             
         # Get polygon bounds
         poly_bounds = get_polygon_bounds_from_single_polygon(polygon)
         
-        # Calculate where this tile should go on the canvas
-        tile_min_col = int(np.floor((poly_bounds["min_lon"] - group_bounds["min_lon"]) / resolution_deg))
-        tile_max_col = int(np.ceil((poly_bounds["max_lon"] - group_bounds["min_lon"]) / resolution_deg))
-        tile_min_row = int(np.floor((group_bounds["max_lat"] - poly_bounds["max_lat"]) / resolution_deg))  # Flip Y
-        tile_max_row = int(np.ceil((group_bounds["max_lat"] - poly_bounds["min_lat"]) / resolution_deg))   # Flip Y
+        valid_tiles.append({
+            'name': name,
+            'polygon': polygon,
+            'dtm_array': dtm_array,
+            'bounds': poly_bounds
+        })
+    
+    if not valid_tiles:
+        print(f"  - No valid tiles found for group {group_key}")
+        return
+    
+    print(f"  - Processing {len(valid_tiles)} valid tiles")
+    
+    # Process each valid tile
+    tiles_processed = 0
+    for tile in valid_tiles:
+        name = tile['name']
+        dtm_array = tile['dtm_array']
+        poly_bounds = tile['bounds']
+        
+        # Calculate pixel coordinates for this tile
+        # Convert lat/lon bounds to pixel coordinates
+        left_px = int((poly_bounds["min_lon"] - group_bounds["min_lon"]) / resolution_deg)
+        right_px = int((poly_bounds["max_lon"] - group_bounds["min_lon"]) / resolution_deg)
+        top_px = int((group_bounds["max_lat"] - poly_bounds["max_lat"]) / resolution_deg)
+        bottom_px = int((group_bounds["max_lat"] - poly_bounds["min_lat"]) / resolution_deg)
         
         # Calculate target dimensions
-        target_width = tile_max_col - tile_min_col
-        target_height = tile_max_row - tile_min_row
+        target_width = right_px - left_px
+        target_height = bottom_px - top_px
         
         if target_width <= 0 or target_height <= 0:
             print(f"  - Warning: Invalid target dimensions for {name}: {target_width}x{target_height}")
             continue
-            
-        # Resize DTM array to fit the target area
-        from scipy.ndimage import zoom
         
-        # Calculate zoom factors
-        zoom_y = target_height / dtm_array.shape[0]
-        zoom_x = target_width / dtm_array.shape[1]
+        # Ensure we don't go outside canvas bounds
+        left_px = max(0, left_px)
+        top_px = max(0, top_px)
+        right_px = min(canvas_width, right_px)
+        bottom_px = min(canvas_height, bottom_px)
         
-        # Resize the DTM array
+        actual_width = right_px - left_px
+        actual_height = bottom_px - top_px
+        
+        if actual_width <= 0 or actual_height <= 0:
+            print(f"  - Warning: Tile {name} falls outside canvas bounds")
+            continue
+        
+        # Resize DTM to fit the target area
         try:
-            resized_dtm = zoom(dtm_array, (zoom_y, zoom_x), order=1, prefilter=False)
-            # Handle NaN values that might have been introduced
-            resized_dtm = np.where(np.isfinite(resized_dtm), resized_dtm, np.nan)
+            from scipy.ndimage import zoom
+            
+            # Calculate zoom factors
+            zoom_y = actual_height / dtm_array.shape[0]
+            zoom_x = actual_width / dtm_array.shape[1]
+            
+            # Only resize if necessary (avoid unnecessary interpolation)
+            if abs(zoom_y - 1.0) > 0.01 or abs(zoom_x - 1.0) > 0.01:
+                resized_dtm = zoom(dtm_array, (zoom_y, zoom_x), order=1, prefilter=False)
+            else:
+                resized_dtm = dtm_array.copy()
+            
+            # Ensure exact size match
+            if resized_dtm.shape != (actual_height, actual_width):
+                # Crop or pad to exact size
+                h, w = resized_dtm.shape
+                if h > actual_height or w > actual_width:
+                    resized_dtm = resized_dtm[:actual_height, :actual_width]
+                elif h < actual_height or w < actual_width:
+                    padded = np.full((actual_height, actual_width), np.nan, dtype=np.float32)
+                    padded[:h, :w] = resized_dtm
+                    resized_dtm = padded
+            
         except Exception as e:
             print(f"  - Warning: Failed to resize DTM for {name}: {e}")
             continue
-            
-        # Ensure the resized array fits exactly in the target area
-        actual_height = min(resized_dtm.shape[0], canvas_height - tile_min_row)
-        actual_width = min(resized_dtm.shape[1], canvas_width - tile_min_col)
-        
-        if actual_height <= 0 or actual_width <= 0:
-            print(f"  - Warning: Tile {name} falls outside canvas bounds")
-            continue
-            
-        # Clip the resized DTM to fit
-        clipped_dtm = resized_dtm[:actual_height, :actual_width]
         
         # Place the tile on the canvas
-        end_row = tile_min_row + actual_height
-        end_col = tile_min_col + actual_width
+        target_slice = stitched_array[top_px:bottom_px, left_px:right_px]
         
-        # Only place pixels where the canvas is currently empty (NaN)
-        target_slice = stitched_array[tile_min_row:end_row, tile_min_col:end_col]
-        mask = np.isnan(target_slice) & np.isfinite(clipped_dtm)
-        target_slice[mask] = clipped_dtm[mask]
+        # Only place pixels where the canvas is currently empty (NaN) and DTM has valid data
+        mask = np.isnan(target_slice) & np.isfinite(resized_dtm)
+        target_slice[mask] = resized_dtm[mask]
         
         tiles_processed += 1
-        print(f"  - Placed {name} at ({tile_min_col}, {tile_min_row}) with size ({actual_width}, {actual_height})")
+        print(f"  - Placed {name} at ({left_px}, {top_px}) with size ({actual_width}, {actual_height})")
     
     if tiles_processed == 0:
         print(f"  - No tiles processed for group {group_key}")
