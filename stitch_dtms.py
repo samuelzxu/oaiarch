@@ -12,7 +12,8 @@ from display_kmz import (
     extract_kmz_content,
     extract_polygons_from_kml,
     get_item_name_from_filename,
-    get_polygon_bounds
+    get_polygon_bounds,
+    get_polygon_bounds_from_single_polygon
 )
 
 # --- KMZ Parsing Functions (from display_kmz.py) ---
@@ -68,28 +69,14 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     """Stitches all DTM images for a given group of polygons."""
     print(f"\nStitching group: {group_key}...")
     
-    group_metadata = []
-    for name in polygon_names:
-        file_stem = os.path.splitext(name)[0]
-        metadata_path = os.path.join(dtm_dir, f"{file_stem}_dtm_csf.json")
-        if os.path.exists(metadata_path):
-            with open(metadata_path, 'r') as f:
-                group_metadata.append(json.load(f))
-        else:
-            print(f"  - Warning: Metadata for {name} not found. Skipping.")
-
-    if not group_metadata:
-        print(f"No DTM images found for group {group_key}. Skipping.")
-        return
-
     # Get bounds from KMZ polygon data
     bounds = get_polygon_bounds(group_key, polygons)
     if bounds["max_lat"] == -180 or bounds["min_lat"] == 180 or bounds["max_lon"] == -180 or bounds["min_lon"] == 180:
         print(f"  - Warning: Invalid bounds for group {group_key}. Skipping.")
         return
 
-    # Use resolution from metadata if available, otherwise default to 0.5
-    resolution = group_metadata[0].get('resolution', 0.5) if group_metadata else 0.5
+    # Default resolution (in meters)
+    resolution = 0.5
 
     # Calculate the size of the stitched image using the polygon bounds
     # Convert lat/lon to UTM coordinates for consistent pixel calculations
@@ -113,17 +100,26 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     # Create a blank canvas with NaN support
     stitched_array = np.full((stitched_height, stitched_width), np.nan, dtype=np.float32)
 
-    for metadata in group_metadata:
-        raw_data_path = metadata.get('dtm_raw_data')
-        if not raw_data_path or not os.path.exists(raw_data_path):
-            print(f"  - Warning: Raw DTM data for {metadata['lidar_file']} not found. Skipping.")
+    # Process each polygon in the group
+    for name in polygon_names:
+        # Find the corresponding polygon data
+        polygon = next((p for p in polygons if p['name'] == name), None)
+        if not polygon:
+            print(f"  - Warning: No polygon data found for {name}. Skipping.")
+            continue
+
+        # Get the raw DTM data
+        file_stem = os.path.splitext(name)[0]
+        raw_data_path = os.path.join(dtm_dir, f"{file_stem}_dtm_csf.npy")
+        if not os.path.exists(raw_data_path):
+            print(f"  - Warning: Raw DTM data for {name} not found. Skipping.")
             continue
             
         dtm_array = np.load(raw_data_path)
         
-        # Transform tile bounds to UTM
-        tile_bounds = metadata['bounds']
-        tile_min_x, tile_min_y = transformer_to_utm.transform(tile_bounds['min_lon'], tile_bounds['min_lat'])
+        # Get the tile bounds from polygon coordinates
+        tile_bounds = get_polygon_bounds_from_single_polygon(polygon)
+        tile_min_x, tile_min_y = transformer_to_utm.transform(tile_bounds["min_lon"], tile_bounds["min_lat"])
         
         # Calculate pixel offsets on the main canvas
         x_offset = int(np.round((tile_min_x - min_x) / resolution))
@@ -138,7 +134,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         # Combine the images, only overwriting NaN areas
         target_slice = stitched_array[y_pos:y_pos+h, x_offset:x_offset+w]
         if target_slice.shape != dtm_array.shape:
-            print(f"  - Warning: Shape mismatch for {metadata['lidar_file']}. Fitting DTM array to target slice.")
+            print(f"  - Warning: Shape mismatch for {name}. Fitting DTM array to target slice.")
             min_h = min(target_slice.shape[0], dtm_array.shape[0])
             min_w = min(target_slice.shape[1], dtm_array.shape[1])
             fitted_dtm = np.zeros(target_slice.shape, dtype=dtm_array.dtype)
