@@ -8,6 +8,12 @@ import zipfile
 import xml.etree.ElementTree as ET
 from typing import List, Dict, Any
 from pyproj import Transformer
+from display_kmz import (
+    extract_kmz_content,
+    extract_polygons_from_kml,
+    get_item_name_from_filename,
+    get_polygon_bounds
+)
 
 # --- KMZ Parsing Functions (from display_kmz.py) ---
 
@@ -58,7 +64,7 @@ def group_polygons(polygon_names: List[str]) -> Dict[str, List[str]]:
             
     return groups
 
-def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, output_dir: str):
+def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, output_dir: str, polygons: List[Dict[str, Any]]):
     """Stitches all DTM images for a given group of polygons."""
     print(f"\nStitching group: {group_key}...")
     
@@ -76,27 +82,35 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         print(f"No DTM images found for group {group_key}. Skipping.")
         return
 
-    # Determine the overall bounding box for the entire group
-    global_min_x = min(m['bounds']['min_x'] for m in group_metadata)
-    global_max_x = max(m['bounds']['max_x'] for m in group_metadata)
-    global_min_y = min(m['bounds']['min_y'] for m in group_metadata)
-    global_max_y = max(m['bounds']['max_y'] for m in group_metadata)
-    
-    # Assuming resolution is consistent across all tiles
-    resolution = group_metadata[0]['resolution']
+    # Get bounds from KMZ polygon data
+    bounds = get_polygon_bounds(group_key, polygons)
+    if bounds["max_lat"] == -180 or bounds["min_lat"] == 180 or bounds["max_lon"] == -180 or bounds["min_lon"] == 180:
+        print(f"  - Warning: Invalid bounds for group {group_key}. Skipping.")
+        return
 
-    # Calculate the size of the stitched image
-    stitched_width = int(np.ceil((global_max_x - global_min_x) / resolution))
-    stitched_height = int(np.ceil((global_max_y - global_min_y) / resolution))
-    
-    print(f"  - Creating canvas of size: {stitched_width} x {stitched_height} pixels.")
+    # Use resolution from metadata if available, otherwise default to 0.5
+    resolution = group_metadata[0].get('resolution', 0.5) if group_metadata else 0.5
 
-    # If the stitched height and width are out of reasonable bounds, we can skip stitching
+    # Calculate the size of the stitched image using the polygon bounds
+    # Convert lat/lon to UTM coordinates for consistent pixel calculations
+    transformer_to_utm = Transformer.from_crs("EPSG:4326", "EPSG:32721", always_xy=True)
+    
+    # Transform bounds to UTM
+    min_x, min_y = transformer_to_utm.transform(bounds["min_lon"], bounds["min_lat"])
+    max_x, max_y = transformer_to_utm.transform(bounds["max_lon"], bounds["max_lat"])
+    
+    # Calculate dimensions
+    stitched_width = int(np.ceil((max_x - min_x) / resolution))
+    stitched_height = int(np.ceil((max_y - min_y) / resolution))
+    
+    print(f"  - Creating canvas of size: {stitched_width} x {stitched_height} pixels")
+
+    # Check for reasonable dimensions
     if stitched_width > 100000 or stitched_height > 100000:
         print(f"  - Warning: Invalid stitched dimensions ({stitched_width} x {stitched_height}). Skipping group {group_key}.")
         return
     
-    # Create a blank canvas. We use a float array for NaN support.
+    # Create a blank canvas with NaN support
     stitched_array = np.full((stitched_height, stitched_width), np.nan, dtype=np.float32)
 
     for metadata in group_metadata:
@@ -107,59 +121,46 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
             
         dtm_array = np.load(raw_data_path)
         
-        h, w = dtm_array.shape
-        bounds = metadata['bounds']
+        # Transform tile bounds to UTM
+        tile_bounds = metadata['bounds']
+        tile_min_x, tile_min_y = transformer_to_utm.transform(tile_bounds['min_lon'], tile_bounds['min_lat'])
         
         # Calculate pixel offsets on the main canvas
-        x_offset = int(np.round((bounds['min_x'] - global_min_x) / resolution))
-        y_offset = int(np.round((bounds['min_y'] - global_min_y) / resolution))
+        x_offset = int(np.round((tile_min_x - min_x) / resolution))
+        y_offset = int(np.round((tile_min_y - min_y) / resolution))
         
-        # Paste the DTM into the correct location on the canvas
-        # The y-axis needs to be flipped because array indices start from the top,
-        # but our coordinates start from the bottom ('lower' origin).
+        h, w = dtm_array.shape
+        
+        # The y-axis needs to be flipped because array indices start from the top
         y_pos = stitched_height - (y_offset + h)
-        
-        # Ensure we don't try to write outside the canvas
         if y_pos < 0: y_pos = 0
         
-        # Combine the images, only overwriting the "no data" areas
-        # This basic pasting assumes non-overlapping tiles. For overlaps, more complex blending would be needed.
+        # Combine the images, only overwriting NaN areas
         target_slice = stitched_array[y_pos:y_pos+h, x_offset:x_offset+w]
-        # We paste the new tile only where the canvas is currently empty (NaN)
         if target_slice.shape != dtm_array.shape:
-            print(f"  - Warning: Shape mismatch for {metadata['lidar_file']}. Fitting DTM array to target slice and filling remainder with zeros.")
-            # Determine the minimum shape to fit both arrays
+            print(f"  - Warning: Shape mismatch for {metadata['lidar_file']}. Fitting DTM array to target slice.")
             min_h = min(target_slice.shape[0], dtm_array.shape[0])
             min_w = min(target_slice.shape[1], dtm_array.shape[1])
-            # Create a zero-filled array matching the target_slice shape
             fitted_dtm = np.zeros(target_slice.shape, dtype=dtm_array.dtype)
-            # Copy the overlapping region from dtm_array
             fitted_dtm[:min_h, :min_w] = dtm_array[:min_h, :min_w]
-            # Only paste where the canvas is currently empty (NaN)
             mask = np.isnan(target_slice)
             target_slice[mask] = fitted_dtm[mask]
         else:
-            # Only paste where the canvas is currently empty (NaN)
             mask = np.isnan(target_slice) & ~np.isnan(dtm_array)
             target_slice[mask] = dtm_array[mask]
 
     # Normalize the array to 0-255 for saving as an image
-    # We ignore the NaN "no data" values during normalization
     valid_pixels = stitched_array[~np.isnan(stitched_array)]
     if valid_pixels.size > 0:
         min_val = np.min(valid_pixels)
         max_val = np.max(valid_pixels)
         if max_val > min_val:
-            # Normalize to 0-255
             normalized_array = (stitched_array - min_val) * (255.0 / (max_val - min_val))
-            # Set "no data" areas (which are still NaN) to black
             normalized_array[np.isnan(normalized_array)] = 0
         else:
-            # Handle case where all valid pixels have the same value
             normalized_array = np.full(stitched_array.shape, 128)
             normalized_array[np.isnan(normalized_array)] = 0
     else:
-        # Handle case where there are no valid pixels at all
         normalized_array = np.zeros(stitched_array.shape)
 
     final_image = Image.fromarray(normalized_array.astype(np.uint8), mode='L')
@@ -168,29 +169,28 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     os.makedirs(output_dir, exist_ok=True)
     final_image.save(output_path)
 
-    # ---- Save lon/lat of image center ----
-    # Compute center in projected coordinates
-    center_x = (global_min_x + global_max_x) / 2
-    center_y = (global_min_y + global_max_y) / 2
-
-    # You may need to adjust the EPSG code below to match your data's CRS
-    # Example: UTM zone 21S (Brazil): EPSG:32721, or use metadata['crs'] if available
-    # Here, we use WGS84 UTM zone 21S as an example
-    transformer = Transformer.from_crs("EPSG:32721", "EPSG:4326", always_xy=True)
-    lon, lat = transformer.transform(center_x, center_y)
-
-    # Save as JSON
+    # Save location information using the polygon bounds
     info = {
         "group_key": group_key,
-        "center_projected": {"x": center_x, "y": center_y},
-        "center_lonlat": {"lon": lon, "lat": lat},
-        "bounds_projected": {
-            "min_x": global_min_x,
-            "max_x": global_max_x,
-            "min_y": global_min_y,
-            "max_y": global_max_y
-        }
+        "bounds_utm": {
+            "min_x": float(min_x),
+            "max_x": float(max_x),
+            "min_y": float(min_y),
+            "max_y": float(max_y)
+        },
+        "bounds_latlon": {
+            "min_lat": bounds["min_lat"],
+            "max_lat": bounds["max_lat"],
+            "min_lon": bounds["min_lon"],
+            "max_lon": bounds["max_lon"]
+        },
+        "center_latlon": {
+            "lat": (bounds["min_lat"] + bounds["max_lat"]) / 2,
+            "lon": (bounds["min_lon"] + bounds["max_lon"]) / 2
+        },
+        "resolution": resolution
     }
+    
     info_path = os.path.join(output_dir, f"{group_key}_stitched_location.json")
     with open(info_path, "w") as f:
         json.dump(info, f, indent=2)
@@ -218,14 +218,15 @@ def main():
         print("Please run 'process_lidar.py' first to generate the DTMs and their metadata.")
         return
 
-    # 1. Read polygon names from KMZ
+    # 1. Read polygon data from KMZ
     print("1. Parsing KMZ file to get polygon layout...")
     kml_content = extract_kmz_content(kmz_file_path)
-    polygon_names = extract_polygon_names_from_kml(kml_content)
-    print(f"   Found {len(polygon_names)} polygons in the KMZ file.")
+    polygons = extract_polygons_from_kml(kml_content)
+    print(f"   Found {len(polygons)} polygons in the KMZ file.")
 
     # 2. Group polygons
     print("\n2. Grouping contiguous polygons...")
+    polygon_names = [polygon['name'] for polygon in polygons]
     groups = group_polygons(polygon_names)
     print(f"   Grouped into {len(groups)} contiguous sets.")
     for key, items in groups.items():
@@ -238,13 +239,13 @@ def main():
             group_key=group_key,
             polygon_names=names,
             dtm_dir=dtm_images_dir,
-            output_dir=stitched_output_dir
+            output_dir=stitched_output_dir,
+            polygons=polygons
         )
         
     print("\n" + "=" * 40)
     print("Stitching process complete.")
     print(f"All stitched images are saved in '{os.path.abspath(stitched_output_dir)}'.")
-
 
 if __name__ == "__main__":
     main()
