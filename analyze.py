@@ -11,10 +11,13 @@ import io
 import sys
 import shutil
 import zipfile
+import matplotlib
+matplotlib.use('Agg')
 from pathlib import Path
-from display_kmz import extract_polygons_from_kml, extract_kmz_content, get_polygon_bounds_from_single_polygon, get_polygon_bounds
+from display_kmz import extract_polygons_from_kml, extract_kmz_content, get_polygon_bounds_from_single_polygon, get_polygon_bounds, get_item_name_from_filename
 from query_sentinel_data import SentinelSTACDownloader
 from datetime import datetime, timedelta
+import pandas as pd
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -113,6 +116,7 @@ def analyse_with_openai(
     model: str = "o4-mini",
     lat: float = 0.0,
     lon: float = 0.0,
+    prompt_append: str = ""
 ) -> str:
     """
     Send images + prompt to GPT-4v's vision endpoint and return the text.
@@ -153,7 +157,7 @@ insight
 ]]]
 
 If you detect an anomaly, output:
-\\{r'boxed{"FOUND"}'}"""
+\\{r'boxed{"FOUND"}'}"""+ prompt_append
 
     client = OpenAI()  # picks up OPENAI_API_KEY from env
     print("→ Contacting OpenAI …")
@@ -169,7 +173,10 @@ If you detect an anomaly, output:
             }
         ],
     )
-    return completion.choices[0].message.content.strip()
+    return {
+        'response':completion.choices[0].message.content.strip(),
+        'prompt': prompt,
+    }
 
 
 def convert_utm_to_wgs84(utm_x, utm_y):
@@ -267,7 +274,7 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
     
     # Set date range to last 30 days
     end_date = datetime.now().strftime('%Y-%m-%d')
-    start_date = (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')
+    start_date = (datetime.now() - timedelta(days=600)).strftime('%Y-%m-%d')
     
     # Search for products
     search_results = downloader.search_items(
@@ -277,7 +284,7 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
         west=west,
         start_date=start_date,
         end_date=end_date,
-        cloud_cover_max=20
+        cloud_cover_max=10
     )
     
     # Check if any items were found
@@ -322,7 +329,7 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
     
     return visual_png, nir_png
 
-def process_single_file(filename: str, polygons_dict: dict) -> None:
+def process_single_file(filename: str, polygons_dict: dict, polygons_object) -> None:
     """
     Process a single file, gathering all available data sources and performing analysis.
     
@@ -338,11 +345,19 @@ def process_single_file(filename: str, polygons_dict: dict) -> None:
         return
 
     # Get polygon bounds
-    bounds = get_polygon_bounds_from_single_polygon(polygons_dict[filename[:-8]])
-    north = bounds["max_lat"] + 0.05
-    south = bounds["min_lat"] - 0.05
-    east = bounds["max_lon"] + 0.05
-    west = bounds["min_lon"] - 0.05
+    # bounds = get_polygon_bounds_from_single_polygon(polygons_dict[filename[:-8]])
+    item_name = get_item_name_from_filename(filename)
+    print(f"Item name: {item_name}")
+    bounds = get_polygon_bounds(item_name, polygons_object)
+    north = bounds["max_lat"]
+    south = bounds["min_lat"]
+    east = bounds["max_lon"]
+    west = bounds["min_lon"]
+
+    if north == -180 or south == 180 or east == -180 or west == 180:
+        print(f"Error: Invalid bounds for {filename}. Skipping...")
+        return
+    print(f"Bounds for {filename}: N={north}, S={south}, E={east}, W={west}")
     
     # Initialize list to store available data URLs
     data_urls = []
@@ -354,10 +369,9 @@ def process_single_file(filename: str, polygons_dict: dict) -> None:
         out_path_1 = fetch_raster_tile_from_opentopography(
             api_key, dataset, north, south, east, west, 
             source="globaldem", 
-            dest=Path(f"out/{filename}_opentopo.tif")
+            dest=Path(f"out_v3/{item_name}_opentopo.tif")
         )
         data_url_1 = raster_to_png_data_url(out_path_1)
-        shutil.copy('out.png', f"out/{filename}_dem.png")
         data_urls.append(data_url_1)
         data_descriptions.append("A high-resolution elevation raster from OpenTopography")
         print("Successfully retrieved OpenTopo data")
@@ -365,11 +379,12 @@ def process_single_file(filename: str, polygons_dict: dict) -> None:
         print(f"Warning: Failed to fetch OpenTopo data: {e}")
 
     # 2. Get LiDAR data (already downloaded)
-    png_file = f"exp/dtm_images_csf/{filename}.png"
+    # png_file = f"exp/dtm_images_csf/{filename}.png"
+    png_file = f"stitched_images/{filename}"
     data_url_2 = png_to_data_url(png_file)
     data_urls.append(data_url_2)
     data_descriptions.append("A digital terrain model extracted from LiDAR data using cloth simulation")
-    
+    shutil.copy(png_file, f"out_v3/{item_name}_lidar.png")
     # 3. Try to get Sentinel-2 Visual and NIR data
     try:
         visual_png, nir_png = fetch_sentinel_data(
@@ -377,7 +392,7 @@ def process_single_file(filename: str, polygons_dict: dict) -> None:
             south=south,
             east=east,
             west=west,
-            output_dir="out",
+            output_dir="out_v3",
             prefix=filename
         )
         
@@ -385,13 +400,13 @@ def process_single_file(filename: str, polygons_dict: dict) -> None:
         data_url_3 = png_to_data_url(visual_png)
         data_urls.append(data_url_3)
         data_descriptions.append("A true-color (visual) Sentinel-2 satellite image")
-        shutil.copy(visual_png, f"out/{filename}_visual.png")
+        shutil.copy(visual_png, f"out_v3/{item_name}_visual.png")
         
         # Add NIR band
         data_url_4 = png_to_data_url(nir_png)
         data_urls.append(data_url_4)
         data_descriptions.append("A near-infrared (NIR) Sentinel-2 band image")
-        shutil.copy(nir_png, f"out/{filename}_nir.png")
+        shutil.copy(nir_png, f"out_v3/{item_name}_nir.png")
         print("Successfully retrieved Sentinel-2 data")
     except Exception as e:
         print(f"Warning: Failed to fetch Sentinel data: {e}")
@@ -402,25 +417,28 @@ def process_single_file(filename: str, polygons_dict: dict) -> None:
         return
         
     # Update the analysis prompt based on available data
-    def update_prompt(prompt: str, descriptions: list[str]) -> str:
-        # Split the prompt at the list of images
-        before, after = prompt.split("The images show:", 1)
+    def get_prompt_suffix(descriptions: list[str]) -> str:
         # Insert the numbered list of available data sources
         numbered_list = "\n".join(f"{i+1}. {desc}" for i, desc in enumerate(descriptions))
-        return f"{before}The images show:\n{numbered_list}\n{after}"
-    
-    prompt = update_prompt(prompt, data_descriptions)
-    # Perform analysis with available data sources
+        return f"The images show:\n{numbered_list}\n"
+
     try:
-        analysis = analyse_with_openai(
+        analysis_dict = analyse_with_openai(
             data_urls,
             lat=(north+south)/2,
-            lon=(east+west)/2
+            lon=(east+west)/2,
+            prompt_append=get_prompt_suffix(data_descriptions),
         )
         
         print(f"Writing analysis for {filename}...")
         with open(f"analysis_fine/{filename}_analysis.txt", "w") as f:
-            f.write(analysis)
+            f.write(f"{str(analysis_dict['prompt'])}\n\n")
+            f.write("==="*30 + "\n\n")
+            f.write(f"{str(analysis_dict['response'])}\n")
+        with open(f"out_v3/{item_name}_analysis.txt", "w") as f:
+            f.write(f"{str(analysis_dict['prompt'])}\n\n")
+            f.write("==="*30 + "\n\n")
+            f.write(f"{str(analysis_dict['response'])}\n")
     except Exception as e:
         print(f"Error during analysis of {filename}: {e}")
 
@@ -437,14 +455,15 @@ def main():
     }
 
     # Get list of files to process
-    all_files = list(set(list(map(
-        lambda x: x.split('.')[0], 
-        filter(lambda x: x.endswith('.png'), os.listdir('exp/dtm_images_csf'))
-    ))))
+    # all_files = list(set(list(map(
+    #     lambda x: x.split('.')[0], 
+    #     filter(lambda x: x.endswith('.png'), os.listdir('exp/dtm_images_csf'))
+    # ))))
+    all_files = list(filter(lambda x: x.endswith('.png'), os.listdir('stitched_images')))
 
     # Process each file
     for filename in all_files:
-        process_single_file(filename, polygons_dict)
+        process_single_file(filename, polygons_dict, polygons)
 
 if __name__ == "__main__":
     api_key = os.environ.get("OPENTOPOGRAPHY_API_KEY")

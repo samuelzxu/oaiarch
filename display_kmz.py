@@ -203,6 +203,22 @@ def get_polygon_bounds(polygon_name, polygons):
         "min_lon": min_lon
     }
 
+def get_polygon_bounds_from_single_polygon(polygon):
+    """
+    Get the bounds of a single polygon.
+    """
+    max_lat = max([coord[0] for coord in polygon['coordinates']])
+    max_lon = max([coord[1] for coord in polygon['coordinates']])
+    min_lat = min([coord[0] for coord in polygon['coordinates']])
+    min_lon = min([coord[1] for coord in polygon['coordinates']])
+    
+    return {
+        "max_lat": max_lat,
+        "max_lon": max_lon,
+        "min_lat": min_lat,
+        "min_lon": min_lon
+    }
+
 def extract_coordinates():
     """
     Main function to demonstrate the KMZ reading and mapping functionality.

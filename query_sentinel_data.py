@@ -358,8 +358,8 @@ class SentinelSTACDownloader:
         print(f"Saving data to {output_dir}...")
         
         # Save each band and index as both GeoTIFF and PNG
-        for var_name in data.data_vars:
-            for i, time_step in enumerate(data.time):
+        for i, time_step in enumerate(reversed(data.time)):
+            for var_name in data.data_vars:
                 time_str = pd.to_datetime(time_step.values).strftime('%Y%m%d')
                 
                 # Select data for this time step
@@ -394,6 +394,7 @@ class SentinelSTACDownloader:
                 
                 saved_files[f"{var_name}_{time_str}_png"] = str(png_filepath)
                 print(f"  Saved {png_filename}")
+            break
         
         # Save metadata
         metadata = {

@@ -134,11 +134,11 @@ def main():
     lidar_data_directory = "/mnt/datasets/lidar_nasa/orders/926ea6cc8cdee77c3ed86112e89c08f5/LiDAR_Forest_Inventory_Brazil/data"
     
     # Directory where the output DTM images will be saved
-    output_directory = "dtm_images_csf"
+    output_directory = "exp/dtm_images_csf"
     
     # Processing parameters
     dtm_resolution = 0.5     # DTM resolution in meters/pixel (lower is higher res)
-    num_workers = 6          # Max number of parallel processes
+    num_workers = 12          # Max number of parallel processes
     # ---------------------
 
     print("Starting LiDAR DTM Generation with Cloth Simulation Filter")

@@ -7,6 +7,7 @@ from PIL import Image
 import zipfile
 import xml.etree.ElementTree as ET
 from typing import List, Dict, Any
+from pyproj import Transformer
 
 # --- KMZ Parsing Functions (from display_kmz.py) ---
 
@@ -89,6 +90,11 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     stitched_height = int(np.ceil((global_max_y - global_min_y) / resolution))
     
     print(f"  - Creating canvas of size: {stitched_width} x {stitched_height} pixels.")
+
+    # If the stitched height and width are out of reasonable bounds, we can skip stitching
+    if stitched_width > 100000 or stitched_height > 100000:
+        print(f"  - Warning: Invalid stitched dimensions ({stitched_width} x {stitched_height}). Skipping group {group_key}.")
+        return
     
     # Create a blank canvas. We use a float array for NaN support.
     stitched_array = np.full((stitched_height, stitched_width), np.nan, dtype=np.float32)
@@ -120,7 +126,22 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         # This basic pasting assumes non-overlapping tiles. For overlaps, more complex blending would be needed.
         target_slice = stitched_array[y_pos:y_pos+h, x_offset:x_offset+w]
         # We paste the new tile only where the canvas is currently empty (NaN)
-        target_slice[np.isnan(target_slice)] = dtm_array[np.isnan(target_slice)]
+        if target_slice.shape != dtm_array.shape:
+            print(f"  - Warning: Shape mismatch for {metadata['lidar_file']}. Fitting DTM array to target slice and filling remainder with zeros.")
+            # Determine the minimum shape to fit both arrays
+            min_h = min(target_slice.shape[0], dtm_array.shape[0])
+            min_w = min(target_slice.shape[1], dtm_array.shape[1])
+            # Create a zero-filled array matching the target_slice shape
+            fitted_dtm = np.zeros(target_slice.shape, dtype=dtm_array.dtype)
+            # Copy the overlapping region from dtm_array
+            fitted_dtm[:min_h, :min_w] = dtm_array[:min_h, :min_w]
+            # Only paste where the canvas is currently empty (NaN)
+            mask = np.isnan(target_slice)
+            target_slice[mask] = fitted_dtm[mask]
+        else:
+            # Only paste where the canvas is currently empty (NaN)
+            mask = np.isnan(target_slice) & ~np.isnan(dtm_array)
+            target_slice[mask] = dtm_array[mask]
 
     # Normalize the array to 0-255 for saving as an image
     # We ignore the NaN "no data" values during normalization
@@ -136,7 +157,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         else:
             # Handle case where all valid pixels have the same value
             normalized_array = np.full(stitched_array.shape, 128)
-            normalized_array[np.isnan(stitched_array)] = 0
+            normalized_array[np.isnan(normalized_array)] = 0
     else:
         # Handle case where there are no valid pixels at all
         normalized_array = np.zeros(stitched_array.shape)
@@ -146,14 +167,42 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     output_path = os.path.join(output_dir, f"{group_key}_stitched.png")
     os.makedirs(output_dir, exist_ok=True)
     final_image.save(output_path)
-    
+
+    # ---- Save lon/lat of image center ----
+    # Compute center in projected coordinates
+    center_x = (global_min_x + global_max_x) / 2
+    center_y = (global_min_y + global_max_y) / 2
+
+    # You may need to adjust the EPSG code below to match your data's CRS
+    # Example: UTM zone 21S (Brazil): EPSG:32721, or use metadata['crs'] if available
+    # Here, we use WGS84 UTM zone 21S as an example
+    transformer = Transformer.from_crs("EPSG:32721", "EPSG:4326", always_xy=True)
+    lon, lat = transformer.transform(center_x, center_y)
+
+    # Save as JSON
+    info = {
+        "group_key": group_key,
+        "center_projected": {"x": center_x, "y": center_y},
+        "center_lonlat": {"lon": lon, "lat": lat},
+        "bounds_projected": {
+            "min_x": global_min_x,
+            "max_x": global_max_x,
+            "min_y": global_min_y,
+            "max_y": global_max_y
+        }
+    }
+    info_path = os.path.join(output_dir, f"{group_key}_stitched_location.json")
+    with open(info_path, "w") as f:
+        json.dump(info, f, indent=2)
+
     print(f"  -> Saved stitched image to {output_path}")
+    print(f"  -> Saved location info to {info_path}")
 
 def main():
     """Main function to run the stitching process."""
     # --- Configuration ---
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
-    dtm_images_dir = "dtm_images_csf"
+    dtm_images_dir = "exp/dtm_images_csf"
     stitched_output_dir = "stitched_images"
     # ---------------------
 
@@ -198,4 +247,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
+    main()
