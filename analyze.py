@@ -3,7 +3,7 @@ Download a GeoTIFF tile from OpenTopography and display it.
 
 Dependencies
 ------------
-pip install requests rasterio matplotlib
+pip install requests rasterio matplotlib pystac-client odc-stac xarray pandas numpy
 """
 from __future__ import annotations
 
@@ -13,6 +13,8 @@ import shutil
 import zipfile
 from pathlib import Path
 from display_kmz import extract_polygons_from_kml, extract_kmz_content, get_polygon_bounds_from_single_polygon, get_polygon_bounds
+from query_sentinel_data import SentinelSTACDownloader
+from datetime import datetime, timedelta
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -113,7 +115,12 @@ def analyse_with_openai(
     lon: float = 0.0,
 ) -> str:
     """
-    Send an image + prompt to GPT-4o’s vision endpoint and return the text.
+    Send images + prompt to GPT-4v's vision endpoint and return the text.
+    Expects four images:
+    1. OpenTopo DEM
+    2. LiDAR-derived DTM
+    3. Sentinel-2 Visual
+    4. Sentinel-2 NIR
     """
     geocode_data = requests.get(
         construct_rev_geocode_url(lat, lon, os.environ.get("GOOGLE_EARTH_API_KEY"))
@@ -122,14 +129,20 @@ def analyse_with_openai(
     if not loc_str:
         loc_str = "State of Amazonas, Brazil"
     print(f"Reverse geocoding {lat}, {lon} → \n{loc_str}")
-    prompt = f"""Analyze these images to identify and describe in detail the major terrain and geomorphological features. 
-Search carefully for any archaeologically interesting anomalies. The first image is a high-resolution elevation raster, and the second is a digital terrain model extracted from LiDAR data using cloth simulation.
+    prompt = f"""Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
+Search carefully for any archaeologically interesting anomalies. The images show:
+1. A high-resolution elevation raster from OpenTopography
+2. A digital terrain model extracted from LiDAR data using cloth simulation
+3. A true-color (visual) Sentinel-2 satellite image
+4. A near-infrared (NIR) Sentinel-2 band image
+
 The images are from the region of {loc_str}, at ({lat}, {lon}).
 
 If anomalies are found:
   1. Draw on your knowledge of the region ({loc_str}) and its history.
   2. Explain how the anomaly fits into the broader historical context.
   3. Discuss how it might challenge or advance current theories in the field.
+  4. Note any differences or correlations between the different data sources.
 
 Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
 
@@ -155,7 +168,6 @@ If you detect an anomaly, output:
                 ],
             }
         ],
-        # max_tokens=max_tokens,
     )
     return completion.choices[0].message.content.strip()
 
@@ -181,7 +193,7 @@ def fetch_raster_tile_from_opentopography(
     source: str = "globaldem"
 ) -> Path:
     """
-    Download a GeoTIFF tile from OpenTopography’s Point-Cloud API.
+    Download a GeoTIFF tile from OpenTopography's Point-Cloud API.
 
     Returns
     -------
@@ -238,49 +250,204 @@ def display_raster(path: Path) -> None:
     plt.tight_layout()
     plt.show()
 
-api_key = os.environ.get("OPENTOPOGRAPHY_API_KEY")
-all_files = list(set(list(map(lambda x: x.split('.')[0], filter(lambda x: x.endswith('.png'), os.listdir('exp/dtm_images_csf'))))))
+def fetch_sentinel_data(north: float, south: float, east: float, west: float, output_dir: str, prefix: str) -> Tuple[str, str]:
+    """
+    Fetch Sentinel-2 data for the specified bounds and return paths to visual and NIR band images.
+    
+    Args:
+        north, south, east, west: Bounding box coordinates
+        output_dir: Directory to save the Sentinel data
+        prefix: Prefix for output files
+        
+    Returns:
+        Tuple[str, str]: Paths to (visual_band_png, nir_band_png)
+    """
+    # Initialize downloader
+    downloader = SentinelSTACDownloader()
+    
+    # Set date range to last 30 days
+    end_date = datetime.now().strftime('%Y-%m-%d')
+    start_date = (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')
+    
+    # Search for products
+    search_results = downloader.search_items(
+        north=north,
+        south=south,
+        east=east,
+        west=west,
+        start_date=start_date,
+        end_date=end_date,
+        cloud_cover_max=20
+    )
+    
+    # Check if any items were found
+    items_list = list(search_results.items())
+    if not items_list:
+        raise ValueError("No Sentinel-2 products found for the specified area and time range")
+    
+    # Create geometry for data loading
+    geometry = downloader.create_geometry(north, south, east, west)
+    
+    # Load only visual and NIR bands
+    downloader.target_bands = ['visual', 'nir']
+    data = downloader.load_data(
+        search_results=search_results,
+        geometry=geometry,
+        resolution=10
+    )
+    
+    if data is None:
+        raise ValueError("Failed to load Sentinel-2 data")
+    
+    # Apply scaling corrections
+    scaled_data = downloader.apply_scaling(data, search_results)
+    
+    # Save the data
+    saved_files = downloader.save_data(
+        data=scaled_data,
+        output_dir=output_dir,
+        prefix=prefix
+    )
+    
+    # Get the most recent visual and NIR band PNGs
+    time_steps = list(data.time.values)
+    latest_time = max(time_steps)
+    time_str = pd.to_datetime(latest_time).strftime('%Y%m%d')
+    
+    visual_png = saved_files.get(f"visual_{time_str}_png")
+    nir_png = saved_files.get(f"nir_{time_str}_png")
+    
+    if not visual_png or not nir_png:
+        raise ValueError("Failed to save visual or NIR band images")
+    
+    return visual_png, nir_png
 
-kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
-
-print("Extracting KML content from KMZ file...")
-kml_content = extract_kmz_content(kmz_file_path)
-
-print("Parsing polygons from KML...")
-polygons = extract_polygons_from_kml(kml_content)
-
-polygons_dict = {
-    polygon["name"][:-4]: polygon for polygon in polygons
-}
-
-for filename in all_files:
-    # Check if analysis already exists - if it does, skip
+def process_single_file(filename: str, polygons_dict: dict) -> None:
+    """
+    Process a single file, gathering all available data sources and performing analysis.
+    
+    Args:
+        filename: Name of the file to process
+        polygons_dict: Dictionary of polygons from KMZ file
+    """
+    print(f"Processing {filename}...")
+    
+    # Skip if analysis already exists
     if os.path.exists(f"analysis_fine/{filename}_analysis.txt"):
         print(f"Analysis for {filename} already exists, skipping...")
-        continue
-    print(f"Processing {filename}...")
-    png_file = f"exp/dtm_images_csf/{filename}.png"
-    shutil.copy(png_file, f"out/{filename}_lidar.png")
+        return
 
-    
+    # Get polygon bounds
     bounds = get_polygon_bounds_from_single_polygon(polygons_dict[filename[:-8]])
     north = bounds["max_lat"] + 0.05
     south = bounds["min_lat"] - 0.05
     east = bounds["max_lon"] + 0.05
     west = bounds["min_lon"] - 0.05
-    dataset = "SRTMGL1"
+    
+    # Initialize list to store available data URLs
+    data_urls = []
+    data_descriptions = []
+    
+    # 1. Try to get OpenTopo data
+    try:
+        dataset = "SRTMGL1"
+        out_path_1 = fetch_raster_tile_from_opentopography(
+            api_key, dataset, north, south, east, west, 
+            source="globaldem", 
+            dest=Path(f"out/{filename}_opentopo.tif")
+        )
+        data_url_1 = raster_to_png_data_url(out_path_1)
+        shutil.copy('out.png', f"out/{filename}_dem.png")
+        data_urls.append(data_url_1)
+        data_descriptions.append("A high-resolution elevation raster from OpenTopography")
+        print("Successfully retrieved OpenTopo data")
+    except Exception as e:
+        print(f"Warning: Failed to fetch OpenTopo data: {e}")
 
-    out_path_1 = fetch_raster_tile_from_opentopography(api_key, dataset, north, south, east, west, source="globaldem", dest=Path(f"out/{filename}_opentopo.tif"))
-
-    data_url_1 = raster_to_png_data_url(out_path_1)
-    shutil.copy('out.png', f"out/{filename}_dem.png")
-
+    # 2. Get LiDAR data (already downloaded)
+    png_file = f"exp/dtm_images_csf/{filename}.png"
     data_url_2 = png_to_data_url(png_file)
+    data_urls.append(data_url_2)
+    data_descriptions.append("A digital terrain model extracted from LiDAR data using cloth simulation")
+    
+    # 3. Try to get Sentinel-2 Visual and NIR data
+    try:
+        visual_png, nir_png = fetch_sentinel_data(
+            north=north,
+            south=south,
+            east=east,
+            west=west,
+            output_dir="out",
+            prefix=filename
+        )
+        
+        # Add Visual band
+        data_url_3 = png_to_data_url(visual_png)
+        data_urls.append(data_url_3)
+        data_descriptions.append("A true-color (visual) Sentinel-2 satellite image")
+        shutil.copy(visual_png, f"out/{filename}_visual.png")
+        
+        # Add NIR band
+        data_url_4 = png_to_data_url(nir_png)
+        data_urls.append(data_url_4)
+        data_descriptions.append("A near-infrared (NIR) Sentinel-2 band image")
+        shutil.copy(nir_png, f"out/{filename}_nir.png")
+        print("Successfully retrieved Sentinel-2 data")
+    except Exception as e:
+        print(f"Warning: Failed to fetch Sentinel data: {e}")
+    
+    # Only proceed if we have at least the LiDAR data
+    if len(data_urls) < 2:
+        print(f"Error: Not enough data sources available for {filename}")
+        return
+        
+    # Update the analysis prompt based on available data
+    def update_prompt(prompt: str, descriptions: list[str]) -> str:
+        # Split the prompt at the list of images
+        before, after = prompt.split("The images show:", 1)
+        # Insert the numbered list of available data sources
+        numbered_list = "\n".join(f"{i+1}. {desc}" for i, desc in enumerate(descriptions))
+        return f"{before}The images show:\n{numbered_list}\n{after}"
+    
+    prompt = update_prompt(prompt, data_descriptions)
+    # Perform analysis with available data sources
+    try:
+        analysis = analyse_with_openai(
+            data_urls,
+            lat=(north+south)/2,
+            lon=(east+west)/2
+        )
+        
+        print(f"Writing analysis for {filename}...")
+        with open(f"analysis_fine/{filename}_analysis.txt", "w") as f:
+            f.write(analysis)
+    except Exception as e:
+        print(f"Error during analysis of {filename}: {e}")
 
-    # out_path_2 = ... query sentinel data
+def main():
+    """Main function to process all files."""
+    # Load KMZ data
+    print("Extracting KML content from KMZ file...")
+    kml_content = extract_kmz_content(kmz_file_path)
 
-    analysis = analyse_with_openai([data_url_1, data_url_2], lat=(north+south)/2, lon=(east+west)/2)
-    print(f"Writing analysis for {filename}...")
-    with open(f"analysis_fine/{filename}_analysis.txt", "w") as f:
-        f.write(analysis)
+    print("Parsing polygons from KML...")
+    polygons = extract_polygons_from_kml(kml_content)
+    polygons_dict = {
+        polygon["name"][:-4]: polygon for polygon in polygons
+    }
+
+    # Get list of files to process
+    all_files = list(set(list(map(
+        lambda x: x.split('.')[0], 
+        filter(lambda x: x.endswith('.png'), os.listdir('exp/dtm_images_csf'))
+    ))))
+
+    # Process each file
+    for filename in all_files:
+        process_single_file(filename, polygons_dict)
+
+if __name__ == "__main__":
+    api_key = os.environ.get("OPENTOPOGRAPHY_API_KEY")
+    kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
+    main()
 

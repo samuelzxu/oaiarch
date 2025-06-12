@@ -88,40 +88,14 @@ def main():
     regions = [
         {
             "name": "San Francisco Bay Area",
-            "north": 37.9,
+            "north": 37.5,
             "south": 37.3,
             "east": -122.0,
-            "west": -122.8,
+            "west": -122.3,
             "start_date": "2024-01-01",
             "end_date": "2024-01-31"
         },
-        {
-            "name": "Los Angeles",
-            "north": 34.3,
-            "south": 33.7,
-            "east": -118.0,
-            "west": -118.7,
-            "start_date": "2024-01-01", 
-            "end_date": "2024-01-31"
-        },
-        {
-            "name": "New York City",
-            "north": 40.9,
-            "south": 40.5,
-            "east": -73.7,
-            "west": -74.3,
-            "start_date": "2024-01-01",
-            "end_date": "2024-01-31"
-        },
-        {
-            "name": "London UK",
-            "north": 51.6,
-            "south": 51.4,
-            "east": 0.2,
-            "west": -0.4,
-            "start_date": "2024-06-01",
-            "end_date": "2024-06-30"
-        }
+        
     ]
     
     # Download data for each region
@@ -146,26 +120,6 @@ def main():
         except Exception as e:
             print(f"Error processing {region['name']}: {e}")
     
-    print(f"\n{'='*60}")
-    print(f"Download Summary")
-    print(f"{'='*60}")
-    print(f"Successfully downloaded: {successful_downloads}/{len(regions)} regions")
-    print("\nTarget bands downloaded:")
-    print("  blue (B02): Blue band (490nm) - 10m resolution")
-    print("  green (B03): Green band (560nm) - 10m resolution") 
-    print("  red (B04): Red band (665nm) - 10m resolution")
-    print("  nir (B08): Near-Infrared band (842nm) - 10m resolution")
-    print("  visual (TCI): True Color Image - RGB composite")
-    print("\nCalculated indices:")
-    print("  NDVI: Normalized Difference Vegetation Index")
-    print("  NDWI: Normalized Difference Water Index")
-    print("  EVI: Enhanced Vegetation Index")
-    print("\nAdvantages of STAC approach:")
-    print("  ✅ No authentication required")
-    print("  ✅ Much faster than traditional downloads")
-    print("  ✅ Direct access to specific bands")
-    print("  ✅ Cloud-optimized data format")
-    print("  ✅ Built-in data processing capabilities")
 
 if __name__ == "__main__":
     main() 

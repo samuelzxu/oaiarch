@@ -6,4 +6,5 @@ out/
 stitched_images/
 analysis/
 analysis_fine/
+__pycache__/
 exp
