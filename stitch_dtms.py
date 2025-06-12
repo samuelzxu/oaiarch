@@ -66,160 +66,168 @@ def group_polygons(polygon_names: List[str]) -> Dict[str, List[str]]:
     return groups
 
 def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, output_dir: str, polygons: List[Dict[str, Any]]):
-    """Stitches all DTM images for a given group of polygons."""
+    """Stitches all DTM images for a given group of polygons by fitting DTM data to polygon coordinates."""
     print(f"\nStitching group: {group_key}...")
     
-    # Collect metadata for all tiles in the group
-    group_metadata = []
-    for name in polygon_names:
-        file_stem = os.path.splitext(name)[0]
-        metadata_path = os.path.join(dtm_dir, f"{file_stem}_dtm_csf.json")
-        if os.path.exists(metadata_path):
-            with open(metadata_path, 'r') as f:
-                metadata = json.load(f)
-                metadata['polygon_name'] = name
-                group_metadata.append(metadata)
-        else:
-            print(f"  - Warning: Metadata for {name} not found. Skipping.")
-
-    if not group_metadata:
-        print(f"No DTM images found for group {group_key}. Skipping.")
+    # Get bounds from KMZ polygon data for the entire group
+    group_bounds = get_polygon_bounds(group_key, polygons)
+    if group_bounds["max_lat"] == -180 or group_bounds["min_lat"] == 180 or group_bounds["max_lon"] == -180 or group_bounds["min_lon"] == 180:
+        print(f"  - Warning: Invalid bounds for group {group_key}. Skipping.")
         return
 
-    # Determine the overall bounding box for the entire group using UTM coordinates from metadata
-    global_min_x = min(m['bounds']['min_x'] for m in group_metadata)
-    global_max_x = max(m['bounds']['max_x'] for m in group_metadata)
-    global_min_y = min(m['bounds']['min_y'] for m in group_metadata)
-    global_max_y = max(m['bounds']['max_y'] for m in group_metadata)
+    # Set resolution in degrees (approximate, will be refined)
+    # Using a small value to get good resolution - about 0.5m at this latitude
+    resolution_deg = 0.000005  # approximately 0.5m at equator
     
-    # Use resolution from metadata
-    resolution = group_metadata[0]['resolution']
-
-    # Calculate the size of the stitched image
-    stitched_width = int(np.ceil((global_max_x - global_min_x) / resolution))
-    stitched_height = int(np.ceil((global_max_y - global_min_y) / resolution))
+    # Calculate canvas size based on polygon bounds
+    width_deg = group_bounds["max_lon"] - group_bounds["min_lon"]
+    height_deg = group_bounds["max_lat"] - group_bounds["min_lat"]
     
-    print(f"  - Creating canvas of size: {stitched_width} x {stitched_height} pixels")
-    print(f"  - UTM bounds: X({global_min_x:.2f}, {global_max_x:.2f}), Y({global_min_y:.2f}, {global_max_y:.2f})")
-
+    canvas_width = int(np.ceil(width_deg / resolution_deg))
+    canvas_height = int(np.ceil(height_deg / resolution_deg))
+    
+    print(f"  - Group bounds: lat({group_bounds['min_lat']:.6f}, {group_bounds['max_lat']:.6f}), lon({group_bounds['min_lon']:.6f}, {group_bounds['max_lon']:.6f})")
+    print(f"  - Canvas size: {canvas_width} x {canvas_height} pixels")
+    
     # Check for reasonable dimensions
-    if stitched_width > 100000 or stitched_height > 100000:
-        print(f"  - Warning: Invalid stitched dimensions ({stitched_width} x {stitched_height}). Skipping group {group_key}.")
+    if canvas_width > 50000 or canvas_height > 50000:
+        print(f"  - Warning: Canvas too large ({canvas_width} x {canvas_height}). Skipping group {group_key}.")
         return
     
-    # Create a blank canvas with NaN support
-    stitched_array = np.full((stitched_height, stitched_width), np.nan, dtype=np.float32)
-
-    # Process each tile
-    for metadata in group_metadata:
-        raw_data_path = metadata.get('dtm_raw_data')
-        if not raw_data_path or not os.path.exists(raw_data_path):
-            print(f"  - Warning: Raw DTM data for {metadata['polygon_name']} not found. Skipping.")
+    # Create blank canvas
+    stitched_array = np.full((canvas_height, canvas_width), np.nan, dtype=np.float32)
+    
+    # Process each polygon in the group
+    tiles_processed = 0
+    for name in polygon_names:
+        # Find corresponding polygon
+        polygon = next((p for p in polygons if p['name'] == name), None)
+        if not polygon:
+            print(f"  - Warning: No polygon found for {name}")
             continue
             
-        dtm_array = np.load(raw_data_path)
-        
-        # Get tile bounds from metadata (these are in UTM coordinates)
-        tile_bounds = metadata['bounds']
-        tile_min_x = tile_bounds['min_x']
-        tile_min_y = tile_bounds['min_y']
-        
-        # Calculate pixel offsets on the main canvas
-        x_offset = int(np.round((tile_min_x - global_min_x) / resolution))
-        y_offset = int(np.round((tile_min_y - global_min_y) / resolution))
-        
-        h, w = dtm_array.shape
-        
-        # Calculate position in the stitched array
-        # Note: DTM arrays are created with origin='lower' in matplotlib, so we need to handle this
-        y_pos = stitched_height - (y_offset + h)
-        if y_pos < 0: 
-            print(f"  - Warning: Y position {y_pos} is negative for {metadata['polygon_name']}. Adjusting to 0.")
-            y_pos = 0
-        
-        # Ensure we don't go out of bounds
-        end_y = min(y_pos + h, stitched_height)
-        end_x = min(x_offset + w, stitched_width)
-        
-        # Adjust the DTM array size if needed
-        actual_h = end_y - y_pos
-        actual_w = end_x - x_offset
-        
-        if actual_h <= 0 or actual_w <= 0:
-            print(f"  - Warning: Invalid dimensions for {metadata['polygon_name']}. Skipping.")
+        # Find corresponding DTM file
+        file_stem = os.path.splitext(name)[0]
+        dtm_path = os.path.join(dtm_dir, f"{file_stem}_dtm_csf.npy")
+        if not os.path.exists(dtm_path):
+            print(f"  - Warning: DTM file not found for {name}")
             continue
             
-        # Get the slice of the DTM array that fits
-        dtm_slice = dtm_array[:actual_h, :actual_w]
+        # Load DTM data
+        dtm_array = np.load(dtm_path)
+        if dtm_array.size == 0:
+            print(f"  - Warning: Empty DTM array for {name}")
+            continue
+            
+        # Get polygon bounds
+        poly_bounds = get_polygon_bounds_from_single_polygon(polygon)
         
-        # Get the target slice in the stitched array
-        target_slice = stitched_array[y_pos:end_y, x_offset:end_x]
+        # Calculate where this tile should go on the canvas
+        tile_min_col = int(np.floor((poly_bounds["min_lon"] - group_bounds["min_lon"]) / resolution_deg))
+        tile_max_col = int(np.ceil((poly_bounds["max_lon"] - group_bounds["min_lon"]) / resolution_deg))
+        tile_min_row = int(np.floor((group_bounds["max_lat"] - poly_bounds["max_lat"]) / resolution_deg))  # Flip Y
+        tile_max_row = int(np.ceil((group_bounds["max_lat"] - poly_bounds["min_lat"]) / resolution_deg))   # Flip Y
         
-        # Only paste where the canvas is currently empty (NaN)
-        mask = np.isnan(target_slice) & ~np.isnan(dtm_slice)
-        target_slice[mask] = dtm_slice[mask]
+        # Calculate target dimensions
+        target_width = tile_max_col - tile_min_col
+        target_height = tile_max_row - tile_min_row
         
-        print(f"  - Placed {metadata['polygon_name']} at position ({x_offset}, {y_pos}) with size ({actual_w}, {actual_h})")
-
-    # Normalize the array to 0-255 for saving as an image
-    valid_pixels = stitched_array[~np.isnan(stitched_array)]
+        if target_width <= 0 or target_height <= 0:
+            print(f"  - Warning: Invalid target dimensions for {name}: {target_width}x{target_height}")
+            continue
+            
+        # Resize DTM array to fit the target area
+        from scipy.ndimage import zoom
+        
+        # Calculate zoom factors
+        zoom_y = target_height / dtm_array.shape[0]
+        zoom_x = target_width / dtm_array.shape[1]
+        
+        # Resize the DTM array
+        try:
+            resized_dtm = zoom(dtm_array, (zoom_y, zoom_x), order=1, prefilter=False)
+            # Handle NaN values that might have been introduced
+            resized_dtm = np.where(np.isfinite(resized_dtm), resized_dtm, np.nan)
+        except Exception as e:
+            print(f"  - Warning: Failed to resize DTM for {name}: {e}")
+            continue
+            
+        # Ensure the resized array fits exactly in the target area
+        actual_height = min(resized_dtm.shape[0], canvas_height - tile_min_row)
+        actual_width = min(resized_dtm.shape[1], canvas_width - tile_min_col)
+        
+        if actual_height <= 0 or actual_width <= 0:
+            print(f"  - Warning: Tile {name} falls outside canvas bounds")
+            continue
+            
+        # Clip the resized DTM to fit
+        clipped_dtm = resized_dtm[:actual_height, :actual_width]
+        
+        # Place the tile on the canvas
+        end_row = tile_min_row + actual_height
+        end_col = tile_min_col + actual_width
+        
+        # Only place pixels where the canvas is currently empty (NaN)
+        target_slice = stitched_array[tile_min_row:end_row, tile_min_col:end_col]
+        mask = np.isnan(target_slice) & np.isfinite(clipped_dtm)
+        target_slice[mask] = clipped_dtm[mask]
+        
+        tiles_processed += 1
+        print(f"  - Placed {name} at ({tile_min_col}, {tile_min_row}) with size ({actual_width}, {actual_height})")
+    
+    if tiles_processed == 0:
+        print(f"  - No tiles processed for group {group_key}")
+        return
+        
+    # Normalize for image output
+    valid_pixels = stitched_array[np.isfinite(stitched_array)]
     if valid_pixels.size > 0:
         min_val = np.min(valid_pixels)
         max_val = np.max(valid_pixels)
         if max_val > min_val:
             normalized_array = (stitched_array - min_val) * (255.0 / (max_val - min_val))
-            normalized_array[np.isnan(normalized_array)] = 0
+            normalized_array[~np.isfinite(normalized_array)] = 0
         else:
             normalized_array = np.full(stitched_array.shape, 128)
-            normalized_array[np.isnan(normalized_array)] = 0
+            normalized_array[~np.isfinite(normalized_array)] = 0
     else:
         print(f"  - Warning: No valid pixels found for group {group_key}")
         normalized_array = np.zeros(stitched_array.shape)
-
-    final_image = Image.fromarray(normalized_array.astype(np.uint8), mode='L')
     
+    # Save image
+    final_image = Image.fromarray(normalized_array.astype(np.uint8), mode='L')
     output_path = os.path.join(output_dir, f"{group_key}_stitched.png")
     os.makedirs(output_dir, exist_ok=True)
     final_image.save(output_path)
-
-    # Convert UTM bounds to lat/lon for the location info
-    transformer_to_latlon = Transformer.from_crs("EPSG:32721", "EPSG:4326", always_xy=True)
-    min_lon, min_lat = transformer_to_latlon.transform(global_min_x, global_min_y)
-    max_lon, max_lat = transformer_to_latlon.transform(global_max_x, global_max_y)
-
+    
     # Save location information
     info = {
         "group_key": group_key,
-        "bounds_utm": {
-            "min_x": float(global_min_x),
-            "max_x": float(global_max_x),
-            "min_y": float(global_min_y),
-            "max_y": float(global_max_y)
-        },
         "bounds_latlon": {
-            "min_lat": float(min_lat),
-            "max_lat": float(max_lat),
-            "min_lon": float(min_lon),
-            "max_lon": float(max_lon)
+            "min_lat": group_bounds["min_lat"],
+            "max_lat": group_bounds["max_lat"],
+            "min_lon": group_bounds["min_lon"],
+            "max_lon": group_bounds["max_lon"]
         },
         "center_latlon": {
-            "lat": float((min_lat + max_lat) / 2),
-            "lon": float((min_lon + max_lon) / 2)
+            "lat": (group_bounds["min_lat"] + group_bounds["max_lat"]) / 2,
+            "lon": (group_bounds["min_lon"] + group_bounds["max_lon"]) / 2
         },
-        "resolution": resolution,
+        "resolution_deg": resolution_deg,
         "image_size": {
-            "width": stitched_width,
-            "height": stitched_height
-        }
+            "width": canvas_width,
+            "height": canvas_height
+        },
+        "tiles_processed": tiles_processed
     }
     
     info_path = os.path.join(output_dir, f"{group_key}_stitched_location.json")
     with open(info_path, "w") as f:
         json.dump(info, f, indent=2)
-
+    
     print(f"  -> Saved stitched image to {output_path}")
     print(f"  -> Saved location info to {info_path}")
-    print(f"  -> Final image size: {stitched_width} x {stitched_height} pixels")
+    print(f"  -> Processed {tiles_processed} tiles")
     print(f"  -> Valid pixels: {valid_pixels.size} / {stitched_array.size} ({100*valid_pixels.size/stitched_array.size:.1f}%)")
 
 def main():
