@@ -4,3 +4,6 @@ dtm_images_csf/
 exp/
 out/
 stitched_images/
+analysis/
+analysis_fine/
+exp

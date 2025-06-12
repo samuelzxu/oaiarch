@@ -12,6 +12,7 @@ import sys
 import shutil
 import zipfile
 from pathlib import Path
+from display_kmz import extract_polygons_from_kml, extract_kmz_content, get_polygon_bounds_from_single_polygon, get_polygon_bounds
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -30,11 +31,26 @@ import os
 import requests
 
 def raster_to_png_data_url(
-    tif_path: Path, size: Tuple[int, int] = (512, 512)
+    tif_path: Path, size: Tuple[int, int] = (512, 512), save_png: bool = True
 ) -> str:
     """
     Down-sample the first band of the GeoTIFF, scale to 8-bit, and
     return a data-URL (PNG, base-64) suitable for the OpenAI vision API.
+    Optionally saves the PNG file alongside the source TIF.
+
+    Parameters
+    ----------
+    tif_path : Path
+        Path to the input GeoTIFF file
+    size : Tuple[int, int]
+        Size of the output image in pixels
+    save_png : bool
+        If True, saves the PNG file next to the source TIF
+
+    Returns
+    -------
+    str
+        Base64 encoded PNG data URL
     """
     with rasterio.open(tif_path) as src:
         data = src.read(1, masked=True).astype(np.float32)
@@ -52,7 +68,14 @@ def raster_to_png_data_url(
     ax.set_axis_off()
     fig.add_axes(ax)
     ax.imshow(arr, cmap="gray", origin="upper")
+    
+    # Save to both buffer and file if requested
     buf = io.BytesIO()
+    if save_png:
+        png_path = tif_path.with_suffix('.png')
+        fig.savefig(png_path, format="png", dpi=100, bbox_inches='tight', pad_inches=0)
+        print(f"Saved PNG to {png_path}")
+    
     fig.savefig(buf, format="png", dpi=100)
     plt.close(fig)
 
@@ -216,38 +239,48 @@ def display_raster(path: Path) -> None:
     plt.show()
 
 api_key = os.environ.get("OPENTOPOGRAPHY_API_KEY")
-all_files = list(set(list(map(lambda x: x.split('.')[0], filter(lambda x: x.endswith('.png'), os.listdir('stitched_images'))))))
+all_files = list(set(list(map(lambda x: x.split('.')[0], filter(lambda x: x.endswith('.png'), os.listdir('exp/dtm_images_csf'))))))
+
+kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
+
+print("Extracting KML content from KMZ file...")
+kml_content = extract_kmz_content(kmz_file_path)
+
+print("Parsing polygons from KML...")
+polygons = extract_polygons_from_kml(kml_content)
+
+polygons_dict = {
+    polygon["name"][:-4]: polygon for polygon in polygons
+}
+
 for filename in all_files:
     # Check if analysis already exists - if it does, skip
-    if os.path.exists(f"analysis/{filename}_analysis.txt"):
+    if os.path.exists(f"analysis_fine/{filename}_analysis.txt"):
         print(f"Analysis for {filename} already exists, skipping...")
         continue
     print(f"Processing {filename}...")
-    json_file = f"stitched_images/{filename}_location.json"
-    png_file = f"stitched_images/{filename}.png"
+    png_file = f"exp/dtm_images_csf/{filename}.png"
+    shutil.copy(png_file, f"out/{filename}_lidar.png")
 
-    with open(json_file, "r") as f:
-        bounds_utm = eval(f.read())["bounds_projected"]
-    bounds = {
-        "north": convert_utm_to_wgs84(bounds_utm["max_x"], bounds_utm["max_y"])[1],
-        "south": convert_utm_to_wgs84(bounds_utm["min_x"], bounds_utm["min_y"])[1],
-        "east": convert_utm_to_wgs84(bounds_utm["max_x"], bounds_utm["max_y"])[0],
-        "west": convert_utm_to_wgs84(bounds_utm["min_x"], bounds_utm["min_y"])[0]
-    }
-    north = bounds["north"]+0.05
-    south = bounds["south"]-0.05
-    east = bounds["east"]+0.05
-    west = bounds["west"]-0.05
+    
+    bounds = get_polygon_bounds_from_single_polygon(polygons_dict[filename[:-8]])
+    north = bounds["max_lat"] + 0.05
+    south = bounds["min_lat"] - 0.05
+    east = bounds["max_lon"] + 0.05
+    west = bounds["min_lon"] - 0.05
     dataset = "SRTMGL1"
 
     out_path_1 = fetch_raster_tile_from_opentopography(api_key, dataset, north, south, east, west, source="globaldem", dest=Path(f"out/{filename}_opentopo.tif"))
-    shutil.copy(png_file, f"out/{filename}_lidar.png")
 
     data_url_1 = raster_to_png_data_url(out_path_1)
+    shutil.copy('out.png', f"out/{filename}_dem.png")
+
     data_url_2 = png_to_data_url(png_file)
+
+    # out_path_2 = ... query sentinel data
 
     analysis = analyse_with_openai([data_url_1, data_url_2], lat=(north+south)/2, lon=(east+west)/2)
     print(f"Writing analysis for {filename}...")
-    with open(f"analysis/{filename}_analysis.txt", "w") as f:
+    with open(f"analysis_fine/{filename}_analysis.txt", "w") as f:
         f.write(analysis)
-    
+
