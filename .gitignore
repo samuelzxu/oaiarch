@@ -1,1 +1,6 @@
 .env
+cloth_nodes.txt
+dtm_images_csf/
+exp/
+out/
+stitched_images/
