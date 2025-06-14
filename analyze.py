@@ -528,7 +528,8 @@ def main():
     # Process each file
     insights = ""
     anom_ct = 0
-    for filename in all_files:
+    for i, filename in enumerate(all_files):
+        print(f"Processing file {i+1}/{len(all_files)}: {filename}")
         insights, anom_ct = process_single_file(filename, exp_name, polygons, anom_ct=anom_ct, prev_insights=insights)
         print(f"Processed {filename}, current anomaly count: {anom_ct}")
 
