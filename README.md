@@ -9,14 +9,47 @@ footprints ±50 m.
 4. Show us how you can use this new data in future discovery - re-prompt the model with this
 leverage.
 ```
-Total anomaly count produced: 44
 
-I've used the following datasets:
+## Results
+I've run an experiment over the Belterra region, satisfying the parameters of checkpoint 2.
+
+See `experiment_TAP_2_w_insights` for the outputs of the full experiment run (focused on the Belterra region)
+Total anomaly count produced by experiment: 44
+
+Datasets:
 - [Lidar surveys over the amazon from 2008-2018](https://daac.ornl.gov/CMS/guides/LiDAR_Forest_Inventory_Brazil.html)
 - Opentopography 30m DEM (couldn't get access to higher res.)
 - Sentinel L2A: NIR and Visual bands
 
-The only model I've used is `o3-mini`.
+Model: `o3-mini`
+
+Footprint output example from `experiment_TAP_2_w_insights/TAP_A01_2008_analysis.txt`:
+```
+"anomaly_1": {
+    "description": "A faint, straight ridge trending NW–SE, ~150 m long and ~0.5 m above adjacent terrain. The ridge cross‐section is trapezoidal, suggesting anthropogenic construction (levee, pathway, or causeway fill).",
+    "location": {
+        "lat": -2.85690,
+        "lon": -54.95430,
+        "radius": 75
+    }
+},
+"anomaly_2": {
+    "description": "A near‐circular arrangement of four low mounds (5–7 m diameter each) spaced around a ~25 m diameter ring. In the LiDAR DTM, these form a distinctive ‘donut’ pattern; in NIR they correlate with slightly higher reflectance (possible charcoal‐rich soils).",
+    "location": {
+        "lat": -2.85710,
+        "lon": -54.95455,
+        "radius": 15
+    }
+},
+"anomaly_3": {
+    "description": "An elongated, shallow ditch‐like depression (~2 m wide, ~80 m long) trending E–W. In the cloth‐model DTM it appears unnaturally straight with consistent width—potentially a small drainage or agricultural furrow.",
+    "location": {
+        "lat": -2.85675,
+        "lon": -54.95460,
+        "radius": 40
+    }
+}
+```
 
 My workflow is:
 1. Download lidar tiles from ORNL database
