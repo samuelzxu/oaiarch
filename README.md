@@ -9,6 +9,7 @@ footprints ±50 m.
 4. Show us how you can use this new data in future discovery - re-prompt the model with this
 leverage.
 ```
+Total anomaly count produced: 44
 
 I've used the following datasets:
 - [Lidar surveys over the amazon from 2008-2018](https://daac.ornl.gov/CMS/guides/LiDAR_Forest_Inventory_Brazil.html)
