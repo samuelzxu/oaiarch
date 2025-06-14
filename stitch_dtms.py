@@ -274,7 +274,7 @@ def main():
     # --- Configuration ---
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     dtm_images_dir = "exp/dtm_images_csf"
-    stitched_output_dir = "stitched_images_v2"
+    stitched_output_dir = "stitched_images_v4"
     # ---------------------
 
     print("Starting DTM Stitching Process")

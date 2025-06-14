@@ -3,11 +3,11 @@ cloth_nodes.txt
 dtm_images_csf/
 exp/
 out/
-stitched_images/
+stitched_images_*/
 analysis/
 analysis_fine/
 __pycache__/
 out*/
 output.png
-exp*
+exp*/
 sentinel_dls/
