@@ -356,14 +356,31 @@ class SentinelSTACDownloader:
         saved_files = {}
         
         print(f"Saving data to {output_dir}...")
-        
+        break_out = False
         # Save each band and index as both GeoTIFF and PNG
         for i, time_step in enumerate(reversed(data.time)):
-            for var_name in data.data_vars:
+            var_names = list(data.data_vars.keys())
+            for var_name in var_names:
                 time_str = pd.to_datetime(time_step.values).strftime('%Y%m%d')
                 
                 # Select data for this time step
                 var_data = data[var_name].sel(time=time_step)
+
+                # If the data is more than 30% black pixels, skip saving
+                if np.mean(var_data.values == 0 ) > 0.3:
+                    print(f"  Skipping {var_name} for {time_str} due to high black pixel ratio.")
+                    for var in data.data_vars:
+                        file_id_tif = f"{var}_{time_str}_tif"
+                        file_id_png = f"{var}_{time_str}_png"
+                        if file_id_tif in saved_files:
+                            print(f"  Removing previously saved {file_id_tif} and {file_id_png} due to high black pixel ratio.")
+                            os.remove(saved_files[file_id_tif])
+                            del saved_files[file_id_tif]
+                        if file_id_png in saved_files:
+                            os.remove(saved_files[file_id_png])
+                            del saved_files[file_id_png]
+                    break # Skip to next time step
+                print(f"  Saving {var_name} for {time_str}...")
                 
                 # Save as GeoTIFF using odc.geo
                 tif_filename = f"{prefix}_{var_name}_{time_str}.tif"
@@ -394,7 +411,11 @@ class SentinelSTACDownloader:
                 
                 saved_files[f"{var_name}_{time_str}_png"] = str(png_filepath)
                 print(f"  Saved {png_filename}")
-            break
+                if var_name == var_names[-1]:
+                    break_out = True
+            if break_out:
+                break
+            
         
         # Save metadata
         metadata = {

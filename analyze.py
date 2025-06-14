@@ -8,7 +8,7 @@ pip install requests rasterio matplotlib pystac-client odc-stac xarray pandas nu
 from __future__ import annotations
 
 import io
-import sys
+import re
 import shutil
 import zipfile
 import matplotlib
@@ -97,7 +97,7 @@ def png_to_data_url(png_path: Path)-> str:
 
 def construct_rev_geocode_url(
     lat: float, lon: float, api_key: str) -> str:
-    return f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&key={api_key}"
+    return f"https://maps.googleapis.com/maps/api/geocode/json?latlng={round(lat, 6)},{round(lon, 6)}&key={api_key}"
 
 def extract_human_readable_from_geocode_data(geocode_data: dict) -> str:
     """
@@ -107,10 +107,12 @@ def extract_human_readable_from_geocode_data(geocode_data: dict) -> str:
     if "results" in geocode_data and len(geocode_data["results"]) > 0:
         for result in geocode_data["results"]:
             components = result["address_components"]
-            if "formatted_address" in result and sum(1 for c in components if c.get("types") in allowed_types) >= 2:
+            if "formatted_address" in result and sum(1 for c in components if set(c["types"]) & set(allowed_types)) > 2:
+                print(f"Found valid formatted address: {result['formatted_address']}")
                 return result["formatted_address"]
         return geocode_data["results"][0]["formatted_address"]
     return False
+
 def analyse_with_openai(
     image_data_urls: list[str],
     model: str = "o4-mini",
@@ -133,31 +135,57 @@ def analyse_with_openai(
     if not loc_str:
         loc_str = "State of Amazonas, Brazil"
     print(f"Reverse geocoding {lat}, {lon} → \n{loc_str}")
-    prompt = f"""Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
+    prompt = f'''Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
 Search carefully for any archaeologically interesting anomalies. The images show:
-1. A high-resolution elevation raster from OpenTopography
-2. A digital terrain model extracted from LiDAR data using cloth simulation
-3. A true-color (visual) Sentinel-2 satellite image
-4. A near-infrared (NIR) Sentinel-2 band image
 
 The images are from the region of {loc_str}, at ({lat}, {lon}).
 
 If anomalies are found:
   1. Draw on your knowledge of the region ({loc_str}) and its history.
   2. Explain how the anomaly fits into the broader historical context.
-  3. Discuss how it might challenge or advance current theories in the field.
+  3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
   4. Note any differences or correlations between the different data sources.
+  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models.
 
 Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
 
-Always include your key takeaways inside triple brackets:
+Always include your actionable insights inside triple brackets:
 
 [[[
-insight
+actionable insights that can be used to discover new sites, such as:
+- "Note the presence of a large, flat area at the coordinates (lat, lon) that could indicate an ancient settlement."
+- "The presence of a linear feature in the LiDAR data suggests a possible ancient road or pathway."
+- "The NIR band shows unusual vegetation patterns that may indicate buried structures or features."
 ]]]
 
 If you detect an anomaly, output:
-\\{r'boxed{"FOUND"}'}"""+ prompt_append
+```anomalies
+"anomaly_1": {{
+    "description": "A detailed description of the anomaly",
+    "location": {{
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        }},  
+}},
+"anomaly_2": {{
+    "description": "A detailed description of the anomaly",
+    "location": {{
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        }},  
+}},
+...
+"anomaly_N": {{
+    "description": "A detailed description of the anomaly",
+    "location": {{
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        }},  
+}},
+```\n\n'''+ prompt_append +"\n\n"
 
     client = OpenAI()  # picks up OPENAI_API_KEY from env
     print("→ Contacting OpenAI …")
@@ -318,7 +346,22 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
     
     # Get the most recent visual and NIR band PNGs
     time_steps = list(data.time.values)
-    latest_time = max(time_steps)
+
+    # Iterate through the time steps, most recent first, until we find one we downloaded.
+    if not time_steps:
+        raise ValueError("No time steps found in the data")
+    
+    latest_time = None
+    for t in reversed(time_steps):
+        saved_id_nir = f"nir_{pd.to_datetime(t).strftime('%Y%m%d')}_png"
+        saved_id_visual = f"visual_{pd.to_datetime(t).strftime('%Y%m%d')}_png"
+        if saved_id_nir in saved_files and saved_id_visual in saved_files:
+            latest_time = t
+            break
+    
+    if latest_time is None:
+        raise ValueError("No valid time step found in the saved files")
+    # Format the time string for file naming
     time_str = pd.to_datetime(latest_time).strftime('%Y%m%d')
     
     visual_png = saved_files.get(f"visual_{time_str}_png")
@@ -329,7 +372,7 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
     
     return visual_png, nir_png
 
-def process_single_file(filename: str, exp_name: str, polygons_object) -> None:
+def process_single_file(filename: str, exp_name: str, polygons_object, prev_insights: str = "", anom_ct: int = 0) -> str:
     """
     Process a single file, gathering all available data sources and performing analysis.
     
@@ -362,12 +405,16 @@ def process_single_file(filename: str, exp_name: str, polygons_object) -> None:
     # Initialize list to store available data URLs
     data_urls = []
     data_descriptions = []
+    api_key_opentopography = os.environ.get("OPENTOPOGRAPHY_API_KEY")
+    if not api_key_opentopography:
+        print("Error: OPENTOPOGRAPHY_API_KEY not set in environment variables.")
+        return
     
     # 1. Try to get OpenTopo data
     try:
         dataset = "SRTMGL1"
         out_path_1 = fetch_raster_tile_from_opentopography(
-            api_key, dataset, north, south, east, west, 
+            api_key_opentopography, dataset, north, south, east, west, 
             source="globaldem", 
             dest=Path(f"{exp_name}/{item_name}_opentopo.tif")
         )
@@ -422,19 +469,36 @@ def process_single_file(filename: str, exp_name: str, polygons_object) -> None:
         numbered_list = "\n".join(f"{i+1}. {desc}" for i, desc in enumerate(descriptions))
         return f"The images show:\n{numbered_list}\n"
 
+    p_suffix = get_prompt_suffix(data_descriptions)
+    if len(prev_insights) > 0:
+        p_suffix += f"\n\nPrevious insights:\n{prev_insights}\n"
     try:
         analysis_dict = analyse_with_openai(
             data_urls,
             lat=(north+south)/2,
             lon=(east+west)/2,
-            prompt_append=get_prompt_suffix(data_descriptions),
+            prompt_append=p_suffix,
         )
         
         print(f"Writing analysis for {filename}...")
         with open(f"{exp_name}/{item_name}_prompt.txt", "w") as f:
+            f.write(f"Analysis for {item_name}\n\n")
             f.write(f"{str(analysis_dict['prompt'])}\n\n")
         with open(f"{exp_name}/{item_name}_analysis.txt", "w") as f:
             f.write(f"{str(analysis_dict['response'])}\n")
+        
+        insight_pattern = r"\[\[\[(.*?)\]\]\]"
+        insights = re.findall(insight_pattern, analysis_dict['response'], re.DOTALL)
+        anomalies_pattern = r'"anomaly_\d+"'
+        anomalies = re.findall(anomalies_pattern, analysis_dict['response'])
+        if anomalies:
+            print(f"Found anomalies in the analysis for {filename}: {len(anomalies)} anomalies detected.")
+        anom_ct += len(anomalies)
+        if insights:
+            return insights[0].strip(), anom_ct
+        else:
+            print(f"No actionable insights found in the analysis for {filename}.")
+            return "", anom_ct
     except Exception as e:
         print(f"Error during analysis of {filename}: {e}")
 
@@ -442,30 +506,33 @@ def main():
     """Main function to process all files."""
     # Load KMZ data
     print("Extracting KML content from KMZ file...")
+    kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     kml_content = extract_kmz_content(kmz_file_path)
 
-    exp_name = "exp_v4"
+    exp_name = "experiment_TAP_2_w_insights"
     os.makedirs(exp_name, exist_ok=True)
 
     print("Parsing polygons from KML...")
     polygons = extract_polygons_from_kml(kml_content)
-    polygons_dict = {
-        polygon["name"][:-4]: polygon for polygon in polygons
-    }
+    # polygons_dict = {
+    #     polygon["name"][:-4]: polygon for polygon in polygons
+    # }
 
     # Get list of files to process
     # all_files = list(set(list(map(
     #     lambda x: x.split('.')[0], 
     #     filter(lambda x: x.endswith('.png'), os.listdir('exp/dtm_images_csf'))
     # ))))
-    all_files = list(filter(lambda x: x.endswith('.png'), os.listdir('stitched_images')))
+    all_files = list(filter(lambda x: x.endswith('.png') and x.startswith('TAP'), os.listdir('stitched_images')))
 
     # Process each file
+    insights = ""
+    anom_ct = 0
     for filename in all_files:
-        process_single_file(filename, exp_name, polygons)
+        insights, anom_ct = process_single_file(filename, exp_name, polygons, anom_ct=anom_ct, prev_insights=insights)
+        print(f"Processed {filename}, current anomaly count: {anom_ct}")
+
 
 if __name__ == "__main__":
-    api_key = os.environ.get("OPENTOPOGRAPHY_API_KEY")
-    kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     main()
 
