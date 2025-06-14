@@ -9,5 +9,5 @@ analysis_fine/
 __pycache__/
 out*/
 output.png
-exp*/
+exp_*/
 sentinel_dls/

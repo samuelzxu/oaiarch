@@ -1,0 +1,77 @@
+Major Terrain and Geomorphological Features
+
+1. Regional Setting  
+   – The study area (–3.0344 °, –54.9593 °) sits on a low‐gradient natural levee and abandoned channel belt of the Amazon River. Elevations range subtly (±2 m) over 500 m spans, indicating gentle floodplain topography.  
+   – Underlying geology is Holocene fine‐grained alluvium, with a thin veneer of anthropogenic “terra preta” where pre-Columbian populations concentrated habitation and agriculture.  
+
+2. OpenTopography Elevation Raster  
+   – Gentle, long‐wavelength undulations trending NW–SE. These are consistent with paleochannel levees but also coincide with parallel ridge‐and‐furrow patterns.  
+   – Subtle convexities (~1–2 m relief over 50–100 m wavelength) appear at three nodes along the transect, suggestive of low mounds or berms.  
+   – A narrow trough parallels one ridge roughly 30 m to its SW, curving around a convex hump—possibly a remnant drainage‐ditch or fishweir canal.
+
+3. LiDAR Cloth-Simulation DTM  
+   – The LiDAR‐derived DTM strips confirm the NW–SE linear ridges, sharpening their crest lines to ~0.5–1 m above adjacent terrain.  
+   – In one panel (center strip), two mounded clusters (~20 m diameter each) rise ~0.8 m above the background, arranged en echelon.  
+   – No modern roads or drainage ditches are visible, reinforcing these features as non-modern and likely cultural.
+
+4. Sentinel-2 True-Color (Visual)  
+   – Dense secondary forest canopy masks much subtle relief. However, slight tonal shifts in canopy density over the ridge crests hint at differential tree species or soil moisture.  
+   – Open pasture at the SE end shows plow scars orthogonal to ridge orientation, risking disturbance of shallow features.
+
+5. Sentinel-2 Near-Infrared (NIR) Band  
+   – A distinct NIR-dark (low reflectance) elongate patch (~60 m × 15 m) coincides with the convexity at the NW end of the strip. Low NIR may indicate higher organic‐carbon content (terra preta) or moisture retention in buried anthropogenic soils.  
+   – Secondary small NIR anomalies appear over the two en-echelon mounds, supporting the idea of enriched soils.
+
+Archaeological Anomalies Detected
+
+```anomalies
+"anomaly_1": {
+    "description": "Parallel NW–SE linear ridges (~200 m long, 0.5–1 m high) separated by shallow troughs that may represent raised agricultural beds or leveed causeways.",
+    "location": {
+        "lat": -3.03420,
+        "lon": -54.95930,
+        "radius": 60
+    }
+},
+"anomaly_2": {
+    "description": "Cluster of two circular mounds (~20 m diameter each, ~0.8 m high) arranged en echelon on a slight platform, consistent with habitation or ceremonial mound foundations.",
+    "location": {
+        "lat": -3.03450,
+        "lon": -54.95910,
+        "radius": 30
+    }
+},
+"anomaly_3": {
+    "description": "Elongated NIR-dark patch (~60 m × 15 m) over convex ground, indicative of high organic carbon (terra preta) soils and possible buried cultural horizon.",
+    "location": {
+        "lat": -3.03415,
+        "lon": -54.95945,
+        "radius": 40
+    }
+}
+```
+
+How These Anomalies Fit the Broader Historical Context  
+– Lower Amazon floodplain agricultural systems (1,000–2,500 CE) exploited raised fields and canals to manage seasonally flooded soils. The NW–SE ridge orientation aligns with known pre-Columbian grid patterns documented near Santarém and Belterra ring villages.  
+– Mounded en-echelon platforms resemble small habitation “house mounds” reported in the Tapajós headwaters, supporting satellite-identified clusters around Belterra that have so far only been sporadically ground-truthed.  
+– The combination of linear raised beds, mounds, and terra preta signatures underscores an integrated agro‐settlement complex rather than isolated features—a network of fields, dwellings, and water control.
+
+Potential to Challenge or Advance Current Theories  
+– These ridges are more extensive and regularly spaced than those previously mapped at Belterra, suggesting a denser population footprint and more intensive landscape engineering than assumed for this sector of the lower Tapajós.  
+– The discovery of en-echelon mound pairs could point to a standardized household architecture or ritual pairing, a pattern not yet codified in Amazonian mound typologies.  
+– The clear NIR signal of buried terra preta under primary forest challenges assumptions that NIR anomalies only persist under open‐field agriculture; it may open paths to locating deeply wooded pre-Columbian sites.
+
+Correlations and Differences Among Data Sources  
+– DTM vs. OpenTopography: LiDAR refines ridge crest height and sharpens mound edges, whereas the coarser elevation raster gives context to floodplain gradients.  
+– Visual vs. NIR: The forest canopy hides subtle earthworks in the visual band, but NIR anomalies correspond precisely with DTM-mapped mounds and ridges.  
+– Seasonal effects: This November image set captures post-dry‐season conditions; wetter months may flood the troughs and mask relief both in LiDAR and NIR.
+
+Actionable Insights
+
+[[[
+- Conduct systematic pedestrian transect perpendicular to the NW–SE ridges at 20 m spacing to verify raised-bed construction, collect subsoil charcoal, and sample for anthropogenic soil horizons.
+- Deploy a micro-UAV LiDAR survey (0.1 m resolution) over the en-echelon mound cluster (anomaly_2) to resolve internal layering, possible building floors, and entry causeways.
+- Auger‐probe the NIR-dark patch (anomaly_3) to measure organic carbon, phosphates, and ceramic inclusions; target the east flank where the NIR signature is strongest.
+- Extend NIR anomaly mapping 500 m up- and downstream along the natural levee to identify additional buried raised fields or mounded platforms.
+- Compare these features with historical aerial photographs (1960s–80s) to assess agricultural disturbance and prioritize undisturbed forest margins for excavation.
+]]]

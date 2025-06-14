@@ -1,0 +1,39 @@
+Below is a feature‐by‐feature summary of what the four data sources reveal about the Belterra area (V28W+FW, –3.13386 / –54.95272), organized by geomorphology, hydrology, vegetation cover, and modern land use.  At the end you’ll find a set of targeted, evidence‐based “actionable insights” enclosed in triple brackets for guiding future archaeological prospection.
+
+1. Elevation Raster (OpenTopography)  
+   • Broad gentle undulations between ~23 m and ~27 m a.s.l., with subtle ridges trending northeast–southwest.  
+   • Darker (lower) swales correspond to modern drainage lines; brighter “hills” mark natural levees of old river courses.  
+   • Relief is very low (~4 m total), typical of a floodplain transitioning into slightly higher terra-firme terraces.  
+
+2. LiDAR-derived DTM (Cloth Simulation Removal of Vegetation)  
+   • Reveals a sinuous, multi-thread drainage network in the northwest quadrant—old oxbow tails and anabranches of the Tapajós tributary system.  
+   • Small linear scarps (~0.5 m high) run roughly north–south; likely recent road or plantation berms rather than ancient earthworks.  
+   • No high-amplitude mounded features (≥1 m) stand out; the terrain is largely planar with very shallow microtopography.
+
+3. True-color Sentinel-2 (VISUAL)  
+   • Clear demarcation of large rectangular agricultural fields (soy, pasture) in the east; dense primary forest in the west.  
+   • A right‐angle road network cuts through the floodplain at ~–54.953° E / –3.134° S, probably constructed in the last decades.  
+   • No regularly spaced circular or polygonal clearings (geoglyph‐type) are visible; the forest edge is highly irregular, reflecting selective logging and forest regeneration.
+
+4. Near-Infrared Sentinel-2 (NIR)  
+   • Forested areas show very high NIR reflectance (bright), confirming dense canopy; fields show lower NIR (darker) consistent with grass/pasture or bare soil.  
+   • Along the old river channel, a narrow strip of intermediate NIR signal may indicate riparian swamp or successional forest, where ground disturbance is lower.  
+   • No strong NIR anomalies (e.g. persistent dark spots under closed canopy) that might hide sub-surface mounds or buried earthworks.
+
+Overall Interpretation  
+– The study area sits at the confluence of low floodplain and slightly elevated terraces, typical of the Tapajós drainage. Ancient pre-Columbian settlements in this region preferred natural levees (1–3 m above river channels) to avoid annual inundation.  
+– Modern agriculture has cleared much of the natural levees; what remains of the forested levees is narrow and discontinuous.  
+– There are no unambiguous earthwork mounds or causeways visible at this resolution. Any archaeological feature would likely be low-lying (≤0.5 m) and obscured by recent plowing or vegetation.  
+
+anomalies
+{}
+
+Actionable insights for future prospection are provided below:
+
+[[[
+• Focus field‐walking and auger‐sampling along the highest micro-ridges (25–27 m a.s.l.) just west of the main access road at approx. (–3.135, –54.9525). These align with the ancient levee crests and are prime targets for terra preta deposits.
+• Integrate high‐resolution UAV photogrammetry across the sinuous oxbow scars in the northwest (–3.132 to –3.134, –54.954 to –54.956). Subtle raised “islands” in these cut-offs may mark habitation loci.
+• In the NIR layer, target patches of intermediate reflectance within the secondary forest (around –3.1335, –54.955), which could indicate regrowth over buried archaeological features.
+• Use the DTM’s linear micro-scarps (north–south lines at –3.1339 to –3.1342, –54.9538) to distinguish between modern plantation boundaries and possible truncated pre-Columbian causeways by checking their stratigraphy in test trenches.
+• Map variations in field boundary orientations versus underlying ridge azimuths; any discrepancy may point to hidden anthropogenic terraces or raised-field agriculture.
+]]]

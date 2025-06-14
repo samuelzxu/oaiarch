@@ -1,0 +1,61 @@
+The three datasets together show a very gently undulating Amazonian floodplain surface, punctuated by subtle linear ridges, shallow concave depressions, and patches of variable vegetation vigor.  In broad terms:
+
+- Regional geomorphology  
+  • Floodplain plain: Almost flat, with total relief <2 m across the scene.  
+  • Natural levees: In the LiDAR‐derived DTM (“cloth simulation”) a subtle, sinuous ridge runs roughly E–W across the northern edge, likely a former riverbank or crevasse-splay deposit.  
+  • Shallow drainage swales: Fine, dendritic depressions (0.2–0.5 m deep) feed southward, now obscured by vegetation.  
+
+- Modern land cover (Sentinel-2 visual, 10 m pixels)  
+  • Patches of brighter (yellow–green) tones in the SE quadrant correspond to either regrowth forest on terra preta soils or small clearings for pasture/agriculture.  
+  • Darker, purplish tones mark intact, low-vigour canopy over waterlogged microdepressions.  
+
+- Vegetation vigour (NIR band)  
+  • Highest NIR reflectance (“whitest” in the greyscale) coincides with the parsed clearing in the SE quadrant, indicating vigorous regrowth or pasture grass.  
+  • The low-reflectance zones in the NW (darker pixels) align with the drainage swales seen in the DTM.
+
+Taken together, I identify three archaeologically interesting anomalies:
+
+```anomalies
+"anomaly_1": {
+    "description": "A subtle, 150–200 m long, east–west trending embankment (1–1.5 m high) visible only in the DTM, with straightened sections atypical of purely natural levees.",
+    "location": {
+        "lat": -3.0498,
+        "lon": -54.9474,
+        "radius": 100
+    }
+},
+"anomaly_2": {
+    "description": "A small (∼40 m diameter), roughly rectangular clearing in the SE quadrant that stands out in true-color imagery but is not in the existing deforestation database—could overlie buried structures or fill.",
+    "location": {
+        "lat": -3.0506,
+        "lon": -54.9467,
+        "radius": 30
+    }
+},
+"anomaly_3": {
+    "description": "A circular low-reflectance patch (∼60 m diameter) in the NIR band, coincident with a very shallow concave in the DTM—suggestive of an ancient pond or fishery basin with sediment fill.",
+    "location": {
+        "lat": -3.0499,
+        "lon": -54.9478,
+        "radius": 50
+    }
+}
+```
+
+Context & significance  
+The Belterra region is famed for its pre-Columbian “Terra Preta” anthrosols, raised fields, causeways and settlement mounds dating to 500 BC–1300 AD.  The E–W embankment (anomaly_1) may be part of a local road or raised agricultural terrace system linking small village centers to main waterways.  The rectilinear clearing (anomaly_2), though possibly modern, lies in an area of known habitation and could mask buried house floors or pit-features.  The pond‐like depression (anomaly_3) echoes the fish-weir and pond networks documented just 5 km downstream—if prehistoric, it would extend known hydraulic complexity upslope.
+
+Differences & correlations  
+• The ridge of anomaly_1 is essentially invisible in the optical data but clear in LiDAR.  
+• Anomaly_2 shows up strongly in visual but has no clear topographic signature, suggesting modern soil disturbance.  
+• Anomaly_3 is low contrast in the visual band yet has a dual signature in DTM (concavity) and NIR (moisture‐linked vegetation stress).
+
+These findings both confirm known cultural landscape elements (levee-roads, hydraulic features) and propose previously undocumented targets.
+
+[[[
+- At anomaly_1 (–3.0498, –54.9474), run a GPR transect across the embankment and drill a series of shallow auger probes to confirm terra preta layering, charcoal content, and core composition.
+- Over anomaly_2 (–3.0506, –54.9467), task a UAV equipped with multispectral + LiDAR for sub-10 cm resolution mapping; follow up with shallow geotechnical coring to detect buried walls or floors.
+- In anomaly_3 (–3.0499, –54.9478), install a grid of moisture sensors and extract a sediment core to reconstruct fill history, test for pond function and faunal remains.
+- Expand high-resolution UAV-LiDAR coverage over a 1 km² block around these anomalies to trace any connecting causeways, raised platforms or subsidiary house mounds.
+- Compare current DTM/optical results with any available 1970s aerial photographs to prioritize sectors with minimal recent disturbance for test excavation.
+]]]

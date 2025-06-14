@@ -1,0 +1,67 @@
+Here is a summary of the major terrain and geomorphological features, followed by the archaeologically interesting anomalies we have identified and their detailed context.  
+
+Major terrain and geomorphological features  
+- Meandering river corridor in the northwest corner, with active point bars and abandoned oxbow scars. These indicate a dynamic floodplain environment with periodic channel migration.  
+- Floodplain levees and micro-ridges (25–27 m a.s.l.) flanking the modern channel, likely formed by overbank deposition. In this region, such levees have been shown to host pre-Columbian habitation mounds and terra preta soils.  
+- Broad, low-angle swales and backswamp depressions between ridges, prone to seasonal inundation.  
+- A mosaic of modern agricultural clearings and secondary forest. Field boundaries often cut across the natural levee-swale topography, sometimes masking older linear features.  
+- In the LiDAR DTM, subtle linear scarps and small rectilinear platforms emerge—potentially anthropogenic causeways or raised-field remnants.  
+- The true-color Sentinel-2 image highlights current land use: patchwork pastures, small roads and farmsteads. Vegetation tones help distinguish cleared vs. wooded areas.  
+- The NIR band accentuates differences in canopy vigor. Patches of intermediate reflectance within closed forest suggest recent regrowth over areas where soil moisture or composition differs—often over archaeological substrates.  
+
+anomalies  
+```anomalies
+"anomaly_1": {
+    "description": "A straight, north–south aligned micro-scarp approximately 120 m long and 1–1.5 m high in the DTM, cutting across modern field boundaries. Its orientation deviates from both natural floodplain ridges and present-day roads, suggesting a truncated pre-Columbian causeway or raised walkway.",
+    "location": {
+        "lat": -3.13395,
+        "lon": -54.95380,
+        "radius": 60
+    }
+},
+"anomaly_2": {
+    "description": "A cluster of three low, rectilinear platforms (20×30 m each, ~0.5 m relief) on a slightly elevated levee remnant in the northwest sector, visible as light-toned patches in the elevation raster and enhanced in the LiDAR DTM. They may represent habitation mounds or cache platforms.",
+    "location": {
+        "lat": -3.13290,
+        "lon": -54.95450,
+        "radius": 40
+    }
+},
+"anomaly_3": {
+    "description": "Several ~15–25 m diameter spots of intermediate NIR reflectance within continuous secondary forest east of the main meander. These could indicate buried features (ditches, pits) altering soil moisture and vegetation vigor.",
+    "location": {
+        "lat": -3.13350,
+        "lon": -54.95500,
+        "radius": 15
+    }
+}
+```  
+
+1. Regional and historical context  
+   Belterra lies on the middle Amazon floodplain, an area known for elaborate pre-Columbian earthworks, raised agricultural fields, causeways and terra preta soils. Early archaeological surveys (e.g., Roosevelt 1991) documented artificial ridges and plazas. More recently, LiDAR has revealed networks of linear features extending for kilometers beneath the forest canopy.  
+
+2. How these anomalies fit the broader context  
+   - The north–south causeway (anomaly 1) aligns with other documented causeways that link terra preta settlements on levees. Its deviation from modern parcels suggests antiquity.  
+   - The mound cluster (anomaly 2) sits on a levee crest at optimal flood-free elevation, a location typical for small villages or specialty platforms.  
+   - The NIR hotspots (anomaly 3) echo patterns found elsewhere where buried ditches or charcoal-rich soils drive subtle vegetation contrasts.  
+
+3. Theoretical implications  
+   - These features support a model of highly organized floodplain management, with settlers sculpting both raised fields and connecting roadways.  
+   - If confirmed, anomaly 1 could demonstrate a longer causeway segment than currently mapped, challenging estimates of network extent.  
+   - Anomaly 2 may refine our understanding of village spacing and social scale.  
+   - Anomaly 3’s presence suggests that even lightly forested areas contain undetected anthropogenic soils, underscoring the need to integrate multispectral data.  
+
+4. Data-source correlations and contrasts  
+   - The elevation raster provides broad relief context but smears small platforms.  
+   - The LiDAR DTM crisply resolves micro-scarps and flat-topped mounds.  
+   - True-color imagery clearly delineates modern land use, but overprints older features.  
+   - NIR emphasizes soil-vegetation interactions, flagging buried features under canopy.  
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- Note the large, straight micro-scarp at (–3.13395, –54.95380) for targeted coring or trenching to test for causeway fill.
+- The triple mound cluster at (–3.13290, –54.95450) should be surveyed with UAV photogrammetry and auger probing for terra preta signatures.
+- Sample the intermediate NIR reflectance spots near (–3.13350, –54.95500) with GPR to map subsurface ditches or pits.
+- Conduct systematic field-walking along the 25–27 m a.s.l. levee crests just west of the main road at (–3.135, –54.9525) for ceramic scatters.
+- Compare modern field boundary azimuths vs. LiDAR ridge orientations to isolate other misaligned linear features that may indicate buried causeways.
+]]]

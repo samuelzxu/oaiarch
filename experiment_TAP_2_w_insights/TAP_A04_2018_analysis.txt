@@ -1,0 +1,42 @@
+The four datasets cover the same ~200 × 200 m patch of Amazonian floodplain just south of the Belterra road (X2MP+3W São Benedito, –3.01736, –54.96268). Below is a brief description of each layer, followed by an overall geomorphological interpretation, and then a discussion of potential archaeological targets. No unambiguous cultural features (pyramids, plazas, causeways) stand out in these particular images, but there are subtle micro‐reliefs and spectral anomalies that merit targeted follow‐up.
+
+1. Elevation raster (OpenTopography)  
+• Overall relief is very low (±2 m across the scene).  
+• The central-west quadrant shows a very gentle convexity (slightly higher) sloping toward the SE.  
+• Subtle linear undulations (~0.2–0.5 m high) run roughly NW–SE, parallel to the modern road axis. These may represent remnant natural ridges or anthropogenic levees.
+
+2. LiDAR‐derived cloth‐simulation DTM  
+• Stray data gaps produce black “holes,” but the ground model confirms the gentle ridges seen in 1.  
+• A faint trace of two orthogonal linear features: one trending NW–SE and another less distinct trending NE–SW.  
+• No high‐amplitude mounds or enclosures appear.
+
+3. True‐color Sentinel-2 (RGB)  
+• The scene is a patchwork of primary forest (deep green) and secondary regrowth/pasture (lighter green–yellow).  
+• Several small clearings in the SE quadrant (possibly recent pasture) coincide with slightly brighter soil patches.
+
+4. NIR Sentinel-2  
+• Dry‐season NIR reflectance is fairly uniform.  
+• A few small, brighter spots (higher NIR) in the SE could mark denser grassy regrowth or shallow soil disturbances.  
+• No broad concentric rings or rectilinear spectral anomalies visible.
+
+Geomorphological setting  
+– Located on a low, seasonally flooded floodplain of the Tapajós headwaters.  
+– Natural levees crest along old river channels; backswamps in the lowest parts.  
+– Human occupation in this region (pre‐European) is known from pottery scatters, “terra preta” dark earth, causeways, small mounded villages—but usually at larger elevations or along major ridges.
+
+Archaeological context & potential  
+– Belterra Road sites (late Holocene, Arauquinoid and Suya phases) often exploit natural levees for settlement.  
+– Medium‐density populations created networks of causeways (<1 m high) linking small mounds. These can be nearly invisible in raw imagery.  
+– “Terra preta” signatures sometimes appear as subtle NIR anomalies where charcoal‐rich soils enhance vegetation vigor.
+
+No obvious cultural mound or plaza shows up here, but the gentle NW–SE ridge and isolated NIR hotspots may warrant ground inspection.  
+
+actionable insights  
+[[[  
+- Focus a pedestrian and soil‐probe survey along the faint NW–SE ridge at approx. (-3.0182, ‑54.9629). Even a low (0.3–0.5 m) levee crest here could bury compacted living floors or pathway fill.  
+- Conduct a UAV‐LiDAR micro‐flight strip across the area to fill the DTM voids and sharpen relief; look for small (<0.2 m) “berms” perpendicular to the primary ridge axis.  
+- Investigate the few higher‐NIR pixels in the SE quadrant near (-3.0168, ‑54.9626) with ground‐penetrating radar (GPR) to detect shallow pits or charcoal‐rich soil lenses (terra preta).  
+- Cross‐compare local land‐parcel boundary azimuths (from cadastral maps) with the DTM’s subtle ridges to isolate misaligned segments—an indicator of buried causeways or property lines co‐opting pre‐existing paths.  
+]]]
+
+Since no unambiguous structural anomaly appears, these steps will refine the residual microtopography and spectral patterns and help pinpoint any small anthropogenic features for test coring or surface collection.

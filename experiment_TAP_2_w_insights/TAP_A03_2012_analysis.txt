@@ -1,0 +1,48 @@
+Below is an integrated geomorphological and archaeological assessment of the three data-layers over the São José block (V28W+FW, Belterra).  I first summarize the major terrain features, then detail two candidate anomalies.  Finally, I place them in regional context and suggest next steps.
+
+1. Major terrain and geomorphological features  
+• Floodplain & levee system:  The LiDAR‐derived DTM reveals a very low‐relief landscape (vertical range < 5 m) with subtle sinuous ridges and shallow channels.  These are abandoned meander scars and scroll bars of the Tapajós tributaries.  Their convex ridges (lighter tone) grade into concave swales (darker tone), indicating periodic inundation.  
+• Alluvial terraces:  Higher, planar patches (mid-field on the DTM) correspond to paleo‐terrace remnants capped by slightly coarser sediment or compacted soils.  They stand ~0.5–1 m above adjacent swales.  
+• Erosional knickpoints:  A few short, steeper scarps (up to 1–2 m relief) appear at channel cutoffs, marked by abrupt tone shifts on the DTM.  
+• Modern clearance & road grid:  In the true-color image, large rectilinear clearings (pasture, cropland) and a gravel/compacted earth road run NW–SE across the block.  These match levee tops and terraces exploited for agriculture.  
+• Vegetation vigor patterns:  The NIR image highlights robust canopy on undisturbed terra‐firme mounds (bright tones) and weaker regrowth on cleared fields (darker).  On the floodplain, seasonal grasses and riparian shrubs show intermediate NIR reflectance.
+
+2. Detected archaeological anomalies  
+```anomalies
+"anomaly_1": {
+    "description": "Linear embankment or terrace crest ~150 m long trending NNW–SSE, 2–3 m wide, standing ~0.3 m above adjacent swale.  On the DTM it appears as a faint, straight ridge cutting across natural levee alignments; on NIR it underlies a narrow band of enhanced soil moisture.",
+    "location": {
+        "lat": -3.1335,
+        "lon": -54.9529,
+        "radius": 75
+    }
+},
+"anomaly_2": {
+    "description": "Circular to sub-rectangular mound ~30 m × 25 m, height ~0.5 m.  Shows up as a discrete ‘bulge’ on the DTM, with a subtle concentric moat or dip on its northern side.  In the visual image it coincides with a patch of darker vegetation (possible terra preta retention).",
+    "location": {
+        "lat": -3.1360,
+        "lon": -54.9501,
+        "radius": 15
+    }
+},
+```
+
+3. Regional historical and archaeological context  
+• Amazonian earthworks:  Between Santarém and Belterra, late‐precontact societies (AD 500–1300+) constructed ring‐ditched villages, causeways and raised fields to manage floods and soil fertility.  Well‐known sites include Monte Alegre, Capanã and the Interfluvial Geoglyphs further west.  
+• Belterra focus:  Belterra itself was a 20th-century rubber plantation, but scattered pre-rubber ceramics and terra preta have been collected since the 1970s.  No systematic survey has mapped embedded embankments just north of the settlement.  
+• Implications:  If anomaly_1 represents a truncated causeway or village terrace, it would extend the known east‐west corridor of Late Holocene occupation.  Anomaly_2, if a house mound with surrounding ditch, would mark a previously undocumented nucleated settlement cluster.  This challenges the notion that earthworks in this sub-region are too scattered to form an integrated network.
+
+4. Correlations between data sources  
+• DTM vs. NIR:  Both anomalies stand out most clearly on the DTM.  Anomaly_1’s linear form aligns with subtle moisture accumulation in NIR (darker tone), suggesting an infilled ditch.  Anomaly_2’s mound shows higher NIR reflectance at its crest—consistent with better‐drained soils supporting different vegetation.  
+• Visual limitations:  Both features are nearly invisible in the true‐color mosaic, being masked by secondary regrowth or small-scale modern earthworks.
+
+5. Actionable, next‐step insights  
+[[[
+- Target anomaly_1 (–3.1335, –54.9529): Conduct a GPR survey along the 150 m axis to map ditch fill stratigraphy; follow with shallow auger cores every 25 m to assess charcoal and terra preta content.
+- At anomaly_2 (–3.1360, –54.9501): Deploy a micro‐UAV with high‐resolution multispectral + LiDAR (5 cm DEM) to resolve the concentric moat; extract a 1 m core through the mound crest to test for habitation debris (ceramics, charcoal).
+- Systematically extend UAV‐LiDAR mapping over adjacent terrace remnants up to 500 m north and south to trace linear embankments into potential causeway networks.
+- Employ NIR differencing on seasonal images to detect other moisture‐retaining linear anomalies hidden under canopy regrowth.
+- Compare these features against 1970s aerial photography (rubber‐era archives) to identify sectors with minimal modern disturbance for small‐block test excavations.
+]]]
+
+By following these steps, the team can ground-truth the LiDAR‐identified forms, gauge their chronological placement, and—if confirmed—significantly advance our understanding of late‐precontact Amazonian land-use in the Belterra region.

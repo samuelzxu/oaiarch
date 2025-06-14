@@ -1,0 +1,72 @@
+Analysis for TAP_A02_2012
+
+Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
+Search carefully for any archaeologically interesting anomalies. The images show:
+
+The images are from the region of V2J8+J7 São José, Belterra - PA, Brazil, at (-3.118386823, -54.984333355000004).
+
+If anomalies are found:
+  1. Draw on your knowledge of the region (V2J8+J7 São José, Belterra - PA, Brazil) and its history.
+  2. Explain how the anomaly fits into the broader historical context.
+  3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
+  4. Note any differences or correlations between the different data sources.
+  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models.
+
+Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
+
+Always include your actionable insights inside triple brackets:
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- "Note the presence of a large, flat area at the coordinates (lat, lon) that could indicate an ancient settlement."
+- "The presence of a linear feature in the LiDAR data suggests a possible ancient road or pathway."
+- "The NIR band shows unusual vegetation patterns that may indicate buried structures or features."
+]]]
+
+If you detect an anomaly, output:
+```anomalies
+"anomaly_1": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+"anomaly_2": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+...
+"anomaly_N": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+```
+
+The images show:
+1. A high-resolution elevation raster from OpenTopography
+2. A digital terrain model extracted from LiDAR data using cloth simulation
+3. A true-color (visual) Sentinel-2 satellite image
+4. A near-infrared (NIR) Sentinel-2 band image
+
+
+Previous insights:
+- Conduct pedestrian transects along the newly mapped NW–SE ridge (anomaly 1) at 50 m intervals, seeking posthole alignments and compacted surfaces.
+- Deploy micro-UAV LiDAR (0.1 m resolution) over the circular ring mound (anomaly 2) to detect internal chambers or radial entrance causeways.
+- Execute ground-penetrating radar across the rectangular platform (anomaly 3) to verify buried foundation walls or occupation strata.
+- Undertake auger sampling at the cluster of NIR hotspots (anomaly 4) to assay charcoal, phosphate, and ceramic sherd concentrations.
+- Extend NIR anomaly mapping parallel to the main ridge to find additional buried roads or small satellite mounds.
+- Overlay local cadastral and land-use maps to see if historic forest clearings mask further misaligned plateau segments.
+
+
+
+

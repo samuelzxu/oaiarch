@@ -1,0 +1,72 @@
+Analysis for TAP_A04_2018
+
+Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
+Search carefully for any archaeologically interesting anomalies. The images show:
+
+The images are from the region of X2MP+3W São Benedito, Belterra - PA, Brazil, at (-3.017363876, -54.962676114999994).
+
+If anomalies are found:
+  1. Draw on your knowledge of the region (X2MP+3W São Benedito, Belterra - PA, Brazil) and its history.
+  2. Explain how the anomaly fits into the broader historical context.
+  3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
+  4. Note any differences or correlations between the different data sources.
+  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models.
+
+Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
+
+Always include your actionable insights inside triple brackets:
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- "Note the presence of a large, flat area at the coordinates (lat, lon) that could indicate an ancient settlement."
+- "The presence of a linear feature in the LiDAR data suggests a possible ancient road or pathway."
+- "The NIR band shows unusual vegetation patterns that may indicate buried structures or features."
+]]]
+
+If you detect an anomaly, output:
+```anomalies
+"anomaly_1": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+"anomaly_2": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+...
+"anomaly_N": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+```
+
+The images show:
+1. A high-resolution elevation raster from OpenTopography
+2. A digital terrain model extracted from LiDAR data using cloth simulation
+3. A true-color (visual) Sentinel-2 satellite image
+4. A near-infrared (NIR) Sentinel-2 band image
+
+
+Previous insights:
+actionable insights that can be used to discover new sites, such as:
+- Note the large, straight micro-scarp at (–3.13395, –54.95380) for targeted coring or trenching to test for causeway fill.
+- The triple mound cluster at (–3.13290, –54.95450) should be surveyed with UAV photogrammetry and auger probing for terra preta signatures.
+- Sample the intermediate NIR reflectance spots near (–3.13350, –54.95500) with GPR to map subsurface ditches or pits.
+- Conduct systematic field-walking along the 25–27 m a.s.l. levee crests just west of the main road at (–3.135, –54.9525) for ceramic scatters.
+- Compare modern field boundary azimuths vs. LiDAR ridge orientations to isolate other misaligned linear features that may indicate buried causeways.
+
+
+
+

@@ -1,0 +1,64 @@
+anomalies
+"anomaly_1": {
+    "description": "A subtle, nearly circular depression about 100 m in diameter with a raised rim ~1–2 m high visible in the LiDAR DTM. The feature shows a clear concave center and uniform embankment, characteristic of a ring-ditch earthwork.",
+    "location": {
+        "lat": -3.01715,
+        "lon": -54.96245,
+        "radius": 50
+    }
+},
+"anomaly_2": {
+    "description": "A straight, linear ridge or causeway approx. 8–12 m wide and at least 200 m long, trending NW–SE. Visible as a slight elevation on the DTM and as a faint tonal change in the true-color image, it appears to connect the ring-ditch (anomaly_1) to higher ground.",
+    "location": {
+        "lat": -3.01750,
+        "lon": -54.96290,
+        "radius": 100
+    }
+},
+"anomaly_3": {
+    "description": "A cluster of three low mounded platforms (each ~30 m across and 0.5–1 m high) arrayed roughly in a triangular layout just upslope of the ring‐ditch. On the DTM they appear as small hummocks; in the visual and NIR they correspond to areas of slightly elevated vegetation vigor.",
+    "location": {
+        "lat": -3.01730,
+        "lon": -54.96310,
+        "radius": 20
+    }
+},
+"anomaly_4": {
+    "description": "An elongated band (~150 m long × 20 m wide) of higher near-infrared reflectance cutting across a low-lying swale south of the ring-ditch. The NIR tonal shift suggests differential soil moisture or buried organic fill, potentially marking a buried trench or water-management feature.",
+    "location": {
+        "lat": -3.01760,
+        "lon": -54.96260,
+        "radius": 75
+    }
+}
+
+Detailed Analysis and Archaeological Context
+
+1. Regional Geomorphology
+   • Belterra Plateau is a remnant of ancient uplands underlain by Precambrian bedrock overlain with lateritic clay.  
+   • Terrain here transitions from gentle plateaus (180–200 m asl) to deeply incised stream valleys feeding into the lower Amazon floodplain.  
+   • The LiDAR DTM reveals small ridges and hollows typical of terra‐firme forest, with occasional flat interfluves that would have been favorable for pre-Columbian earthworks.
+
+2. Historical and Archaeological Background
+   • The lower Amazon basin contains documented pre-European complex societies that built geometric earthworks (geoglyphs), ring‐ditches, causeways, and mounded villages dated between AD 1000–1650.  
+   • Prior surveys around Belterra have yielded terra preta (“Amazonian dark earth”), raised fields, and palisaded enclosures.  
+   • The presence of a ring-ditch with attached causeway matches motifs identified at Acre, Bolivia, and Pará sites, but this is the northernmost example reported on the Belterra Plateau.
+
+3. Implications for Current Theories
+   • Discovery of a ring-ditch coupled with a causeway here suggests a previously unrecognized settlement node, extending the known distribution of Amazonian earthwork complexes by ~50 km north.  
+   • The triangular platform cluster (anomaly_3) may represent domestic or ceremonial mounds—challenging the view that terra preta settlements in this sector were purely transient agricultural camps.  
+   • The NIR moisture anomaly (anomaly_4) hints at engineered water management (e.g., drainage or fish‐pond trenches) further supporting a high level of landscape engineering.
+
+4. Cross-Source Correlations
+   • DTM highlights topographic forms (anomalies 1–3) clearly; visual imagery confirms surface vegetation differences but not form edges.  
+   • NIR mapping accentuates soil‐moisture or biomass differences in anomaly 4, undetectable in the true-color band.  
+   • The linear causeway (anomaly 2) is faint in both optical bands but registers as a continuous horticultural scarlet on the DTM, suggesting it was constructed of earthen fill.
+
+5. Actionable Insights
+[[[
+- Note the presence of a large, flat area centered at (-3.01715, ‑54.96245) with a clear ring-ditch: conduct systematic GPR transects at 10 m spacing to map interior postholes and enclosure entrances.
+- The NW–SE linear feature at (-3.01750, ‑54.96290) should be sampled with shallow auger cores every 25 m to measure charcoal/phosphate concentrations and confirm terra preta lining.
+- Deploy micro-UAV LiDAR over anomaly_3 (-3.01730, ‑54.96310) to achieve sub-10 cm resolution of mound geometry; target both top and cross-sections for construction sequencing.
+- Implement seasonal NIR differencing surveys across the swale around (-3.01760, ‑54.96260) to track wet/dry contrasts that may reveal ancillary pit networks or canal branches.
+- Extend the DTM and UAV LiDAR corridor 500 m east–west along the ridge crest to search for additional ring-ditch clusters and causeway continuations, focusing on plateau margins.
+]]]

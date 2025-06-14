@@ -1,0 +1,72 @@
+Analysis for TAP_A06_2018
+
+Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
+Search carefully for any archaeologically interesting anomalies. The images show:
+
+The images are from the region of W3X3+V3 Terra Preta, Belterra - PA, Brazil, at (-3.0502890995, -54.94729255).
+
+If anomalies are found:
+  1. Draw on your knowledge of the region (W3X3+V3 Terra Preta, Belterra - PA, Brazil) and its history.
+  2. Explain how the anomaly fits into the broader historical context.
+  3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
+  4. Note any differences or correlations between the different data sources.
+  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models.
+
+Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
+
+Always include your actionable insights inside triple brackets:
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- "Note the presence of a large, flat area at the coordinates (lat, lon) that could indicate an ancient settlement."
+- "The presence of a linear feature in the LiDAR data suggests a possible ancient road or pathway."
+- "The NIR band shows unusual vegetation patterns that may indicate buried structures or features."
+]]]
+
+If you detect an anomaly, output:
+```anomalies
+"anomaly_1": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+"anomaly_2": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+...
+"anomaly_N": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+```
+
+The images show:
+1. A high-resolution elevation raster from OpenTopography
+2. A digital terrain model extracted from LiDAR data using cloth simulation
+3. A true-color (visual) Sentinel-2 satellite image
+4. A near-infrared (NIR) Sentinel-2 band image
+
+
+Previous insights:
+- Prioritize pedestrian and auger transects along the exposed crest of the NW–SE ridge (Anomaly 1) to sample for terra preta, compaction lenses, and roadside postholes.
+- Schedule micro-UAV LiDAR over the circular ring mound (Anomaly 2) with <0.2 m resolution to resolve sub-mound chambers or entrance causeways.
+- Conduct ground-penetrating radar transects across the rectangular platform (Anomaly 3) to test for buried wall foundations or floor surfaces.
+- Overlay local land-use and cadastral maps to locate other misaligned plateau segments that may indicate buried causeway branches.
+- Target soil coring in and around the ring mound for charcoal, phosphate, and ceramic sherd concentration, to date sequential construction phases.
+- Extend NIR anomaly mapping along parallel ridges to map out a larger grid of roads or drainage channels.
+
+
+
+

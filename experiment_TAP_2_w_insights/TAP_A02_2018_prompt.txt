@@ -1,0 +1,70 @@
+Analysis for TAP_A02_2018
+
+Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
+Search carefully for any archaeologically interesting anomalies. The images show:
+
+The images are from the region of V2J8+J7 São José, Belterra - PA, Brazil, at (-3.1183875235, -54.984337745000005).
+
+If anomalies are found:
+  1. Draw on your knowledge of the region (V2J8+J7 São José, Belterra - PA, Brazil) and its history.
+  2. Explain how the anomaly fits into the broader historical context.
+  3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
+  4. Note any differences or correlations between the different data sources.
+  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models.
+
+Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
+
+Always include your actionable insights inside triple brackets:
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- "Note the presence of a large, flat area at the coordinates (lat, lon) that could indicate an ancient settlement."
+- "The presence of a linear feature in the LiDAR data suggests a possible ancient road or pathway."
+- "The NIR band shows unusual vegetation patterns that may indicate buried structures or features."
+]]]
+
+If you detect an anomaly, output:
+```anomalies
+"anomaly_1": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+"anomaly_2": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+...
+"anomaly_N": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+```
+
+The images show:
+1. A digital terrain model extracted from LiDAR data using cloth simulation
+2. A true-color (visual) Sentinel-2 satellite image
+3. A near-infrared (NIR) Sentinel-2 band image
+
+
+Previous insights:
+- Systematically target small‐mound clusters by running a NW–SE oriented convolution filter on the DTM to flag 2–5 m diameter convexities.  
+- Fly a micro‐UAV LiDAR survey over anomaly_2 at sub‐10 cm resolution to map the ditch cross-section and confirm anthropic lining.  
+- Acquire additional seasonal NIR imagery over anomaly_3 to perform multi-date differencing—variations in moisture and vegetation vigor will help verify a buried causeway.  
+- Extend anomaly‐search transects 250 m north and south along the ridge‐swale boundary to locate other mid‐slope terrace clusters.  
+- Overlay high‐resolution drone orthoimagery onto existing ring-ditch maps to check for alignment or continuations of the newly detected causeway.
+
+
+
+

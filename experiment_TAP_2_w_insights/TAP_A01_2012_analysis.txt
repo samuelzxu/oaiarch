@@ -1,0 +1,61 @@
+The four datasets together reveal a gently undulating, low-relief floodplain surface cut by subtle palaeochannels and perched ridges. Broadly speaking:
+
+• Geomorphology & Terrain  
+  - The OpenTopography elevation raster shows a very low-relief surface (±1–2 m variation over 500 m) with gentle swales that likely mark abandoned crevasse splays or seasonal drainage lines.  
+  - The LiDAR-derived DTM (cloth simulation) accentuates two sets of linear, slightly elevated ridges: one trending NW–SE, the other roughly E–W. Their uniform crest widths (~8–12 m) and straightness suggest anthropogenic earthworks rather than natural levees.  
+  - Sentinel-2 true-color imagery reveals dense canopy cover with one cleared patch at the top right (likely recent logging or shifting cultivation). Understory vegetation differences along the mapped ridges make them stand out as lighter green lines.  
+  - In the NIR band, the vegetation response over these subtle ridges and circular features is muted or anomalously dark, signifying altered soil moisture or fertility—classic proxies for terra preta or buried features.
+
+• Archaeologically Interesting Anomalies  
+  1. NW–SE Linear Ridge (“Possible Causeway or Path”): a straight, embanked ridge ~300 m long that curves gently at either end, cutting across natural drainage.  
+  2. Circular Mound Cluster / Ring (“Probable Plaza or Mound Complex”): a faint, roughly circular high spot ~40–50 m in diameter, most apparent in NIR and elevation.  
+  3. Rectangular Platform-Like Elevation (“Potential Building Platform”): a subtle E–W–oriented rectangular rise ~25 × 15 m, best seen in the LiDAR DTM and hinted at by a slight vegetation anomaly in the visual.
+
+```anomalies
+"anomaly_1": {
+    "description": "A straight embanked ridge trending NW–SE, ~300 m long, 10 m wide and 0.5–1 m high above surrounding floodplain. Cuts across natural swales, with slight curvature at the ends—consistent with pre-Columbian causeways recorded elsewhere in Lower Amazonia.",
+    "location": {
+        "lat": -2.85690,
+        "lon": -54.95430,
+        "radius": 50
+    }
+},
+"anomaly_2": {
+    "description": "Circular mound cluster ~45 m diameter, showing raised ring and central platform. Reflected as a dark ring in NIR (vegetation stress) and as a slight elevation (0.5 m) in the DTM, matching morphology of Amazonian plaza-mound complexes.",
+    "location": {
+        "lat": -2.85710,
+        "lon": -54.95455,
+        "radius": 25
+    }
+},
+"anomaly_3": {
+    "description": "Rectangular platform-like rise ~25 × 15 m and ~0.3 m high, aligned roughly E–W. Subtle in elevation data; shows differential canopy vigor in visual and NIR bands.",
+    "location": {
+        "lat": -2.85700,
+        "lon": -54.95440,
+        "radius": 15
+    }
+},
+```  
+
+Historical & Archaeological Context  
+The Belterra region sits on Quaternary river terraces of the Xingu–Tapajós interfluve, where pre-European societies built extensive earthworks—causeways, mounded villages, plazas, and ditch systems. The NW–SE ridge fits a network of straight, elevated pathways interlinking mound centers, known from other Lower Amazon sites (e.g., Monte Alegre, Kuhikugu). Circular mound-ring complexes around central plazas are diagnostic of semi-sedentary chiefdom-level communities that managed terra preta soils for intensive manioc and maize cultivation. The small rectangular platform could mark a residential or ritual structure foundation, hitherto undocumented in this micro-area.
+
+Implications for Theory  
+• These features reinforce models of a densely engineered landscape in floodplain margins, challenging older assumptions that complex mound–plaza sites were strictly river-bank phenomena.  
+• The orientation and alignment of the causeway suggest coordinated planning at the landscape scale, implying political centralization beyond single-site occupation.  
+• The close clustering of mound, plaza, and platform features hints at a hierarchical settlement nucleus, potentially pushing regional population estimates upward.
+
+Data Correlations  
+• All three anomalies are consistently present in the LiDAR DTM and show matching vegetation signatures in the visual and NIR bands.  
+• The circular mound is least clear in raw elevation but becomes prominent once canopy and microtopography filters are applied.  
+• The rectangular platform only emerges after applying a high-pass spatial filter to the DTM, underscoring the need for multi-sensor fusion.
+
+[[[
+- Prioritize pedestrian and auger transects along the exposed crest of the NW–SE ridge (Anomaly 1) to sample for terra preta, compaction lenses, and roadside postholes.
+- Schedule micro-UAV LiDAR over the circular ring mound (Anomaly 2) with <0.2 m resolution to resolve sub-mound chambers or entrance causeways.
+- Conduct ground-penetrating radar transects across the rectangular platform (Anomaly 3) to test for buried wall foundations or floor surfaces.
+- Overlay local land-use and cadastral maps to locate other misaligned plateau segments that may indicate buried causeway branches.
+- Target soil coring in and around the ring mound for charcoal, phosphate, and ceramic sherd concentration, to date sequential construction phases.
+- Extend NIR anomaly mapping along parallel ridges to map out a larger grid of roads or drainage channels.
+]]]

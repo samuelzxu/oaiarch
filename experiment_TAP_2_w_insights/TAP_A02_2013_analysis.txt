@@ -1,0 +1,57 @@
+Major Terrain and Geomorphological Features  
+- Broad, low‐relief floodplain of the Tapajós River, with a subtle elevation gradient sloping gently from SW to NE (<5 m relief).  
+- Natural levee interpreted by the prominent NW–SE linear crest (road/levee) visible across all datasets.  
+- Interspersed backswamp depressions (dark tone in NIR, lower elevation in DTM) indicating seasonal waterlogging.  
+- Mosaic of cleared fields and secondary‐growth forest patches reflecting modern land use, but underlying microtopography remains visible in LiDAR.  
+
+Archaeological Context of Belterra Region  
+Belterra (PA) sits on the western margin of the lower Amazon floodplain. Pre‐Columbian populations here constructed earthen villages, raised‐field agriculture, causeways, and fishpond systems (Métraux 1942; Heckenberger et al. 2003). Local Terra Preta soils attest to intensive soil management. The microrelief in our LiDAR and elevation data often reflects these anthropogenic landscapes, later leveled or partially obscured by modern cultivation.
+
+Differences and Correlations across Datasets  
+- Elevation raster (1) and LiDAR‐derived DTM (2) consistently highlight subtle linear ridges (±20–30 cm) and mound clusters that are otherwise invisible in visual imagery.  
+- True-color (3) shows field boundaries and a distinct cluster of regular circular knolls; NIR (4) amplifies moisture contrasts, rendering buried features as anomalously dark or bright.  
+- The cluster of circular mounds is most pronounced in (3) and (4), whereas the ridge network is best resolved in (2).
+
+anomalies  
+"anomaly_1": {  
+    "description": "Rectangular cluster of ~3×8 regularly spaced circular mounds (~5–8 m diameter, 0.3–0.5 m height), aligned precisely N–S within a 40×80 m footprint. Likely a small platform or garden mound complex.",  
+    "location": {  
+        "lat": -3.11870,  
+        "lon": -54.98490,  
+        "radius": 25  
+    }  
+},  
+"anomaly_2": {  
+    "description": "Series of parallel NW–SE oriented ridges (length ~300 m, spacing ~20–30 m, amplitude ~0.2–0.4 m). These match patterns of raised‐field agriculture or road embankments visible only in LiDAR.",  
+    "location": {  
+        "lat": -3.11830,  
+        "lon": -54.98430,  
+        "radius": 150  
+    }  
+},  
+"anomaly_3": {  
+    "description": "Distinct NIR-dark triangular depression (~30 m across) at the field’s edge, corresponding to a backswamp or possible pond/ditched enclosure, with elevated moisture retention and potential cultural lining.",  
+    "location": {  
+        "lat": -3.11900,  
+        "lon": -54.98380,  
+        "radius": 30  
+    }  
+}  
+
+Historical Interpretation and Research Implications  
+1. The mound cluster (anomaly_1) fits within Terra Preta settlements’ peripheral garden installations or small ritual platforms—its precise grid suggests deliberate layout, not modern planting pits.  
+2. The parallel ridges (anomaly_2) mirror raised‐field designs documented elsewhere along the Tapajós (Erickson 2000). Their orientation downslope supports drainage control strategies.  
+3. The depression (anomaly_3) may relate to fishponds or moats integral to pre‐Columbian water management and aquaculture.  
+
+Challenging Current Models  
+- The tight spacing (~20 m) of ridges is narrower than most known raised‐fields in central Amazonia, suggesting a high‐density horticulture variant.  
+- The mound grid may indicate smaller, household‐scale raised platforms, refining theories of social organization at Belterra beyond the large “nucleus villages.”  
+
+Actionable Insights  
+[[[  
+- Note the presence of a large flat area near (‐3.1187, ‐54.9849) marked by regular circular mounds; undertake auger probes for anthropogenic soils and ceramics.  
+- The NW–SE linear ridges at (‐3.1183, ‐54.9843) suggest hidden raised fields; deploy micro‐UAV LiDAR or ground-penetrating radar along transects perpendicular to ridge orientation.  
+- The NIR‐dark depression at (‐3.1190, ‐54.9838) is a moisture‐rich anomaly—plan shovel test pits on the east flank where spectral contrast peaks.  
+- Extend mapping of parallel ridges 500 m upslope and downslope to locate connected causeways or water‐control channels.  
+- Compare these microtopographic patterns to historical aerial imagery (1965–80) to isolate undisturbed forest margins for preservation and excavation.  
+]]]

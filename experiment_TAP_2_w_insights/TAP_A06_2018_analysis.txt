@@ -1,0 +1,70 @@
+Below is a combined geomorphological and archaeological-feature analysis of the four image layers over the W3X3+V3 Terra Preta site, Belterra, PA (–3.0502891, –54.9472926).  I describe major landforms first, then detail four previously unreported anomalies.  A full historical and regional interpretation follows, and finally I list actionable site-survey recommendations.
+
+1. Terrain / Geomorphological Overview  
+• Broad undulating upland plateau rising gently from southwest to northeast at ~0.5–1.0 m per 100 m.  This is an erosional remnant of Miocene fluvial terraces of the Amazonas system.  
+• A NW–SE trending ridgecrest bisects the scene; its crest stands ~3–5 m above surrounding floodplain deposits.  Likely a slump-resistant caprock or anthropogenically reinforced berm.  
+• Subtle concave micro-basins (2–5 m across, ~0.5 m deep) scattered downslope—possibly seasonal runoff ponds or abandoned pit-features that have subsequently infilled.  
+• Drainage is radial off the main ridge into shallow gullies incised <1 m.  Soil thickness is greatest atop the ridge, thinning toward the gully floors.  
+
+2. Archaeological Anomalies  
+Based on combined LiDAR DTM, hillshade, visual (RGB), and NIR contrast, I identify four anomalies of potential pre-Columbian origin.  Coordinates and radii are approximate.
+
+```anomalies
+"anomaly_1": {
+    "description": "Linear elevated feature (~200 m long) oriented NW–SE along the ridgecrest.  Appears as a straight berm ~1–2 m high on the LiDAR DTM and faintly visible in the RGB as a line of lighter vegetation stress.  Could be a raised causeway or defensive embankment.",
+    "location": {
+        "lat": -3.05045,
+        "lon": -54.94765,
+        "radius": 100
+    }
+},
+"anomaly_2": {
+    "description": "Circular ring mound ~40 m diameter, slight moat impression around its base.  In hillshade it stands out as a doughnut-shaped elevation; in NIR it shows a ring of stronger vegetation vigor (bright pixels), suggesting deeper soils or charcoal-rich fill.",
+    "location": {
+        "lat": -3.05020,
+        "lon": -54.94710,
+        "radius": 20
+    }
+},
+"anomaly_3": {
+    "description": "Rectangular platform ~60×40 m oriented roughly cardinally.  The long edges are discernible in LiDAR as linear shoulders ~0.5 m high.  In RGB there is a subtle soil-discoloration rectangle of lighter tone; the NIR band shows lower reflectance inside, consistent with compacted surfaces.",
+    "location": {
+        "lat": -3.05030,
+        "lon": -54.94730,
+        "radius": 30
+    }
+},
+"anomaly_4": {
+    "description": "Cluster of high-reflectance NIR spots (~5–10 m wide) aligned E–W just downslope of the main ridge.  These likely mark buried charcoal or terra preta lenses that influence vegetation moisture retention.",
+    "location": {
+        "lat": -3.05010,
+        "lon": -54.94690,
+        "radius": 15
+    }
+}
+```
+
+3. Historical and Regional Context  
+• The Belterra area is famed for its rich pre-Columbian “Terra Preta” (Amazonian Dark Earth) soils, engineered by Indigenous populations between ca. 500 BC and AD 1600.  
+• Excavations have documented mound-and-causeway complexes—often arranged on raised terraces adjacent to rivers.  Similar ring mounds, platforms, and orthogonal road networks are known at Kuhikugu and elsewhere in the Upper Xingu.  
+• The newly detected linear ridge (anomaly 1) aligns with other mapped causeways to the northwest; its straightness and uniform height strongly suggests an engineered road rather than natural bedrock.  
+• Circular and rectangular earthworks (anomalies 2 & 3) fit within a local pattern of plaza-mound complexes used for ceremonies, residences of elites, or defensive gatherings.  
+
+4. Comparison Between Data Sources  
+• LiDAR DTM & hillshade: Best at isolating low-relief embankments (anomalies 1–3).  
+• RGB (Sentinel-2): Reveals soil-tone variation—helps pinpoint rectilinear clearings and subtle paleosoil patches.  
+• NIR: Highlights areas of enhanced vegetation moisture response, correlating with buried organic-rich soils (anomaly 4) and ring-mound fill (anomaly 2).  
+
+5. Archaeological Implications & Theoretical Impact  
+• Discovery of the rectilinear platform (anomaly 3) expands the known typology of Amazonian plaza forms—suggests more formalized, grid-like planning at Belterra than previously recognized.  
+• The straight causeway (anomaly 1) may connect distant mound centers, supporting hypotheses of long-distance sociopolitical networks and scheduled pilgrimage routes.  
+• NIR-mapped charcoal clusters (anomaly 4) provide a non-invasive proxy for Terra Preta distribution, challenging the idea that intensive soil management was confined to mound summits.  
+
+[[[
+- Conduct pedestrian transects along the newly mapped NW–SE ridge (anomaly 1) at 50 m intervals, seeking posthole alignments and compacted surfaces.
+- Deploy micro-UAV LiDAR (0.1 m resolution) over the circular ring mound (anomaly 2) to detect internal chambers or radial entrance causeways.
+- Execute ground-penetrating radar across the rectangular platform (anomaly 3) to verify buried foundation walls or occupation strata.
+- Undertake auger sampling at the cluster of NIR hotspots (anomaly 4) to assay charcoal, phosphate, and ceramic sherd concentrations.
+- Extend NIR anomaly mapping parallel to the main ridge to find additional buried roads or small satellite mounds.
+- Overlay local cadastral and land-use maps to see if historic forest clearings mask further misaligned plateau segments.
+]]]

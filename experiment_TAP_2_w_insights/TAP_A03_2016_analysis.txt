@@ -1,0 +1,63 @@
+Major Terrain and Geomorphological Features  
+1. Floodplain and Levee System  
+   - A broad, low‐gradient floodplain of a small Tapajós tributary dominates the west side of the DTM. The channel meanders in tight S‐shaped loops, leaving oxbow scars and abandoned channels. Modern levees, only 1–2 m above the floodplain, are visible as linear ridges parallel to the main channel.  
+2. Interfluve Terraces  
+   - East of the active meander belt, older terrace surfaces stand ~3–5 m higher. These plateaus are relatively flat in the DTM, with subtle depressions that collect water seasonally. The visual Sentinel‐2 image shows these as patches of lighter tone (pasture or secondary growth) contrasting with darker primary forest in the floodplain.  
+3. Colluvial Fans and Slope Breaks  
+   - At the margin between terrace surfaces and steeper upland, small colluvial aprons (fan‐shaped lobes) appear in the LiDAR as smooth convexities. These correspond in the visual image to transitional vegetation mosaics and in NIR to intermediate reflectance (mixed canopy).  
+4. Drainage Network  
+   - Numerous small, seasonally wet channels drain the terrace into the main river. Their dendritic pattern is crisp in the NIR (wet channels appear dark) and moderate in the DTM (0.5–1 m deep).  
+
+Archaeologically Interesting Anomalies  
+```anomalies
+"anomaly_1": {
+    "description": "Sub‐circular ditch or embankment system ~100 m across. In the DTM it appears as a shallow but coherent ring (0.5–1 m deep), with regular spacing suggestive of a defensive or ceremonial enclosure. The interior fill shows slightly lower elevation than surrounding terrace, indicating sediment trap.",
+    "location": {
+        "lat": -3.13420,
+        "lon": -54.95290,
+        "radius": 50
+    }
+},
+"anomaly_2": {
+    "description": "Linear embankment or raised causeway trending roughly N–S for ~200 m. Visible as a continuous 1–1.5 m high ridge in the DTM crossing the floodplain levee and connecting to the circular feature of anomaly_1. In NIR, vegetation on its crest is notably healthier (brighter) than surroundings.",
+    "location": {
+        "lat": -3.13600,
+        "lon": -54.95100,
+        "radius": 10
+    }
+},
+"anomaly_3": {
+    "description": "Rectangular platform footprint, ca. 80 × 40 m, with right‐angle corners and a flat top. Subtle elevation rise (~0.8 m) above terrace level. In the visual band, this area is cleared pasture, hinting at possible modern disturbance of an ancient mound.",
+    "location": {
+        "lat": -3.13280,
+        "lon": -54.95200,
+        "radius": 30
+    }
+},
+"anomaly_4": {
+    "description": "Cluster of small, orthogonal depressions (~10–15 m each) adjacent to anomaly_1’s ring. In NIR they show moisture‐retaining signatures (dark tones), consistent with buried ditches or post‐hole features in an ancient settlement layout.",
+    "location": {
+        "lat": -3.13550,
+        "lon": -54.95050,
+        "radius": 20
+    }
+}
+```  
+
+Historical and Archaeological Context  
+The Tapajós‐Xingu interfluve was densely occupied by complex societies practicing intensive terra preta agriculture and constructing fortified villages, ditches, causeways, and platform mounds from ca. 1000 CE until European contact. The circular ditch (anomaly_1) echoes ring‐ditch villages documented in Pará, while the causeway link (anomaly_2) suggests a transport or defensive corridor connecting habitational and ceremonial precincts. The platform (anomaly_3) aligns with known elevated residential or plaza structures, and the orthogonal pits (anomaly_4) may mark house‐post sockets or smaller subsidiary enclosures.  
+
+These features, if confirmed, would extend the known distribution of such earthwork complexes ~20 km further east than current mapped sites, challenging the assumption of a tightly clustered settlement network and suggesting a more dispersed pattern along minor tributaries.  
+
+Differences and Correlations Between Data Sources  
+- DTM: clearly resolves geomorphic relief of ditches, embankments, mounds.  
+- Visual Sentinel-2: distinguishes land‐use/cover changes, modern clearings over potential archaeological platforms.  
+- NIR: highlights vegetation vigor and moisture retention over buried soils, accentuating linear and pit‐like features invisible in RGB.  
+
+```[[[
+– Conduct targeted GPR transects across anomaly_1’s ring ditch at 10 m intervals to map fill stratigraphy and detect postholes.
+– Extract shallow auger cores every 25 m along the causeway (anomaly_2) to measure charcoal, phosphates, and terra preta depth.
+– Deploy micro-UAV (5 cm LiDAR+multispectral) to capture sub‐meter relief of anomaly_3 and refine platform geometry.
+– Apply seasonal NIR differencing around anomaly_4 to track moisture anomalies indicative of buried pit networks.
+– Extend LiDAR and UAV survey 500 m east–west to discover additional ring‐ditch clusters and linear causeway continuations.
+]]]```

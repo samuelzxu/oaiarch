@@ -1,0 +1,60 @@
+Below is a combined geomorphological and archaeological analysis of the three datasets over V2J8+J7 São José (–3.11839, –54.98434), Belterra, PA, Brazil.  
+
+1. Terrain and Geomorphological Features  
+- General slope: the DTM (LiDAR‐derived) shows a very gentle gradient sloping from the southeast down toward the northwest, dropping approximately 3–5 m over ~500 m.  
+- Drainage pattern: incised narrow gullies (1–2 m deep) cut through the DTM, conforming to small ephemeral streams feeding into a larger channel off the north edge.  
+- Field terraces and roads: the rectangular, bench‐like flat surfaces (10–20 m wide) visible in planform align with farm access tracks and small agricultural terraces carved into the natural slope.  
+- Remnant forest‐islands: Patches of higher‐elevation, forested ground (dark, more vegetated in the visual) stand 1–2 m above surrounding cleared fields—likely natural levee remnants or slightly elevated “forest islands.”  
+- Soil‐moisture drainage: subtle concave swales 5–10 m apart are visible in the NIR image as darker linear bands—likely historic water‐management furrows or natural depressions that retain moisture.  
+
+2. Archaeologically Interesting Anomalies  
+Despite heavy modern clearing, three features stand out as potential pre‐Columbian anthropic earthworks:  
+
+```anomalies
+"anomaly_1": {
+    "description": "Cluster of small, regular convex mounds (2–4 m diameter, 0.3–0.6 m high) in a roughly 3×4 grid alignment. Visible as subtle bumps in the DTM and as slightly brighter patches in the visual image.",
+    "location": {
+        "lat": -3.11885,
+        "lon": -54.98620,
+        "radius": 15
+    }
+},
+"anomaly_2": {
+    "description": "Linear, NW–SE oriented depression ~120 m long and 1.5 m deep, with parallel slight berms on either side. Corresponds to a faint lighter line in the visual and a moisture‐retaining stripe in NIR.",
+    "location": {
+        "lat": -3.11890,
+        "lon": -54.98450,
+        "radius": 60
+    }
+},
+"anomaly_3": {
+    "description": "Dark patch in NIR suggesting elevated soil moisture or organic‐rich fill. Roughly circular, ~25 m across, lies mid‐field with no modern feature overlay.",
+    "location": {
+        "lat": -3.11900,
+        "lon": -54.98320,
+        "radius": 12
+    }
+},
+```
+
+3. Historical & Archaeological Context  
+- The Belterra region lies within the Tapajós–Xingu interfluve, where Late Holocene agrarian societies (c. 500 BC–AD 1500) built small ring‐ditch enclosures, causeways, and mound clusters for habitation and ceremonial purposes.  
+- Ring‐ditch sites and causeways in nearby areas (e.g. near Lago Tapajós) are typically 40–80 m in diameter, often accompanied by raised platforms and parallel roads linking them.  
+- The mound cluster (anomaly_1) fits the size and arrangement of household platforms seen in pre‐Columbian village sites; the linear feature (anomaly_2) resembles a short causeway or connecting trench; the NIR wet anomaly (anomaly_3) might mark a filled pond or central plaza.  
+- If confirmed, these features could push back the mapped footprint of Geometric earthwork culture further south along these terraces and provide finer detail on settlement organization in a transitional savanna–forest environment.  
+
+4. Comparison Across Data Sources  
+- The DTM sharply delineates micro‐topography—ideal for finding small mounds and ditches.  
+- The visual (true-color) image highlights recent cultivation patterns but also shows residual soil‐color contrasts over buried features (anomaly_2).  
+- The NIR band is most sensitive to vegetation vigor and soil moisture; anomalies_2 and _3 appear most strongly here, suggesting fine‐textured fills or moisture‐retaining sediments.  
+
+5. Actionable Insights  
+[[[
+- Systematically target the mound cluster at (–3.11885, –54.98620) with a NW–SE oriented convolution filter on the DTM to flag additional 2–5 m convexities.
+- Conduct a micro-UAV LiDAR flight over anomaly_2 (–3.11890, –54.98450) at sub-10 cm resolution to map ditch cross-sections and confirm anthropic berms.
+- Acquire multi-date NIR imagery for anomaly_3 (–3.11900, –54.98320) to perform time-series differencing—variations in moisture and vegetation may verify a filled pond or plaza.
+- Extend DTM transects 200 m upstream and downstream along the gully network to search for aligned mound clusters or additional causeway segments.
+- Overlay forthcoming high-resolution drone orthophotos onto existing ring-ditch site maps to test for spatial continuity with the newly detected linear anomaly.
+]]]
+
+This integrated approach—using micro-topography, spectral analysis, and targeted survey—will maximize the chance of validating and contextualizing these potential pre-Columbian earthworks.

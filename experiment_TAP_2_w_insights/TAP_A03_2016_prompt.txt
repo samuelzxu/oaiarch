@@ -1,0 +1,70 @@
+Analysis for TAP_A03_2016
+
+Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
+Search carefully for any archaeologically interesting anomalies. The images show:
+
+The images are from the region of V28W+FW São José, Belterra - PA, Brazil, at (-3.133864053, -54.95272016).
+
+If anomalies are found:
+  1. Draw on your knowledge of the region (V28W+FW São José, Belterra - PA, Brazil) and its history.
+  2. Explain how the anomaly fits into the broader historical context.
+  3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
+  4. Note any differences or correlations between the different data sources.
+  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models.
+
+Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
+
+Always include your actionable insights inside triple brackets:
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- "Note the presence of a large, flat area at the coordinates (lat, lon) that could indicate an ancient settlement."
+- "The presence of a linear feature in the LiDAR data suggests a possible ancient road or pathway."
+- "The NIR band shows unusual vegetation patterns that may indicate buried structures or features."
+]]]
+
+If you detect an anomaly, output:
+```anomalies
+"anomaly_1": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+"anomaly_2": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+...
+"anomaly_N": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+```
+
+The images show:
+1. A digital terrain model extracted from LiDAR data using cloth simulation
+2. A true-color (visual) Sentinel-2 satellite image
+3. A near-infrared (NIR) Sentinel-2 band image
+
+
+Previous insights:
+- Target anomaly_1 (–3.1335, –54.9529): Conduct a GPR survey along the 150 m axis to map ditch fill stratigraphy; follow with shallow auger cores every 25 m to assess charcoal and terra preta content.
+- At anomaly_2 (–3.1360, –54.9501): Deploy a micro‐UAV with high‐resolution multispectral + LiDAR (5 cm DEM) to resolve the concentric moat; extract a 1 m core through the mound crest to test for habitation debris (ceramics, charcoal).
+- Systematically extend UAV‐LiDAR mapping over adjacent terrace remnants up to 500 m north and south to trace linear embankments into potential causeway networks.
+- Employ NIR differencing on seasonal images to detect other moisture‐retaining linear anomalies hidden under canopy regrowth.
+- Compare these features against 1970s aerial photography (rubber‐era archives) to identify sectors with minimal modern disturbance for small‐block test excavations.
+
+
+
+

@@ -1,0 +1,62 @@
+Below is a combined geomorphological and archaeological interpretation of the four data layers over the Maguari area (42VW+86, Belterra, PA, Brazil). Overall, the site sits on a low‐relief Amazonian floodplain cut by former paleochannels and levees, with deeply weathered clays and pockets of highly fertile terra preta. The modern landscape is blanketed by secondary forest or small‐scale agriculture, but beneath it lie subtle land‐forms that modern LiDAR and multispectral imagery can tease out.
+
+1. Terrain & Geomorphology  
+- General floodplain: Elevation ranges within ±1 m of a ~10 m base level. Broad, flat interfluves between sinuous paleochannels (1–3 m deep now infilled).  
+- Levee remnants: Along NW–SE and NNE–SSW axes, subtle ridges (0.2–0.7 m high, 50–200 m long) parallel old channel margins—likely natural overbank levees later reused as footpaths or dikes.  
+- Natural mounds and swales: Scattered irregular “knolls” (1–2 m diameter), often vegetated differently, probably termite mounds or oxbow scar remnants.  
+- Drainage depressions: Shallow, linear, E–W trending drain lines (1–2 m wide) likely intentional channel improvements or small habitation‐zone drains.  
+
+2. Archaeological Anomalies  
+Despite heavy vegetation and modern disturbance, three clusters of features stand out as non‐natural:
+
+```anomalies
+"anomaly_1": {
+    "description": "A faint, straight ridge trending NW–SE, ~150 m long and ~0.5 m above adjacent terrain. The ridge cross‐section is trapezoidal, suggesting anthropogenic construction (levee, pathway, or causeway fill).",
+    "location": {
+        "lat": -2.85690,
+        "lon": -54.95430,
+        "radius": 75
+    }
+},
+"anomaly_2": {
+    "description": "A near‐circular arrangement of four low mounds (5–7 m diameter each) spaced around a ~25 m diameter ring. In the LiDAR DTM, these form a distinctive ‘donut’ pattern; in NIR they correlate with slightly higher reflectance (possible charcoal‐rich soils).",
+    "location": {
+        "lat": -2.85710,
+        "lon": -54.95455,
+        "radius": 15
+    }
+},
+"anomaly_3": {
+    "description": "An elongated, shallow ditch‐like depression (~2 m wide, ~80 m long) trending E–W. In the cloth‐model DTM it appears unnaturally straight with consistent width—potentially a small drainage or agricultural furrow.",
+    "location": {
+        "lat": -2.85675,
+        "lon": -54.95460,
+        "radius": 40
+    }
+}
+```
+
+3. Historical & Archaeological Context  
+- Pre-Columbian occupation of the Lower Amazon often featured scattered farmsteads and small villages connected by earthworks: linear dikes, raised fields, and causeways.  
+- Terra preta soils in Belterra indicate centuries of intensive land use; carbon‐rich lenses often occur adjacent to earthworks.  
+- Early 20th-century soil experiments at Belterra obscured many features, but indigenous earthworks survived beneath reforestation patches.  
+
+How these anomalies fit (and challenge) current thinking:  
+- Anomaly 1’s linear ridge extends beyond known levee fragments in this tile, implying a more extensive network of pathways or flood defenses than mapped.  
+- Anomaly 2’s ring of mounds is smaller than typical geoglyphs of Acre but reminiscent of circular plazas documented near Santarém—suggesting micro-settlements or ritual enclosures.  
+- Anomaly 3’s ditch aligns with local cadastral boundaries, hinting that colonial property lines may have followed pre-existing indigenous field drains or irrigation channels.  
+
+4. Data‐Source Correlations  
+- Elevation raster (OpenTopography) reveals the ridge’s height consistency but misses fine curvature.  
+- LiDAR‐derived DTM (cloth simulation) crisply outlines the circular mound cluster (Anomaly 2) and straight ditch (Anomaly 3).  
+- Sentinel-2 visual (true color) shows slightly sparser canopy over the mound ring, but cloud shadows increase noise.  
+- NIR highlights higher vegetation vigor atop the mound cluster—consistent with deeper, charcoal‐enriched soils.  
+
+5. Actionable Insights  
+[[[
+- Focus pedestrian and auger transects along the NW–SE ridge (Anomaly 1 at -2.8569, -54.9543) to test for compacted living surfaces or pathway fill.
+- Schedule a micro-UAV LiDAR flight directly over the circular mound cluster (Anomaly 2 at -2.8571, -54.95455) to resolve individual mound shapes and heights (<0.2 m accuracy).
+- Conduct ground-penetrating radar across the E–W ditch feature (Anomaly 3 at -2.85675, -54.95460) to detect any subsurface postholes or channel‐lining stones.
+- Overlay local cadastral maps with DTM ridge orientations to uncover other misaligned segments that may trace buried causeways.
+- Use targeted soil coring for terra preta indicators (charcoal, phosphates) within the mound ring and along the linear ridge to date construction phases.
+]]]

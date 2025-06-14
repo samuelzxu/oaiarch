@@ -1,0 +1,60 @@
+Below is a summary of the major terrain and geomorphological features, an archaeological‐anomaly catalog, and context-specific discussion. All locations are approximate and given in WGS84 decimal degrees.
+
+1. Regional Terrain and Geomorphology  
+   • The study area lies on a low‐relief, gently undulating plateau (~60–80 m a.s.l.) of late‐Quaternary alluvial‐lacustrine sediments derived from the Tapajós River system.  
+   • Subtle ridge–furrow topography (3–5 m relief) trends NW–SE across the central field. These elongate berms, spaced ~15–25 m apart, are superimposed on a very gentle slope (1–2°) toward a minor palaeochannel to the northeast.  
+   • A cluster of low circular mounds (1–2 m high, 10–20 m diameter) occupies the western third of the site, set on slightly raised ground where drainage is optimal.  
+   • Natural scarps and shallow colluvial fans flank the plateau edges; these merge into incised seasonal channels (2–3 m deep), which likely guided past water management efforts.  
+
+2. Detected Archaeological Anomalies  
+```anomalies
+"anomaly_1": {
+    "description": "Cluster of six regular, circular mounds (1–2 m high, 10–20 m diameter) aligned along a subtle NNW–SSE ridge on slightly elevated ground. Likely anthropogenic habitation or refuse mounds associated with terra preta soils.",
+    "location": {
+        "lat": -3.1187,
+        "lon": -54.9849,
+        "radius": 30
+    }
+},
+"anomaly_2": {
+    "description": "Series of parallel, rectilinear ridge–furrow features (3–5 m wide; 0.5–1 m high) trending NW–SE across the central plateau. Appear as linear berms in DTM and faint brightness contrasts in visual imagery—suggestive of raised agricultural fields or causeways.",
+    "location": {
+        "lat": -3.1183,
+        "lon": -54.9843,
+        "radius": 100
+    }
+},
+"anomaly_3": {
+    "description": "Dark depression (~15 m diameter, 0.5–1 m deep) that shows low reflectance in NIR—indicative of retained moisture and possible sub‐surface pit or pond used in past water control systems.",
+    "location": {
+        "lat": -3.1190,
+        "lon": -54.9838,
+        "radius": 15
+    }
+}
+```  
+
+3. Historical and Archaeological Context  
+   • Belterra (Tapajós region) saw intensive pre‐Columbian landscape engineering—raised fields (camellones), causeways, ponds, and habitation mounds—dating from AD 500–1600. Early surveys by Meggers & Evans recognized anthropogenic “black earth” (terra preta) and scattered earthworks.  
+   • The newly identified mounds align with known Amazonian village‐mound clusters. The parallel berms mirror raised agricultural platforms documented at nearby sites (e.g., Santarém Phase complexes), suggesting sophisticated flood‐adaptation.  
+   • The NIR‐dark pit corresponds to small water‐harvesting features documented ethnographically and in LiDAR surveys—these helped regulate soil moisture during dry periods and may have doubled as fish‐ponds.  
+
+   These anomalies reinforce models of high‐density, managed landscapes in the southern Amazon. They challenge the assumption of sparse pre‐Columbian populations here, instead supporting a network of interlinked settlements with elaborate hydraulic systems.  
+
+4. Cross‐Data Correlation  
+   • Elevation raster and DTM: Precisely resolve ridge heights (0.5–2 m) and moat‐like depressions; DTM is superior for subtle microtopography.  
+   • Visual (RGB) imagery: Highlights vegetation differences over mounds and ridges—lighter tones over raised fields, darker over low ground.  
+   • NIR band: Amplifies moisture‐related contrasts—depressions appear darkest; well‐drained berms reflect strongly.  
+
+5. Implications for Theory and Practice  
+   • The co‐occurrence of mounds, raised fields, and ponds in a small area suggests a fully integrated settlement–agriculture system, comparable to “garden‐cities” of the Llanos de Mojos and Marajó.  
+   • These data support hypotheses of riverine social complexity in the Amazon preceding European contact—lending weight to recent geoarchaeological models that posit large, centralized polities rather than small, shifting horticultural camps.  
+
+[[[
+Actionable Insights:
+- Conduct systematic auger‐probing on and between the circular mounds at (-3.1187, -54.9849) to sample terra preta for ceramics and charcoal.
+- Deploy ground‐penetrating radar transects perpendicular to the NW–SE berms centered at (-3.1183, -54.9843) to map full extent of raised fields.
+- Install moisture sensors or shallow coring in the NIR‐dark depression at (-3.1190, -54.9838) to characterize sediment stratigraphy and assess pond function.
+- Use UAV‐LiDAR over a 1 km² grid around the anomalies to locate connecting causeways or subsidiary platforms upslope and downslope.
+- Compare high‐resolution historical aerial photography (1965–1980) to current LiDAR to prioritize areas with minimal modern disturbance for excavation.
+]]]

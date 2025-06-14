@@ -1,0 +1,71 @@
+Analysis for TAP_A05_2018
+
+Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
+Search carefully for any archaeologically interesting anomalies. The images show:
+
+The images are from the region of X28R+67 Terra Preta, Belterra - PA, Brazil, at (-3.034397803, -54.95926527).
+
+If anomalies are found:
+  1. Draw on your knowledge of the region (X28R+67 Terra Preta, Belterra - PA, Brazil) and its history.
+  2. Explain how the anomaly fits into the broader historical context.
+  3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
+  4. Note any differences or correlations between the different data sources.
+  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models.
+
+Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
+
+Always include your actionable insights inside triple brackets:
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- "Note the presence of a large, flat area at the coordinates (lat, lon) that could indicate an ancient settlement."
+- "The presence of a linear feature in the LiDAR data suggests a possible ancient road or pathway."
+- "The NIR band shows unusual vegetation patterns that may indicate buried structures or features."
+]]]
+
+If you detect an anomaly, output:
+```anomalies
+"anomaly_1": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+"anomaly_2": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+...
+"anomaly_N": {
+    "description": "A detailed description of the anomaly",
+    "location": {
+        "lat": lat, 
+        "lon": lon, 
+        "radius": r # radius in meters
+        },  
+},
+```
+
+The images show:
+1. A high-resolution elevation raster from OpenTopography
+2. A digital terrain model extracted from LiDAR data using cloth simulation
+3. A true-color (visual) Sentinel-2 satellite image
+4. A near-infrared (NIR) Sentinel-2 band image
+
+
+Previous insights:
+- Conduct pedestrian transects along the NW–SE parallel ridges (anomaly 1) at 20 m intervals; look for subsoil charcoal, pottery fragments, or compacted plow-pan surfaces.
+- Undertake 0.1 m–resolution micro-UAV LiDAR over the mound cluster (anomaly 2) to resolve their internal structure and test for buried floor surfaces or radial entry causeways.
+- Deploy auger sampling on the NIR-dark patch (anomaly 3) to assay for elevated organic carbon and phosphate—hallmarks of terra preta.
+- Extend NIR anomaly mapping into adjacent fields—parallel lineation suggests a broader grid of raised beds.
+- Cross-reference local historical air photographs (1960s–80s) to track agricultural encroachment and pinpoint undisturbed forest edges that might reveal fresh earthwork exposures.
+
+
+
+
