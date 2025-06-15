@@ -17,10 +17,10 @@ See `experiment_TAP_2_w_insights` for the outputs of the full experiment run (fo
 Total anomaly count produced by experiment: 44
 
 For example, see:
-https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A02_2012_analysis.txt
-https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A03_2018_analysis.txt
-https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A04_2008_analysis.txt
-https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A05_2008_analysis.txt
+- https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A02_2012_analysis.txt
+- https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A03_2018_analysis.txt
+- https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A04_2008_analysis.txt
+- https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A05_2008_analysis.txt
 
 Datasets:
 - [Lidar surveys over the amazon from 2008-2018](https://daac.ornl.gov/CMS/guides/LiDAR_Forest_Inventory_Brazil.html)
