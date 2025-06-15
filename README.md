@@ -16,12 +16,18 @@ I've run an experiment over the Belterra region, satisfying the parameters of ch
 See `experiment_TAP_2_w_insights` for the outputs of the full experiment run (focused on the Belterra region)
 Total anomaly count produced by experiment: 44
 
+For example, see:
+https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A02_2012_analysis.txt
+https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A03_2018_analysis.txt
+https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A04_2008_analysis.txt
+https://github.com/samuelzxu/oaiarch/blob/ckpt_2_submission/experiment_TAP_2_w_insights/TAP_A05_2008_analysis.txt
+
 Datasets:
 - [Lidar surveys over the amazon from 2008-2018](https://daac.ornl.gov/CMS/guides/LiDAR_Forest_Inventory_Brazil.html)
 - Opentopography 30m DEM (couldn't get access to higher res.)
-- Sentinel L2A: NIR and Visual bands
+- Sentinel L2A: NIR and Visual bands (10m res.)
 
-Model: `o3-mini`
+Model: `o4-mini`
 
 Footprint output example from `experiment_TAP_2_w_insights/TAP_A01_2008_analysis.txt`:
 ```
