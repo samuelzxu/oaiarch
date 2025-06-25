@@ -31,6 +31,12 @@ def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: flo
         
         # Create output directory if it doesn't exist
         os.makedirs(output_dir, exist_ok=True)
+        file_name = Path(lidar_file_path).stem
+        metadata_path = os.path.join(output_dir, f"{file_name}_dtm_csf.json")
+        npy_output_path = os.path.join(output_dir, f"{file_name}_dtm_csf.npy")
+        if os.path.exists(metadata_path) and os.path.exists(npy_output_path):
+            print(f"Metadata already exists for {lidar_file_path}. Skipping.")
+            return
 
         # 1. Read LiDAR data
         with laspy.open(lidar_file_path) as f:
