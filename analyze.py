@@ -372,7 +372,7 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
     
     return visual_png, nir_png
 
-def process_single_file(filename: str, exp_name: str, polygons_object, prev_insights: str = "", anom_ct: int = 0) -> str:
+def process_single_file(filename: str, exp_name: str, polygons_object, stitched_images_dir, prev_insights: str = "", anom_ct: int = 0) -> str:
     """
     Process a single file, gathering all available data sources and performing analysis.
     
@@ -392,25 +392,26 @@ def process_single_file(filename: str, exp_name: str, polygons_object, prev_insi
     item_name = get_item_name_from_filename(filename)
     print(f"Item name: {item_name}")
     bounds = get_polygon_bounds(item_name, polygons_object)
-    north = bounds["max_lat"]
-    south = bounds["min_lat"]
-    east = bounds["max_lon"]
-    west = bounds["min_lon"]
+    north = bounds["max_lat"]+0.01
+    south = bounds["min_lat"]-0.01
+    east = bounds["max_lon"]+0.01
+    west = bounds["min_lon"]-0.01
 
     if north == -180 or south == 180 or east == -180 or west == 180:
         print(f"Error: Invalid bounds for {filename}. Skipping...")
-        return
+        return prev_insights, anom_ct
     print(f"Bounds for {filename}: N={north}, S={south}, E={east}, W={west}")
     
     # Initialize list to store available data URLs
     data_urls = []
     data_descriptions = []
-    api_key_opentopography = os.environ.get("OPENTOPOGRAPHY_API_KEY")
+    api_key_opentopography = os.environ.get("OPENTOPOGRAPHY_API_KEY_1")
     if not api_key_opentopography:
-        print("Error: OPENTOPOGRAPHY_API_KEY not set in environment variables.")
+        print("Error: OPENTOPOGRAPHY_API_KEY_1 not set in environment variables.")
         return
     
     # 1. Try to get OpenTopo data
+
     try:
         dataset = "SRTMGL1"
         out_path_1 = fetch_raster_tile_from_opentopography(
@@ -423,11 +424,28 @@ def process_single_file(filename: str, exp_name: str, polygons_object, prev_insi
         data_descriptions.append("A high-resolution elevation raster from OpenTopography")
         print("Successfully retrieved OpenTopo data")
     except Exception as e:
-        print(f"Warning: Failed to fetch OpenTopo data: {e}")
+        print(f"Warning: Failed to fetch OpenTopo data: {e}, retrying with new API key")
+        api_key_opentopography = os.environ.get("OPENTOPOGRAPHY_API_KEY_2")
+        if not api_key_opentopography:
+            print("Error: OPENTOPOGRAPHY_API_KEY_2 not set in environment variables.")
+            return
+        try:
+            dataset = "SRTMGL1"
+            out_path_1 = fetch_raster_tile_from_opentopography(
+                api_key_opentopography, dataset, north, south, east, west, 
+                source="globaldem", 
+                dest=Path(f"{exp_name}/{item_name}_opentopo.tif")
+            )
+            data_url_1 = raster_to_png_data_url(out_path_1)
+            data_urls.append(data_url_1)
+            data_descriptions.append("A high-resolution elevation raster from OpenTopography")
+            print("Successfully retrieved OpenTopo data")   
+        except Exception as e:
+            print(f"Error: Failed to fetch OpenTopo data with second API key: {e}")
 
     # 2. Get LiDAR data (already downloaded)
     # png_file = f"exp/dtm_images_csf/{filename}.png"
-    png_file = f"stitched_images/{filename}"
+    png_file = f"{stitched_images_dir}/{filename}"
     data_url_2 = png_to_data_url(png_file)
     data_urls.append(data_url_2)
     data_descriptions.append("A digital terrain model extracted from LiDAR data using cloth simulation")
@@ -509,7 +527,12 @@ def main():
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     kml_content = extract_kmz_content(kmz_file_path)
 
-    exp_name = "experiment_TAP_2_w_insights"
+    exp_name = "experiment_w_better_lidar_run_3"
+    stitched_images_dir = "stitched_images_v6"
+
+    if not os.path.exists(stitched_images_dir):
+        print(f"Directory {stitched_images_dir} does not exist. Please check the path.")
+        return
     os.makedirs(exp_name, exist_ok=True)
 
     print("Parsing polygons from KML...")
@@ -523,14 +546,18 @@ def main():
     #     lambda x: x.split('.')[0], 
     #     filter(lambda x: x.endswith('.png'), os.listdir('exp/dtm_images_csf'))
     # ))))
-    all_files = list(filter(lambda x: x.endswith('.png') and x.startswith('TAP'), os.listdir('stitched_images')))
+    all_files = list(filter(lambda x: x.endswith('.png'), os.listdir(stitched_images_dir)))
 
     # Process each file
     insights = ""
     anom_ct = 0
     for i, filename in enumerate(all_files):
         print(f"Processing file {i+1}/{len(all_files)}: {filename}")
-        insights, anom_ct = process_single_file(filename, exp_name, polygons, anom_ct=anom_ct, prev_insights=insights)
+        # Check if the file is already processed
+        if os.path.exists(f"{exp_name}/{get_item_name_from_filename(filename)}_analysis.txt"):
+            print(f"Analysis for {filename} already exists, skipping...")
+            continue
+        insights, anom_ct = process_single_file(filename, exp_name, polygons, anom_ct=anom_ct, prev_insights=insights, stitched_images_dir=stitched_images_dir)
         print(f"Processed {filename}, current anomaly count: {anom_ct}")
 
 

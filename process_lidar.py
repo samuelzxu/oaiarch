@@ -9,6 +9,7 @@ import glob
 from pathlib import Path
 import CSF
 import json
+from tqdm import tqdm
 import multiprocessing
 
 def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: float = 0.5):
@@ -27,7 +28,7 @@ def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: flo
         resolution: The resolution of the output DTM image in meters per pixel.
     """
     try:
-        print(f"Processing {lidar_file_path}...")
+        # print(f"Processing {lidar_file_path}...")
         
         # Create output directory if it doesn't exist
         os.makedirs(output_dir, exist_ok=True)
@@ -35,7 +36,7 @@ def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: flo
         metadata_path = os.path.join(output_dir, f"{file_name}_dtm_csf.json")
         npy_output_path = os.path.join(output_dir, f"{file_name}_dtm_csf.npy")
         if os.path.exists(metadata_path) and os.path.exists(npy_output_path):
-            print(f"Metadata already exists for {lidar_file_path}. Skipping.")
+            # print(f"Metadata already exists for {lidar_file_path}. Skipping.")
             return
 
         # 1. Read LiDAR data
@@ -53,11 +54,11 @@ def create_dtm_from_lidar(lidar_file_path: str, output_dir: str, resolution: flo
         # Set CSF parameters. These are the default values, but they can be tuned.
         # For forested areas, a larger cloth_resolution might be needed if the DTM is too noisy.
         csf.params.bSloopSmooth = True
-        csf.params.cloth_resolution = 0.5 # The size of the grid for the cloth simulation
-        csf.params.rigidness = 3 # The rigidity of the cloth
+        csf.params.cloth_resolution = 1 # The size of the grid for the cloth simulation
+        csf.params.rigidness = 2 # The rigidity of the cloth
         csf.params.time_step = 0.65
         csf.params.class_threshold = 0.5 # The distance threshold for classifying points
-        csf.params.interations = 500
+        csf.params.interations = 1000
 
         # Perform the filtering
         csf.setPointCloud(points)
@@ -144,7 +145,7 @@ def main():
     
     # Processing parameters
     dtm_resolution = 0.5     # DTM resolution in meters/pixel (lower is higher res)
-    num_workers = 12          # Max number of parallel processes
+    num_workers = 1          # Max number of parallel processes
     # ---------------------
 
     print("Starting LiDAR DTM Generation with Cloth Simulation Filter")
@@ -180,7 +181,7 @@ def main():
     print(f"Starting parallel processing with {num_workers} workers...")
     with multiprocessing.Pool(processes=num_workers) as pool:
         # starmap is used for functions that take multiple arguments
-        pool.starmap(create_dtm_from_lidar, tasks)
+        pool.starmap(create_dtm_from_lidar, tqdm(tasks))
 
     print("\n" + "=" * 60)
     print("Processing complete.")
