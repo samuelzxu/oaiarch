@@ -3,7 +3,10 @@ Download a GeoTIFF tile from OpenTopography and display it.
 
 Dependencies
 ------------
-pip install requests rasterio matplotlib pystac-client odc-stac xarray pandas numpy
+pip install requests rasterio matplotlib pystac-client odc-stac xarray pandas numpy contextily folium pillow
+# Optional (for better OSM map rendering):
+pip install selenium
+# If using selenium, you'll also need ChromeDriver installed
 """
 from __future__ import annotations
 
@@ -23,6 +26,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import rasterio
 import requests
+import contextily as ctx
+import folium
+from PIL import Image
 
 from pyproj import Transformer
 from dotenv import load_dotenv
@@ -372,6 +378,150 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
     
     return visual_png, nir_png
 
+def fetch_osm_data(north: float, south: float, east: float, west: float, output_dir: str, prefix: str) -> str:
+    """
+    Fetch OpenStreetMap data for the specified bounds and return path to the rendered PNG.
+    
+    Args:
+        north, south, east, west: Bounding box coordinates
+        output_dir: Directory to save the OSM data
+        prefix: Prefix for output files
+        
+    Returns:
+        str: Path to the OSM map PNG file
+    """
+    import folium
+    import io
+    from PIL import Image
+    import time
+    
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Calculate center point
+    center_lat = (north + south) / 2
+    center_lon = (east + west) / 2
+    
+    # Create folium map
+    m = folium.Map(
+        location=[center_lat, center_lon],
+        tiles='OpenStreetMap',
+        zoom_start=13
+    )
+    
+    # Fit the map to the bounding box
+    m.fit_bounds([[south, west], [north, east]])
+    
+    # Generate output filename
+    osm_png_path = os.path.join(output_dir, f"{prefix}_osm.png")
+    
+    # Save map as HTML first
+    html_path = osm_png_path.replace('.png', '.html')
+    m.save(html_path)
+    
+    try:
+        # Try to use selenium to render the map as PNG (if available)
+        from selenium import webdriver
+        from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.common.by import By
+        from selenium.webdriver.support.ui import WebDriverWait
+        from selenium.webdriver.support import expected_conditions as EC
+        
+        # Set up Chrome options for headless mode
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--no-sandbox')
+        chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('--window-size=1024,768')
+        
+        # Create driver
+        driver = webdriver.Chrome(options=chrome_options)
+        
+        # Load the HTML file
+        driver.get(f'file://{os.path.abspath(html_path)}')
+        
+        # Wait for the map to load
+        time.sleep(3)
+        
+        # Take screenshot
+        driver.save_screenshot(osm_png_path)
+        driver.quit()
+        
+        print(f"Successfully saved OSM map to {osm_png_path}")
+        
+    except ImportError:
+        print("Selenium not available, using alternative method with contextily...")
+        # Fallback to contextily if selenium is not available
+        try:
+            import contextily as ctx
+            import matplotlib.pyplot as plt
+            from matplotlib.patches import Rectangle
+            
+            # Create a simple plot with contextily basemap
+            fig, ax = plt.subplots(figsize=(10, 10))
+            
+            # Set the extent
+            ax.set_xlim(west, east)
+            ax.set_ylim(south, north)
+            
+            # Add contextily basemap
+            ctx.add_basemap(ax, crs='EPSG:4326', source=ctx.providers.OpenStreetMap.Mapnik)
+            
+            # Remove axes for cleaner image
+            ax.set_axis_off()
+            
+            # Save the plot
+            plt.savefig(osm_png_path, dpi=150, bbox_inches='tight', pad_inches=0)
+            plt.close()
+            
+            print(f"Successfully saved OSM map using contextily to {osm_png_path}")
+            
+        except Exception as e:
+            print(f"Error creating OSM map with contextily: {e}")
+            # Create a simple placeholder image
+            img = Image.new('RGB', (1024, 768), color='white')
+            img.save(osm_png_path)
+            print(f"Created placeholder OSM image at {osm_png_path}")
+    
+    except Exception as e:
+        print(f"Error creating OSM map with selenium: {e}")
+        # Fallback to contextily
+        try:
+            import contextily as ctx
+            import matplotlib.pyplot as plt
+            
+            # Create a simple plot with contextily basemap
+            fig, ax = plt.subplots(figsize=(10, 10))
+            
+            # Set the extent  
+            ax.set_xlim(west, east)
+            ax.set_ylim(south, north)
+            
+            # Add contextily basemap
+            ctx.add_basemap(ax, crs='EPSG:4326', source=ctx.providers.OpenStreetMap.Mapnik)
+            
+            # Remove axes for cleaner image
+            ax.set_axis_off()
+            
+            # Save the plot
+            plt.savefig(osm_png_path, dpi=150, bbox_inches='tight', pad_inches=0)
+            plt.close()
+            
+            print(f"Successfully saved OSM map using contextily to {osm_png_path}")
+            
+        except Exception as e2:
+            print(f"Error creating OSM map with contextily: {e2}")
+            # Create a simple placeholder image
+            img = Image.new('RGB', (1024, 768), color='white')
+            img.save(osm_png_path)
+            print(f"Created placeholder OSM image at {osm_png_path}")
+    
+    # Clean up HTML file
+    if os.path.exists(html_path):
+        os.remove(html_path)
+    
+    return osm_png_path
+
 def process_single_file(filename: str, exp_name: str, polygons_object, stitched_images_dir, prev_insights: str = "", anom_ct: int = 0) -> str:
     """
     Process a single file, gathering all available data sources and performing analysis.
@@ -475,6 +625,26 @@ def process_single_file(filename: str, exp_name: str, polygons_object, stitched_
         print("Successfully retrieved Sentinel-2 data")
     except Exception as e:
         print(f"Warning: Failed to fetch Sentinel data: {e}")
+    
+    # 4. Try to get OpenStreetMap data
+    try:
+        osm_png = fetch_osm_data(
+            north=north,
+            south=south,
+            east=east,
+            west=west,
+            output_dir="osm_data",
+            prefix=filename
+        )
+        
+        # Add OSM data
+        data_url_osm = png_to_data_url(osm_png)
+        data_urls.append(data_url_osm)
+        data_descriptions.append("An OpenStreetMap rendering showing roads, buildings, and other infrastructure")
+        shutil.copy(osm_png, f"{exp_name}/{item_name}_osm.png")
+        print("Successfully retrieved OpenStreetMap data")
+    except Exception as e:
+        print(f"Warning: Failed to fetch OpenStreetMap data: {e}")
     
     # Only proceed if we have at least the LiDAR data
     if len(data_urls) < 2:
