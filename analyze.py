@@ -115,7 +115,7 @@ def extract_human_readable_from_geocode_data(geocode_data: dict) -> str:
 
 def analyse_with_openai(
     image_data_urls: list[str],
-    model: str = "o4-mini",
+    model: str = "o3",
     lat: float = 0.0,
     lon: float = 0.0,
     prompt_append: str = ""
@@ -135,8 +135,8 @@ def analyse_with_openai(
     if not loc_str:
         loc_str = "State of Amazonas, Brazil"
     print(f"Reverse geocoding {lat}, {lon} → \n{loc_str}")
-    prompt = f'''Analyze these four images to identify and describe in detail the major terrain and geomorphological features. 
-Search carefully for any archaeologically interesting anomalies. The images show:
+    prompt = f'''Analyze these images to identify and describe in detail the major terrain and geomorphological features. 
+Search carefully for any archaeologically interesting anomalies.
 
 The images are from the region of {loc_str}, at ({lat}, {lon}).
 
@@ -145,7 +145,7 @@ If anomalies are found:
   2. Explain how the anomaly fits into the broader historical context.
   3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
   4. Note any differences or correlations between the different data sources.
-  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models.
+  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models. To that end, provide generalizable insights that can be applied to other regions and datasets.
 
 Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
 
@@ -527,7 +527,7 @@ def main():
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     kml_content = extract_kmz_content(kmz_file_path)
 
-    exp_name = "experiment_w_better_lidar_run_3"
+    exp_name = "experiment_w_better_lidar_o3"
     stitched_images_dir = "stitched_images_v6"
 
     if not os.path.exists(stitched_images_dir):
