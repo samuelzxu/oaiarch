@@ -34,6 +34,45 @@ def extract_polygon_names_from_kml(kml_content: str) -> List[str]:
                 names.append(name_elem.text)
     return names
 
+# --- Hillshade Calculation ---
+
+def calculate_hillshade(dtm_array: np.ndarray, resolution: float, azimuth: float = 315.0, elevation: float = 15.0) -> np.ndarray:
+    """
+    Calculate hillshade from a DTM array.
+    
+    Args:
+        dtm_array: 2D numpy array of elevation values
+        resolution: pixel resolution in map units
+        azimuth: sun azimuth angle in degrees (default 315° = northwest)
+        elevation: sun elevation angle in degrees (default 15°)
+    
+    Returns:
+        2D numpy array of hillshade values (0-255)
+    """
+    # Convert angles to radians
+    azimuth_rad = np.radians(azimuth)
+    elevation_rad = np.radians(elevation)
+    zenith_rad = np.radians(90.0 - elevation)
+    
+    # Calculate gradients using numpy gradient function
+    # Note: gradient returns [dy, dx] for 2D arrays
+    dy, dx = np.gradient(dtm_array, resolution)
+    
+    # Calculate slope and aspect
+    slope_rad = np.arctan(np.sqrt(dx**2 + dy**2))
+    aspect_rad = np.arctan2(-dx, dy)  # Note: negative dx for correct orientation
+    
+    # Calculate hillshade
+    hillshade = (np.cos(zenith_rad) * np.cos(slope_rad) + 
+                 np.sin(zenith_rad) * np.sin(slope_rad) * 
+                 np.cos(azimuth_rad - aspect_rad))
+    
+    # Normalize to 0-255 range and handle NaN values
+    hillshade = np.clip(hillshade * 255, 0, 255)
+    hillshade[np.isnan(dtm_array)] = 0  # Set no-data areas to black
+    
+    return hillshade.astype(np.uint8)
+
 # --- Stitching Logic ---
 
 def group_polygons(polygon_names: List[str]) -> Dict[str, List[str]]:
@@ -154,7 +193,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
           f"Q1={first_quartile}, Q3={third_quartile}, std={std}")
     if std < (max_val - min_val) * 0.1:
         print("  - Warning: Standard deviation is too low, using median for clipping.")
-        stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*8, median_val + (third_quartile-median_val)*40)
+        stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*8, median_val + (third_quartile-median_val)*8)
 
     # Normalize the array to 0-255 for saving as an image
     # We ignore the NaN "no data" values during normalization
@@ -166,7 +205,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         print(f"  - Normalization range: min={min_val}, max={max_val}")
         if max_val > min_val:
             # Normalize to 0-255
-            normalized_array = (stitched_array - min_val) * (200.0 / (max_val - min_val))+55
+            normalized_array = (stitched_array - min_val) * (255.0 / (max_val - min_val))
             # Set "no data" areas (which are still NaN) to black
             normalized_array[np.isnan(normalized_array)] = 0
         else:
@@ -177,11 +216,22 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         # Handle case where there are no valid pixels at all
         normalized_array = np.zeros(stitched_array.shape)
 
+    # Save the original DTM image
     final_image = Image.fromarray(normalized_array.astype(np.uint8), mode='L')
     
     output_path = os.path.join(output_dir, f"{group_key}_stitched.png")
     os.makedirs(output_dir, exist_ok=True)
     final_image.save(output_path)
+    print(f"  -> Saved stitched DTM image to {output_path}")
+
+    # Generate and save hillshade image
+    print(f"  - Calculating hillshade with 15° elevation angle...")
+    hillshade_array = calculate_hillshade(stitched_array, resolution, elevation=15.0)
+    hillshade_image = Image.fromarray(hillshade_array, mode='L')
+    
+    hillshade_output_path = os.path.join(output_dir, f"{group_key}_hillshade_15deg.png")
+    hillshade_image.save(hillshade_output_path)
+    print(f"  -> Saved hillshade image to {hillshade_output_path}")
 
     # ---- Save lon/lat of image center ----
     # Compute center in projected coordinates
@@ -210,7 +260,6 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     with open(info_path, "w") as f:
         json.dump(info, f, indent=2)
 
-    print(f"  -> Saved stitched image to {output_path}")
     print(f"  -> Saved location info to {info_path}")
 
 def main():
