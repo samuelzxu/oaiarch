@@ -165,7 +165,8 @@ actionable insights that can be used to discover new sites, such as:
 - "The NIR band shows unusual vegetation patterns that may indicate buried structures or features."
 ]]]
 
-If you detect an anomaly, output:
+If you detect an anomaly, output exactly this format:
+
 ```anomalies
 "anomaly_1": {{
     "description": "A detailed description of the anomaly",
@@ -195,7 +196,10 @@ If you detect an anomaly, output:
         "max_lon": max_lon
         }},  
 }},
-```\n\n'''+ prompt_append +"\n\n"
+```\n\n
+
+Be sure to pay special attention in reasoning about and calculating the grid coordinates that you return.
+It's important that these are as accurate as possible, and includes the anomaly detected.'''+ prompt_append +"\n\n"
 
     client = OpenAI()  # picks up OPENAI_API_KEY from env
     print("→ Contacting OpenAI …")
@@ -334,7 +338,7 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
     geometry = downloader.create_geometry(north, south, east, west)
     
     # Load only visual and NIR bands
-    downloader.target_bands = ['visual', 'nir', 'swir']
+    downloader.target_bands = ['visual', 'nir']
     data = downloader.load_data(
         search_results=search_results,
         geometry=geometry,
@@ -929,7 +933,7 @@ def main():
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     kml_content = extract_kmz_content(kmz_file_path)
 
-    exp_name = "experiment_w_OSM"
+    exp_name = "experiment_w_drawing_rects_v2"
     stitched_images_dir = "stitched_images_v6"
 
     if not os.path.exists(stitched_images_dir):
