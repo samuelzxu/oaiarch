@@ -169,27 +169,30 @@ If you detect an anomaly, output:
 ```anomalies
 "anomaly_1": {{
     "description": "A detailed description of the anomaly",
-    "location": {{
-        "lat": lat, 
-        "lon": lon, 
-        "radius": r # radius in meters
+    "bounding_box": {{
+        "min_lat": min_lat, 
+        "max_lat": max_lat,
+        "min_lon": min_lon,
+        "max_lon": max_lon
         }},  
 }},
 "anomaly_2": {{
     "description": "A detailed description of the anomaly",
-    "location": {{
-        "lat": lat, 
-        "lon": lon, 
-        "radius": r # radius in meters
+    "bounding_box": {{
+        "min_lat": min_lat, 
+        "max_lat": max_lat,
+        "min_lon": min_lon,
+        "max_lon": max_lon
         }},  
 }},
 ...
 "anomaly_N": {{
     "description": "A detailed description of the anomaly",
-    "location": {{
-        "lat": lat, 
-        "lon": lon, 
-        "radius": r # radius in meters
+    "bounding_box": {{
+        "min_lat": min_lat, 
+        "max_lat": max_lat,
+        "min_lon": min_lon,
+        "max_lon": max_lon
         }},  
 }},
 ```\n\n'''+ prompt_append +"\n\n"
@@ -531,7 +534,7 @@ def parse_anomalies_from_response(response_text: str) -> List[Dict[str, Any]]:
         response_text: The full response text from the AI
         
     Returns:
-        List of anomaly dictionaries with description, lat, lon, and radius
+        List of anomaly dictionaries with description and bounding box coordinates
     """
     anomalies = []
     
@@ -556,17 +559,19 @@ def parse_anomalies_from_response(response_text: str) -> List[Dict[str, Any]]:
             desc_match = re.search(r'"description"\s*:\s*"([^"]+)"', anomaly_content)
             description = desc_match.group(1) if desc_match else "Unknown anomaly"
             
-            # Extract location coordinates
-            lat_match = re.search(r'"lat"\s*:\s*([-\d.]+)', anomaly_content)
-            lon_match = re.search(r'"lon"\s*:\s*([-\d.]+)', anomaly_content)
-            radius_match = re.search(r'"radius"\s*:\s*(\d+)', anomaly_content)
+            # Extract bounding box coordinates
+            min_lat_match = re.search(r'"min_lat"\s*:\s*([-\d.]+)', anomaly_content)
+            max_lat_match = re.search(r'"max_lat"\s*:\s*([-\d.]+)', anomaly_content)
+            min_lon_match = re.search(r'"min_lon"\s*:\s*([-\d.]+)', anomaly_content)
+            max_lon_match = re.search(r'"max_lon"\s*:\s*([-\d.]+)', anomaly_content)
             
-            if lat_match and lon_match and radius_match:
+            if min_lat_match and max_lat_match and min_lon_match and max_lon_match:
                 anomaly = {
                     'description': description,
-                    'lat': float(lat_match.group(1)),
-                    'lon': float(lon_match.group(1)),
-                    'radius': int(radius_match.group(1))
+                    'min_lat': float(min_lat_match.group(1)),
+                    'max_lat': float(max_lat_match.group(1)),
+                    'min_lon': float(min_lon_match.group(1)),
+                    'max_lon': float(max_lon_match.group(1))
                 }
                 anomalies.append(anomaly)
                 
@@ -605,50 +610,45 @@ def convert_latlon_to_pixels(lat: float, lon: float, bounds: Dict[str, float], i
     
     return x_pixel, y_pixel
 
-def meters_to_pixels(radius_meters: float, bounds: Dict[str, float], image_size: Tuple[int, int]) -> int:
+def convert_bbox_to_pixels(anomaly: Dict[str, Any], bounds: Dict[str, float], image_size: Tuple[int, int]) -> Tuple[int, int, int, int]:
     """
-    Convert a radius in meters to pixels based on the geographic bounds and image size.
+    Convert a bounding box from lat/lon coordinates to pixel coordinates.
     
     Args:
-        radius_meters: Radius in meters
-        bounds: Geographic bounds dictionary
+        anomaly: Anomaly dictionary with min_lat, max_lat, min_lon, max_lon
+        bounds: Geographic bounds of the image
         image_size: Image size in pixels (width, height)
         
     Returns:
-        Radius in pixels
+        Tuple of (x1, y1, x2, y2) pixel coordinates for the rectangle
     """
     width, height = image_size
     
-    # Calculate degrees per pixel (rough approximation)
-    lat_range = bounds['max_lat'] - bounds['min_lat']
-    lon_range = bounds['max_lon'] - bounds['min_lon']
+    # Convert top-left corner (min_lon, max_lat)
+    x1, y1 = convert_latlon_to_pixels(
+        anomaly['max_lat'], anomaly['min_lon'], bounds, image_size
+    )
     
-    # Use average latitude for more accurate conversion
-    avg_lat = (bounds['max_lat'] + bounds['min_lat']) / 2
+    # Convert bottom-right corner (max_lon, min_lat)
+    x2, y2 = convert_latlon_to_pixels(
+        anomaly['min_lat'], anomaly['max_lon'], bounds, image_size
+    )
     
-    # Approximate meters per degree at this latitude
-    meters_per_degree_lat = 111320  # Roughly constant
-    meters_per_degree_lon = 111320 * np.cos(np.radians(avg_lat))
+    # Ensure proper ordering (x1 < x2, y1 < y2)
+    if x1 > x2:
+        x1, x2 = x2, x1
+    if y1 > y2:
+        y1, y2 = y2, y1
     
-    # Convert radius to degrees
-    radius_deg_lat = radius_meters / meters_per_degree_lat
-    radius_deg_lon = radius_meters / meters_per_degree_lon
-    
-    # Convert to pixels (use average of lat/lon pixel scales)
-    radius_pixels_lat = (radius_deg_lat / lat_range) * height
-    radius_pixels_lon = (radius_deg_lon / lon_range) * width
-    
-    # Use average and ensure minimum visible size
-    radius_pixels = int((radius_pixels_lat + radius_pixels_lon) / 2)
-    return max(radius_pixels, 5)  # Minimum 5 pixel radius for visibility
+    return x1, y1, x2, y2
 
-def draw_circles_on_image(image_path: str, anomalies: List[Dict[str, Any]], bounds: Dict[str, float]) -> None:
+def draw_rectangles_on_image(image_path: str, anomalies: List[Dict[str, Any]], bounds: Dict[str, float]) -> None:
     """
-    Draw circles on an image for each anomaly.
+    Draw rectangles on an image for each anomaly.
     
     Args:
         image_path: Path to the PNG image file
-        anomalies: List of anomaly dictionaries
+        anomalies: List of anomaly dictionaries with bounding box coordinates
         bounds: Geographic bounds of the image
     """
     if not anomalies or not os.path.exists(image_path):
@@ -663,58 +663,50 @@ def draw_circles_on_image(image_path: str, anomalies: List[Dict[str, Any]], boun
     
     for i, anomaly in enumerate(anomalies):
         try:
-            # Convert lat/lon to pixel coordinates
-            x, y = convert_latlon_to_pixels(
-                anomaly['lat'], 
-                anomaly['lon'], 
-                bounds, 
-                (width, height)
-            )
-            
-            # Convert radius to pixels
-            radius_pixels = meters_to_pixels(
-                anomaly['radius'], 
-                bounds, 
-                (width, height)
-            )
+            # Convert bounding box to pixel coordinates
+            x1, y1, x2, y2 = convert_bbox_to_pixels(anomaly, bounds, (width, height))
             
             # Choose color (cycle through a few colors)
             colors = ['red', 'yellow', 'cyan', 'magenta', 'orange', 'lime']
             color = colors[i % len(colors)]
             
-            # Draw the circle
-            draw.ellipse(
-                [x - radius_pixels, y - radius_pixels, x + radius_pixels, y + radius_pixels],
-                outline=color,
-                width=3
-            )
+            # Draw the rectangle outline
+            draw.rectangle([x1, y1, x2, y2], outline=color, width=3)
             
-            # Draw a small center dot
-            draw.ellipse([x - 2, y - 2, x + 2, y + 2], fill=color)
+            # Draw corner markers for visibility
+            marker_size = 3
+            # Top-left corner
+            draw.rectangle([x1-marker_size, y1-marker_size, x1+marker_size, y1+marker_size], fill=color)
+            # Top-right corner  
+            draw.rectangle([x2-marker_size, y1-marker_size, x2+marker_size, y1+marker_size], fill=color)
+            # Bottom-left corner
+            draw.rectangle([x1-marker_size, y2-marker_size, x1+marker_size, y2+marker_size], fill=color)
+            # Bottom-right corner
+            draw.rectangle([x2-marker_size, y2-marker_size, x2+marker_size, y2+marker_size], fill=color)
             
-            print(f"Drew circle for anomaly {i+1} at ({x}, {y}) with radius {radius_pixels}px")
+            print(f"Drew rectangle for anomaly {i+1} at ({x1},{y1})-({x2},{y2})")
             
         except Exception as e:
-            print(f"Error drawing circle for anomaly {i+1}: {e}")
+            print(f"Error drawing rectangle for anomaly {i+1}: {e}")
     
     # Save the modified image
     img.save(image_path)
-    print(f"Updated {image_path} with {len(anomalies)} anomaly circles")
+    print(f"Updated {image_path} with {len(anomalies)} anomaly rectangles")
 
-def add_anomaly_circles_to_images(exp_name: str, item_name: str, anomalies: List[Dict[str, Any]], bounds: Dict[str, float]) -> None:
+def add_anomaly_rectangles_to_images(exp_name: str, item_name: str, anomalies: List[Dict[str, Any]], bounds: Dict[str, float]) -> None:
     """
-    Add anomaly circles to all available images for a processed item.
+    Add anomaly rectangles to all available images for a processed item.
     
     Args:
         exp_name: Experiment directory name
         item_name: Name of the processed item
-        anomalies: List of parsed anomalies
+        anomalies: List of parsed anomalies with bounding boxes
         bounds: Geographic bounds of the area
     """
     if not anomalies:
         return
         
-    print(f"Adding {len(anomalies)} anomaly circles to images for {item_name}")
+    print(f"Adding {len(anomalies)} anomaly rectangles to images for {item_name}")
     
     # List of possible image types to annotate
     image_types = ['lidar', 'visual', 'nir', 'osm']
@@ -727,13 +719,13 @@ def add_anomaly_circles_to_images(exp_name: str, item_name: str, anomalies: List
     
     for candidate in opentopo_candidates:
         if os.path.exists(candidate):
-            draw_circles_on_image(candidate, anomalies, bounds)
+            draw_rectangles_on_image(candidate, anomalies, bounds)
             break
     
     # Process other image types
     for img_type in image_types:
         img_path = f"{exp_name}/{item_name}_{img_type}.png"
-        draw_circles_on_image(img_path, anomalies, bounds)
+        draw_rectangles_on_image(img_path, anomalies, bounds)
 
 def process_single_file(filename: str, exp_name: str, polygons_object, stitched_images_dir, prev_insights: str = "", anom_ct: int = 0) -> str:
     """
@@ -891,7 +883,7 @@ def process_single_file(filename: str, exp_name: str, polygons_object, stitched_
         # Parse anomalies from the response
         anomalies = parse_anomalies_from_response(analysis_dict['response'])
         
-        # If anomalies were found, draw circles on the images
+        # If anomalies were found, draw rectangles on the images
         if anomalies:
             print(f"Found {len(anomalies)} anomalies in the analysis for {filename}")
             
@@ -903,8 +895,8 @@ def process_single_file(filename: str, exp_name: str, polygons_object, stitched_
                 'max_lon': east
             }
             
-            # Add circles to all available images
-            add_anomaly_circles_to_images(exp_name, item_name, anomalies, image_bounds)
+            # Add rectangles to all available images
+            add_anomaly_rectangles_to_images(exp_name, item_name, anomalies, image_bounds)
             
             # Save anomaly data as JSON for future reference
             anomaly_file = f"{exp_name}/{item_name}_anomalies.json"
