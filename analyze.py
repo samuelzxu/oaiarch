@@ -121,7 +121,7 @@ def extract_human_readable_from_geocode_data(geocode_data: dict) -> str:
 
 def analyse_with_openai(
     image_data_urls: list[str],
-    model: str = "o3",
+    model: str = "o4-mini",
     lat: float = 0.0,
     lon: float = 0.0,
     prompt_append: str = ""
@@ -318,7 +318,7 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
         west=west,
         start_date=start_date,
         end_date=end_date,
-        cloud_cover_max=10
+        cloud_cover_max=3
     )
     
     # Check if any items were found
@@ -697,7 +697,7 @@ def main():
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     kml_content = extract_kmz_content(kmz_file_path)
 
-    exp_name = "experiment_w_better_lidar_o3"
+    exp_name = "experiment_w_OSM"
     stitched_images_dir = "stitched_images_v6"
 
     if not os.path.exists(stitched_images_dir):

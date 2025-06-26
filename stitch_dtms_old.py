@@ -154,7 +154,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
           f"Q1={first_quartile}, Q3={third_quartile}, std={std}")
     if std < (max_val - min_val) * 0.1:
         print("  - Warning: Standard deviation is too low, using median for clipping.")
-        stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*4, median_val + (third_quartile-median_val)*4)
+        stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*8, median_val + (third_quartile-median_val)*40)
 
     # Normalize the array to 0-255 for saving as an image
     # We ignore the NaN "no data" values during normalization
@@ -166,7 +166,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         print(f"  - Normalization range: min={min_val}, max={max_val}")
         if max_val > min_val:
             # Normalize to 0-255
-            normalized_array = (stitched_array - min_val) * (255.0 / (max_val - min_val))
+            normalized_array = (stitched_array - min_val) * (200.0 / (max_val - min_val))+55
             # Set "no data" areas (which are still NaN) to black
             normalized_array[np.isnan(normalized_array)] = 0
         else:
@@ -218,7 +218,7 @@ def main():
     # --- Configuration ---
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     dtm_images_dir = "exp/dtm_images_csf"
-    stitched_output_dir = "stitched_images_v6"
+    stitched_output_dir = "stitched_images_v7"
     # ---------------------
 
     print("Starting DTM Stitching Process")
@@ -249,6 +249,9 @@ def main():
     # 3. Stitch images for each group
     print("\n3. Stitching images for each group...")
     for group_key, names in groups.items():
+        if group_key != 'JAM_A03_2014':
+            print("Skipping")
+            continue
         stitch_group_images(
             group_key=group_key,
             polygon_names=names,
