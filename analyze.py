@@ -28,18 +28,19 @@ import rasterio
 import requests
 import contextily as ctx
 import folium
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from pyproj import Transformer
 from dotenv import load_dotenv
 import os
 load_dotenv()
 
-from typing import Tuple
+from typing import Tuple, List, Dict, Any
 import base64
 from openai import OpenAI
 import os
 import requests
+import json
 
 def raster_to_png_data_url(
     tif_path: Path, size: Tuple[int, int] = (512, 512), save_png: bool = True
@@ -330,7 +331,7 @@ def fetch_sentinel_data(north: float, south: float, east: float, west: float, ou
     geometry = downloader.create_geometry(north, south, east, west)
     
     # Load only visual and NIR bands
-    downloader.target_bands = ['visual', 'nir']
+    downloader.target_bands = ['visual', 'nir', 'swir']
     data = downloader.load_data(
         search_results=search_results,
         geometry=geometry,
@@ -522,6 +523,218 @@ def fetch_osm_data(north: float, south: float, east: float, west: float, output_
     
     return osm_png_path
 
+def parse_anomalies_from_response(response_text: str) -> List[Dict[str, Any]]:
+    """
+    Parse anomalies from the AI response text.
+    
+    Args:
+        response_text: The full response text from the AI
+        
+    Returns:
+        List of anomaly dictionaries with description, lat, lon, and radius
+    """
+    anomalies = []
+    
+    # Look for the anomalies code block
+    anomaly_pattern = r'```anomalies\s*(.*?)```'
+    match = re.search(anomaly_pattern, response_text, re.DOTALL)
+    
+    if not match:
+        return anomalies
+    
+    anomaly_text = match.group(1).strip()
+    
+    # Parse individual anomalies using regex
+    # Look for "anomaly_N": { ... },
+    individual_anomaly_pattern = r'"anomaly_\d+"\s*:\s*\{([^}]+)\}'
+    
+    for anomaly_match in re.finditer(individual_anomaly_pattern, anomaly_text):
+        anomaly_content = anomaly_match.group(1)
+        
+        try:
+            # Extract description
+            desc_match = re.search(r'"description"\s*:\s*"([^"]+)"', anomaly_content)
+            description = desc_match.group(1) if desc_match else "Unknown anomaly"
+            
+            # Extract location coordinates
+            lat_match = re.search(r'"lat"\s*:\s*([-\d.]+)', anomaly_content)
+            lon_match = re.search(r'"lon"\s*:\s*([-\d.]+)', anomaly_content)
+            radius_match = re.search(r'"radius"\s*:\s*(\d+)', anomaly_content)
+            
+            if lat_match and lon_match and radius_match:
+                anomaly = {
+                    'description': description,
+                    'lat': float(lat_match.group(1)),
+                    'lon': float(lon_match.group(1)),
+                    'radius': int(radius_match.group(1))
+                }
+                anomalies.append(anomaly)
+                
+        except Exception as e:
+            print(f"Error parsing anomaly: {e}")
+            continue
+    
+    return anomalies
+
+def convert_latlon_to_pixels(lat: float, lon: float, bounds: Dict[str, float], image_size: Tuple[int, int]) -> Tuple[int, int]:
+    """
+    Convert latitude/longitude coordinates to pixel coordinates within an image.
+    
+    Args:
+        lat: Latitude coordinate
+        lon: Longitude coordinate  
+        bounds: Dictionary with keys 'min_lat', 'max_lat', 'min_lon', 'max_lon'
+        image_size: Tuple of (width, height) in pixels
+        
+    Returns:
+        Tuple of (x, y) pixel coordinates
+    """
+    width, height = image_size
+    
+    # Normalize coordinates to 0-1 range
+    x_norm = (lon - bounds['min_lon']) / (bounds['max_lon'] - bounds['min_lon'])
+    y_norm = (bounds['max_lat'] - lat) / (bounds['max_lat'] - bounds['min_lat'])  # Flip Y axis
+    
+    # Convert to pixel coordinates
+    x_pixel = int(x_norm * width)
+    y_pixel = int(y_norm * height)
+    
+    # Clamp to image bounds
+    x_pixel = max(0, min(x_pixel, width - 1))
+    y_pixel = max(0, min(y_pixel, height - 1))
+    
+    return x_pixel, y_pixel
+
+def meters_to_pixels(radius_meters: float, bounds: Dict[str, float], image_size: Tuple[int, int]) -> int:
+    """
+    Convert a radius in meters to pixels based on the geographic bounds and image size.
+    
+    Args:
+        radius_meters: Radius in meters
+        bounds: Geographic bounds dictionary
+        image_size: Image size in pixels (width, height)
+        
+    Returns:
+        Radius in pixels
+    """
+    width, height = image_size
+    
+    # Calculate degrees per pixel (rough approximation)
+    lat_range = bounds['max_lat'] - bounds['min_lat']
+    lon_range = bounds['max_lon'] - bounds['min_lon']
+    
+    # Use average latitude for more accurate conversion
+    avg_lat = (bounds['max_lat'] + bounds['min_lat']) / 2
+    
+    # Approximate meters per degree at this latitude
+    meters_per_degree_lat = 111320  # Roughly constant
+    meters_per_degree_lon = 111320 * np.cos(np.radians(avg_lat))
+    
+    # Convert radius to degrees
+    radius_deg_lat = radius_meters / meters_per_degree_lat
+    radius_deg_lon = radius_meters / meters_per_degree_lon
+    
+    # Convert to pixels (use average of lat/lon pixel scales)
+    radius_pixels_lat = (radius_deg_lat / lat_range) * height
+    radius_pixels_lon = (radius_deg_lon / lon_range) * width
+    
+    # Use average and ensure minimum visible size
+    radius_pixels = int((radius_pixels_lat + radius_pixels_lon) / 2)
+    return max(radius_pixels, 5)  # Minimum 5 pixel radius for visibility
+
+def draw_circles_on_image(image_path: str, anomalies: List[Dict[str, Any]], bounds: Dict[str, float]) -> None:
+    """
+    Draw circles on an image for each anomaly.
+    
+    Args:
+        image_path: Path to the PNG image file
+        anomalies: List of anomaly dictionaries
+        bounds: Geographic bounds of the image
+    """
+    if not anomalies or not os.path.exists(image_path):
+        return
+    
+    # Open the image
+    img = Image.open(image_path)
+    draw = ImageDraw.Draw(img)
+    
+    # Get image dimensions
+    width, height = img.size
+    
+    for i, anomaly in enumerate(anomalies):
+        try:
+            # Convert lat/lon to pixel coordinates
+            x, y = convert_latlon_to_pixels(
+                anomaly['lat'], 
+                anomaly['lon'], 
+                bounds, 
+                (width, height)
+            )
+            
+            # Convert radius to pixels
+            radius_pixels = meters_to_pixels(
+                anomaly['radius'], 
+                bounds, 
+                (width, height)
+            )
+            
+            # Choose color (cycle through a few colors)
+            colors = ['red', 'yellow', 'cyan', 'magenta', 'orange', 'lime']
+            color = colors[i % len(colors)]
+            
+            # Draw the circle
+            draw.ellipse(
+                [x - radius_pixels, y - radius_pixels, x + radius_pixels, y + radius_pixels],
+                outline=color,
+                width=3
+            )
+            
+            # Draw a small center dot
+            draw.ellipse([x - 2, y - 2, x + 2, y + 2], fill=color)
+            
+            print(f"Drew circle for anomaly {i+1} at ({x}, {y}) with radius {radius_pixels}px")
+            
+        except Exception as e:
+            print(f"Error drawing circle for anomaly {i+1}: {e}")
+    
+    # Save the modified image
+    img.save(image_path)
+    print(f"Updated {image_path} with {len(anomalies)} anomaly circles")
+
+def add_anomaly_circles_to_images(exp_name: str, item_name: str, anomalies: List[Dict[str, Any]], bounds: Dict[str, float]) -> None:
+    """
+    Add anomaly circles to all available images for a processed item.
+    
+    Args:
+        exp_name: Experiment directory name
+        item_name: Name of the processed item
+        anomalies: List of parsed anomalies
+        bounds: Geographic bounds of the area
+    """
+    if not anomalies:
+        return
+        
+    print(f"Adding {len(anomalies)} anomaly circles to images for {item_name}")
+    
+    # List of possible image types to annotate
+    image_types = ['lidar', 'visual', 'nir', 'osm']
+    
+    # Try to find OpenTopography image (could have different naming)
+    opentopo_candidates = [
+        f"{exp_name}/{item_name}_opentopo.png",
+        f"{exp_name}/{item_name}_opentopo.tif.png"  # In case it was converted
+    ]
+    
+    for candidate in opentopo_candidates:
+        if os.path.exists(candidate):
+            draw_circles_on_image(candidate, anomalies, bounds)
+            break
+    
+    # Process other image types
+    for img_type in image_types:
+        img_path = f"{exp_name}/{item_name}_{img_type}.png"
+        draw_circles_on_image(img_path, anomalies, bounds)
+
 def process_single_file(filename: str, exp_name: str, polygons_object, stitched_images_dir, prev_insights: str = "", anom_ct: int = 0) -> str:
     """
     Process a single file, gathering all available data sources and performing analysis.
@@ -675,13 +888,39 @@ def process_single_file(filename: str, exp_name: str, polygons_object, stitched_
         with open(f"{exp_name}/{item_name}_analysis.txt", "w") as f:
             f.write(f"{str(analysis_dict['response'])}\n")
         
+        # Parse anomalies from the response
+        anomalies = parse_anomalies_from_response(analysis_dict['response'])
+        
+        # If anomalies were found, draw circles on the images
+        if anomalies:
+            print(f"Found {len(anomalies)} anomalies in the analysis for {filename}")
+            
+            # Create bounds dictionary in the format expected by the drawing functions
+            image_bounds = {
+                'min_lat': south,
+                'max_lat': north,
+                'min_lon': west,
+                'max_lon': east
+            }
+            
+            # Add circles to all available images
+            add_anomaly_circles_to_images(exp_name, item_name, anomalies, image_bounds)
+            
+            # Save anomaly data as JSON for future reference
+            anomaly_file = f"{exp_name}/{item_name}_anomalies.json"
+            with open(anomaly_file, "w") as f:
+                json.dump(anomalies, f, indent=2)
+            print(f"Saved anomaly data to {anomaly_file}")
+        else:
+            print(f"No anomalies detected in the analysis for {filename}")
+        
         insight_pattern = r"\[\[\[(.*?)\]\]\]"
         insights = re.findall(insight_pattern, analysis_dict['response'], re.DOTALL)
         anomalies_pattern = r'"anomaly_\d+"'
-        anomalies = re.findall(anomalies_pattern, analysis_dict['response'])
-        if anomalies:
-            print(f"Found anomalies in the analysis for {filename}: {len(anomalies)} anomalies detected.")
-        anom_ct += len(anomalies)
+        anomalies_count = re.findall(anomalies_pattern, analysis_dict['response'])
+        if anomalies_count:
+            print(f"Found anomalies in the analysis for {filename}: {len(anomalies_count)} anomalies detected.")
+        anom_ct += len(anomalies_count)
         if insights:
             return insights[0].strip(), anom_ct
         else:
@@ -689,6 +928,7 @@ def process_single_file(filename: str, exp_name: str, polygons_object, stitched_
             return "", anom_ct
     except Exception as e:
         print(f"Error during analysis of {filename}: {e}")
+        return prev_insights, anom_ct
 
 def main():
     """Main function to process all files."""
