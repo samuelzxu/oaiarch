@@ -182,18 +182,18 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
             mask = np.isnan(target_slice) & ~np.isnan(dtm_array)
             target_slice[mask] = dtm_array[mask]
 
-    median_val = np.nanmedian(stitched_array)
-    first_quartile = np.nanpercentile(stitched_array, 25)
-    third_quartile = np.nanpercentile(stitched_array, 75)
-    std = np.sqrt(np.nanvar(stitched_array))
-    min_val = np.nanmin(stitched_array)
-    max_val = np.nanmax(stitched_array)
+    # median_val = np.nanmedian(stitched_array)
+    # first_quartile = np.nanpercentile(stitched_array, 25)
+    # third_quartile = np.nanpercentile(stitched_array, 75)
+    # std = np.sqrt(np.nanvar(stitched_array))
+    # min_val = np.nanmin(stitched_array)
+    # max_val = np.nanmax(stitched_array)
 
-    print(f"  - Normalization stats:  median={median_val}, "
-          f"Q1={first_quartile}, Q3={third_quartile}, std={std}")
-    if std < (max_val - min_val) * 0.1:
-        print("  - Warning: Standard deviation is too low, using median for clipping.")
-        stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*8, median_val + (third_quartile-median_val)*8)
+    # print(f"  - Normalization stats:  median={median_val}, "
+    #       f"Q1={first_quartile}, Q3={third_quartile}, std={std}")
+    # if std < (max_val - min_val) * 0.1:
+    #     print("  - Warning: Standard deviation is too low, using median for clipping.")
+    #     stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*8, median_val + (third_quartile-median_val)*8)
 
     # Normalize the array to 0-255 for saving as an image
     # We ignore the NaN "no data" values during normalization
@@ -219,7 +219,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     # Save the original DTM image
     final_image = Image.fromarray(normalized_array.astype(np.uint8), mode='L')
     
-    output_path = os.path.join(output_dir, f"{group_key}_stitched.png")
+    output_path = os.path.join(output_dir, f"{group_key}_stitched_raw.png")
     os.makedirs(output_dir, exist_ok=True)
     final_image.save(output_path)
     print(f"  -> Saved stitched DTM image to {output_path}")
@@ -229,7 +229,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     hillshade_array = calculate_hillshade(stitched_array, resolution, elevation=15.0)
     hillshade_image = Image.fromarray(hillshade_array, mode='L')
     
-    hillshade_output_path = os.path.join(output_dir, f"{group_key}_hillshade_15deg.png")
+    hillshade_output_path = os.path.join(output_dir, f"{group_key}_stitched.png")
     hillshade_image.save(hillshade_output_path)
     print(f"  -> Saved hillshade image to {hillshade_output_path}")
 
@@ -267,7 +267,7 @@ def main():
     # --- Configuration ---
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     dtm_images_dir = "exp/dtm_images_csf"
-    stitched_output_dir = "stitched_images_v7"
+    stitched_output_dir = "stitched_images_v10_hillshade"
     # ---------------------
 
     print("Starting DTM Stitching Process")
@@ -298,9 +298,9 @@ def main():
     # 3. Stitch images for each group
     print("\n3. Stitching images for each group...")
     for group_key, names in groups.items():
-        if group_key != 'JAM_A03_2014':
-            print("Skipping")
-            continue
+        # if group_key != 'JAM_A03_2014':
+        #     print("Skipping")
+        #     continue
         stitch_group_images(
             group_key=group_key,
             polygon_names=names,

@@ -152,7 +152,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     
     # Calculate sigma for Gaussian blur based on resolution and desired smoothing scale
     # Typical smoothing scale for LRM is 50-200 meters
-    smoothing_scale_meters = 100.0  # Adjust this value as needed
+    smoothing_scale_meters = 300.0  # Adjust this value as needed
     sigma_pixels = smoothing_scale_meters / resolution
     
     print(f"  - Applying Gaussian smoothing with sigma={sigma_pixels:.2f} pixels ({smoothing_scale_meters}m)")
@@ -197,7 +197,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         print(f"  - DTM normalization range: min={min_val}, max={max_val}")
         if max_val > min_val:
             # Normalize to 0-255
-            normalized_dtm = (stitched_array - min_val) * (200.0 / (max_val - min_val))+55
+            normalized_dtm = (stitched_array - min_val) * (255.0 / (max_val - min_val))
             # Set "no data" areas (which are still NaN) to black
             normalized_dtm[np.isnan(normalized_dtm)] = 0
         else:
@@ -314,9 +314,9 @@ def main():
     # 3. Stitch images for each group
     print("\n3. Stitching images for each group...")
     for group_key, names in groups.items():
-        if group_key != 'JAM_A03_2014':
-            print("Skipping")
-            continue
+        # if group_key != 'JAM_A03_2014':
+        #     print("Skipping")
+        #     continue
         stitch_group_images(
             group_key=group_key,
             polygon_names=names,

@@ -142,19 +142,27 @@ def analyse_with_openai(
     if not loc_str:
         loc_str = "State of Amazonas, Brazil"
     print(f"Reverse geocoding {lat}, {lon} → \n{loc_str}")
-    prompt = f'''Analyze these images to identify and describe in detail the major terrain and geomorphological features. 
-Search carefully for any archaeologically interesting anomalies.
+    prompt = f'''You are an expert in remote‐sensing archaeology. Your task is to identify and map engineered upland water‐management structures—raised fields, linear canals, drainage ditches, embankments or causeways—buried beneath forest canopy in Amazonian interfluves. The images are from the region of {loc_str}, at ({lat}, {lon}).
 
-The images are from the region of {loc_str}, at ({lat}, {lon}).
+Follow these steps:
 
+1. **Terrain Analysis**  
+   - Compute slope, curvature and hillshade derivatives on the DTM.  
+   - Highlight low‐relief, rectilinear or linear anomalies that contrast with natural terrain.  
+
+2. **Spectral Cross‐Checking**  
+   - Overlay the 10 m NIR and visible bands to detect “dark earth” moisture anomalies or vegetation stress aligned with terrain features.  
+   - Flag spectral signatures indicative of anthropogenic soils or water retention.  
+
+3. **Modern Structure Masking**  
+   - Use the OpenStreetMap layer to exclude or annotate any features matching recent roads, plantations or infrastructure.  
+
+4. **Reporting**  
 If anomalies are found:
   1. Draw on your knowledge of the region ({loc_str}) and its history.
   2. Explain how the anomaly fits into the broader historical context.
   3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
-  4. Note any differences or correlations between the different data sources.
   5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models. To that end, provide generalizable insights that can be applied to other regions and datasets.
-
-Target your analysis to technology and archaeology enthusiasts interested in realistic, evidence-based advancements. Provide as much detail as possible.
 
 Always include your actionable insights inside triple brackets:
 
@@ -436,11 +444,14 @@ def fetch_osm_data(north: float, south: float, east: float, west: float, output_
         from selenium.webdriver.support import expected_conditions as EC
         
         # Set up Chrome options for headless mode
+        window_height = 768
+        scaled_window_width = int(abs(west - east) / abs(north - south) * window_height)
+        print(f"Calculated scaled window dims: {scaled_window_width}, {window_height} for bounds ({north}, {south}, {east}, {west})")
         chrome_options = Options()
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument('--window-size=1024,768')
+        chrome_options.add_argument(f'--window-size={scaled_window_width},{window_height}')
         
         # Create driver
         driver = webdriver.Chrome(options=chrome_options)
@@ -525,8 +536,8 @@ def fetch_osm_data(north: float, south: float, east: float, west: float, output_
             print(f"Created placeholder OSM image at {osm_png_path}")
     
     # Clean up HTML file
-    if os.path.exists(html_path):
-        os.remove(html_path)
+    # if os.path.exists(html_path):
+    #     os.remove(html_path)
     
     return osm_png_path
 
@@ -731,7 +742,7 @@ def add_anomaly_rectangles_to_images(exp_name: str, item_name: str, anomalies: L
         img_path = f"{exp_name}/{item_name}_{img_type}.png"
         draw_rectangles_on_image(img_path, anomalies, bounds)
 
-def process_single_file(filename: str, exp_name: str, polygons_object, stitched_images_dir, prev_insights: str = "", anom_ct: int = 0) -> str:
+def process_single_file(filename: str, exp_name: str, polygons_object, stitched_images_dir, prev_insights: str = "", anom_ct: int = 0, make_new_analysis: bool = True) -> str:
     """
     Process a single file, gathering all available data sources and performing analysis.
     
@@ -751,12 +762,12 @@ def process_single_file(filename: str, exp_name: str, polygons_object, stitched_
     item_name = get_item_name_from_filename(filename)
     print(f"Item name: {item_name}")
     bounds = get_polygon_bounds(item_name, polygons_object)
-    north = bounds["max_lat"]+0.01
-    south = bounds["min_lat"]-0.01
-    east = bounds["max_lon"]+0.01
-    west = bounds["min_lon"]-0.01
+    north = bounds["max_lat"]
+    south = bounds["min_lat"]
+    east = bounds["max_lon"]
+    west = bounds["min_lon"]
 
-    if north == -180 or south == 180 or east == -180 or west == 180:
+    if north == -179.99 or south == 179.99 or east == -179.99 or west == 179.99:
         print(f"Error: Invalid bounds for {filename}. Skipping...")
         return prev_insights, anom_ct
     print(f"Bounds for {filename}: N={north}, S={south}, E={east}, W={west}")
@@ -764,102 +775,129 @@ def process_single_file(filename: str, exp_name: str, polygons_object, stitched_
     # Initialize list to store available data URLs
     data_urls = []
     data_descriptions = []
-    api_key_opentopography = os.environ.get("OPENTOPOGRAPHY_API_KEY_1")
-    if not api_key_opentopography:
-        print("Error: OPENTOPOGRAPHY_API_KEY_1 not set in environment variables.")
-        return
-    
-    # 1. Try to get OpenTopo data
 
-    try:
-        dataset = "SRTMGL1"
-        out_path_1 = fetch_raster_tile_from_opentopography(
-            api_key_opentopography, dataset, north, south, east, west, 
-            source="globaldem", 
-            dest=Path(f"{exp_name}/{item_name}_opentopo.tif")
-        )
-        data_url_1 = raster_to_png_data_url(out_path_1)
-        data_urls.append(data_url_1)
-        data_descriptions.append("A high-resolution elevation raster from OpenTopography")
-        print("Successfully retrieved OpenTopo data")
-    except Exception as e:
-        print(f"Warning: Failed to fetch OpenTopo data: {e}, retrying with new API key")
-        api_key_opentopography = os.environ.get("OPENTOPOGRAPHY_API_KEY_2")
-        if not api_key_opentopography:
-            print("Error: OPENTOPOGRAPHY_API_KEY_2 not set in environment variables.")
-            return
+    # Check to see if all the images are already available
+    for img_type in ['lidar', 'visual', 'nir', 'osm']:
+        img_path = f"{exp_name}/{item_name}_{img_type}.png"
+        if not os.path.exists(img_path):
+            print(f"Missing {img_type} image for {item_name}, will download.")
+            data_urls = []
+            data_descriptions = []
+            break
+        else:
+            data_urls.append(png_to_data_url(Path(img_path)))
+            if img_type == 'lidar':
+                data_descriptions.append("A digital terrain model extracted from LiDAR data using cloth simulation")
+            elif img_type == 'visual':
+                data_descriptions.append("A true-color (visual) Sentinel-2 satellite image")
+            elif img_type == 'nir':
+                data_descriptions.append("A near-infrared (NIR) Sentinel-2 band image")
+            elif img_type == 'osm':
+                data_descriptions.append("An OpenStreetMap rendering showing roads, buildings, and other infrastructure")
+            else:
+                data_descriptions.append(f"A {img_type} image")
+            
+            print(f"Found existing {img_type} image for {item_name}, skipping download.")
+    if len(data_urls) == 4:
+        print(f"All required images already available for {item_name}, skipping download.")
+    else:
+            
+        # api_key_opentopography = os.environ.get("OPENTOPOGRAPHY_API_KEY_1")
+        # if not api_key_opentopography:
+        #     print("Error: OPENTOPOGRAPHY_API_KEY_1 not set in environment variables.")
+        #     return
+        
+        # # 1. Try to get OpenTopo data
+
+        # try:
+        #     dataset = "SRTMGL1"
+        #     out_path_1 = fetch_raster_tile_from_opentopography(
+        #         api_key_opentopography, dataset, north, south, east, west, 
+        #         source="globaldem", 
+        #         dest=Path(f"{exp_name}/{item_name}_opentopo.tif")
+        #     )
+        #     data_url_1 = raster_to_png_data_url(out_path_1)
+        #     data_urls.append(data_url_1)
+        #     data_descriptions.append("A high-resolution elevation raster from OpenTopography")
+        #     print("Successfully retrieved OpenTopo data")
+        # except Exception as e:
+        #     print(f"Warning: Failed to fetch OpenTopo data: {e}, retrying with new API key")
+        #     api_key_opentopography = os.environ.get("OPENTOPOGRAPHY_API_KEY_2")
+        #     if not api_key_opentopography:
+        #         print("Error: OPENTOPOGRAPHY_API_KEY_2 not set in environment variables.")
+        #         return
+        #     try:
+        #         dataset = "SRTMGL1"
+        #         out_path_1 = fetch_raster_tile_from_opentopography(
+        #             api_key_opentopography, dataset, north, south, east, west, 
+        #             source="globaldem", 
+        #             dest=Path(f"{exp_name}/{item_name}_opentopo.tif")
+        #         )
+        #         data_url_1 = raster_to_png_data_url(out_path_1)
+        #         data_urls.append(data_url_1)
+        #         data_descriptions.append("A high-resolution elevation raster from OpenTopography")
+        #         print("Successfully retrieved OpenTopo data")   
+        #     except Exception as e:
+        #         print(f"Error: Failed to fetch OpenTopo data with second API key: {e}")
+
+        # 2. Get LiDAR data (already downloaded)
+        # png_file = f"exp/dtm_images_csf/{filename}.png"
+        png_file = f"{stitched_images_dir}/{filename}"
+        data_url_2 = png_to_data_url(png_file)
+        data_urls.append(data_url_2)
+        data_descriptions.append("A digital terrain model extracted from LiDAR data using cloth simulation")
+        shutil.copy(png_file, f"{exp_name}/{item_name}_lidar.png")
+        # 3. Try to get Sentinel-2 Visual and NIR data
         try:
-            dataset = "SRTMGL1"
-            out_path_1 = fetch_raster_tile_from_opentopography(
-                api_key_opentopography, dataset, north, south, east, west, 
-                source="globaldem", 
-                dest=Path(f"{exp_name}/{item_name}_opentopo.tif")
+            visual_png, nir_png = fetch_sentinel_data(
+                north=north,
+                south=south,
+                east=east,
+                west=west,
+                output_dir="sentinel_dls",
+                prefix=filename
             )
-            data_url_1 = raster_to_png_data_url(out_path_1)
-            data_urls.append(data_url_1)
-            data_descriptions.append("A high-resolution elevation raster from OpenTopography")
-            print("Successfully retrieved OpenTopo data")   
+            
+            # Add Visual band
+            data_url_3 = png_to_data_url(visual_png)
+            data_urls.append(data_url_3)
+            data_descriptions.append("A true-color (visual) Sentinel-2 satellite image")
+            shutil.copy(visual_png, f"{exp_name}/{item_name}_visual.png")
+            
+            # Add NIR band
+            data_url_4 = png_to_data_url(nir_png)
+            data_urls.append(data_url_4)
+            data_descriptions.append("A near-infrared (NIR) Sentinel-2 band image")
+            shutil.copy(nir_png, f"{exp_name}/{item_name}_nir.png")
+            print("Successfully retrieved Sentinel-2 data")
         except Exception as e:
-            print(f"Error: Failed to fetch OpenTopo data with second API key: {e}")
-
-    # 2. Get LiDAR data (already downloaded)
-    # png_file = f"exp/dtm_images_csf/{filename}.png"
-    png_file = f"{stitched_images_dir}/{filename}"
-    data_url_2 = png_to_data_url(png_file)
-    data_urls.append(data_url_2)
-    data_descriptions.append("A digital terrain model extracted from LiDAR data using cloth simulation")
-    shutil.copy(png_file, f"{exp_name}/{item_name}_lidar.png")
-    # 3. Try to get Sentinel-2 Visual and NIR data
-    try:
-        visual_png, nir_png = fetch_sentinel_data(
-            north=north,
-            south=south,
-            east=east,
-            west=west,
-            output_dir="sentinel_dls",
-            prefix=filename
-        )
+            print(f"Warning: Failed to fetch Sentinel data: {e}")
         
-        # Add Visual band
-        data_url_3 = png_to_data_url(visual_png)
-        data_urls.append(data_url_3)
-        data_descriptions.append("A true-color (visual) Sentinel-2 satellite image")
-        shutil.copy(visual_png, f"{exp_name}/{item_name}_visual.png")
+        # 4. Try to get OpenStreetMap data
+        try:
+            osm_png = fetch_osm_data(
+                north=north,
+                south=south,
+                east=east,
+                west=west,
+                output_dir="osm_data",
+                prefix=filename
+            )
+            
+            # Add OSM data
+            data_url_osm = png_to_data_url(osm_png)
+            data_urls.append(data_url_osm)
+            data_descriptions.append("An OpenStreetMap rendering showing roads, buildings, and other infrastructure")
+            shutil.copy(osm_png, f"{exp_name}/{item_name}_osm.png")
+            print("Successfully retrieved OpenStreetMap data")
+        except Exception as e:
+            print(f"Warning: Failed to fetch OpenStreetMap data: {e}")
         
-        # Add NIR band
-        data_url_4 = png_to_data_url(nir_png)
-        data_urls.append(data_url_4)
-        data_descriptions.append("A near-infrared (NIR) Sentinel-2 band image")
-        shutil.copy(nir_png, f"{exp_name}/{item_name}_nir.png")
-        print("Successfully retrieved Sentinel-2 data")
-    except Exception as e:
-        print(f"Warning: Failed to fetch Sentinel data: {e}")
-    
-    # 4. Try to get OpenStreetMap data
-    try:
-        osm_png = fetch_osm_data(
-            north=north,
-            south=south,
-            east=east,
-            west=west,
-            output_dir="osm_data",
-            prefix=filename
-        )
-        
-        # Add OSM data
-        data_url_osm = png_to_data_url(osm_png)
-        data_urls.append(data_url_osm)
-        data_descriptions.append("An OpenStreetMap rendering showing roads, buildings, and other infrastructure")
-        shutil.copy(osm_png, f"{exp_name}/{item_name}_osm.png")
-        print("Successfully retrieved OpenStreetMap data")
-    except Exception as e:
-        print(f"Warning: Failed to fetch OpenStreetMap data: {e}")
-    
-    # Only proceed if we have at least the LiDAR data
-    if len(data_urls) < 2:
-        print(f"Error: Not enough data sources available for {filename}")
-        return
-        
+        # Only proceed if we have at least the LiDAR data
+        if len(data_urls) < 2:
+            print(f"Error: Not enough data sources available for {filename}")
+            return
+            
     # Update the analysis prompt based on available data
     def get_prompt_suffix(descriptions: list[str]) -> str:
         # Insert the numbered list of available data sources
@@ -881,7 +919,15 @@ def process_single_file(filename: str, exp_name: str, polygons_object, stitched_
         with open(f"{exp_name}/{item_name}_prompt.txt", "w") as f:
             f.write(f"Analysis for {item_name}\n\n")
             f.write(f"{str(analysis_dict['prompt'])}\n\n")
-        with open(f"{exp_name}/{item_name}_analysis.txt", "w") as f:
+        analysis_name = f"{exp_name}/{item_name}_analysis.txt"
+        if os.path.exists(analysis_name) and make_new_analysis:
+            analysis_name = f"{exp_name}/{item_name}_analysis_1.txt"
+            i = 1
+            while os.path.exists(analysis_name):
+                i += 1
+                analysis_name = f"exp/{item_name}_analysis_{i}.txt"
+                
+        with open(analysis_name, "w") as f:
             f.write(f"{str(analysis_dict['response'])}\n")
         
         # Parse anomalies from the response
@@ -933,8 +979,9 @@ def main():
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     kml_content = extract_kmz_content(kmz_file_path)
 
-    exp_name = "experiment_w_drawing_rects_v2"
-    stitched_images_dir = "stitched_images_v6"
+    exp_name = "experiment_hydro_eng_v4"
+    stitched_images_dir = "stitched_images_v10_hillshade"
+    make_new_analysis = True  # Set to False to skip existing analyses
 
     if not os.path.exists(stitched_images_dir):
         print(f"Directory {stitched_images_dir} does not exist. Please check the path.")
@@ -952,7 +999,7 @@ def main():
     #     lambda x: x.split('.')[0], 
     #     filter(lambda x: x.endswith('.png'), os.listdir('exp/dtm_images_csf'))
     # ))))
-    all_files = list(filter(lambda x: x.endswith('.png'), os.listdir(stitched_images_dir)))
+    all_files = list(filter(lambda x: x.endswith('_stitched.png'), os.listdir(stitched_images_dir)))
 
     # Process each file
     insights = ""
@@ -961,8 +1008,10 @@ def main():
         print(f"Processing file {i+1}/{len(all_files)}: {filename}")
         # Check if the file is already processed
         if os.path.exists(f"{exp_name}/{get_item_name_from_filename(filename)}_analysis.txt"):
-            print(f"Analysis for {filename} already exists, skipping...")
-            continue
+            if not make_new_analysis:
+                # If we are not making new analyses, skip this file
+                print(f"Analysis for {filename} already exists, skipping...")
+                continue
         insights, anom_ct = process_single_file(filename, exp_name, polygons, anom_ct=anom_ct, prev_insights=insights, stitched_images_dir=stitched_images_dir)
         print(f"Processed {filename}, current anomaly count: {anom_ct}")
 
