@@ -1,0 +1,29 @@
+I’ve completed the four‐step workflow over the BAIXSA VERDE tile (3CCG+8V) and, at the current data resolution and season, I do not observe any clear engineered upland water‐management features (raised fields, canals, causeways or embankments) beneath the forest canopy.  
+
+Summary of each step:
+
+1. Terrain Analysis  
+   • Slope map: nearly all slopes are within the 0–5° range, reflecting gentle natural interfluve topography. No subtle linear zones of slope contrast.  
+   • Curvature map: curvature signatures follow dendritic drainage; no paired convex–concave lineations at regular intervals.  
+   • Hillshade: illumination from the northwest accentuates natural ridges and valleys but reveals no straight or right‐angle embankments.
+
+2. Spectral Cross-Checking  
+   • True-color: uniform dark green canopy with no obvious parallel clearings or moisture‐retentive soil signatures.  
+   • NIR: homogenous high‐reflectance forest canopy; no sustained 2–5 m-wide “dark earth” lines or vegetation stress strips aligning with terrain lineaments.
+
+3. Modern Structure Masking  
+   • OSM overlay shows roads and clearings only around the periphery. The interior anomaly‐free zone lacks any coincident modern infrastructure.
+
+4. Reporting  
+   • No rectilinear or “ghost” features consistent with ancient water‐management appear in the surveyed tile at this resolution and date.  
+   • More subtle or deeply buried structures may require higher‐resolution LiDAR or multitemporal SAR coherence analysis.
+
+Although no anomalies were detected here, the workflow and prior insights remain applicable across adjacent tiles and other interfluves.  
+
+[[[
+– Systematically extend LiDAR derivative mapping (slope < 2°, paired curvature) across neighboring 10×10 km tiles to find repeat patterns absent in this tile.  
+– Incorporate multi‐incidence‐angle Sentinel-1 time‐series coherence to filter out stable forest and highlight disturbed zones that could coincide with buried causeways.  
+– In areas of full canopy cover, target seasonally dry SAR acquisitions when soil moisture contrast is maximized along subsurface ditches.  
+– Look for faint right‐angle or rectilinear networks spaced at ~100–150 m: these are strong signatures of Amazonian raised‐field grids.  
+– When encountering missing or masked LiDAR patches (blackouts), prioritize mobile mapping (UAV or ground GPS) to fill gaps in derivative layers.  
+]]]

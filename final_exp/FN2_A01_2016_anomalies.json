@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A subtle N\u2013S oriented low\u2010relief embankment flanked by parallel concavities, approximately 650\u2009m long, running beneath closed canopy. Visible as a faint linear ridge in hillshade composites (panels 2\u20134) and coincident with a narrow band of reduced NIR reflectance (indicative of wetter, darker earth) in the central portion of the tile. The feature lies entirely outside of any OSM\u2010mapped roads or clearings.",
+    "min_lat": -11.8675,
+    "max_lat": -11.86,
+    "min_lon": -54.1965,
+    "max_lon": -54.195
+  },
+  {
+    "description": "An E\u2013W oriented pair of low mounded banks with an intervening shallow channel, about 400\u2009m in total length. Detected as rectilinear curvature anomalies in the DTM (elevations vary by <1\u2009m across the structure), with corresponding vegetation stress in the true\u2010color overlay and slightly elevated moisture signature (darker tone) in the NIR band. Lies ~350\u2009m south of anomaly_1 and is not coincident with any OSM features.",
+    "min_lat": -11.864,
+    "max_lat": -11.861,
+    "min_lon": -54.197,
+    "max_lon": -54.1945
+  }
+]

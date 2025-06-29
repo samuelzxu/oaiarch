@@ -1,0 +1,38 @@
+Below is the detected anomaly and its context.  
+
+```anomalies
+"anomaly_1": {
+    "description": "A gently raised, sinuous linear ridge trending NE–SW through the center of the LiDAR terrain model, approximately 4–6 m wide and standing ~0.5 m above the surrounding low‐relief surface. It exhibits straight segments joined by subtle curves at regular intervals—consistent with an engineered causeway or elevated pathway.",
+    "bounding_box": {
+        "min_lat": -9.30500,
+        "max_lat": -9.30250,
+        "min_lon": -68.28700,
+        "max_lon": -68.28450
+    }
+},
+"anomaly_2": {
+    "description": "A secondary linear feature branching off the main ridge toward the southeast, forming an L‐shaped junction. This branch is narrower (~3 m) and slightly lower (~0.3 m), potentially representing a drainage canal feeding into the main causeway system.",
+    "bounding_box": {
+        "min_lat": -9.30400,
+        "max_lat": -9.30300,
+        "min_lon": -68.28550,
+        "max_lon": -68.28400
+    }
+},
+```
+
+
+Regional & Historical Context  
+The Bujari interfluve lies at the western fringe of the Acre Plain, an area characterized by seasonally inundated forests and terra firme plateaus. Archaeologists have documented raised‐field agriculture, causeways, and canal networks elsewhere in Acre and neighboring Rondônia dating from AD 400–1600. These structures regulated water in flood‐prone environments and supported high‐density settlements of pre‐Columbian societies (e.g., Geoglyph builders).  
+
+Interpretation & Theoretical Significance  
+The sinuous ridge (anomaly_1) and its branching canal (anomaly_2) fit the classic profile of upland causeway–canal systems known from other western Amazonian sites. Their presence here suggests the political and economic reach of these earth‐management strategies extended further west than previously mapped. This challenges the idea that engineered water networks were confined to the central Acre mesa and indicates a more integrated landscape–hydraulic economy across the entire interfluve.  
+
+Actionable Insights  
+[[[
+- Survey other gently sloping upland plateaus in the Bujari region for similar sinuous ridges using hillshade + slope derivatives, focusing on NE–SW orientations.
+- In Sentinel-2 true-color and NIR stacks, look for narrow, linear “dark earth” bands (low NIR reflectance) aligning with LiDAR‐detected ridges to flag buried canals.
+- Cross‐reference any linear LiDAR anomaly with OSM to rule out recent logging roads; ancient causeways often lack associated modern infrastructure.
+- Prioritize ground‐truthing in zones where multiple parallel or branching ridges occur, as these form networked hydraulic systems.
+- Apply this workflow to other Acre interfluves—slope + curvature analysis plus spectral stress indices—to map the full extent of pre‐Columbian water management across the western basin.
+]]]

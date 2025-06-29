@@ -1,0 +1,35 @@
+```anomalies
+"anomaly_1": {
+    "description": "A faint, straight linear feature ~2–4 m wide with a distinct right‐angle bend visible in the LiDAR‐derived hillshade and curvature outputs. This lineament runs roughly NW–SE across the canopy‐covered terrace surface and is partially echoed as a pale line in the true-color image but shows no corresponding moisture anomaly in NIR (no dark‐earth signature). It does not align with any OpenStreetMap roads or clearings.",
+    "bounding_box": {
+        "min_lat": -1.6240,
+        "max_lat": -1.6200,
+        "min_lon": -56.2240,
+        "max_lon": -56.2200
+    }
+},
+```
+
+Report:
+
+1. Regional Context  
+   The Barreirinha interfluve (c. 200–300 m a.s.l.) in the upper Rio Trombetas basin hosts numerous documented pre-Columbian raised‐fields, canals, and embankments, generally arranged in rectilinear grids oriented N–S and E–W. These features exploit local microtopography to manage seasonal inundation and improve soil drainage on plateaus between tributaries.
+
+2. Interpretation of the Anomaly  
+   – Orientation & Morphology: The NW–SE bearing and single right‐angle kink differ from the canonical N/S–E/W orthogonal networks of known Amazonian raised‐field systems.  
+   – Spectral Signature: Absence of a moisture‐retentive “dark earth” anomaly in the NIR band suggests minimal organic enrichment, arguing against pre-Columbian anthropogenic soils.  
+   – Modern Masking: The feature is absent from OpenStreetMap but could represent an uncharted logging skidder track, pipeline corridor, or other recent low‐impact infrastructure rather than an ancient canal or causeway.
+
+3. Implications for Theory & Workflow  
+   – This case underscores the importance of combining slope‐curvature filters with a spectral test for dark‐earth signals to distinguish modern lineations from genuine earthworks.  
+   – It cautions that right‐angle bends alone are not definitive proof of ancient planning—cross‐checking with NIR‐derived moisture stress and mapped infrastructure layers is essential.  
+   – Although unremarkable archaeologically here, the anomaly demonstrates that faint under‐canopy lineaments persist in LiDAR data and must be screened systematically.
+
+4. Actionable Insights  
+[[[
+- When mapping other interfluves, isolate slope‐curvature lineaments 2–5 m wide and immediately cross‐reference with NIR indices (e.g., NDVI, moisture stress) to flag genuine dark-earth soil anomalies.
+- Focus attention on rectilinear grids oriented N–S / E–W spaced ~20–30 m apart; parallel ridge networks at this spacing are strong predictors of raised-field complexes.
+- Exclude or annotate uncharted modern skidder tracks by checking for single-segment lineaments lacking accompanying spectral soil signatures.
+- Look for clusters of right angles forming closed shapes—modern features tend to be isolated or follow natural relief, whereas ancient complexes form repetitive parcel edges.
+- Prioritize zones where curvature minima coincide with linear NIR‐dark streaks: these are higher confidence candidates for buried canals or ditches.
+]]]

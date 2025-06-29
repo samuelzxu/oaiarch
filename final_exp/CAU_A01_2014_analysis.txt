@@ -1,0 +1,47 @@
+```anomalies
+"anomaly_1": {
+    "description": "A rectilinear grid of shallow embankments and parallel channels forming roughly 120 × 120 m blocks. On the DTM hillshade this appears as paired ridges ~20–30 m apart running E–W and intersected by N–S lines, consistent with raised‐field agriculture.",
+    "bounding_box": {
+        "min_lat": -3.7498,
+        "max_lat": -3.7483,
+        "min_lon": -48.4828,
+        "max_lon": -48.4812
+    }
+},
+"anomaly_2": {
+    "description": "A linear ditch or causeway ~130 m long trending E–W, connecting to a short N–S segment ~50 m long. It shows a subtle concave‐plan curvature in low‐relief terrain, with a corresponding moisture anomaly in the NIR band but no match on the OSM layer.",
+    "bounding_box": {
+        "min_lat": -3.7494,
+        "max_lat": -3.7491,
+        "min_lon": -48.4835,
+        "max_lon": -48.4819
+    }
+},
+```
+
+Explanation and Context:
+
+1. Regional Knowledge  
+   Paragominas lies in a network of mid‐interfluve plateaus where pre‐Columbian groups engineered upland agricultural systems beyond riverbanks. Most documented raised fields and canals occur along floodplain valleys; finding them on higher ground (>150 m elevation) extends the known ecological range of Terra Preta communities here.
+
+2. Historical Significance  
+   The rectilinear grid (anomaly_1) closely resembles raised‐field complexes of the Xingu headwaters, dated ca. AD 800–1300. These platforms allowed seasonal cropping and drainage in otherwise well‐drained, leached soils. The linear feature (anomaly_2) may be a causeway or collector ditch, channeling excess rainfall into storage basins or adjacent floodplain ponds.
+
+3. Theoretical Impacts  
+   • Challenges the view that large agro‐engineering in Amazon interfluves was limited to major riverine zones.  
+   • Suggests broad adoption of minor‐valley hydrology control, supporting hypotheses of region‐wide polder‐style systems.  
+   • May prompt re‐evaluation of soil‐amendment strategies: alignment of dark‐earth deposits with these features could redefine settlement intensity and trade networks in eastern Pará.
+
+4. Actionable Insights for Future Surveys:
+[[[
+- Systematically target gently sloping (<2°) interfluve plateaus for concave‐plan curvature signals in multi‐azimuth hillshades to isolate buried canals.
+- Look for small‐scale (20–40 m) rectangular platforms in Terra Preta zones; clusters often indicate raised‐field agriculture.
+- Overlay NIR moisture‐stress indices on curvature outputs—linear moisture anomalies frequently trace subcanopy ditches or embankments.
+- Mask NW–SE features longer than 200 m against OSM roads to filter out modern tracks; genuine pre‐Columbian grids usually form smaller (<150 m) rectilinear blocks.
+- Apply this combined slope-and-moisture workflow to adjacent interfluves (e.g., Jari-Trombetas, Uatumã) to map similarly hidden agricultural infrastructures.
+]]]
+
+5. Recommended Next Steps  
+   • Ground‐truth the anomalies with targeted coring for soil stratigraphy and Terra Preta signatures.  
+   • Conduct high‐resolution drone LiDAR surveys focused on the anomaly bounds to refine feature morphology and connectivity.  
+   • Integrate remote sensing with local ethnobotanical studies to correlate legacy soil fertility with past cultivation techniques.

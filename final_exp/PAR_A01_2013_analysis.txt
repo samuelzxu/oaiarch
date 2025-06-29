@@ -1,0 +1,11 @@
+After applying the four‐step protocol to the Cachoeira interfluve imagery, I find no evidence of buried, pre‐Columbian water‐management features. The prominent linear and rectilinear patterns visible in the DTM, Sentinel-2 visual, and NIR composites all correspond to modern clearings, plantation edges, and recent access tracks. These align precisely with the OpenStreetMap vectors and thus can be masked out as recent infrastructure.
+
+No anomalies meeting the criteria for raised fields, canals, ditches, embankments or causeways under continuous forest canopy were detected in this sector.
+
+[[[
+– When surveying other interfluves, prioritize less‐disturbed forest blocks where Sentinel-2 bands show moisture contrasts but no visible forest‐edge signatures.  
+– In densely deforested areas, first mask out clear‐cut boundaries (which often produce false positives) using high‐resolution land‐cover or OSM layers before searching LiDAR derivatives for subtle anthropogenic relief.  
+– Apply azimuthally rotated hillshade (±15°) in low‐slope (<2°) zones to reveal faint, orthogonal concave/convex patterns indicative of canals or field grids.  
+– Cross‐validate any DTM‐derived right‐angle intersections with NIR moisture anomalies during wet and dry seasons; true archaeological features often maintain dampness longer than the surrounding natural terrain.  
+– Extend these methods to neighboring interfluves (e.g., Tarauacá, Envira) but always screen out modern linear features first and focus on unregistered ridges and hollows deeper in intact canopy.  
+]]

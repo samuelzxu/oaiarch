@@ -1,0 +1,22 @@
+After a systematic analysis of the supplied datasets over the Bujari interfluve (–9.3115, –68.2670), I find no clear evidence, at this location and scale, for engineered upland water‐management structures (raised fields, linear canals, drainage ditches, embankments or causeways) buried beneath intact canopy. Below is a concise summary of each step:
+
+1. Terrain Analysis  
+   - Hillshade and curvature reveal strongly dissected terrain with slopes mostly > 5 degrees; low‐relief (< 2°) surfaces are confined to narrow valley bottoms.  
+   - No rectilinear or orthogonal ridge–furrow pairs stand out. All linear features visible in the DTM hillshade align closely with modern roadcuts or natural drainage.
+
+2. Spectral Cross‐Checking  
+   - The true‐color Sentinel‐2 band is uniformly greens and browns; there are no persistent dark‐earth tone strips.  
+   - The NIR band shows high reflectance in canopy gaps but no systematic, linear moisture anomalies or stress lines that coincide with sub‐canopy linears.
+
+3. Modern Structure Masking  
+   - OpenStreetMap data clearly marks a winding road through the scene. All linear features visible correspond spatially to this modern infrastructure or to natural gullies.
+
+Because no unambiguous anthropogenic water‐management features were detected here, I recommend shifting the search to areas with lower relief and closer to known “terra preta” patches uphill from watercourses. Focus on grid cells with flatter interfluvial swales (< 2°), especially where OSM shows no cutting or access.
+
+[[[
+– Target valley flats or gentle saddles (slope < 2°) within 500 m of confirmed dark‐earth patches; these settings often host paired ridges and furrows.  
+– In future LiDAR tiles, apply edge‐detection filters tuned for 2–5 m-wide linears spaced ~ 50–150 m apart.  
+– Cross‐reference low‐NIR strips flanked by high‐NIR values to flag potential ridge–canal complexes hidden under canopy.  
+– Use a 500 m buffer from OSM roads/clearings to isolate features fully under closed forest.  
+– Prioritize areas immediately upslope and downslope of documented anthropogenic soil deposits for off‐axis canal nodes and feeder ditches.
+]]]

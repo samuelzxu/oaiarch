@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A rectilinear, low\u2010relief embankment or causeway running almost due north\u2013south. In the hillshade it appears as a subtle raised line ~4\u2009m wide and >2\u2009km long, unnaturally straight compared to the surrounding microtopography. Its linearity and consistent cross\u2010section suggest deliberate earth\u2010moving for transport or raised walkway.",
+    "min_lat": -9.163,
+    "max_lat": -9.144,
+    "min_lon": -63.014,
+    "max_lon": -63.009
+  },
+  {
+    "description": "A crossing east\u2013west drainage ditch or canal dissecting the N\u2013S embankment at roughly right angles. Visible as a shallow, linear depression ~2\u2009m wide and ~800\u2009m long. In the NIR, the feature aligns with a narrow band of slightly elevated moisture signature (\u2018dark earth\u2019) and vegetation stress.",
+    "min_lat": -9.148,
+    "max_lat": -9.147,
+    "min_lon": -63.014,
+    "max_lon": -63.005
+  },
+  {
+    "description": "A curvilinear channel following an S\u2010shape near the southern third of the tile. ~50\u2009m across at its widest, it appears as a gently cut embankment (or ponded area) in the DTM and shows a brighter tone in hillshade\u2014consistent with moisture\u2010retaining earthen works, perhaps for fish\u2010ponds or sediment traps.",
+    "min_lat": -9.1595,
+    "max_lat": -9.157,
+    "min_lon": -63.011,
+    "max_lon": -63.007
+  }
+]

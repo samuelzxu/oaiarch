@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A straight, north\u2013south\u2013oriented pair of low-relief linear ridges flanking a shallow channel, ~250 m long and <1 m relief. Morphology and spacing (~10\u201315 m apart) match small-scale ditch\u2013embankment water\u2010management features documented elsewhere in interfluves.",
+    "min_lat": -9.758,
+    "max_lat": -9.756,
+    "min_lon": -67.646,
+    "max_lon": -67.6435
+  },
+  {
+    "description": "A near-rectangular enclosure (~120 m\u00d780 m), with faintly elevated banks on the east and west sides and a slight inward basin, suggestive of a raised\u2010field plot or small reservoir.",
+    "min_lat": -9.7575,
+    "max_lat": -9.7565,
+    "min_lon": -67.648,
+    "max_lon": -67.6465
+  },
+  {
+    "description": "A short, east\u2013west terrace (~100 m long) set into a micro\u2010valley saddle, relief <0.5 m, aligned with anomaly_1 and likely part of the same canal network.",
+    "min_lat": -9.757,
+    "max_lat": -9.7562,
+    "min_lon": -67.644,
+    "max_lon": -67.6425
+  }
+]

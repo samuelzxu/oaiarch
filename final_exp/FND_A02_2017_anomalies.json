@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A paired, parallel linear depression\u2013ridge\u2013depression set trending NE\u2013SW, roughly 600 m in length. In the hillshade it appears as two faint concave lines flanking a slight convex spine. The feature is rectilinear, oriented ~045\u00b0, and shows uniform spacing (~20 m) between the parallel depressions\u2014classic of canal\u2013causeway complexes.",
+    "min_lat": -12.27,
+    "max_lat": -12.264,
+    "min_lon": -55.1,
+    "max_lon": -55.093
+  },
+  {
+    "description": "A cluster of low mounded rectangles (approximately 4 \u00d7 3 cells), each 15\u201325 m across, aligned roughly E\u2013W, suggestive of raised agricultural fields. In curvature outputs they register as alternating convex (mound) and concave (furrow) elements. On the NIR band they coincide with slightly darker (moister) patches within the forest interior, consistent with water\u2010retentive terra preta soils.",
+    "min_lat": -12.279,
+    "max_lat": -12.274,
+    "min_lon": -55.102,
+    "max_lon": -55.095
+  }
+]

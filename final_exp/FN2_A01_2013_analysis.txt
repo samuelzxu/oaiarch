@@ -1,0 +1,41 @@
+```anomalies
+"anomaly_1": {
+    "description": "A straight, north–south trending, low‐relief embankment or causeway approximately 280 m long and 4–6 m wide. On the DTM slope map it shows a subtle, linear convex ridge with <1° slope contrast. The curvature derivative highlights it as a small positive ridge, and hillshade reveals a faint shadow line. In the NIR band there is a narrow, darker tone along the ridge axis, indicative of higher moisture retention or organic‐rich soil (‘dark earth’). The feature is not coincident with any mapped modern road or trail on OpenStreetMap.",
+    "bounding_box": {
+        "min_lat": -11.8695,
+        "max_lat": -11.8410,
+        "min_lon": -54.1965,
+        "max_lon": -54.1940
+    }
+},
+"anomaly_2": {
+    "description": "A rectilinear raised‐field platform, roughly 120 m by 60 m, aligned east–west. On the slope derivative it appears as a flat plateau set 0.8–1.2 m above surrounding terrain. Curvature highlights a convex margin on its northern and southern edges. In the NIR image the platform interior registers a uniform, darker signature compared to adjacent forest, suggesting enriched anthropogenic soil or moisture‐retentive fill. No modern parcel boundaries or infrastructure coincide with this footprint.",
+    "bounding_box": {
+        "min_lat": -11.8680,
+        "max_lat": -11.8600,
+        "min_lon": -54.1980,
+        "max_lon": -54.1955
+    }
+},
+```
+
+Contextual Interpretation:
+1. Geographic and Historical Background  
+   - The Feliz Natal interfluve (between the Juruena and Aripuanã rivers) has long been suspected as a zone of pre-Columbian earth‐engineering but dense canopy has masked upland features.  
+   - Regional surveys have documented monumental geoglyphs on floodplains; our findings extend the evidence of earthworks into terra firme uplands, suggesting integrated networks of roads and raised fields for seasonal water management.
+
+2. Fit with Broader Theories  
+   - These linear causeways and raised platforms echo practices recorded across Amazonia’s southern fringes (e.g., Xingu and Tapajós regions) but are here observed >200 km inland.  
+   - Their presence supports models of highly organized, landscape‐scale agrarian systems, challenging views that upland Amazonian soils were too poor for intensive macro‐scale cultivation.
+
+3. Advancement of Current Knowledge  
+   - Demonstrates that forest‐canopy LiDAR and spectral integration can detect <1 m relief features beyond riverine geoglyph zones.  
+   - Suggests that upland water‐management networks were more widespread, potentially linking settlements across interfluves in a region previously thought peripheral.
+
+[[[
+- When reviewing LiDAR DTMs in other Amazonian interfluves, prioritize detection of linear convex ridges <1° slope over 200 m in length; these may represent ancient causeways.
+- Use curvature maps to isolate small raised platforms (<2 m relief) with rectilinear margins; cross‐check with NIR dark signatures for anthropogenic soils.
+- Exclude any features coincident with recent roads or plantation edges from OSM to avoid false positives.
+- Focus surveys 150–300 m from modern riverbanks in closed‐canopy zones, where upland raised fields often occur just beyond floodplain levees.
+- Integrate multi‐date NIR composites (dry vs. wet season) to enhance moisture‐linked “dark earth” detection beneath canopy.
+]]]

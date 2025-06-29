@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A suite of six parallel, gently convex ridges with intervening concave troughs, each ridge ~0.5m high, 150\u2013250m long and spaced ~20\u201330m apart. Orientation is roughly NE\u2013SW. The pattern and dimensions are consistent with paired raised\u2010field agriculture and associated drainage canals.",
+    "min_lat": -9.306,
+    "max_lat": -9.305,
+    "min_lon": -68.2955,
+    "max_lon": -68.2935
+  },
+  {
+    "description": "A single straight, shallow concave channel ~180m long, <1m deep, trending E\u2013W. Curvature filtering isolates it as a second\u2010order concavity; hillshade shows sharply defined edges. NIR composites show persistent higher moisture retention along its axis.",
+    "min_lat": -9.3035,
+    "max_lat": -9.3032,
+    "min_lon": -68.296,
+    "max_lon": -68.293
+  }
+]

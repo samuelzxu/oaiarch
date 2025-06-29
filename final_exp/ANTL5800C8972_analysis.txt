@@ -1,0 +1,24 @@
+After a multi‐step review of the datasets provided, I find no clear evidence of buried, engineered upland water‐management structures in this small parcel of the Bujari interfluve:
+
+1. Terrain Analysis  
+   • The hillshade and slope derivatives show only smoothly rolling ridges and narrow drainage ways consistent with natural lateritic hills. There are no straight, rectilinear banks or uniform embankment crests.  
+   • Curvature maps fail to highlight any sustained linear convex or concave features longer than a few tens of meters. What appear to be shallow depressions follow natural micro‐topography rather than grid or channel patterns.
+
+2. Spectral Cross-Checking  
+   • The Sentinel-2 true-color bands reveal a highly heterogeneous canopy with no systematic patches of darker “terra preta” or edaphic dark earth.  
+   • The NIR band shows normal moisture and vegetation vigor variation. There is no elongated spectral anomaly aligned with any subtle terrain linearity.
+
+3. Modern Structure Masking  
+   • The OpenStreetMap overlay shows no modern roads, plantations, clearings, or infrastructure in the area of interest, so there is no risk of confusing recent features with archaeological remains.
+
+Conclusion  
+At the scale and resolution of these inputs, no candidate raised fields, canals, ditches, embankments or causeways can be reliably identified. This does not preclude the presence of anthropogenic features at finer scales or buried deeper than the LiDAR ground return can penetrate, but nothing stands out above background geomorphic variation here.
+
+[[[
+To improve future detection of subtle upland earthworks in Amazonian interfluves, consider:
+- Employing multi‐angle hillshade composites (e.g. sun azimuths at 45°, 135°, 225°, 315°) and automated linear feature detection to boost rectilinear contrasts.
+- Integrating LiDAR intensity returns and full‐waveform metrics to distinguish lateritic subsoil horizons altered by human amendment (terra preta signatures).
+- Co-registering very‐high-resolution UAV imagery with ground‐penetrating radar or electrical resistivity profiles in test transects to calibrate remote‐sensing signals of buried ditches or embankments.
+- Systematically sampling NIR–SWIR indices across known earthwork complexes to derive spectral endmembers that can then be used in supervised classification of broader tracts.
+- Focusing on the margins of interfluvial ridges where anthropogenic soils and water channels converge, as local communities often situated fields on slightly elevated terraces. 
+]]]

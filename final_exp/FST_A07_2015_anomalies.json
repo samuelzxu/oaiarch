@@ -1,0 +1,16 @@
+[
+  {
+    "description": "An elongated, NE\u2013SW trending linear ridge visible in the DTM hillshade. It extends approximately 180\u2009m across the tile and shows uniform width (~3\u20134\u2009m) and raised shoulders, indicative of a canal or causeway cut into the upland surface for water management.",
+    "min_lat": -1.6084,
+    "max_lat": -1.6065,
+    "min_lon": -56.1665,
+    "max_lon": -56.1638
+  },
+  {
+    "description": "A cluster of small, circular to sub-rectangular low-relief platforms (approx. 12\u201320\u2009m diameter) arrayed along and immediately adjacent to the linear ridge. These house-mound platforms appear in near-parallel alignment and may represent associated domestic or storage structures flanking the canal.",
+    "min_lat": -1.6078,
+    "max_lat": -1.6068,
+    "min_lon": -56.166,
+    "max_lon": -56.165
+  }
+]

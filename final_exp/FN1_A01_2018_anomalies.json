@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A sinuous, north\u2013south\u2013oriented linear depression approximately 300 m long and 8\u201312 m wide, visible in the lower quarter of the LiDAR hillshade as a subtle concavity flanked by low convex berms. In the NIR composite it corresponds to a narrow band of elevated moisture (bright tone) and in the true\u2010color imagery to a linear zone of lusher, darker foliage consistent with wet\u2010filled canal sediments or infilled ditch. No matching feature appears on the OpenStreetMap layer, and it lacks modern road or logging tags.",
+    "min_lat": -11.868,
+    "max_lat": -11.863,
+    "min_lon": -53.832,
+    "max_lon": -53.83
+  },
+  {
+    "description": "A paired set of parallel convex ridges, each ~500 m long and spaced ~30 m apart, trending roughly NW\u2013SE. On the slope derivative they form a low\u2010slope (\u22645\u00b0) corridor with alternating positive and negative curvature, indicative of a raised\u2010field platform system. The NIR band shows these ridges as slightly drier (darker) than surrounding terrain, and the true\u2010color mosaic reveals subtle vegetation stress aligned with their outlines. Absent from OSM, they also lack any modern intersections.",
+    "min_lat": -11.855,
+    "max_lat": -11.852,
+    "min_lon": -53.832,
+    "max_lon": -53.831
+  }
+]

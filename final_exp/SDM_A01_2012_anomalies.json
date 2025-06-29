@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A cluster of eight gently convex, parallel ridges trending roughly NE\u2013SW (bearing ~30\u00b0). Each ridge measures approximately 150\u2013200 m in length, 8\u201312 m in width and rises by 0.3\u20130.6 m above the adjacent ground. Spacing between ridges averages 10\u201315 m. The arrangement and rectilinear alignment contrast sharply with the surrounding dendritic natural micro\u2010topography. In the NIR composite these ridges appear as persistent low\u2010reflectance (dark) bands, indicative of higher soil moisture\u2014consistent with buried water\u2010management channels or raised cultivation beds.",
+    "min_lat": -23.36,
+    "max_lat": -23.354,
+    "min_lon": -45.08,
+    "max_lon": -45.0745
+  },
+  {
+    "description": "A small, roughly rectangular platform (approx. 50 m \u00d7 30 m) with a leveled summit standing ~0.4 m above the adjacent forest floor. Corners appear near right angles, and the feature is aligned to the cardinal axes. In the hillshade the platform casts a consistent shadow outline, and in the NIR band it retains slightly higher moisture (darker tone) than the surrounding forest\u2014suggesting a compacted anthropogenic soil horizon.",
+    "min_lat": -23.3535,
+    "max_lat": -23.3527,
+    "min_lon": -45.078,
+    "max_lon": -45.0765
+  }
+]

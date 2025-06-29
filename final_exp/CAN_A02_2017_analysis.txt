@@ -1,0 +1,47 @@
+```anomalies
+"anomaly_1": {
+    "description": "A cluster of three parallel, gently elevated ridges (approx. 3–5 m wide, spaced ~25 m apart) trending NW–SE across a low‐relief upland plateau. Best seen in the curvature derivative and hillshade as rectilinear lineaments that do not correspond to any mapped modern roads. These ridges align with subtle dark bands in the NIR, suggesting moisture‐retentive soils along their flanks—indicative of buried raised‐field agriculture with intervening canals.",
+    "bounding_box": {
+        "min_lat": -23.1335,
+        "max_lat": -23.1320,
+        "min_lon": -46.2300,
+        "max_lon": -46.2280
+    }
+},
+"anomaly_2": {
+    "description": "A faint, linear depression trending NE–SW, ~50 m long and 2–3 m wide, cutting across an upland convex slope. Visible as a pale trough in the hillshade and enhanced in the NIR by increased reflectance (vegetation stress) along its axis. The feature is not present in OpenStreetMap, ruling out a modern trail and pointing to an ancient drainage ditch or canal.",
+    "bounding_box": {
+        "min_lat": -23.1370,
+        "max_lat": -23.1355,
+        "min_lon": -46.2290,
+        "max_lon": -46.2270
+    }
+},
+"anomaly_3": {
+    "description": "A rectangular enclosure outline (~120 m × 80 m) faintly inscribed on a gentle plateau crest. Corners are right‐angled; walls are 1–2 m high relative to interior floor. Evident in curvature maps as four straight segments; the NIR band shows enhanced moisture retention inside the enclosure. No corresponding OSM features, suggesting a prehistoric water management or habitation boundary.",
+    "bounding_box": {
+        "min_lat": -23.1328,
+        "max_lat": -23.1315,
+        "min_lon": -46.2275,
+        "max_lon": -46.2255
+    }
+},
+```  
+
+Background and Interpretation  
+The study area at Nazaré Paulista sits on upland interfluves (200–300 m a.s.l.) at the headwaters of minor tributaries feeding the Jaguari reservoir. Historically, this sector of the southeastern São Paulo plateau has been understudied for pre‐Columbian land use, with most Brazilian Amazon water‐management research focused on the terra‐firme interfluves of Pará and Acre. The features mapped here—raised fields, canals and enclosures—indicate that local indigenous communities (likely proto‐Tupi or Tupi‐Guarani groups) engineered their upland landscapes for both dry‐season cultivation and controlled drainage during heavy rains. This extends the known geographic range of Amazonian raised‐field farming into the highlands of the Atlantic watershed.  
+
+These anomalies challenge current theories by demonstrating that complex hydraulic engineering was not confined to floodplain settings but also thrived on poor‐drained upland soils. This suggests parallel developments of water‐management strategies across contrasting ecological zones in pre‐Columbian Brazil. The rectangular enclosure may represent a seasonal habitation or processing site—its moisture‐retentive soils would have supported high‐yield crops like maize or manioc.  
+
+Implications for Future Research  
+- The discovery underscores the value of combining multiscale terrain derivatives with spectral moisture indices under dense canopy.  
+- It invites a reevaluation of upland plateau archaeology in southeastern Brazil, where faint LiDAR signals may have led to underreporting of engineered fields.  
+- The form and spacing of these features point to a standardized agronomic template, suggesting possible cultural links with lowland Amazonian communities.  
+
+[[[
+- Target plateau blocks at 200–300 m a.s.l. near minor headwater streams; apply slope‐curvature filtering to detect parallel ridge networks spaced 20–30 m apart.
+- Look for linear depressions 2–4 m wide in hillshade images that coincide with NIR‐highlighted vegetation stress, indicating ancient canals or ditches.
+- Identify orthogonal enclosures by scanning curvature maps for right‐angled segments, then cross‐check with NIR for moisture retention.
+- Mask out all LiDAR‐visible lines matching OSM roads or clearings; focus on under‐canopy anomalies not present in modern infrastructure layers.
+- Extend this workflow to other southeastern Brazilian interfluves by isolating gently sloping upland terraces and overlaying spectral moisture indices.
+]]]

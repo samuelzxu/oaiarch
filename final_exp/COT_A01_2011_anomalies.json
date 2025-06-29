@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A subtle rectilinear low\u2010relief platform network (~100\u2009m \u00d7 60\u2009m) with sharp orthogonal edges aligned N\u2013S/E\u2013W, evident in hillshade and curvature minima. NIR imagery reveals enhanced moisture retention and vegetation anomalies along its margins, consistent with dark\u2010earth soils and raised\u2010field embankments.",
+    "min_lat": -9.4639,
+    "max_lat": -9.4625,
+    "min_lon": -58.8634,
+    "max_lon": -58.8622
+  },
+  {
+    "description": "A linear ditch or canal feature (~3\u20135\u2009m wide, ~200\u2009m long) trending roughly E\u2013W, marked by a consistent curvature trough. Co\u2010registered NIR band shows a narrow band of reduced reflectance (vegetation stress) coinciding with the depression, suggesting anthropogenic excavation and long\u2010term moisture retention.",
+    "min_lat": -9.4672,
+    "max_lat": -9.4658,
+    "min_lon": -58.8622,
+    "max_lon": -58.861
+  }
+]

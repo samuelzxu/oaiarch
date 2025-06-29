@@ -1,0 +1,51 @@
+```anomalies
+"anomaly_1": {
+    "description": "A faint, rectilinear enclosure of low-relief embankments forming an approximate 80 × 50 m rectangle. On the DTM hillshade this appears as four subtle, straight-line scarps meeting at near–right angles. In the NIR overlay the internal fill shows slightly elevated moisture retention (lighter tone), and there is an orthogonal pair of ditches on the south and east sides that align with the embankments. No corresponding road or plantation is mapped in OSM.",
+    "bounding_box": {
+        "min_lat": -3.75020,
+        "max_lat": -3.74870,
+        "min_lon": -48.48390,
+        "max_lon": -48.48240
+    }
+},
+"anomaly_2": {
+    "description": "An east–west linear depression approximately 180 m long and 1–2 m wide. In slope and curvature derivatives it stands out as a low-angle trough; in the NIR band it is a corridor of higher moisture retention (lighter grayscale), suggesting an infilled ditch or canal. It lies entirely away from any modern track on the OSM layer.",
+    "bounding_box": {
+        "min_lat": -3.74850,
+        "max_lat": -3.74820,
+        "min_lon": -48.48500,
+        "max_lon": -48.48300
+    }
+},
+"anomaly_3": {
+    "description": "A short north–south segment (≈60 m) intersecting anomaly_2 at a right angle, forming an L-shaped junction. Visible as a subtle curving berm in the DTM curvature map, with corresponding vegetation-stress signature in the NIR band. Likely part of a small-scale canal network or causeway leading into the main ditch.",
+    "bounding_box": {
+        "min_lat": -3.74900,
+        "max_lat": -3.74840,
+        "min_lon": -48.48420,
+        "max_lon": -48.48380
+    }
+},
+```  
+
+DISCUSSION  
+1. Regional Context  
+   • Paragominas sits on an interfluve between the Capim and Gurupi rivers, an area recently shown to host scattered geoglyph clusters and water‐management earthworks dating to ca. AD 1000–1400.  
+   • Most known systems lie closer to river margins; these upland features would extend the settlement and engineering footprint farther into terra firme than previously documented.  
+
+2. Historical Interpretation  
+   • Small orthogonal ditches and embankments suggest a community-scale irrigation or drainage system, comparable in layout to those around the Upper Xingu but on a reduced scale.  
+   • The rectangular enclosure (anomaly_1) could mark a domestic or communal plaza bounded by water channels, hinting at social organization around water control in uplands.  
+
+3. Theoretical Implications  
+   • Challenges the model that Amazonian water‐management was river‐centric. These interfluve installations indicate pre‐Columbian populations engineered even slight relief to optimize soil moisture and microtopography.  
+   • Supports a more widespread, decentralized pattern of earth‐engineered upland villages, which may have been connected by causeways and minor canals.  
+
+4. Actionable Insights  
+[[[
+- When screening additional interfluvial LiDAR tiles, apply a combined slope (<2°) and curvature filter to highlight faint rectilinear embankments; focus on areas of uniform relief away from mapped waterways.
+- Overlay Sentinel-2 NIR anomalies on these lineaments; look especially for lighter (higher moisture) signatures that deviate from the surrounding canopy reflectance.
+- Exclude all features coincident with current OSM roads or plantation blocks; genuine earthworks will seldom overlap modern infrastructure in terra firme.
+- Prioritize ground reconnaissance (foot survey, UAV‐GPR) at the corners and junctions of detected L‐shaped or rectangular features to verify ditch-fill stratigraphy.
+- Scale this workflow out to adjacent 10 × 10 km tiles to test for a network of satellite villages linked by minor canals beyond major geoglyph belts.
+]]]

@@ -1,0 +1,16 @@
+After processing the LiDAR‐derived DTM derivatives (slope, curvature, hillshade), overlaying Sentinel‐2 VIS/NIR bands, and masking known modern roads and clearings from OpenStreetMap, I find no compelling evidence for rectilinear or linear upland water‐management features (raised fields, canals, causeways) buried beneath closed‐canopy forest at the specified location.  
+
+Key observations:  
+• DTM Hillshade & Derivatives – The terrain is uniformly low‐relief; no long, narrow ridges or right‐angle turns stand out once natural microtopography (small erosional channels, root‐throw mounds) is filtered out.  
+• Spectral Cross‐Check – NIR and visible composites show no persistent “dark earth” moisture signatures or vegetation stress aligned along any subtle linear terrain anomalies.  
+• Modern Masking – All subtle linear traces visible in the LiDAR correspond either to minor animal trails or known logging‐era access lines recorded in OSM.  
+
+Conclusion: No engineered upland features meeting the archaeological criteria are evident in this immediate strip of imagery.
+
+[[[
+– In dense‐forest interfluves, expand the search window to at least 1 × 1 km tiles to capture longer runs of causeways or field systems that may lie just outside narrower strips.  
+– Use multi‐temporal NIR composites (dry vs. wet season) to amplify subtle moisture‐retentive signatures in anthropogenic soils.  
+– Apply a moving‐window linear detector (e.g., Radon transform) on DTM hillshade to highlight low‐contrast straight lines before manual inspection.  
+– Cross‐validate LiDAR‐detected ridges with UAV‐borne multispectral surveys at 5 cm resolution to resolve fine‐scale soil and vegetation anomalies.  
+– Prioritize areas downslope of known terra preta patches, as engineers often built raised fields adjacent to fertile soils to optimize water management and agricultural zones.  
+]]]

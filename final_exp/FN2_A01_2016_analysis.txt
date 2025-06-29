@@ -1,0 +1,36 @@
+```anomalies
+"anomaly_1": {
+    "description": "A subtle N–S oriented low‐relief embankment flanked by parallel concavities, approximately 650 m long, running beneath closed canopy. Visible as a faint linear ridge in hillshade composites (panels 2–4) and coincident with a narrow band of reduced NIR reflectance (indicative of wetter, darker earth) in the central portion of the tile. The feature lies entirely outside of any OSM‐mapped roads or clearings.",
+    "bounding_box": {
+        "min_lat": -11.8675,
+        "max_lat": -11.8600,
+        "min_lon": -54.1965,
+        "max_lon": -54.1950
+    }
+},
+"anomaly_2": {
+    "description": "An E–W oriented pair of low mounded banks with an intervening shallow channel, about 400 m in total length. Detected as rectilinear curvature anomalies in the DTM (elevations vary by <1 m across the structure), with corresponding vegetation stress in the true‐color overlay and slightly elevated moisture signature (darker tone) in the NIR band. Lies ~350 m south of anomaly_1 and is not coincident with any OSM features.",
+    "bounding_box": {
+        "min_lat": -11.8640,
+        "max_lat": -11.8610,
+        "min_lon": -54.1970,
+        "max_lon": -54.1945
+    }
+}
+```  
+
+Context and Interpretation  
+The Feliz Natal interfluve region of Mato Grosso is known to host pre‐Columbian earthwork complexes attributed to Late Holocene agrarian societies. These cultures engineered extensive upland water‐management systems—raised fields, canals and causeways—to mitigate seasonal inundation and to enrich soils via dark earth (‘terra preta’) formation. The two anomalies identified here align with published distributions of similar features in adjacent catchments, extending the known footprint of engineered hydrological networks beyond previously mapped areas.
+
+Anomaly_1’s north–south orientation and parallel ditch‐embankment morphology fit models of feeder canals channelling water into higher‐elevation raised‐field grids. Anomaly_2’s east–west alignment suggests a cross‐link or overflow channel connecting primary trunks. Their modest relief (<1 m) and forest canopy masking explain why these have until now escaped detection in earlier surveys.
+
+These findings reinforce the concept of interfluve‐scale coordination among Amazonian agrarian groups, challenging earlier opinions that upland zones were minor or sporadic in earthwork development. Instead, they point to a more systematic landscape‐scale management where networks of parallel canals and cross‐connectors modulated water distribution across seasonally dynamic terrain.
+
+Actionable insights  
+[[[
+- In upland interfluves, focus LiDAR‐derived curvature anomaly detection within slope‐<2° micro‐valley saddles, targeting rectilinear traces spaced 50–200 m apart.
+- Overlay low‐NIR (band 8) maps on DTM‐identified linear features to prioritize targets showing persistent moisture retention beneath canopy.
+- Mask zones within 500 m of OSM roads or recent clearings to minimize logging‐track false positives.
+- Apply oriented edge‐detection filters at 0°/90° on smoothed curvature layers to isolate paired ditch–embankment signatures.
+- When anomalies extend >400 m with relief <1 m, prioritize ground‐truthing for potential canal networks rather than isolated field risers.
+]]]

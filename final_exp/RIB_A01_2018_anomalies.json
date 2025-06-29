@@ -1,0 +1,16 @@
+[
+  {
+    "description": "On the hillshade-derived DTM, there is a cluster of five parallel, low\u2010relief ridges running roughly NW\u2013SE, each 10\u201315 m apart and 200\u2013250 m long. In the curvature map these ridges register as subtle convex linements against the otherwise gently undulating interfluve surface (<1.5\u00b0 slope). The same alignment is faintly echoed in the NIR composite as a narrow band of increased moisture retention (brighter tones), and in the visual band by slightly darker canopy tone, suggesting underlying organic\u2010rich, anthropogenic soils or infilled canals. Cross\u2010checking with OpenStreetMap shows no modern trails or logging roads along this lineament.",
+    "min_lat": -9.931,
+    "max_lat": -9.9285,
+    "min_lon": -67.5735,
+    "max_lon": -67.571
+  },
+  {
+    "description": "Approximately 300 m south of anomaly_1, the DTM curvature highlights a rectangular hollow about 90 \u00d7 60 m, aligned NE\u2013SW, with raised margins on two sides. Hillshade accentuates the straight edges of the depression, inconsistent with natural drainage. In the NIR band this depression appears as a persistent high\u2010reflectance zone, indicating wetter substrate or charcoal\u2010enriched dark earth. No corresponding feature exists in the OSM infrastructure layer, ruling out recent excavation or road works.",
+    "min_lat": -9.9305,
+    "max_lat": -9.9295,
+    "min_lon": -67.573,
+    "max_lon": -67.572
+  }
+]

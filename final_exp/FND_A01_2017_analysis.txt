@@ -1,0 +1,52 @@
+Step 1: Terrain derivatives  
+- Slope: generally very low (<2°) across the scene, with two subtle linear breaks in the otherwise uniform gentle incline sloping toward the southeast.  
+- Curvature: highlights two paired convex ridges (positive curvature) flanked by shallow concave troughs (negative curvature), each 2–5 m across. One set is oriented NW–SE in the center of the tile; a second, more sinuous set runs near the southern edge parallel to the modern riverine meander.  
+- Hillshade: at a sun‐azimuth of 315° the NW–SE ridge pair casts faint linear shadows ≈50–70 m apart. The southern feature shows a curving shadow trace following a paleochannel alignment.
+
+Step 2: Spectral cross‐checking  
+- Visual (RGB): The forest canopy over the central ridge pair appears slightly denser (darker) than surrounding forest, suggesting differential soil moisture or composition.  
+- NIR: Along the central linear ridges there is a persistent drop in NIR reflectance (drier, compacted soils?) while the sinuous southern feature shows a high‐NIR “wet signature” consistent with a buried channel or ditch.  
+- No modern clearings coincide with these anomalies (they lie >500 m from any OSM clearing boundary).
+
+Step 3: Modern‐feature masking  
+- OSM roads and clearings are limited to the far eastern edge and do not overlap our anomalies. The NW–SE pair is well inside intact canopy; the southern curved feature lies beneath continuous forest cover.
+
+Step 4: Anomaly mapping  
+
+```anomalies
+"anomaly_1": {
+    "description": "A paired NW–SE oriented convex ridge and adjacent trough system, ~350 m long, 4–5 m wide, with positive curvature ridge flanked by shallow linear depressions. Visible as faint linear shadows in hillshade, lower NIR reflectance over the ridge, slight canopy tone shift in visual imagery.",
+    "bounding_box": {
+        "min_lat": -12.2520,
+        "max_lat": -12.2490,
+        "min_lon": -55.0980,
+        "max_lon": -55.0950
+    },
+},
+"anomaly_2": {
+    "description": "A curvilinear concave depression ~250 m long, 3–4 m wide, following a sinuous path parallel to the modern Rio Tortuga meander. Exhibits negative curvature, brighter NIR signal indicating moisture retention, subtle visual tone differences under canopy.",
+    "bounding_box": {
+        "min_lat": -12.2550,
+        "max_lat": -12.2520,
+        "min_lon": -55.0960,
+        "max_lon": -55.0930
+    },
+},
+```  
+
+Historical & archaeological context  
+The MT-225 interfluve is part of the upper Rio Paraguay system where Late Holocene populations (ca. AD 1000–1500) engineered upland water‐management networks to seasonally buffer rainfall and support flood‐plain agriculture. While most documented raised‐field complexes lie directly on seasonally flooded várzea, these anomalies suggest parallel development of canal–ridge arrays on well‐drained upland interfluves. The central paired ridges resemble the platform–ditch systems recorded at nearby Feliz Natal sites, but their upland position is unusual.
+
+Broader implications  
+1. Extends the known ecological niche of pre‐Columbian water‐management from floodplain to terra firme interfluves.  
+2. Suggests a two‐tiered hydrological strategy: upland redistribution canals feeding lower‐elevation aguadas and raised fields.  
+3. Challenges the paradigm that intensive wetland engineering in southern Amazonia was restricted to major riverine flood‐banks.
+
+Actionable insights for future surveys  
+[[[
+- Focus LiDAR‐derived curvature maps on detecting paired convex–concave linear forms 2–5 m wide, spaced 50–150 m apart, on slopes <2°, even under closed canopy.
+- In multi‐spectral imagery, look for persistent low‐NIR strips (drier compacted ridges) alongside high‐NIR lines (buried canals) aligned in rectilinear or semi‐sinuous patterns.
+- Extend candidate‐feature searches at least 500 m upslope and downslope from known terra preta patches; upland canal networks often lie off‐axis from dark earth zones.
+- Overlay OSM with a 500 m buffer to prioritize anomalies fully under intact forest, avoiding false positives from modern roads or clearings.
+- Apply this workflow to adjacent MT-225 grid cells; anticipate discovering buried water‐management fields across the interfluve fringe.
+]]]

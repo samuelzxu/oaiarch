@@ -1,0 +1,47 @@
+```anomalies
+"anomaly_1": {
+    "description": "A subtle, linear ridge trending NE–SW with an average width of ~3–5 m and an apparent length of ~160 m. It stands out as a low‐relief, rectilinear embankment cutting across minor drainage divides in the hillshade and is paralleled by vegetation stress in the NIR band, suggesting a buried canal or water‐retaining channel.",
+    "bounding_box": {
+        "min_lat": -9.29660,
+        "max_lat": -9.29510,
+        "min_lon": -68.29510,
+        "max_lon": -68.29360
+    }
+},
+"anomaly_2": {
+    "description": "A roughly rectangular, raised‐platform feature measuring approximately 60 m by 45 m. It appears as a very subtle plateau in the DTM hillshade, with slightly enhanced moisture (darker tones) in the NIR overlay, consistent with anthropogenic dark‐earth soils used for intensive cultivation or habitation.",
+    "bounding_box": {
+        "min_lat": -9.29600,
+        "max_lat": -9.29550,
+        "min_lon": -68.29470,
+        "max_lon": -68.29420
+    }
+},
+"anomaly_3": {
+    "description": "A cluster of small, circular depressions (~8–12 m diameter) aligned parallel to the NE–SW ridge (anomaly_1). These are visible as negative curvatures in the DTM and correspond to slight vegetation anomalies in NIR, suggesting platform‐house remains associated with the canal system.",
+    "bounding_box": {
+        "min_lat": -9.29620,
+        "max_lat": -9.29580,
+        "min_lon": -68.29490,
+        "max_lon": -68.29390
+    }
+},
+```
+
+Discussion and Context  
+The location near Bujari in the State of Acre sits in a classic upland interfluve environment of western Amazonia. Previous archaeological work has documented floodplain raised fields and earthworks in várzea contexts, but these upland structures extend the known distribution of pre‐Columbian water‐management systems into terra firme settings. The rectilinear canal (anomaly_1) would have intercepted seasonal overland flow, channeling excess rainwater into side ponds or distributary lanes. The adjacent raised platform (anomaly_2) likely served as an agricultural terrace or habitation mound, protected from saturated soils. The small circular hollows (anomaly_3) fit the pattern of platform‐house footings reported at other Acre interfluvial sites.
+
+Broader Historical Implications  
+This assemblage echoes engineering feats documented at interfluves in southwestern Amazonia (e.g., Acre knolls and Llanos de Moxos upland fields), but our detection in Bujari demonstrates that complex soil management and canopy‐cover cultivation were not confined to large riverbanks. It challenges floodplain‐centric models by showing that terra firme societies engineered microtopography and managed catchment hydrology on gentle slopes, suggesting more densely settled populations and greater ecological manipulation across the Amazon’s uplands than previously assumed.
+
+Actionable Insights  
+These observations yield a transferable workflow for other forested interfluves:
+[[[
+- Prioritize NE–SW trending linear ridges of 3–6 m width in LiDAR hillshades as potential canals; cross‐reference with local curvature minima.
+- Look for subtle plateaus ~50–80 m across in slope‐filtered DTMs for raised fields or habitation platforms, especially where NIR reflectance is depressed.
+- Identify small, evenly spaced circular depressions alongside canals; these often mark platform‐house foundations.
+- Apply combined slope‐curvature thresholding (e.g., <2° slope + negative curvature) to isolate low‐relief anthropogenic features beneath canopy.
+- Exclude modern infrastructure via OSM layers, then extend analysis outward at ~200–300 m intervals to map entire canal‐field networks.
+]]]
+
+These general rules can be appended to remote‐sensing protocols in other Amazonian interfluves or similarly forested upland regions.

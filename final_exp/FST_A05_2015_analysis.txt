@@ -1,0 +1,35 @@
+```anomalies
+"anomaly_1": {
+    "description": "A prominent, slightly sinuous NNW–SSE trending raised causeway or ridge visible in the DTM. This linear feature is consistently 2–3 m wide, stands ~0.3–0.5 m above surrounding forest floor, and extends for approximately 1.8 km. It cuts across natural micro‐drainage, indicating intentional routing.",
+    "bounding_box": {
+        "min_lat": -1.6873,
+        "max_lat": -1.6693,
+        "min_lon": -56.3086,
+        "max_lon": -56.3062
+    }
+},
+"anomaly_2": {
+    "description": "A rectilinear grid of orthogonal embankments and shallow ditches forming at least three contiguous field blocks. Each block measures roughly 100–150 m per side. The embankments show paired convex‐concave curvature in cross‐section, consistent with paired raised‐field construction for water‐management.",
+    "bounding_box": {
+        "min_lat": -1.6835,
+        "max_lat": -1.6765,
+        "min_lon": -56.3088,
+        "max_lon": -56.3051
+    }
+}
+```
+
+
+Context and Interpretation:
+• Regional History: This locale lies within the Amazon interfluve belt where Late Holocene societies engineered upland agrarian landscapes. Similar raised‐field and causeway complexes have been documented around Lake Janauacá and the Trombetas headwaters.  
+• Functional Role: The NNW–SSE causeway likely served as a ceremonial axis or major foot/hand‐carrying route, while the orthogonal field blocks functioned as water‐controlled cultivation platforms in otherwise leached soils.  
+• Theoretical Implications: These upland water‐management works extend the known envelope of terra preta–associated engineering from floodplains into higher relief. They challenge the floodplain‐centric model of pre‐Columbian Amazonian agriculture and support a more nuanced, interfluve‐based subsistence strategy.
+
+Actionable Insights:
+[[[
+- Target gently convex ridge crests with slope <2° for linear anomalies: compute curvature on LiDAR DTM to highlight paired ridge/trough morphologies.
+- Look for narrow (2–5 m) moisture‐dark lines in dry‐season NIR composites aligned with subtle terrain ridges as potential buried canals.
+- In OpenStreetMap‐masked areas with no modern tracks, prioritize low‐backscatter coherence zones in Sentinel-1 across seasons to isolate ancient causeways.
+- Extend this workflow to adjacent 10×10 km tiles, focusing on micro‐elevational transitions (convex‐concave) in interfluves up to 2 km from known ridge axes.
+- Note clusters of rectilinear embankments spanning 100–150 m grid cells as high‐priority indicators of pre‐Columbian field networks.
+]]]

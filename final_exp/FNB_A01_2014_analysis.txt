@@ -1,0 +1,9 @@
+After applying a multi‐step workflow (multi‐azimuth hillshade/slope/curvature analysis, NIR/visible spectral cross-checking, and modern‐feature masking via OSM) over the Travessão Central interfluve, all of the linear and rectilinear signatures visible in the LiDAR‐derived hillshade coincide precisely with modern deforestation and plantation parcels (as confirmed by Sentinel-2 visual/NIR and the OpenStreetMap layer). No upland water‐management structures of pre-Columbian origin (raised fields, canals, embankments, causeways or ditches) were detected beneath the canopy.
+
+[[[
+– When DTM‐derived linear anomalies perfectly align with modern land‐use polygons (visible in both Sentinel‐2 and OSM), they should be excluded from archaeological consideration.
+– Prioritize areas of continuous forest canopy where deforestation is minimal; ancient earthworks are best preserved under intact canopy.
+– In heavily fragmented interfluves like this one, focus LiDAR surveys on the interior of large forest blocks (>1 km²) rather than on mosaic agricultural fronts.
+– Use change‐detection on time‐series of high‐resolution imagery to distinguish enduring soil‐moisture anomalies (indicative of dark earth) from seasonal crop marks.
+– Always cross‐reference multi‐scale datasets: very faint, sub‐0.5 m TPI anomalies that do not correspond to modern breaks in canopy are the strongest candidates for buried features.
+]]

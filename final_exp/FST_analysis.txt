@@ -1,0 +1,32 @@
+Based on the LiDAR‐derived hillshade and our processing:
+
+1. Terrain derivatives (slope/curvature) reveal a subtle sinuous channel feature in the southwest quadrant that does not correspond to any modern road on the OSM basemap. Its gently undulating planform and constant width (~3–5 m) suggest a buried canal or drainage ditch.  
+2. In the northeast quadrant there is a small rectilinear embankment cluster—four roughly orthogonal segments forming a partial enclosure (each ca. 20–30 m long). No modern plantation boundaries or tracks align with these.  
+
+Drawing on Amazonian interfluve archaeology, these align with late‐Holocene earthworks documented in Acre and Rondônia—showing the extension of upland water‐management beyond floodplain terra preta zones. The ditch’s sinuous alignment matches seasonal runoff control systems, and the embankment cluster may mark a raised‐field platform or small habitation terrace. Their presence here challenges the idea that prehistoric Amazonian hydraulic works were restricted to large river margins, suggesting a far wider, more distributed network of upland field systems.  
+
+anomalies  
+"anomaly_1": {  
+    "description": "A gently sinuous buried ditch or canal, 3–5 m wide, trending NW–SE, with regular curvature not found in natural drainage. Visible as a low‐relief linear trough in the hillshade.",  
+    "bounding_box": {  
+        "min_lat": -0.0025,  
+        "max_lat":  0.0015,  
+        "min_lon": -0.0025,  
+        "max_lon": -0.0005  
+    }  
+},  
+"anomaly_2": {  
+    "description": "A small rectilinear embankment cluster—four orthogonal segments forming a partial enclosure (20–30 m sides), likely representing raised‐field platform edges or a minor habitation terrace.",  
+    "bounding_box": {  
+        "min_lat":  0.0010,  
+        "max_lat":  0.0030,  
+        "min_lon":  0.0010,  
+        "max_lon":  0.0025  
+    }  
+},  
+
+[[[  
+- Focus LiDAR‐based linear feature extraction on low‐relief, sinuous channels in upland interfluves—these often mark buried drainage canals.  
+- Search for small rectilinear clusters of embankments (20–30 m segments) at terrace margins, even where no modern land use is evident.  
+- Combine multi‐azimuth hillshade composites with NIR–SWIR spectral indices to isolate moisture anomalies over subtle earthworks in forested areas.  
+]]]

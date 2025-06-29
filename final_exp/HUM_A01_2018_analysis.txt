@@ -1,0 +1,38 @@
+```anomalies
+"anomaly_1": {
+    "description": "A straight, north–south–oriented pair of low-relief linear ridges flanking a shallow channel, ~250 m long and <1 m relief. Morphology and spacing (~10–15 m apart) match small-scale ditch–embankment water‐management features documented elsewhere in interfluves.",
+    "bounding_box": {
+        "min_lat": -9.7580,
+        "max_lat": -9.7560,
+        "min_lon": -67.6460,
+        "max_lon": -67.6435
+    }  
+},
+"anomaly_2": {
+    "description": "A near-rectangular enclosure (~120 m×80 m), with faintly elevated banks on the east and west sides and a slight inward basin, suggestive of a raised‐field plot or small reservoir.",
+    "bounding_box": {
+        "min_lat": -9.7575,
+        "max_lat": -9.7565,
+        "min_lon": -67.6480,
+        "max_lon": -67.6465
+    }  
+},
+"anomaly_3": {
+    "description": "A short, east–west terrace (~100 m long) set into a micro‐valley saddle, relief <0.5 m, aligned with anomaly_1 and likely part of the same canal network.",
+    "bounding_box": {
+        "min_lat": -9.7570,
+        "max_lat": -9.7562,
+        "min_lon": -67.6440,
+        "max_lon": -67.6425
+    }  
+},
+```
+
+
+[[[
+- Focus LiDAR curvature and edge filters on slope-<2° saddles to isolate paired ditch–embankment traces spaced 10–20 m apart.
+- Prioritize NIR (band 8) overlays on those linear segments to flag persistent moisture anomalies indicating buried canals.
+- Scan for small orthogonal terraces (<150 m) in micro‐valley intersections as potential lateral water‐distribution arms.
+- Apply a 500 m buffer against modern roads and clearings, then run oriented (0°/90°) edge detection on smoothed curvature to reduce false positives.
+- Use the combined signature of low relief (<1 m), length >200 m, rectilinear alignment, and NIR moisture retention to target canal networks rather than individual raised fields.
+]]

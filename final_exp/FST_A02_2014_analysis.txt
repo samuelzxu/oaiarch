@@ -1,0 +1,44 @@
+```anomalies
+"anomaly_1": {
+    "description": "A broad, rectangular bench with sharp, rectilinear scarps on its western and southern edges. Measures approximately 200 m × 150 m. Visible in the hillshade as a low-relief plateau with paired convex (embankment) and concave (ditch) curvature signatures framing a flat surface.",
+    "bounding_box": {
+        "min_lat": -1.6028,
+        "max_lat": -1.6004,
+        "min_lon": -56.1845,
+        "max_lon": -56.1820
+    }
+},
+"anomaly_2": {
+    "description": "A sinuous linear feature running north–south over ~650 m. In the DTM it appears as a consistent 4–6 m wide depression; in the NIR band it corresponds to a darker moisture-retentive line. Likely a canal or drainage ditch connecting small headwater swales.",
+    "bounding_box": {
+        "min_lat": -1.6075,
+        "max_lat": -1.6015,
+        "min_lon": -56.1840,
+        "max_lon": -56.1830
+    }
+},
+"anomaly_3": {
+    "description": "A series of three parallel low ridges, each ~2–3 m high and spaced ~25 m apart, aligned NW–SE. Slightly elevated in the DTM and exhibiting corresponding vegetation stress lines in the NIR. May represent raised-field beds for upland agriculture.",
+    "bounding_box": {
+        "min_lat": -1.6095,
+        "max_lat": -1.6070,
+        "min_lon": -56.1850,
+        "max_lon": -56.1825
+    }
+},
+```
+
+Discussion and Context  
+The region around 9RW8+HH São João, Oriximiná lies on an upland interfluve between tributaries of the Trombetas River. While classical Amazonian studies have focused on floodplain terra preta and large riverine earthworks, recent LiDAR surveys in western Pará have revealed sophisticated upland water‐management systems.  
+
+Anomaly 1’s rectilinear bench fits the pattern of peripheral embankment-ditch pairs documented at sites like Monte Alegre and Tapajós, suggesting controlled bench-terrace construction. Anomaly 2 appears as a canal linking small drainage divides, aligning with known networks that captured and redistributed rainfall in otherwise well-drained upland soils. Anomaly 3’s parallel ridges strongly resemble raised-field agriculture documented at Kuhikugu and other interfluve locales, where prehistoric communities elevated and aerated soils for year-round cultivation.
+
+These findings corroborate emerging theories that Amazonian uplands supported dense, engineered landscapes, challenging older models that confined complex hydraulic engineering to floodplain zones. By documenting linear canals and raised beds beneath closed canopy, we advance a more nuanced understanding of regional land-use complexity and pre-Columbian demographic dynamics.
+
+Geographically, this sector of the Trombetas interfluve sits on nutrient-poor Oxisols; the detection of moisture-retentive canals and raised fields implies intentional soil enrichment (likely associated with dark-earth formation) and water retention strategies. Historically, this may represent a local variant of the Tapajós tradition, with radiocarbon dates elsewhere in Oriximiná pointing to intensive occupation between 1000 BP and 500 BP.
+
+[[[
+- Note the presence of a large, flat bench at approximately (-1.6016, -56.1833) that could indicate an ancient platform or terrace system.
+- The N–S sinuous depression from (-1.6075, -56.1840) to (-1.6015, -56.1830) suggests a canal or drainage ditch; trace similar lines upslope of minor tributaries in other interfluves.
+- Watch for series of parallel ridges ~25 m apart in LiDAR hillshade composites—these may mark raised-field beds for upland agriculture.
+]]]!=

@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A small cluster of gently raised, rectilinear platforms (approx. 30\u201360\u2009m across) arranged in a loose grid, visible as subtle positive\u2010relief blocks in the hillshade and concave\u2010plan curvature, with corresponding lower NIR reflectance (moisture retention) and faint soil\u2010darkening in the true\u2010color image. These features sit off modern roads and align with known Terra Preta zones.",
+    "min_lat": -9.876,
+    "max_lat": -9.874,
+    "min_lon": -67.287,
+    "max_lon": -67.285
+  },
+  {
+    "description": "A linear concave trace, ~300\u2009m long and aligned N\u2013S, showing a shallow channel in the DTM derivatives. It corresponds to a narrow band of higher moisture stress on the NIR band and is unlinked to any OpenStreetMap roadway, suggesting a buried canal or drainage ditch.",
+    "min_lat": -9.878,
+    "max_lat": -9.874,
+    "min_lon": -67.287,
+    "max_lon": -67.286
+  }
+]

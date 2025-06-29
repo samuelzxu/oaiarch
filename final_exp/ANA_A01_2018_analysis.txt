@@ -1,0 +1,34 @@
+Following the four‐step workflow, here is my assessment:
+
+1. Terrain Analysis  
+   – The hillshade and curvature maps reveal a single, very straight, rectilinear feature enclosing a large block (~1.2 km × 1.0 km). Its edges are uniformly linear (N–S and E–W), with a very subtle 0.3–0.6 m berm on the inside of the boundary. Slope across the interior is almost uniformly <5°.  
+   – No other rectilinear or parallel ridge/ditch systems appear; the rest of the relief is dominated by random small‐scale natural hummocks.
+
+2. Spectral Cross-Checking  
+   – The true-color (VIS) and NIR imagery show a subtle but persistent contrast along the same boundary line—NIR reflectance is ≈10–15% lower than surrounding forest, indicating higher moisture retention or recent soil disturbance.  
+   – No clusters of “dark earth” anomalies or vegetation stress aligned with any sub‐parallel ridges or potential canals.
+
+3. Modern Structure Masking  
+   – Overlaying OpenStreetMap shows no mapped roads or farm boundaries exactly matching this block, but the geometry and scale are entirely consistent with modern logging concessions or demarcated “forest management units” in Pará.  
+   – No evidence of secondary tracks or small access roads within the boundary, suggesting limited recent ground use other than the initial cut line.
+
+Conclusion:  
+The only clear anomaly is a large, rectilinear enclosure, almost certainly a modern forest‐management or logging compartment boundary rather than a pre‐Columbian hydraulic structure. No engineered canals, raised fields, or causeways of archaeological origin are detected within the surveyed area.
+
+```anomalies
+```
+(no pre‐Columbian water‐management structures identified)
+
+Historical/Archaeological Context  
+Belterra and its surrounding interfluves are known for both deep‐time indigenous earthworks (e.g., liana‐anchored raised fields and small canal feeder systems) and very recent large‐scale forestry operations. The rectilinear boundary here matches the pattern of late-20th-century concession lines, not the irregular, organic canal networks documented on adjacent ridges.
+
+Implications for Theory  
+The absence of any small‐scale, parallel ditch–ridge systems in this block suggests that large swaths of interfluve forests may never have been engineered for intensive wet‐season agriculture, corroborating models that pre-Columbian earth-management was highly site-specific (tied to nutrient‐rich floodplains) rather than evenly distributed across interfluves.
+
+[[[
+– Integrate automated linear‐feature classifiers to first flag and mask modern concession or survey boundaries: these are characterized by kilometer‐scale, perfect N–S/E–W rectilinearity and uniform berm heights of ~0.3–1 m.
+– For detecting genuine ancient canals, focus curvature filters on lineaments 150–300 m long with curvature magnitude >|0.002 m⁻¹| and slope <10°, then cross-check against the masked map of modern logging blocks.
+– Use multi-temporal NIR differencing (dry season minus wet season) to highlight moisture‐retaining soils in canopy gaps; true dark-earth signatures will persist beyond one season.
+– In new interfluve blocks, first apply an OSM-based or concession-registry mask, then run automated ridge-spacing (15–30 m) and ridge-height (>0.5 m) filters to reveal clusters of parallel raised fields.
+– Wherever possible, corroborate LiDAR curvature results with world-approved forestry atlas layers to exclude modern management boundaries before archaeological interpretation.
+]]]

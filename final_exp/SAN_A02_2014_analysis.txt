@@ -1,0 +1,42 @@
+```anomalies
+"anomaly_1": {
+    "description": "A cluster of low‐relief, parallel ridges approximately 5–10 m wide, spaced roughly 20–30 m apart, trending NE–SW. These ridges appear as subtle, evenly spaced linear highs on the DTM, cutting across natural micro‐drainage. In the NIR they correspond to slightly darker (lower reflectance) bands—consistent with moister ‘dark earth’ substrates beneath forest. No modern road or trail overlays this feature on OSM.",
+    "bounding_box": {
+        "min_lat": -3.2995,
+        "max_lat": -3.2955,
+        "min_lon": -54.8865,
+        "max_lon": -54.8825
+    }
+},
+"anomaly_2": {
+    "description": "A roughly rectangular platform, about 100 m × 60 m, with raised margins and a flat interior. On the hillshade it shows crisp, straight edges and corners. Vegetation vigor in the visual/NIR imagery is subtly lower on the platform interior, suggesting anthropogenic soil accumulation or moisture retention. This feature lies well within closed canopy and is not intersected by any mapped plantation boundary.",
+    "bounding_box": {
+        "min_lat": -3.2915,
+        "max_lat": -3.2895,
+        "min_lon": -54.8835,
+        "max_lon": -54.8805
+    }
+},
+"anomaly_3": {
+    "description": "A linear trench or ditch, approximately 500 m long and 3–4 m wide, oriented NW–SE. It appears as a narrow sunken line on the DTM and corresponds to a linear moisture‐enhanced signature in the NIR band. The alignment does not coincide with any modern access path on OSM, and its profile suggests intentional excavation rather than natural gully formation.",
+    "bounding_box": {
+        "min_lat": -3.3022,
+        "max_lat": -3.3002,
+        "min_lon": -54.8892,
+        "max_lon": -54.8872
+    }
+},
+```  
+
+Discussion and Context:
+The Travessão 115 area at Belterra lies in the interfluvial zone between the Tapajós tributaries, historically under‐surveyed for complex earthworks compared to major riverbanks. Late Holocene occupations in the nearby Belterra phase (circa 1,000 BP) are known for ridge‐and‐canal systems, but most documented examples cluster along seasonal floodplains. The discovery of rectilinear platforms and parallel ridges well inland suggests that pre‐Columbian communities carried engineered upland field systems and water‐management features far beyond major floodplain corridors.
+
+These anomalies align with emerging models of “forest‐savannah mosaic" agro‐engineering, indicating that interfluvial populations constructed raised planting platforms, drainage networks, and causeways to buffer seasonal moisture deficits. If confirmed by ground survey, they would challenge the dominant theory that forest uplands were sparsely managed before European contact. Instead, this evidence supports a revision toward widespread anthropogenic landscape transformation across Amazonian interfluves.
+
+Actionable Insights:
+[[[
+- At coordinates near (-3.2995, -54.8845), the parallel ridge cluster suggests a raised‐field system—similar raster analysis can be applied to adjacent interfluves to locate comparable ridge spacing.
+- The rectangular platform around (-3.2905, -54.8820) may mark a habitation or ceremonial enclave—search for water access features downslope using stripped‐hillshade derivatives.
+- The linear ditch between (-3.3022, -54.8892) and (-3.3002, -54.8872) highlights the utility of NIR moisture anomalies; incorporate multi‐temporal NIR differencing to isolate subtle ancient canals under dense canopy.
+- Extend this combined DTM+spectral workflow along parallel transects, focusing on breaks in canopy texture and micro‐topographic rectilinearity to systematically chart interfluvial earthworks.
+]]]

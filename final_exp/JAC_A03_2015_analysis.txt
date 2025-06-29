@@ -1,0 +1,31 @@
+```anomalies
+"anomaly_1": {
+    "description": "A conspicuous, rectilinear, north–south–trending raised ridge or embankment approximately 350–400 m in length, 15–20 m in width and rising ~0.3–0.6 m above the surrounding low‐relief terrain. The feature shows a subtle paired linear depression immediately to its east, suggesting it may have functioned as a canal–embankment system for water management. It is extremely subtle in the visual Sentinel-2 data but is high-contrast in the LiDAR‐derived hillshade and correlates with a narrow band of slightly reduced NIR reflectance (possible soil moisture retention or dark‐earth signature).",
+    "bounding_box": {
+        "min_lat": -8.5250, 
+        "max_lat": -8.5150,
+        "min_lon": -62.9260,
+        "max_lon": -62.9180
+    }
+},
+```  
+
+Analysis and Historical Context  
+1. Terrain derivatives (slope, curvature, hillshade) highlight a linear, low‐relief embankment cutting across the natural micro‐topography of the Candeias do Jamari interfluve. Its straightness and paired depression are not typical of natural drainage or root‐throw mounds.  
+2. In the true‐color Sentinel-2 scene the feature is nearly invisible under closed canopy, but in the NIR band it appears as a faint, darker stripe—consistent with higher moisture retention or organic‐rich “Terra Preta” soils along engineered canals.  
+3. There is no modern infrastructure in the OpenStreetMap layer at this location, ruling out contemporary roads or pipelines.  
+
+This anomaly likely represents a segment of a pre‐Columbian earthwork network. Archaeological surveys in Rondônia have documented extensive raised‐field and canal systems radiating out from settlements. The orientation and paired ditch–embankment morphology closely mirror those described at nearby sites along the Jamari River floodplain, yet this lies deeper in the upland interfluve—expanding the known geographic extent of water‐management investments by ancient Amazonians.  
+
+Implications for Current Theory  
+• Challenges the assumption that intensive earthworks in western Amazonia were confined to seasonally inundated floodplains.  
+• Suggests complex hydrological engineering extended well into terra firme forests, possibly to support upland agroforestry or fish‐trap systems.  
+• May indicate greater regional integration of upland and floodplain communities via water‐management networks.  
+
+[[[
+- In heavily forested interfluves, always layer LiDAR‐derived hillshade with slope and curvature maps; linear, low‐relief embankments will “pop” where vegetation conceals them from optical sensors.
+- Look for paired depression–ridge signatures: canals often occur immediately adjacent to raised fields or causeways.
+- Cross‐check subtle NIR darkening against LiDAR anomalies to flag potential Terra Preta or moisture‐retentive soils.
+- Exclude any feature coincident with OSM roads/plantations to focus on likely pre‐Columbian structures.
+- Apply this pipeline (hillshade + curvature + NIR overlay) to other Amazonian interfluves where modern deforestation is minimal; similar buried networks may await discovery.
+]]]

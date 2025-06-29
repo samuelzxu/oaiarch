@@ -1,0 +1,23 @@
+[
+  {
+    "description": "Subtle, straight embankment running NW\u2013SE, approximately 2\u20133 m wide and ~140 m long. Visible in the DTM hillshade as a low\u2010relief linear ridge with paired shallow flanking troughs. The feature has no correspondence on the modern OpenStreetMap layer and is repeated faintly as a darker line in the NIR composite.",
+    "min_lat": -9.376,
+    "max_lat": -9.3748,
+    "min_lon": -62.9966,
+    "max_lon": -62.9962
+  },
+  {
+    "description": "Right\u2010angle corner of two embankments forming an L\u2010shaped enclosure, each arm measuring ~80 m. The convex embankments stand ~0.3 m above surrounding terrain in the DTM and align with slight NIR vegetation stress (darker tone) along their axes.",
+    "min_lat": -9.3726,
+    "max_lat": -9.372,
+    "min_lon": -62.9964,
+    "max_lon": -62.9959
+  },
+  {
+    "description": "N\u2013S trending moisture\u2010dark line in the NIR band, ~4 m wide and ~120 m long, co\u2010located with a subtle linear depression in the terrain curvature map. Likely a buried drainage canal or water\u2010collection ditch with anthropogenic soil signature (\u201cdark earth\u201d) promoting higher moisture retention.",
+    "min_lat": -9.3755,
+    "max_lat": -9.3747,
+    "min_lon": -62.9963,
+    "max_lon": -62.99605
+  }
+]

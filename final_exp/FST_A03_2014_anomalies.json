@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A faint rectilinear grid of low-relief ridges and associated shallow ditches, visible in the hillshade DTM as straight, orthogonal lineaments spaced approximately 120\u2013150 m apart running north\u2013south and east\u2013west. These alignments coincide with linear zones of slightly reduced NIR reflectance\u2014suggesting retained moisture and possible anthropogenic dark earth\u2014and are not matched by any roads or trails in the OpenStreetMap layer.",
+    "min_lat": -1.605,
+    "max_lat": -1.595,
+    "min_lon": -56.178,
+    "max_lon": -56.168
+  },
+  {
+    "description": "An X-shaped intersection of two diagonal embankments or causeways visible in the DTM hillshade, one trending NW-SE (~315\u00b0) and the other NE-SW (~45\u00b0). In the NIR band these alignments appear as linear corridors of darker pixels, consistent with moisture\u2010retentive fills. No modern infrastructure corresponds to these features in OSM.",
+    "min_lat": -1.6045,
+    "max_lat": -1.598,
+    "min_lon": -56.18,
+    "max_lon": -56.172
+  }
+]

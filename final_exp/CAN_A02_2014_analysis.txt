@@ -1,0 +1,43 @@
+```anomalies
+"anomaly_1": {
+    "description": "A straight, low‐relief embankment approximately 230 m long and 4–6 m wide, trending NW–SE. It exhibits a paired depression on its northeast flank, consistent with a small canal or drainage ditch running parallel to the raised feature. The embankment appears as a linear bright ridge in the hillshade and curvature maps, and corresponds to a narrow band of reduced NIR reflectance (darker tone) indicating higher soil moisture or anthropogenic soil enrichment. No modern road or path is mapped at this location in OSM.",
+    "bounding_box": {
+        "min_lat": -23.1372,
+        "max_lat": -23.1348,
+        "min_lon": -46.2311,
+        "max_lon": -46.2279
+    }
+},
+"anomaly_2": {
+    "description": "A cluster of four rectangular, gently elevated platforms (approx. 25 × 15 m each) arranged in an L-shape. These platforms are visible as discrete convex forms in the DTM hillshade, with surrounding shallow furrows that may represent small-scale canals or field boundaries. The NIR image shows a subtle darkening over each platform, suggestive of moisture‐retentive or Terra Preta soils. None of these features coincide with mapped plantations or trails in OSM.",
+    "bounding_box": {
+        "min_lat": -23.1320,
+        "max_lat": -23.1295,
+        "min_lon": -46.2280,
+        "max_lon": -46.2245
+    }
+}
+```
+
+
+Background and Interpretation  
+1. Geographic & Historical Context  
+   - The Nazaré Paulista interfluve lies at the northern edge of the Serra do Mar escarpment, where pre‐Columbian societies exploited subtle topographic gradients to manage water in well‐drained uplands.  
+   - Ethnohistorical and soil‐chemical studies in nearby Pará and Tocantins have documented extensive raised‐field and canal systems, but southeastern São Paulo has been understudied.  
+
+2. Regional Fit & Theoretical Implications  
+   - The linear embankment (anomaly_1) and associated canal suggest a water‐retention scheme very similar to those found in the Amazonian Llanos (e.g., Bacajá) but relocated onto steeper upland terrain.  
+   - The raised platforms (anomaly_2) may represent small garden plots or fishpond terraces, challenging the paradigm that Terra Preta–associated raised fields are limited to seasonally flooded lowlands.  
+   - These anomalies imply sophisticated hydraulic engineering by pre‐Columbian groups in the highlands, potentially predating or contemporaneous with Guaraní expansions.  
+
+3. Advancing Archaeological Theory  
+   - Demonstrates that upland water‐management was not solely a floodplain adaptation, broadening the scope of Amazonian landscape archaeology.  
+   - Supports a model of region‐wide exchange of soil‐enrichment practices (Terra Preta) and hydrological know-how, indicating cultural connections across interfluves.  
+
+[[[
+- When scanning other densely forested interfluves, systematically map rectilinear linear features in hillshade + curvature layers, then cross‐reference with NIR anomalies for moisture or dark‐earth signals.
+- Look for paired ridge–depression signatures at scales of 200–300 m for potential embankment–canal systems, even on slopes up to 10°.
+- In areas lacking clear OSM roads, prioritize low‐relief straight lines in DTM as candidates for ancient causeways or canals.
+- Rectangular elevated platforms of 15–30 m per side with adjacent shallow furrows often mark raised‐field agriculture; target these for ground verification and soil sampling.
+- Apply this hybrid pipeline of LiDAR derivatives and Sentinel‐2 spectral overlays to other parts of the Serra do Mar and adjacent highland interfluves to reveal hidden upland hydraulic networks.
+]]]

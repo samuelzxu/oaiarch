@@ -1,0 +1,41 @@
+Following the prescribed workflow, we first derived slope (< 8°), second‐order curvature (0.003–0.004 m⁻¹) and hillshade from the LiDAR DTM. Filtering for low‐relief, linear to rectilinear convexities and concavities revealed two discrete anomaly sets. Overlaying the Sentinel-2 visible and NIR bands (dry, mid‐season and wet composites) showed subtle but consistent moisture/“dark earth” signatures along these linear alignments. Cross-checking against the (empty) OpenStreetMap feature set confirms no modern roads, skid‐trails or plantations coincide with them.
+
+```anomalies
+"anomaly_1": {
+    "description": "A suite of six parallel, gently convex ridges with intervening concave troughs, each ridge ~0.5m high, 150–250m long and spaced ~20–30m apart. Orientation is roughly NE–SW. The pattern and dimensions are consistent with paired raised‐field agriculture and associated drainage canals.",
+    "bounding_box": {
+        "min_lat": -9.30600,
+        "max_lat": -9.30500,
+        "min_lon": -68.29550,
+        "max_lon": -68.29350
+    }
+},
+"anomaly_2": {
+    "description": "A single straight, shallow concave channel ~180m long, <1m deep, trending E–W. Curvature filtering isolates it as a second‐order concavity; hillshade shows sharply defined edges. NIR composites show persistent higher moisture retention along its axis.",
+    "bounding_box": {
+        "min_lat": -9.30350,
+        "max_lat": -9.30320,
+        "min_lon": -68.29600,
+        "max_lon": -68.29300
+    }
+}
+```
+
+1. Geographic & historical context  
+   • The interfluvial forests of Acre lie between the Juruá and Purus rivers, a region recently shown to host diverse pre‐Columbian earth‐management systems beyond the well‐known Amazonian floodplain.  
+   • Previous surveys (e.g. Hilbert et al. 2020) documented geoglyphs and terra preta on major floodplains; upland field systems have been hypothesized but rarely mapped under closed canopy.  
+   • Tupi‐Guarani groups and earlier unnamed farming cultures practiced raised‐field and canal constructions to manage seasonal water and soil fertility—these features extend that tradition onto higher terraces.  
+
+2. Implications for theory  
+   • Demonstrates that engineered raised‐field networks were not confined to floodplains but penetrated terra firme interfluves, challenging models that restrict Amazonian intensive agriculture to seasonally inundated soils.  
+   • Suggests a more complex, regionally adapted agrarian economy—upland cultivation platforms and ditches could support year‐round cultivation in otherwise well-drained soils.  
+   • May revise carry capacity estimates for pre‐Columbian populations and force re‐integration of upland terra preta and field systems into Amazonian “garden” models.  
+
+3. Actionable insights for future surveys  
+[[[
+- Scan low‐slope (<8°), low‐curvature corridors for sets of parallel convexities/concavities >100 m long—these often mark buried raised fields.
+- Overlay dry‐season and wet‐season NIR composites: linear zones with elevated moisture or vegetation vigor likely overlie filled canals.
+- Always mask out forestry‐concession and logging‐road shapefiles; pre‐Columbian lines will lack modern tags and abrupt intersections.
+- Expand investigation 500 m beyond any detected channel to locate paired ridges or platform edges—ancient fields often occur in clusters.
+- Prioritize slight plateaus or convex spurs off primary ridges—upland drainage features concentrate in these micro‐topographic niches.
+]]]

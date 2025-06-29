@@ -1,0 +1,46 @@
+```anomalies
+"anomaly_1": {
+    "description": "A prominent north–south–oriented linear ridge approximately 3–5 m wide and at least 2 km long, showing up as a subtle elevation high in the hillshade and corresponding to a low-reflectance line in NIR suggestive of an engineered canal or causeway.",
+    "bounding_box": {
+        "min_lat": -9.1580,
+        "max_lat": -9.1420,
+        "min_lon": -63.0060,
+        "max_lon": -63.0040
+    }
+},
+"anomaly_2": {
+    "description": "An east–west linear feature roughly 2–3 m wide, intersecting anomaly_1 at right angles near –9.1490 lat; appears as a rectilinear channel or ditch in the slope/curvature derivatives and shows corresponding vegetation stress in the visual bands.",
+    "bounding_box": {
+        "min_lat": -9.1500,
+        "max_lat": -9.1480,
+        "min_lon": -63.0120,
+        "max_lon": -63.0020
+    }
+},
+"anomaly_3": {
+    "description": "A meandering, curved channel segment in the southern third of the scene, ~500 m long and 2–4 m wide, visible as a positive relief arc in the hillshade and as a brighter line in the NIR image indicating wetter soils.",
+    "bounding_box": {
+        "min_lat": -9.1590,
+        "max_lat": -9.1550,
+        "min_lon": -63.0070,
+        "max_lon": -63.0020
+    }
+},
+```
+
+1. Geographic & Historical Context  
+The Jamari interfluve (Floresta Nacional do Jamari, near RO-452 km 7.5) lies within a broader upland zone where Late Holocene societies engineered ridge-and-canal networks to manage water in seasonally wet tropical forests. Comparable systems have been documented along the Purus and Madeira, but this forested upland ridge network has not previously been mapped at this scale in Jamari.
+
+2. Fit with Regional Patterns  
+The orthogonal intersection of a primary N–S canal (anomaly_1) with an E–W cross-canal (anomaly_2) mirrors other Amazonian water-management grids. The subtle curvature of anomaly_3 suggests adaptation to micro-topography, channeling excess rainwater into storage basins or dispersal ditches. The depressed NIR reflectance along these alignments matches patterns seen in anthropogenic dark earths (terra preta), implying soil enrichment and prolonged use.
+
+3. Theoretical Implications  
+Discovery of a multi-kilometer canal/causeway network beneath closed canopy challenges the notion that upland interfluves were marginal to pre-Columbian hydraulic planning. It supports emerging models of decentralized agro-hydraulic polities exploiting even slight relief for intensive field systems. This finding may push back the chronology of terra preta creation in uplands and broaden the geographic scope of engineered Amazonian landscapes.
+
+[[[
+- Use slope <2° combined with negative plan curvature to isolate candidate low-relief linear features across canopy-penetrating LiDAR.
+- Cross-reference any linear anomaly with NIR band depressions to flag potential moisture-retentive or terra preta–enriched soils.
+- Mask out modern roads, tracks or plantations via OSM buffers (e.g., 20 m) before interpreting remaining linear echoes.
+- At each linear intersection, survey a 200–300 m radius for circular depressions or rectangular plateaus indicative of house platforms or raised fields.
+- Apply this workflow on similarly narrow, elongated LiDAR strips in other interfluves to reveal hidden water-management grids.
+]]]

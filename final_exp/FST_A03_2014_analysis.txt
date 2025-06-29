@@ -1,0 +1,39 @@
+```anomalies
+"anomaly_1": {
+    "description": "A faint rectilinear grid of low-relief ridges and associated shallow ditches, visible in the hillshade DTM as straight, orthogonal lineaments spaced approximately 120–150 m apart running north–south and east–west. These alignments coincide with linear zones of slightly reduced NIR reflectance—suggesting retained moisture and possible anthropogenic dark earth—and are not matched by any roads or trails in the OpenStreetMap layer.",
+    "bounding_box": {
+        "min_lat": -1.60500,
+        "max_lat": -1.59500,
+        "min_lon": -56.17800,
+        "max_lon": -56.16800
+    }
+},
+"anomaly_2": {
+    "description": "An X-shaped intersection of two diagonal embankments or causeways visible in the DTM hillshade, one trending NW-SE (~315°) and the other NE-SW (~45°). In the NIR band these alignments appear as linear corridors of darker pixels, consistent with moisture‐retentive fills. No modern infrastructure corresponds to these features in OSM.",
+    "bounding_box": {
+        "min_lat": -1.60450,
+        "max_lat": -1.59800,
+        "min_lon": -56.18000,
+        "max_lon": -56.17200
+    }
+},
+```  
+Based on these detections, the anomalies likely represent components of a pre-Columbian upland water-management system—raised cultivation fields, connecting canals or causeways—typical of Arawakan or related societies around Oriximiná. Their regular spacing and orthogonal layout align with known Amazonian raised-field zones, but the apparent scale and precision here suggest a previously undocumented extension of these networks. If confirmed, this could push back the easternmost boundary of complex floodplain and interfluvial engineering in the central Amazon and indicate more intensive land use on upland interfluves than currently recognized.
+
+Archaeological context:  
+- The region around São João (CR3G+6P) has yielded scattered vestiges of pre-Columbian habitation mounds, but few systematic surveys for upland raised fields.  
+- Ethnohistoric accounts and recent LiDAR studies have documented raised fields along major rivers; finding them in interfluvial plateaus would refine models of population density and agricultural adaptation in seasonally inundated forests.  
+- These linear causeways may have served both for drainage and dry‐season transport, supporting arguments for integrated settlement-field systems.
+
+Implications for theory:  
+- Extends the known range of Amazonian agricultural engineering onto higher terrain, challenging the assumption that sophisticated hydrological manipulation was confined to floodplains.  
+- Suggests a more uniform distribution of agrarian communities capable of large‐scale landscape reshaping.  
+- May require revision of demographic estimates for pre-Columbian upland populations in this sector.
+
+[[[
+• When scanning LiDAR DTM for new sites in forested interfluves, apply paired slope (<2°) and curvature thresholds to isolate faint rectangular networks.  
+• Overlay NIR composites on identified lineaments to look for darker pixel corridors indicating moisture‐retaining fills or anthropogenic soils.  
+• Cross‐check candidate features against OSM to rule out modern roads; true anomalies often lack any surface infrastructure.  
+• Prioritize ground or UAV follow-up on downslope margins of grid anomalies—habitation mounds and associated domestic sites frequently occur there.  
+• Repeat this multi‐sensor workflow across adjacent 10 × 10 km tiles to map the full extent of upland engineering beyond river corridors.
+]]]

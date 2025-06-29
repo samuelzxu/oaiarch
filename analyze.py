@@ -738,9 +738,9 @@ def add_anomaly_rectangles_to_images(exp_name: str, item_name: str, anomalies: L
             break
     
     # Process other image types
-    for img_type in image_types:
-        img_path = f"{exp_name}/{item_name}_{img_type}.png"
-        draw_rectangles_on_image(img_path, anomalies, bounds)
+    # for img_type in image_types:
+    #     img_path = f"{exp_name}/{item_name}_{img_type}.png"
+    #     draw_rectangles_on_image(img_path, anomalies, bounds)
 
 def process_single_file(filename: str, exp_name: str, polygons_object, stitched_images_dir, prev_insights: str = "", anom_ct: int = 0, make_new_analysis: bool = True) -> str:
     """
@@ -979,7 +979,7 @@ def main():
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     kml_content = extract_kmz_content(kmz_file_path)
 
-    exp_name = "experiment_hydro_eng_v4"
+    exp_name = "experiment_hydro_eng_v5"
     stitched_images_dir = "stitched_images_v10_hillshade"
     make_new_analysis = True  # Set to False to skip existing analyses
 

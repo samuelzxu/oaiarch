@@ -1,0 +1,9 @@
+[
+  {
+    "description": "A long, narrow, slightly meandering linear ridge (approx. 1.0 km in length by 8\u201312 m in width) visible in the hillshade/DTM as a low\u2010relief embankment or causeway. It exhibits consistent rectilinear alignment with subtle parallel edges and intermittent terrace\u2010like scarping. In the true\u2010color Sentinel\u20102 image, it corresponds to a faint yellow\u2010green line\u2014indicative of vegetation differences\u2014while the NIR band shows reduced reflectance along the same trace, suggesting localized moisture retention or altered soil properties consistent with anthropogenic earthworks.",
+    "min_lat": -8.592,
+    "max_lat": -8.583,
+    "min_lon": -62.9275,
+    "max_lon": -62.9255
+  }
+]

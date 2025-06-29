@@ -1,0 +1,23 @@
+[
+  {
+    "description": "Cluster of subtle, rectilinear ridges and parallel shallow ditches under 2\u00b0 slope visible in the hillshade and curvature derivatives. These features form a roughly 150\u2009\u00d7\u2009200\u2009m quadrangular layout with internal orthogonal divisions suggesting engineered water\u2010management cells or small raised\u2010field grids.",
+    "min_lat": -26.516,
+    "max_lat": -26.514,
+    "min_lon": -49.039,
+    "max_lon": -49.037
+  },
+  {
+    "description": "Linear low\u2010relief scar running ~600\u2009m E\u2013W along a col of the upland interfluve. The feature is under 1.5\u00b0 slope, has consistent plan\u2010curvature values between \u20130.02 and \u20130.05, and is matched by a narrow corridor of reduced NIR reflectance indicating persistent moisture retention.",
+    "min_lat": -26.532,
+    "max_lat": -26.528,
+    "min_lon": -49.041,
+    "max_lon": -49.038
+  },
+  {
+    "description": "Small embanked causeway aligned NE\u2013SW, ~350\u2009m long, with lateral berms appearing as paired positive curvature ridges. The berms flank a central trough that shows higher moisture in the NIR composite and slight \u201cdark earth\u201d vegetation stress signatures in the visual band.",
+    "min_lat": -26.5225,
+    "max_lat": -26.52,
+    "min_lon": -49.045,
+    "max_lon": -49.0425
+  }
+]

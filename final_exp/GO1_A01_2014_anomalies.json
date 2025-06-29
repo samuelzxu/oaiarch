@@ -1,0 +1,16 @@
+[
+  {
+    "description": "Cluster of three rectilinear, low\u2010relief raised platforms oriented roughly north\u2013south and east\u2013west. Each platform measures approximately 80 \u00d7 60 m, with subtle convex plan curvature (~+0.2 m above surrounding terrain) visible in the slope and curvature derivatives. Hillshade highlights straight edges. The NIR composite shows higher moisture retention along platform margins, while the true\u2010color image reveals slightly darker canopy directly over the embankments. No corresponding feature appears in the OpenStreetMap layer.",
+    "min_lat": -15.8052,
+    "max_lat": -15.8025,
+    "min_lon": -50.558,
+    "max_lon": -50.5545
+  },
+  {
+    "description": "Linear ditch or canal extending ~600 m southeast\u2013northwest. In the slope derivative it appears as a ~2 m\u2010wide linear depression (concave curvature), with consistent orientation matching regional drainage patterns. The NIR band highlights vegetation stress and moisture anomaly along the line, suggesting a buried channel retaining water. The feature is not mapped in OSM and lies wholly within terra\u2010firme forest.",
+    "min_lat": -15.816,
+    "max_lat": -15.8095,
+    "min_lon": -50.5595,
+    "max_lon": -50.551
+  }
+]

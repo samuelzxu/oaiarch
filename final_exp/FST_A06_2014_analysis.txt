@@ -1,0 +1,64 @@
+```anomalies
+"anomaly_1": {
+    "description": "A gently curving sequence of low, linear embankments and paired moats forming a semicircular ‘half-ring’ approximately 300 m across. The feature exhibits consistent width (~10–15 m) and slight elevation (~0.5–1 m) above the surrounding terrain, with concave inner slopes suggestive of water‐retention bunds.",
+    "bounding_box": {
+        "min_lat": -1.64100,
+        "max_lat": -1.63850,
+        "min_lon": -56.32750,
+        "max_lon": -56.32400
+    }
+},
+"anomaly_2": {
+    "description": "A faint, straight, NW–SE trending linear ridge extending roughly 800 m, with flanking shallow ditches on both sides. The alignment is rectilinear (bearing ~135°) and cuts across natural microtopography, indicative of a former causeway or canal bank.",
+    "bounding_box": {
+        "min_lat": -1.64900,
+        "max_lat": -1.64550,
+        "min_lon": -56.33000,
+        "max_lon": -56.32300
+    }
+},
+"anomaly_3": {
+    "description": "An elongate, slightly raised platform (approx. 400 m × 150 m) with sharp corners and flat summit plateau. Subtle moat‐like depressions border three sides; the rectangular geometry strongly departs from natural hill forms.",
+    "bounding_box": {
+        "min_lat": -1.65650,
+        "max_lat": -1.65300,
+        "min_lon": -56.32800,
+        "max_lon": -56.32400
+    }
+},
+"anomaly_4": {
+    "description": "A cluster of small, circular to sub‐circular mounds (diameter ~30–50 m) arranged along a N–S trending axis. These may represent raised‐field cells or garden plots, spaced at regular intervals (~100 m).",
+    "bounding_box": {
+        "min_lat": -1.65000,
+        "max_lat": -1.64750,
+        "min_lon": -56.32600,
+        "max_lon": -56.32350
+    }
+},
+```
+
+
+Contextual Interpretation and Historical Significance  
+The Barreirinha interfluve (9M4F+29) lies within a nexus of documented terra preta and geoglyph complexes dated to AD 500–1200. Historically, this sector has seen intensive management of seasonally‐flooded terraces and upland soils via raised fields and canal networks. The semicircular bund system (anomaly 1) parallels structures excavated at nearby Oriximiná sites, but its scale and curvature suggest a previously unrecorded variation on water‐retention basins. Likewise, the long causeway (anomaly 2) may have facilitated year‐round transport across inundated plains, aligning with ethnohistorical reports of canoe‐road hybrids. The rectangular terrace (anomaly 3) expands known footprint of formal plazas or platform villages in this part of the Lower Amazon. Finally, anomaly 4’s regular array hints at modular raised‐field agriculture, complementing theories of small‐scale household plots.
+
+These findings refine the model of Amazonian hydraulic landscapes by showing:
+- Greater morphological diversity in embankment geometry (semicircles, rectangles, regular arrays).
+- Integration of transport features (causeways) with agricultural cells in a continuous engineered network.
+- Evidence for localized, high‐resolution planning extending across elevations formerly considered marginal for intensive cultivation.
+
+By documenting both large‐scale infrastructural axes and compact raised‐field clusters, this survey challenges the binary categorization of Amazonian pre‐Columbian landscapes as solely ‘tectonic geoglyph’ vs. ‘extensive raised‐field’ zones. Instead, it supports a continuum of water‐management strategies adapted to micro‐topographic variability and seasonal hydrology.
+
+Actionable Recommendations  
+- Conduct targeted ground‐truthing with UAV LiDAR over anomaly 1 to measure ditch depths and bund volumes for dating charcoal‐rich strata.  
+- Use soil coring along anomaly 2’s ditch fill to recover phytolith and geochemical signatures of aquatic crops.  
+- Expand the search window 500 m east and west of the detected causeway to locate feeder canals feeding into it.  
+- Apply multi‐temporal Sentinel‐2 NIR differencing during peak dry season to better discriminate moisture‐retentive anthropogenic soils at anomaly 4.  
+- Cross‐reference these polygonal features with known pottery‐scatter distributions from pedestrian surveys to refine spatial‐behavioral models of settlement clustering.
+
+[[[
+– Look for aligned sequences of small circular mounds spaced at ~100 m intervals; they often mark raised‐field arrays.
+– Scan DTM hillshade for low‐amplitude, convex linear ridges with parallel depressions—potential embanked causeways.
+– Overlay dry‐season NIR composites to highlight “wet” anomalies on raised fields, where terra preta retains moisture.
+– Extend search windows beyond 1 km² tiles to capture long runs of canals that may fall just outside initial strips.
+– Prioritize ground checks in gentle interfluves downslope of known terra preta patches for bundled systems.
+]]]

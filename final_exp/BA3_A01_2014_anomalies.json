@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A set of four nearly parallel, low\u2010relief linear ridges trending NW\u2013SE, each approximately 20\u201330 m apart and 200\u2013300 m in length. These ridges appear as positive slope breaks in the hillshade and subtle convex curvature in the DTM. In the NIR image they register as moisture\u2010retentive dark lines, and in the true\u2010color composite exhibit darker, more vigourous canopy\u2014consistent with anthropogenic \u2018terra preta\u2019 soils along embanked raised\u2010field beds.",
+    "min_lat": -1.6135,
+    "max_lat": -1.61,
+    "min_lon": -61.7065,
+    "max_lon": -61.7025
+  },
+  {
+    "description": "A sinuous channel\u2010like depression connecting the parallel ridges, oriented roughly N\u2013S and curving gently with local microtopography. It is visible as a concave slope in the DTM, a subtle negative curvature line in the hillshade, and as a high\u2010reflectance (bright) strip in the NIR\u2014suggesting standing or slow\u2010draining water. The feature is not present in the OSM roads or drainage network, implying an ancient engineered conduit or drainage ditch.",
+    "min_lat": -1.608,
+    "max_lat": -1.605,
+    "min_lon": -61.704,
+    "max_lon": -61.7
+  }
+]

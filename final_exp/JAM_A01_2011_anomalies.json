@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A linear, rectilinear depression visible in the hillshade, approximately 170 m long and 2\u20133 m wide, trending NW\u2013SE. In the NIR and visible composites it coincides with a narrow belt of slightly elevated moisture retention and darker vegetation (indicative of organic\u2010rich fill), while OSM shows no modern feature in this alignment. Likely an ancient drainage canal or ditch.",
+    "min_lat": -9.066,
+    "max_lat": -9.06575,
+    "min_lon": -62.8041,
+    "max_lon": -62.80385
+  },
+  {
+    "description": "A subtle horseshoe\u2010shaped embankment roughly 250 m across, open to the east, observed as a low relief arc in hillshade. Corresponding NIR pixels are marginally brighter (suggesting wetter soils) and the true\u2010color band shows local vegetation stress along its crest. No matching roads or logging tracks on OSM. Interpreted as a water\u2010retaining embankment or causeway.",
+    "min_lat": -9.0662,
+    "max_lat": -9.0655,
+    "min_lon": -62.8037,
+    "max_lon": -62.8032
+  },
+  {
+    "description": "A cluster of three nearly parallel raised ridges, each ~100 m long and spaced 10\u201315 m apart, trending NNE\u2013SSW. The ridges appear as positive relief in the DTM derivatives; in the NIR layer the troughs between them show subtle moisture accumulation. No contemporary features overlay these ridges on OSM. Likely remnants of engineered raised\u2010field agriculture.",
+    "min_lat": -9.0663,
+    "max_lat": -9.0659,
+    "min_lon": -62.8042,
+    "max_lon": -62.8039
+  }
+]

@@ -1,0 +1,38 @@
+```anomalies
+"anomaly_1": {
+    "description": "A subtle, NE–SW–oriented linear negative feature approximately 600 m long and 3–5 m wide, visible as a shallow trench (slope <2°, negative plan curvature) in the LiDAR-derived DTM. This feature coincides with a narrow, low-NIR–reflectance band suggesting higher soil moisture or terra preta–type enrichment along its trace.",
+    "bounding_box": {
+        "min_lat": -1.66550,
+        "max_lat": -1.66150,
+        "min_lon": -56.31000,
+        "max_lon": -56.30600
+    }
+},
+"anomaly_2": {
+    "description": "A convex, elongated plateau or embankment c. 100 m × 10–15 m, appearing as a ridge in the DTM with mild positive curvature. In the NIR image it shows anomalous high reflectance at its crest and adjacent low-reflectance swales, consistent with raised-field agriculture or a platform serviced by parallel drainage ditches.",
+    "bounding_box": {
+        "min_lat": -1.66800,
+        "max_lat": -1.66700,
+        "min_lon": -56.30900,
+        "max_lon": -56.30800
+    }
+},
+```
+
+Discussion and historical context:  
+These two features—one a linear canal-like trench and the other a raised embankment—fit well within the broader corpus of upland water‐management systems documented in Amazonian interfluves. In the Oriximiná region, pre‐Columbian communities built rectilinear networks of causeways, canals, and raised fields between ca. 1200–1650 CE to regulate seasonal flooding and enhance soil fertility (terra preta). Most previous surveys concentrated near major floodplains; the discovery of similar engineered features beneath closed canopy here suggests that sophisticated hydrological planning extended deep into interfluves. If confirmed by ground‐truthing, these anomalies would expand our understanding of Amazonian landscape engineering, showing that upland soils were intensively managed far from navigable rivers and that settlement patterns may have been more dispersed and interconnected than assumed.
+
+Implications for current theory:  
+- Extends the spatial extent of known water‐management beyond traditional floodplain zones  
+- Demonstrates use of subtle topographic control (slope <2°, plan curvature) to guide micro‐irrigation networks  
+- Supports hypotheses of region‐wide agrarian polities linked by engineered corridors  
+
+Future research should combine targeted coring for soil chemistry, systematic pedestrian survey of adjacent circular depressions (potential house mounds), and dating of extracted sediments to validate these remote‐sensing interpretations.
+
+[[[
+- Apply a slope‐threshold (<2°) and negative‐plan‐curvature filter to LiDAR DTM strips to isolate candidate low‐relief canals or ditches.
+- Cross‐reference any linear DTM anomaly with low‐reflectance bands in NIR imagery to flag possible terra preta or moisture‐retentive features.
+- Buffer modern OSM features by ≥20 m to exclude recent roads and tracks before interpreting residual linear echoes.
+- At each detected linear intersection, conduct a 200–300 m circular‐survey for paired embankments or platform clusters, typical of raised‐field complexes.
+- Deploy this workflow across narrow LiDAR swaths in other Amazonian interfluves to reveal hidden water‐management grids and settlement corridors.
+]]]

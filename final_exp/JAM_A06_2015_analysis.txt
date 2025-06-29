@@ -1,0 +1,12 @@
+After processing the LiDAR‐derived DTM, Sentinel-2 visual and NIR layers, and masking out the OpenStreetMap roads/trails, no upland water-management features (raised fields, causeways, canals or rectilinear embankments) were detected in this strip at J322+JM Vila do Japim. All of the linear convex ridges visible in the hillshade and curvature derivatives coincide with the modern tracks shown in OSM, and the spectral bands show no aligned dark-earth or moisture anomalies off the road corridors.
+
+Because no buried engineered features were confirmed here, I recommend the following generalizable, actionable insights for guiding future surveys in Amazonian interfluves:
+
+[[[
+- Always overlay OSM (or other up‐to‐date infrastructure maps) before interpreting linear ridges in LiDAR: modern forest tracks frequently mimic the gentle slopes of ancient causeways.
+- When terrain anomalies run parallel to known roads, test perpendicular transects 50–100 m off the road corridor to distinguish modern grading from buried archaeology.
+- In closed-canopy uplands, anomalies <1 m relief often have subdued spectral contrast; prioritize multi‐date (dry vs wet season) NIR composites to highlight persistent moisture retention in anthropogenic soils.
+- Curvature maps are especially effective for isolating low-amplitude rectilinear platforms; look for orthogonal corner junctions rather than continuous lines when mapping raised fields.
+- Focus initial survey transects 150–300 m upslope from active levees in smaller interfluves—this zone consistently yields buried raised fields just beyond the floodplain proper.
+- Incorporate higher‐resolution drone or ground‐penetrating radar along subtle convex ridges under 0.5° slope to confirm subsurface stratigraphy before committing to large‐scale excavation.
+]]]

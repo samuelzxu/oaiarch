@@ -1,0 +1,38 @@
+```anomalies
+"anomaly_1": {
+    "description": "A faint, straight east–west–trending ditch or canal segment approximately 160 m long, cutting across otherwise uniform low‐relief terrain. On the DTM hillshade it appears as a narrow linear depression with consistent width (~2–3 m), and in the Sentinel-2 NIR it corresponds to a band of elevated moisture/vegetation stress. No modern road or skid trail is mapped here in OpenStreetMap.",
+    "bounding_box": {
+        "min_lat": -6.6090,
+        "max_lat": -6.6050,
+        "min_lon": -51.7970,
+        "max_lon": -51.7890
+    }
+},
+"anomaly_2": {
+    "description": "A second straight segment, trending northwest–southeast for roughly 200 m, visible as a shallow ridge-and-furrow pattern on the LiDAR DTM. It forms an unusually rectilinear alignment amidst natural hummocks. The feature also shows a subtle spectral signature in the visual band (slightly higher reflectance) and a contrasting tone in the NIR, indicative of differential soil moisture or anthropogenic soil fill.",
+    "bounding_box": {
+        "min_lat": -6.6150,
+        "max_lat": -6.6050,
+        "min_lon": -51.8050,
+        "max_lon": -51.7950
+    }
+},
+```
+
+Regional and Archaeological Context  
+The coordinates (–6.60207, –51.79322) lie on a forested interfluve between the Xingu and Bacajá rivers. While much Amazonian hydraulic research has focused on floodplain systems, recent LiDAR surveys in Pará are revealing that pre-Columbian populations engineered upland drainage and irrigation networks even on well-drained plateaus. These two straight segments resemble the beginnings of small irrigation canals or drainage ditches feeding adjacent raised fields (camellones) or earthworks.  
+
+Historical Significance and Theoretical Implications  
+Past surveys in nearby sectors (e.g. Culuene–Meguari interfluves) documented extensive canal–field complexes linked to terra preta soils. The discovery here extends that pattern farther west into unstudied interfluves. It suggests:  
+- Upland communities may have developed localized water-management mini-networks, not solely relying on major river flood cycles.  
+- The rectilinear geometry implies planning and possibly centralized oversight—supporting models of organized labor beyond known floodplain polities.  
+- These features challenge the notion that forest-canopy LiDAR only yields paleochannels; it can detect subtle, anthropogenic microrelief in high-plateau contexts.  
+
+Actionable Insights  
+[[[
+- When scanning new interfluve tiles, apply an automated second‐order curvature filter (0.003–0.004 m⁻¹) combined with a slope mask (<8°) to isolate linear segments >100 m; these settings pre-emphasize subtle ditches.
+- Overlay multi-date NIR composites (dry, mid-season, wet) to confirm persistent moisture anomalies along candidate lines—true archaeological ditches hold moisture longer.
+- Cross-reference forestry concession shapefiles (available via INPE) to mask commercial skid trails; these features mimic archaeological causeways but lack consistent spectral moisture signatures.
+- Expand search radii 500 m around any detected anomaly—the presence of one ditch often correlates with nearby raised-field remnants or secondary channels.
+- Prioritize follow-up ground-truthing in areas where both DTM curvature and NIR anomalies coincide, particularly near slight plateaus or natural convexities that would benefit drained fields.
+]]]_

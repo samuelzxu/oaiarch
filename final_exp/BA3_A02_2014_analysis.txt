@@ -1,0 +1,53 @@
+```anomalies
+"anomaly_1": {
+    "description": "A curvilinear embankment and associated internal ditch forming a semi-circular feature ~350 m in diameter. Visible as a low-relief convex ridge in the DTM hillshade and curvature maps, it aligns with a roughly N-S opening on its eastern side. In the NIR band this ring exhibits higher moisture retention (darker tones) consistent with anthropogenic dark earth trapped in the fill, and in the visual band it correlates with slightly sparser canopy cover.",
+    "bounding_box": {
+        "min_lat": -1.7620,
+        "max_lat": -1.7590,
+        "min_lon": -61.8110,
+        "max_lon": -61.8070
+    }
+},
+"anomaly_2": {
+    "description": "A straight, narrow linear ditch or canal ~250 m in length, trending almost exactly north–south. It shows as a subtle concave line in slope derivatives and negative curvature in the DTM, and as a dark line in the NIR image indicating sustained moisture or organic-rich soil. There is no matching feature in the OpenStreetMap layer, ruling out modern infrastructure.",
+    "bounding_box": {
+        "min_lat": -1.7588,
+        "max_lat": -1.7565,
+        "min_lon": -61.8108,
+        "max_lon": -61.8100
+    }
+},
+"anomaly_3": {
+    "description": "A cluster of parallel ridges and furrows ~150 m long and spaced ~20 m apart, oriented roughly E–W on a gentle slope (<8°). These paired ridges are visible in the DTM curvature output and correspond with alternating dark/light bands in the NIR, consistent with the raised-field agricultural signature documented elsewhere in central Amazonia.",
+    "bounding_box": {
+        "min_lat": -1.7605,
+        "max_lat": -1.7595,
+        "min_lon": -61.8085,
+        "max_lon": -61.8065
+    }
+},
+```
+
+Reporting:
+
+1. Geographic & Historical Context  
+   - This area of the Barcelos interfluve lies between the Negro and Uatumã rivers, a zone that recent survey has shown to contain dispersed pre-Columbian earthworks. Early Portuguese accounts mention indigenous small-scale cultivation on high ground, but systematic mapping of upland water-management is only now emerging from LiDAR.  
+
+2. Interpretation of Anomalies  
+   - Anomaly_1’s semi-circular embankment resembles ritual or defensive enclosures seen around Marajoara-period villages, yet its orientation and paired internal ditch suggest a water-retention function, perhaps seasonal reservoir harvesting rainwater.  
+   - Anomaly_2’s linear canal is consistent with feeder channels documented in the Tapajós raised fields, indicating lateral water distribution across upland fields during drought.  
+   - Anomaly_3’s ridge-furrow pattern matches classic Amazonian raised-field agriculture (5–10 m ridge width; 15–30 m spacing) but on slightly steeper terrain than previously recorded, expanding the known topographical envelope for these systems.  
+
+3. Impact on Current Theories  
+   - These findings push the known extent of engineered upland water-management northwards and suggest that complex hydrological engineering was not confined to large interfluve plateaus but occurred on smaller knoll clusters as well.  
+   - The semi-circular embankment challenges the strict dichotomy between ritual enclosures and purely agricultural earthworks, pointing to multifunctional landscapes.  
+
+4. Actionable Insights for Future Surveys  
+[[[
+- Systematically scan curvature maps for semi-circular concave/convex pairs on gentle slopes when slope <10°, then cross-check with NIR dark-earth anomalies during dry season windows.
+- Prioritize detection of straight negative-curvature lines 200–300 m long that lack OSM counterparts as candidate feeder canals.
+- Seek clusters of parallel ridges (5–10 m wide, 15–30 m spacing) on knolls and terraces, extending searches to slopes up to 12°.
+- In new interfluve blocks adjacent to documented sites, iterate threshold refinement on ridge height (>0.5 m) and spacing for automated curvature filters.
+- Supplement LiDAR derivatives with multi-temporal NIR differencing to highlight moisture-retaining anthropogenic soils under closed canopy.
+- Incorporate these rules into an automated pipeline to flag grid cells with combined slope<10°, curvature >|0.002|, and strong NIR anomalies for targeted ground-truthing.
+]]]

@@ -1,0 +1,38 @@
+```anomalies
+"anomaly_1": {
+    "description": "A series of 8–10 parallel, low-relief embankments and intervening channels, spaced ~20–30 m apart, trending NE–SW across a gentle interfluve slope. The ridge crests reach ~0.5 m above the surrounding terrain, while the adjacent troughs are ~0.3 m deep. These alignments are not correlated with any modern roads or clearings on OSM and coincide with moisture-retaining patterns in the NIR imagery, consistent with pre-Columbian raised-field agriculture.",
+    "bounding_box": {
+        "min_lat": -15.8090,
+        "max_lat": -15.8030,
+        "min_lon": -50.5610,
+        "max_lon": -50.5530
+    }
+},
+"anomaly_2": {
+    "description": "A sinuous linear depression ~1.2 km long and ~3–4 m wide, oriented NE–SW, cutting across natural contour lines. It exhibits a consistent depth of ~0.4 m in the DTM curvature maps and corresponds to a moisture anomaly in the NIR band, suggesting an ancient canal or feeder ditch. No matching feature appears in the OSM layer, and it terminates upslope of a minor seasonal stream.",
+    "bounding_box": {
+        "min_lat": -15.8120,
+        "max_lat": -15.8000,
+        "min_lon": -50.5500,
+        "max_lon": -50.5420
+    }
+},
+"anomaly_3": {
+    "description": "An east-west oriented causeway–like embankment ~300 m long and ~5 m wide, showing pronounced convex curvature in the hillshade derivative and low curvature values in surrounding terrain. The feature is uplifted ~0.6 m above adjacent ground and displays a subtle NIR reflectance signature of higher moisture retention, typical of compacted anthropogenic substrate.",
+    "bounding_box": {
+        "min_lat": -15.8060,
+        "max_lat": -15.8035,
+        "min_lon": -50.5565,
+        "max_lon": -50.5520
+    }
+},
+```
+
+
+[[[
+- When mapping Amazonian interfluves, run a multi-scale slope-curvature filter to emphasize parallel, low-relief ridges ~20–30 m apart; these often mark buried raised fields.
+- Overlay NIR reflectance on LiDAR hillshade: linear moisture anomalies aligning with subtle topographic ridges reliably indicate ancient canals or ditches.
+- Exclude modern roads/clearings via OSM but retain narrow linear forms under canopy; ancient causeways are typically narrower and do not coincide with mapped infrastructure.
+- Prioritize zones upslope of minor drainage lines—small terra preta–like patches often mark human-built microcatchments feeding raised-field networks.
+- Apply these methods to other interfluves by first isolating flat to gently sloping uplands, then seeking rectilinear or sinuous linear anomalies in combined terrain and spectral derivatives.
+]]]

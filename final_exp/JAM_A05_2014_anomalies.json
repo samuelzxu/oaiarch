@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A faint, rectilinear north\u2013south trending linear depression approximately 180 m in length, appearing as a shallow ditch with consistent width (~2\u20133 m) visible in the DTM hillshade and curvature filters. It exhibits slight negative plan curvature and aligns closely with vegetation-moisture anomalies in the NIR composite.",
+    "min_lat": -9.389,
+    "max_lat": -9.3882,
+    "min_lon": -62.983,
+    "max_lon": -62.9827
+  },
+  {
+    "description": "An east\u2013west oriented low embankment or berm, about 140 m long and 2\u20134 m wide, intersecting anomaly_1 near its midpoint. This feature shows subtle convex curvature in the DTM and a coincident low-reflectance corridor in the NIR band, suggesting moisture retention or an organic-rich substrate.",
+    "min_lat": -9.3885,
+    "max_lat": -9.3883,
+    "min_lon": -62.9831,
+    "max_lon": -62.9825
+  }
+]

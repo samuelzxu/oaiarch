@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A faint, rectilinear enclosure of low-relief embankments forming an approximate 80 \u00d7 50 m rectangle. On the DTM hillshade this appears as four subtle, straight-line scarps meeting at near\u2013right angles. In the NIR overlay the internal fill shows slightly elevated moisture retention (lighter tone), and there is an orthogonal pair of ditches on the south and east sides that align with the embankments. No corresponding road or plantation is mapped in OSM.",
+    "min_lat": -3.7502,
+    "max_lat": -3.7487,
+    "min_lon": -48.4839,
+    "max_lon": -48.4824
+  },
+  {
+    "description": "An east\u2013west linear depression approximately 180 m long and 1\u20132 m wide. In slope and curvature derivatives it stands out as a low-angle trough; in the NIR band it is a corridor of higher moisture retention (lighter grayscale), suggesting an infilled ditch or canal. It lies entirely away from any modern track on the OSM layer.",
+    "min_lat": -3.7485,
+    "max_lat": -3.7482,
+    "min_lon": -48.485,
+    "max_lon": -48.483
+  },
+  {
+    "description": "A short north\u2013south segment (\u224860 m) intersecting anomaly_2 at a right angle, forming an L-shaped junction. Visible as a subtle curving berm in the DTM curvature map, with corresponding vegetation-stress signature in the NIR band. Likely part of a small-scale canal network or causeway leading into the main ditch.",
+    "min_lat": -3.749,
+    "max_lat": -3.7484,
+    "min_lon": -48.4842,
+    "max_lon": -48.4838
+  }
+]

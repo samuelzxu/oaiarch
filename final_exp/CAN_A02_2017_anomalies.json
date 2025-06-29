@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A cluster of three parallel, gently elevated ridges (approx. 3\u20135 m wide, spaced ~25 m apart) trending NW\u2013SE across a low\u2010relief upland plateau. Best seen in the curvature derivative and hillshade as rectilinear lineaments that do not correspond to any mapped modern roads. These ridges align with subtle dark bands in the NIR, suggesting moisture\u2010retentive soils along their flanks\u2014indicative of buried raised\u2010field agriculture with intervening canals.",
+    "min_lat": -23.1335,
+    "max_lat": -23.132,
+    "min_lon": -46.23,
+    "max_lon": -46.228
+  },
+  {
+    "description": "A faint, linear depression trending NE\u2013SW, ~50 m long and 2\u20133 m wide, cutting across an upland convex slope. Visible as a pale trough in the hillshade and enhanced in the NIR by increased reflectance (vegetation stress) along its axis. The feature is not present in OpenStreetMap, ruling out a modern trail and pointing to an ancient drainage ditch or canal.",
+    "min_lat": -23.137,
+    "max_lat": -23.1355,
+    "min_lon": -46.229,
+    "max_lon": -46.227
+  },
+  {
+    "description": "A rectangular enclosure outline (~120 m \u00d7 80 m) faintly inscribed on a gentle plateau crest. Corners are right\u2010angled; walls are 1\u20132 m high relative to interior floor. Evident in curvature maps as four straight segments; the NIR band shows enhanced moisture retention inside the enclosure. No corresponding OSM features, suggesting a prehistoric water management or habitation boundary.",
+    "min_lat": -23.1328,
+    "max_lat": -23.1315,
+    "min_lon": -46.2275,
+    "max_lon": -46.2255
+  }
+]

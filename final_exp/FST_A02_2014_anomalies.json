@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A broad, rectangular bench with sharp, rectilinear scarps on its western and southern edges. Measures approximately 200 m \u00d7 150 m. Visible in the hillshade as a low-relief plateau with paired convex (embankment) and concave (ditch) curvature signatures framing a flat surface.",
+    "min_lat": -1.6028,
+    "max_lat": -1.6004,
+    "min_lon": -56.1845,
+    "max_lon": -56.182
+  },
+  {
+    "description": "A sinuous linear feature running north\u2013south over ~650 m. In the DTM it appears as a consistent 4\u20136 m wide depression; in the NIR band it corresponds to a darker moisture-retentive line. Likely a canal or drainage ditch connecting small headwater swales.",
+    "min_lat": -1.6075,
+    "max_lat": -1.6015,
+    "min_lon": -56.184,
+    "max_lon": -56.183
+  },
+  {
+    "description": "A series of three parallel low ridges, each ~2\u20133 m high and spaced ~25 m apart, aligned NW\u2013SE. Slightly elevated in the DTM and exhibiting corresponding vegetation stress lines in the NIR. May represent raised-field beds for upland agriculture.",
+    "min_lat": -1.6095,
+    "max_lat": -1.607,
+    "min_lon": -56.185,
+    "max_lon": -56.1825
+  }
+]

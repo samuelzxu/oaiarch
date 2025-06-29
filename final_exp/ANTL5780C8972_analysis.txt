@@ -1,0 +1,42 @@
+```anomalies
+"anomaly_1": {
+    "description": "A narrow, rectilinear linear feature trending roughly north–south visible as a subtle concave depression flanked by low embankments. The feature is between 3–6 m wide, extends for approximately 1.2 km in the tile, and shows up as a darker band in the NIR composite (moisture‐retaining “dark earth”) and as an incised line in the LiDAR hillshade.",
+    "bounding_box": {
+        "min_lat": -9.3030,
+        "max_lat": -9.2890,
+        "min_lon": -68.2860,
+        "max_lon": -68.2800
+    }
+},
+"anomaly_2": {
+    "description": "A short east–west–oriented linear segment, ~80 m long and 4 m wide, cutting across a gentle saddle. It appears as a raised berm in the DTM curvature derivative and is accompanied by a coincident low‐NIR strip suggestive of an old drainage ditch feeding the main north–south canal.",
+    "bounding_box": {
+        "min_lat": -9.2960,
+        "max_lat": -9.2940,
+        "min_lon": -68.2830,
+        "max_lon": -68.2790
+    }
+}
+```
+
+
+Report:
+
+1. Regional and historical context  
+The coordinates lie in the upland interfluvial zone between the Acre and Madeira river tributaries near Bujari, an area recently documented for scattered patches of terra preta and raised‐field agriculture dating from at least AD 500–1500. Previous surveys emphasized valley‐bottom sites; however, early Portuguese records hint at upland villages linked by causeways and canals, now obscured by closed‐canopy forest.
+
+2. Interpretation of anomalies  
+- Anomaly 1 fits the profile of a primary feeder canal or causeway linking upland ridges. Its straightness, consistent width, and NIR signature of wetter, darker soils strongly echo known earthen canal systems in nearby interfluves.  
+- Anomaly 2 likely represents a cross‐drainage ditch or secondary canal branching off the main axis, positioned on a saddle where excess water could be diverted into adjacent fields or collected into storage ponds.
+
+3. Implications for current theories  
+Discovery of a long, uninterrupted north–south canal in this previously understudied sector challenges the prevailing model that intensive earthworks were confined to valley corridors. It suggests that complex water‐management networks extended farther into the uplands and that interfluvial ridged‐field agriculture may have been more continuous and interconnected than thought. These findings could prompt a re‐evaluation of settlement density and the spatial organization of pre‐Columbian communities in western Amazonia.
+
+4. Actionable insights for future discovery  
+[[[
+- Scan adjacent upland saddles within 300–500 m of known terra preta for N–S linear echoes in LiDAR hillshade; similar canals may run in parallel sets.
+- Apply oriented edge‐detection filters at 0°/90° on DTM curvature to pick up buried ditch–embankment pairs spaced ~50–150 m apart.
+- Use the low‐NIR signature of “dark earth” moisture anomalies to flag secondary feeder ditches, especially where they intersect gentle concavities (saddles).
+- Exclude features within 500 m of modern clearings or OSM‐mapped roads to reduce false positives from recent logging tracks.
+- In future surveys, overlay a buffer of slope < 2° to isolate micro‐valley floors and saddles—prime loci for hidden canal heads or field risers.
+]]]

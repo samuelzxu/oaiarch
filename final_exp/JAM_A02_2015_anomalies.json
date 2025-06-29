@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A faint NW\u2013SE\u2013oriented linear ridge\u2013ditch feature ~2\u20133 m wide and ~220 m long, showing alternating convex\u2013concave curvature on the LiDAR hillshade and a persistent low-NIR signature consistent with a compacted earthen causeway or buried canal on a <2\u00b0 interfluve slope.",
+    "min_lat": -9.16,
+    "max_lat": -9.158,
+    "min_lon": -63.009,
+    "max_lon": -63.005
+  },
+  {
+    "description": "A small cluster of three parallel raised platforms, each ~3 m wide by ~150 m long and spaced ~80 m apart. They appear as rectilinear positive\u2010relief bands in the curvature derivative and coincide with localized high-NIR reflectance zones indicative of water-retentive anthropogenic soils (terra preta\u2010like signatures).",
+    "min_lat": -9.156,
+    "max_lat": -9.154,
+    "min_lon": -63.0085,
+    "max_lon": -63.0035
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A faint, straight ditch or canal segment, approximately 120\u2009m long and 3\u20134\u2009m wide, trending north\u2013south. In the multi\u2010azimuth hillshade it appears as a low\u2010relief concave line cutting across a gentle slope (<2\u00b0), with matching moisture anomaly in the NIR band (slightly elevated reflectance suggesting trapped subcanopy moisture). Likely part of an upland drainage network.",
+    "min_lat": -9.296,
+    "max_lat": -9.2953,
+    "min_lon": -68.2765,
+    "max_lon": -68.2756
+  },
+  {
+    "description": "Cluster of three small, regularly spaced platforms (~20\u201330\u2009m across each) forming a roughly rectangular block. In plan they present as flat\u2010topped ridges on low\u2010relief convex plan\u2010curvature zones, matching known Terra Preta field platforms. Subtle dark\u2010earth moisture signature in NIR, absent on OSM.",
+    "min_lat": -9.2959,
+    "max_lat": -9.2955,
+    "min_lon": -68.2764,
+    "max_lon": -68.276
+  }
+]

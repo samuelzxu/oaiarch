@@ -1,0 +1,45 @@
+```anomalies
+"anomaly_1": {
+    "description": "Cluster of three rectilinear, low‐relief raised platforms oriented roughly north–south and east–west. Each platform measures approximately 80 × 60 m, with subtle convex plan curvature (~+0.2 m above surrounding terrain) visible in the slope and curvature derivatives. Hillshade highlights straight edges. The NIR composite shows higher moisture retention along platform margins, while the true‐color image reveals slightly darker canopy directly over the embankments. No corresponding feature appears in the OpenStreetMap layer.",
+    "bounding_box": {
+        "min_lat": -15.8052,
+        "max_lat": -15.8025,
+        "min_lon": -50.5580,
+        "max_lon": -50.5545
+    }
+},
+"anomaly_2": {
+    "description": "Linear ditch or canal extending ~600 m southeast–northwest. In the slope derivative it appears as a ~2 m‐wide linear depression (concave curvature), with consistent orientation matching regional drainage patterns. The NIR band highlights vegetation stress and moisture anomaly along the line, suggesting a buried channel retaining water. The feature is not mapped in OSM and lies wholly within terra‐firme forest.",
+    "bounding_box": {
+        "min_lat": -15.8160,
+        "max_lat": -15.8095,
+        "min_lon": -50.5595,
+        "max_lon": -50.5510
+    }
+},
+```  
+
+Context and Interpretation  
+1. Regional Background  
+   • The Itapirapuã interfluve (5CVV+3C) lies on a broad upland plateau about 10–20 m above the adjacent floodplain of the Paranã River. Previous surveys here have documented geoglyphs and raised‐field complexes, primarily on oxbow remnants.  
+   • Historical occupation by complex pre‐Columbian societies (ca. AD 1000–1500) exploited nutrient‐poor soils through engineered water‐management earthworks such as canals, ditches, and raised platforms (“camellones”).  
+
+2. How These Anomalies Fit the Broader Picture  
+   • Anomaly 1’s rectilinear raised platforms closely parallel analogues at the Alto Alegre site (~200 km SE), where multiple aligned camellones served as flood‐water filters and cultivation plots.  
+   • Anomaly 2’s linear canal may represent a feeder to these raised fields, hinting at a more extensive distribution network than previously appreciated in this part of Goiás.  
+
+3. Implications for Archaeological Theory  
+   • Challenges the assumption that intensive upland earthworks in Central Amazonian interfluves are restricted to river‐adjacent levees.  
+   • Supports emerging models of regional integration via engineered drainage grids across terra-firme plateaus, implying higher population densities and landscape planning.  
+
+4. Actionable Insights  
+   • Prioritize ground-truthing (augmented by UAV LiDAR) at the junction where the linear ditch (anomaly 2) intersects the raised platform cluster (anomaly 1).  
+   • Expand the LiDAR‐derived slope < 2° + plan curvature filter across adjacent 10 × 10 km tiles to detect subsidiary canals feeding these features.  
+   • Use multi-date Sentinel-2 NDWI differencing during the early dry season to accentuate subtle moisture retention along faint lineaments.  
+
+[[[
+- Note the alignment of rectilinear platforms at coordinates around (-15.8038, -50.5562) as potential raised‐field agriculture.
+- The ~600 m linear depression from (-15.8160, -50.5595) to (-15.8095, -50.5510) indicates a buried canal; search for parallel features.
+- Combine slope (<2°) + concave plan curvature filters to isolate buried ditch signatures across nearby tiles.
+- Target terra‐firme forest patches, excluding OSM‐mapped roads and clearings, for subtle anthropogenic earthworks.
+]]]

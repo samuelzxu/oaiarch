@@ -1,0 +1,36 @@
+```anomalies
+"anomaly_1": {
+    "description": "A cluster of eight gently convex, parallel ridges trending roughly NE–SW (bearing ~30°). Each ridge measures approximately 150–200 m in length, 8–12 m in width and rises by 0.3–0.6 m above the adjacent ground. Spacing between ridges averages 10–15 m. The arrangement and rectilinear alignment contrast sharply with the surrounding dendritic natural micro‐topography. In the NIR composite these ridges appear as persistent low‐reflectance (dark) bands, indicative of higher soil moisture—consistent with buried water‐management channels or raised cultivation beds.",
+    "bounding_box": {
+        "min_lat": -23.36000,
+        "max_lat": -23.35400,
+        "min_lon": -45.08000,
+        "max_lon": -45.07450
+    }
+},
+"anomaly_2": {
+    "description": "A small, roughly rectangular platform (approx. 50 m × 30 m) with a leveled summit standing ~0.4 m above the adjacent forest floor. Corners appear near right angles, and the feature is aligned to the cardinal axes. In the hillshade the platform casts a consistent shadow outline, and in the NIR band it retains slightly higher moisture (darker tone) than the surrounding forest—suggesting a compacted anthropogenic soil horizon.",
+    "bounding_box": {
+        "min_lat": -23.35350,
+        "max_lat": -23.35270,
+        "min_lon": -45.07800,
+        "max_lon": -45.07650
+    }
+},
+```
+
+Context and Interpretation  
+The Ubatuba interfluvial uplands lie within the Atlantic Forest biome, a region where extensive Amazon‐style raised fields and causeway systems have rarely been documented. Pre‐colonial Tupi‐Guarani and related groups in coastal São Paulo are known primarily for small horticultural clearings rather than large engineered earthworks. The discovery of parallel ridges and a rectilinear platform here suggests either:  
+- An undocumented local adaptation of Amazonian water‐management techniques at higher elevations, or  
+- A localized experiment in soil amendment and moisture control for dry‐season cultivation.  
+
+These features would push current models of south‐eastern Amazonian cultural influence beyond the floodplain, indicating exchange networks or population movements into the Serra do Mar escarpment. If confirmed by excavation or geophysics, they would challenge the notion that large‐scale earthen infrastructure was confined to lowland várzea zones.
+
+Actionable insights for future surveys  
+[[[
+- Use hillshade and curvature derivatives to screen for subtle parallel ridges under 1 m relief; prioritize those trending at uniform bearings over >100 m lengths.
+- In closed‐canopy uplands, overlay multi‐date NIR composites to highlight persistent moisture anomalies aligned with linear topography.
+- Always mask out OSM‐mapped tracks and test for parallels within 50–100 m of known trails; true ancient alignments rarely coincide completely with modern routes.
+- Focus initial ground‐truthing transects on upslope convex knolls under 0.5° slope—these micro‐terraces often host buried platforms.
+- Search for small rectangular summits (30–60 m on a side) revealed by slight shadow casts in hillshade; these can indicate habitation or storage platforms and are generalizable markers across remote‐sensing datasets.
+]]]

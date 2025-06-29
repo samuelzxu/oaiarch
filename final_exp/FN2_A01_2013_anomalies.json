@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A straight, north\u2013south trending, low\u2010relief embankment or causeway approximately 280\u2009m long and 4\u20136\u2009m wide. On the DTM slope map it shows a subtle, linear convex ridge with <1\u00b0 slope contrast. The curvature derivative highlights it as a small positive ridge, and hillshade reveals a faint shadow line. In the NIR band there is a narrow, darker tone along the ridge axis, indicative of higher moisture retention or organic\u2010rich soil (\u2018dark earth\u2019). The feature is not coincident with any mapped modern road or trail on OpenStreetMap.",
+    "min_lat": -11.8695,
+    "max_lat": -11.841,
+    "min_lon": -54.1965,
+    "max_lon": -54.194
+  },
+  {
+    "description": "A rectilinear raised\u2010field platform, roughly 120\u2009m by 60\u2009m, aligned east\u2013west. On the slope derivative it appears as a flat plateau set 0.8\u20131.2\u2009m above surrounding terrain. Curvature highlights a convex margin on its northern and southern edges. In the NIR image the platform interior registers a uniform, darker signature compared to adjacent forest, suggesting enriched anthropogenic soil or moisture\u2010retentive fill. No modern parcel boundaries or infrastructure coincide with this footprint.",
+    "min_lat": -11.868,
+    "max_lat": -11.86,
+    "min_lon": -54.198,
+    "max_lon": -54.1955
+  }
+]

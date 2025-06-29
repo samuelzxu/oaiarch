@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A prominent, slightly sinuous NNW\u2013SSE trending raised causeway or ridge visible in the DTM. This linear feature is consistently 2\u20133 m wide, stands ~0.3\u20130.5 m above surrounding forest floor, and extends for approximately 1.8 km. It cuts across natural micro\u2010drainage, indicating intentional routing.",
+    "min_lat": -1.6873,
+    "max_lat": -1.6693,
+    "min_lon": -56.3086,
+    "max_lon": -56.3062
+  },
+  {
+    "description": "A rectilinear grid of orthogonal embankments and shallow ditches forming at least three contiguous field blocks. Each block measures roughly 100\u2013150 m per side. The embankments show paired convex\u2010concave curvature in cross\u2010section, consistent with paired raised\u2010field construction for water\u2010management.",
+    "min_lat": -1.6835,
+    "max_lat": -1.6765,
+    "min_lon": -56.3088,
+    "max_lon": -56.3051
+  }
+]

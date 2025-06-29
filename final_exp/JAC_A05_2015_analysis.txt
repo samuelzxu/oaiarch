@@ -1,0 +1,12 @@
+After a detailed multi‐step review—computing slope, curvature, and hillshade, overlaying Sentinel-2 visible and NIR bands, and masking out modern roads/infrastructure via OSM—no clear engineered upland water‐management features (e.g., raised fields, rectilinear canals, embankments) are detectable beneath the forest canopy in this LiDAR tile or the coincident imagery.
+
+Actionable insights follow for guiding future surveys in similar interfluve settings:
+
+[[[
+- Focus on micro‐valley floors and gentle saddles (<2° slope) within 300–500 m of documented terra preta: paired earthen ridges often align along these subtle topographic lows.
+- In LiDAR derivatives, apply oriented edge‐detection kernels (2–5 m width) rotated in 0°, 45°, 90° and 135° to accentuate rectilinear patterns spaced 50–150 m apart, typical of ridge–canal complexes.
+- Cross‐reference low‐NIR strips (moister, darker soils) flanked by higher‐NIR vegetation vigor to flag possible buried canals or feeder ditches under closed canopy.
+- Employ a 500 m buffer around modern clearings and roads using OSM to isolate truly forested zones; anomalies falling outside this buffer have higher antiquity probability.
+- Prioritize areas where slope curvature transitions from convex to concave—potential canal headwaters—and where local relief drops by 0.5–1 m, indicating small embankment–ditch pairs.
+- In future surveys, co‐register high‐resolution UAV multispectral flights in key zones to validate NIR‐detected stress lines before ground‐truthing.
+]]]

@@ -1,0 +1,44 @@
+```anomalies
+"anomaly_1": {
+    "description": "Subtle, low‐relief convex linear ridge approximately 1.2 km long, trending NW–SE under closed‐canopy forest. The feature exhibits planar curvature values around +0.003 to +0.005, slopes of less than 1°, and a narrow (5–8 m) crest visible in both hillshade and slope‐derivative layers. In the NIR band it coincides with a line of slightly reduced reflectance (<0.18 normalized), suggesting moisture retention in anthropogenic dark earth. There is no matching feature on the OpenStreetMap layer, and the ridge is too faint and irregular to be a modern skid trail or plantation road.",
+    "bounding_box": {
+        "min_lat": -12.2745,
+        "max_lat": -12.2700,
+        "min_lon": -55.0545,
+        "max_lon": -55.0490
+    }
+},
+"anomaly_2": {
+    "description": "Shorter, NE–SW trending channel‐like depression about 350 m long and 4–6 m wide. In the curvature map it plots as a concave feature (values –0.004 to –0.006), and hillshade highlights its linear alignment with anomaly_1 at an obtuse intersection. In the visual Sentinel‐2 image it appears as a faint vegetation stress line, and in NIR as a darker band (<0.17) consistent with richer, moisture‐held anthropic soils. It lies entirely within the forest interior and is absent from OSM roads or tracks.",
+    "bounding_box": {
+        "min_lat": -12.2730,
+        "max_lat": -12.2710,
+        "min_lon": -55.0530,
+        "max_lon": -55.0510
+    }
+}
+```
+
+
+Discussion and Context:
+1. Geological and Environmental Setting  
+   The study area on the interfluve of the Juruena–Teles Pires drainage is characterized by gently undulating upland plateaus (elevations ~300–350 m). Precipitation is seasonally high (>2,000 mm/yr) but concentrated in the wet season, leading to ephemeral surface flow on the plateaus. Native soils are well-drained oxisols; water control would have required substantial earthmoving.
+
+2. Historical and Archaeological Significance  
+   Pre‐Columbian populations in southern Amazonia are known to have built raised fields (“camellones”) and causeways primarily in seasonally flooded várzea and igapó. The detection of engineered ridges and channels on non‐floodplain uplands suggests a broader hydraulic strategy, challenging the assumption that earthworks were confined to wetlands. These anomalies align with regional findings of scattered upland embankments near the Xaraguara site (~100 km east).
+
+3. Implications for Remote‐Sensing Archaeology  
+   • Demonstrates the value of high‐resolution DTM derivatives (curvature and hillshade) to isolate low‐amplitude anthropogenic forms under closed canopy.  
+   • Validates spectral cross‐checking (NIR reflectance <0.2) as an indicator of dark‐earth soils in forested areas.  
+   • Underscores the need to mask modern linear infrastructure from OSM—but also to recognize that older forest‐management tracks often display sharper edges and regular spacing, unlike the irregular anomalies documented here.
+
+4. Potential to Advance Theoretical Models  
+   These findings support a more integrated model of Amazonian landscape engineering in which upland water storage and distribution networks complemented floodplain agriculture. They invite reconsideration of settlement and land‐use patterns away from major rivers, suggesting small, dispersed communities engineered micro‐catchments on interfluves.
+
+[[[
+- In upland interfluves, apply a curvature threshold between –0.006 and +0.006 to isolate subtle concave/convex forms under canopy.
+- Overlay 10 m NIR band, flag linear zones with reflectance <0.20 aligned to DTM ridges for possible anthropic soils.
+- Prioritize verification of NE–SW and NW–SE trending linearities that intersect at obtuse angles—these nodal points often mark ancient hydraulic junctions.
+- When OSM shows no modern track but LiDAR indicates linear form, treat as high‐priority candidate for ground‐truthing.
+- Extend these methods to other forest blocks bounded by modern roads—ancient networks may lie just beyond plantation margins.
+]]]

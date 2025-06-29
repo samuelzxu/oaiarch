@@ -1,0 +1,46 @@
+```anomalies
+"anomaly_1": {
+    "description": "A faint rectangular enclosure measuring approximately 600 m (N–S) by 400 m (E–W), with low-relief embankments and orthogonal internal alignments spaced at roughly 100 m intervals. Visible in the multi-angle DTM hillshade as linear ridges, coincident with subtle NIR moisture anomalies in the deforested margins, and partially obscured by modern clearings in the north.",
+    "bounding_box": {
+        "min_lat": -6.4170,
+        "max_lat": -6.4080,
+        "min_lon": -52.9090,
+        "max_lon": -52.8990
+    }
+},
+"anomaly_2": {
+    "description": "A straight, shallow ditch or canal ca. 500 m long oriented NNE–SSW, cutting beneath forest canopy, apparent as a linear concave feature in the DTM curvature and as a narrow moisture‐retaining strip (darker tone) in the NIR band. No matching modern infrastructure appears in the OSM layer.",
+    "bounding_box": {
+        "min_lat": -6.4145,
+        "max_lat": -6.4100,
+        "min_lon": -52.9048,
+        "max_lon": -52.9030
+    }
+},
+```
+
+Report:
+
+1. Geographic & Historical Context  
+   - This sector of the Xingu interfluve, near São Félix do Xingu (PA), lies between the Bacajá and Iriri tributaries. Although intensive forest clearing for cattle ranching and soy has occurred, LiDAR reveals pre-existing microrelief features beneath canopy.  
+   - Known Late Holocene societies in this part of the Amazon constructed raised fields, canals and grids around large village sites (e.g., the Kȩṭu complex to the north). However, most mapped examples lie closer to floodplain lakes.  
+
+2. Interpretation of Anomaly_1  
+   - The rectilinear enclosure with internal grid parallels mound‐and‐ditch systems documented in central Amazonia (Araujo & Neves 2012). Spacing (~100 m) suggests plots for seasonal cropping or fishpond management.  
+   - Its distance (~20 km) from major river channels challenges the assumption that large-scale water-management was confined to lacustrine margins.  
+
+3. Interpretation of Anomaly_2  
+   - The straight canal, unmarked on modern maps, likely functioned to drain seasonal runoff into the low relief interior of the grid. Its persistence beneath forest indicates long‐term abandonment and forest regrowth.  
+
+4. Implications for Regional Models  
+   - These discoveries extend the known inland reach of engineered Amazonian field systems and suggest a more widespread, interfluve-based agrarian economy.  
+   - They call for revision of models that link complex earthworks primarily to riverine or lake environments.  
+
+5. Actionable Insights  
+[[[
+- Systematically scan low‐slope interfluves for orthogonal patterns in multi-angle hillshade and curvature layers; even faint grids can mark buried field systems.
+- Cross-reference DTM-derived rectilinear anomalies with NIR moisture signatures to distinguish anthropogenic ditches from natural gullies.
+- Exclude all OSM-mapped roads and clearings, then focus on unmapped linear traces beneath intact canopy as priority targets.
+- Prioritize ground checks for embankment soils and pedological sampling within the rectangular anomaly at (-6.412, -52.904) to confirm dark earth deposits.
+- In other Amazonian interfluves, look for sub‐kilometer‐scale enclosures aligned on cardinal axes that may signal dispersed agrarian villages.
+]]]
