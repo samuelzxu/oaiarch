@@ -1,10 +1,16 @@
-# From Logs to Lost Canals: Ancient Water Management in Jamari National Forest
+# From Logs to Pyramids and Lost Canals: Ancient Water Management in Jamari National Forest
 
 Samuel Xu
 
-Although Lidar surveys of selective logging in Jamari National Forest have been promising [1], its archaeological potential remains largely unexplored [2]. Here, we leverage recent AI‐driven advances to perform a comprehensive analysis of remote sensing data over 115 000 ha of Amazonian terrain, spotlighting Jamari as a prime candidate for uncovering archaeological features. Within a focused 3.7 x 3.7 km plot, feature extraction revealed canal‐like channels of varying widths and circular farm ponds - anomalies strikingly similar to known pre-Columbian hydrological works elsewhere in the basin [3]. These discoveries suggest a far greater scope and sophistication of Amazonian water management than previously recognized.
+Although Lidar surveys of selective logging in Jamari National Forest have been promising [1], its archaeological potential remains largely unexplored [2]. Here, we leverage recent AI‐driven advances to perform a comprehensive analysis of remote sensing data over 115 000 ha of Amazonian terrain, spotlighting Jamari as a prime candidate for uncovering archaeological features. Within a focused 3.7 x 3.7 km plot, image processing revealed canal‐like channels of varying widths, circular farm ponds, and most surprisingly, a conical pyramid-shaped mound - descriptions that parallel well-studied pre-Columbian agrarian settlements elsewhere in the basin ([3],[6]). These discoveries suggest a greater scope of Amazonian settlement and water management than previously recognized, opening the door for opportunities for archaeological discoveries.
 
-I'll take you through the steps of these findings.
+The outline for this is as follows:
+1. Data Gathering - explaining the sources of data I chose to analyze
+2. Data Processing - diving into the mess of cleaning up noisy remote sensing data
+3. o4-mini to the rescue! - filtering for regions of highest potential
+4. Site of Interest - Within that region, there's a particularly interesting site
+5. Discussion and next steps - Tying it all together
+
 ## 1. Data Gathering
 
 The plan was to acquire as much high-quality, open source data as possible to analyze. The final format needed to be PNGs, so that we could pass them through to o4-mini.
@@ -16,6 +22,7 @@ First, the data sources needed to be figured out. After perusing the web, I came
 - Open Streetmap data for information on existing structures and roads
 
 With this data, the detail of the LiDAR data could be cross-referenced with patterns in the sentinel bands and existing paths and structures in Open Street Map to distinguish potential archaeological anomalies.
+
 ## 2. Data Processing
 
 ### LIDAR Data
@@ -37,7 +44,7 @@ To re-run our processing pipeline, simply do the following:
 2. Download all the lidar data from [4]
 4. Change the `lidar_data_directory` in the `main()` function of `process_lidar.py` to point at your data
 3. Run `python process_lidar.py`
-4. When that's done, `python stitch_dtms.py`
+4. When that's done, `run stitch_dtms.py`
 
 <img src="lidar_processing_other.png" alt="Drawing" style="width: 800px;"/>
 
@@ -78,7 +85,7 @@ To run this yourself, do the following:
 - Set `stitched_images_dir` in `analyze.py` to the correct stitched images directory
 - Set `exp_name` in `analyze.py` to your desired experiment output directory
 - Create a `.env` file and set `GOOGLE_EARTH_API_KEY` and `OPENAI_API_KEY`
-- Run `python analyze.py`
+- Run `analyze.py`
 
 The script will then output the analysis, along with any anomalies it surfaced in a JSON file. It will also draw the bounding boxes of the anomalies it detects, along with the Sentinel and OSM data extracted. On average, the Jamari National Forest region exhibited a higher anomaly count (23.24) than the other 22 regions across over 10 individual experiment runs (4.39). To see the overlays, simply open the experiments folder and you'll find the overlays gathered for you by region group ID. You'll also find other helpful information included there, such as the geolocation string and past insights.
 
@@ -91,7 +98,8 @@ In total, across over 115 000 ha of Lidar, Satellite and OSM derived analysis, o
 Another region of interest was São João, Oriximiná - exhibiting also a high number of anomalies. However, after some research into the oral history of Jamari, I believed it to be the more attractive option. It has a varied and rich oral heritage, which underscores that the Jamari forest is not just a wilderness – it is a cultural landscape imbued with the memory of those who have called it home.
 
 In the Jamari National Forest, of particular interest was the JAM_A03_2013 tile, which we'll be diving into in the next section.
-## Site of Interest: Jamari National Forest, (-9.08081, -63.00638)
+
+## 4. Site of Interest: Jamari National Forest, (-9.08081, -63.00638)
 
 Three features make this location particularly compelling:
 1. Linear depressions of consistent depth and width, occurring in two parallel sets in some areas—one shallower, one deeper.
@@ -108,123 +116,37 @@ To exclude modern infrastructure, I overlaid OSM, NIR, and visual-band tiles:
 
 <img src="cross.png" alt="Drawing" style="width: 1000px;"/>
 
-No roads or buildings appear at these coordinates, heightening the intrigue. While selective logging skid marks may explain the shallower depressions, it does not account for the near-perfect straightness of the lines or the deeper channels linking the circular depressions. Ground truthing on site is required to determine their origin.
+No roads or buildings appear at these coordinates, heightening the intrigue. While selective logging skid marks may explain the shallower depressions, it does not account for the many other circular and curvilinear depressions, nor the deeper channels linking the circular depressions. Ground truthing on site may be required to determine their origin.
 
-These channels of several distinct widths and connected pond-like circular depressions were strikingly similar to the descriptions of anomalies in another article published earlier this year detailing a Maize monoculture in the southwestern Amazonia.[3]
+### Connections
 
-This site could play into the varied history of Jamari in unexpected ways. During Francisco de Orellana's expedition in 1541, they encountered a skirmish with warrior women near the junction with the Madeira River. They were never encountered again - and this is only a small piece of Jamari's rich past.
+Now we will outline several anomalous sites of interest, applied to both the hillshade and the normalized DTM and made connections to other sites in similar geographical positions of the Amazon.
+
+<img src="rects.png" alt="Drawing" style="width: 1000px;"/>
+
+These channels of several distinct widths (4b,5b,6b) and connected pond-like circular depressions (2,4,5) were strikingly similar to the descriptions of anomalies in another article published earlier this year [3] detailing a Maize monoculture in the southwestern Amazonia insofar as details of channels of distinct classes of width and round farm ponds. Moreover, site 1a has a rectangular perimeter with several rectangular shapes inside, a clear and surprising departure from the surrounding round geoglyphs. This one in particular bears a resemblance to rectangular sites found in other parts of the Bolivian Amazon [6], also surfaced with LiDAR.
+
+Finally, we note that oddly, left of site 5b, there's a white blotch. It is the consequence of an area being more than 8x the standard deviation of the rest of the site, hence the normalization process has cut it off (see the clip operation in `stitch_dtms.py`). You can also see in the hillshade, to the left of 5a that this area is elevated with a notable peak. Since there are no indicators of this being a modern man-made hill, one could easily draw comparisons between this site and the central conical pyramid of the Llanos de Mojo site [6].
+
+<img src="pyramids.png" alt="Drawing" style="width: 1000px;"/>
+
+Above is a side-by-side comparison our conical mound detected (left) generated by `python generate_contour.py` and the verified conical pyramid from the Llanos de Mojo site on the right. They are similarly surrounded by other causeways, and these causeways extend in both cases to areas on either side of a significant depression that has the s-shape of a river.
+
+Alone, each piece of evidence may be circumstantial, but together it paints a picture of an agrarian-based, low-density urbanism not unlike the monumental sites of Llanos de Mojo. It's possible that the previous surveys, in their endeavour to document the patterns of selective logging, other researchers missed entirely these exciting discoveries.
+
+This site could play into the varied history of Jamari in unexpected ways. Either way, it poses questions that beg to be answered. During Francisco de Orellana's expedition in 1541 [5], they encountered a skirmish with warrior women near the junction with the Madeira River of which the Jamari is a significant tributary. They were never encountered again - this is only a small piece of Jamari's rich past, of which these sites could offer a glimpse into.
+
 ## Discussion
 
-### Cultural Context and Regional Significance
+The recent identification of archaeological anomalies within Jamari National Forest opens an exciting new chapter in understanding Amazonian pre-Columbian societies. The identified features—linear and curvilinear channels, circular depressions resembling agricultural ponds, and notably, a conical pyramid-shaped mound—share striking similarities with previously documented agrarian settlements across the broader Amazon basin, particularly the well-studied monumental earthworks found at Llanos de Mojos in Bolivia ([3],[6]). This alignment strongly suggests a cultural and functional parallel, indicative of sophisticated water management and agricultural practices within a potential low-density urban framework.
 
-The features identified in Jamari National Forest represent a remarkable addition to the growing archaeological record of pre-Columbian landscape engineering across Amazonia. Recent discoveries have revealed that earthworks are widespread throughout the Amazon basin, with estimates suggesting between 10,272 and 23,648 sites remain to be discovered across the region. The interconnected channels and circular depressions at our study site bear striking similarities to known hydraulic management systems throughout southwestern Amazonia, particularly the complex pre-Columbian floodplain fisheries documented in Bolivia's Llanos de Moxos, which featured V-shaped weirs channeling fish into ponds for capture.
+The diversity and arrangement of these earthworks raise compelling hypotheses about their functions and chronological context. Given the geometric precision and complexity of the canal networks, along with their association with circular depressions indicative of managed agriculture, it is plausible that these structures served dual purposes—both irrigation and aquaculture. The clear rectilinear anomaly (site 1a), juxtaposed against the predominantly circular geoglyphs, invites speculation on ceremonial or specialized functional uses, similar to patterns observed elsewhere in southwestern Amazonia. The presence of the conical mound, analogous to known ceremonial structures from Llanos de Mojos, further strengthens the hypothesis of an integrated socio-political or religious dimension to the site.
 
-The broader Jamari River region has supported continuous human occupation for millennia, with some of the oldest ceramic traditions in the Americas dating back to 5630 BCE at nearby sites like Pedra Pintada. Within this deep historical context, the Tradição Jamari ceramic tradition represents a specific period of technological and social development spanning approximately 1,000-600 years ago. This timing coincides with what recent research has identified as a period of demographic expansion and landscape intensification across the Amazon basin, where pre-Columbian populations potentially reached carrying capacity before European colonization.
+Chronologically, although precise dating requires further ground validation and stratigraphic analysis, comparisons with analogous sites suggest a temporal framework broadly aligning with established pre-Columbian agrarian settlements from approximately 1000–1400 CE. Ground-truthing and archaeological excavation would clarify and refine this dating, solidifying Jamari’s position within the pre-Columbian narrative of Amazonia.
 
-The sophisticated water management features we have documented align with a broader pattern of environmental modification across the southern rim of the Amazon. Archaeological evidence now demonstrates that an 1800 km stretch of southern Amazonia was occupied by earth-building cultures living in fortified villages from approximately Cal AD 1250–1500, suggesting our site represents part of a vast, interconnected network of managed landscapes.
+To advance this research effectively and responsibly, collaborative surveys and excavations with local and Indigenous communities are crucial. Indigenous oral histories and traditional ecological knowledge may provide valuable insights and interpretations not immediately apparent from remote sensing alone. Partnering with regional institutions and local Indigenous groups such as the Karipuna and other communities who maintain historical and cultural ties to the region would enrich our interpretations and ensure culturally sensitive and contextually informed research practices.
 
-### Hypotheses for Function and Age
-
-#### Aquaculture and Fish Management
-
-The most compelling functional hypothesis for our observed features centers on aquaculture and seasonal fish management. The interconnected circular depressions and varying channel widths closely parallel documented pre-Columbian fishery systems, where weirs channeled out-migrating fish into ponds during seasonal flooding cycles, creating a sophisticated capture system that combined weir-fishing and pond-fishing techniques. The deeper channels connecting circular features at our site may have functioned similarly, directing fish movement during the annual flood pulse that characterizes Amazonian hydrology.
-
-#### Agricultural Water Management
-
-An alternative or complementary function involves agricultural intensification through water control. Pre-Columbian Amazonian societies possessed sophisticated knowledge of earthmoving, riverine dynamics, and soil enrichment techniques that allowed them to create highly productive domesticated landscapes. The linear channels may have regulated water flow for raised field agriculture or managed seasonal inundation of cultivated areas, similar to systems documented throughout the Llanos de Moxos.
-
-#### Temporal Framework
-
-Based on regional ceramic traditions and radiocarbon chronologies from comparable sites, we propose a construction period between 1,000-600 years ago, corresponding to the Tradição Jamari ceramic tradition. This timing aligns with broader patterns of landscape intensification across Amazonia, where major earthwork construction peaked between AD 1000-1500, often occurring within anthropogenic forests that had been actively managed for millennia.
-
-#### Demographic and Social Organization
-
-The scale and coordination required for such extensive earthworks suggests substantial population densities and centralized labor organization. Recent modeling indicates that large-scale pre-Columbian sites co-occurred with domesticated tree species, suggesting Indigenous peoples managed forests rather than clearing them, maintaining essential ecosystem services while supporting complex societies. Our site likely supported communities several times larger than historical indigenous populations in the region, potentially numbering in the thousands.
-
-### Proposed Survey Strategy with Local Partners
-
-#### Community-Centered Approach
-
-Any archaeological investigation at this site must be grounded in collaborative partnership with local indigenous communities and traditional populations. Recent studies across the Western Amazon demonstrate that indigenous communities are faithful stewards of their ancestral lands, with indigenous land tenure strongly correlating with forest conservation. We propose establishing formal partnerships with recognized indigenous organizations in Rondônia, including representatives from groups with historical connections to the Jamari River basin.
-
-#### Multi-Phase Investigation Protocol
-
-**Phase 1: Community Consultation and Traditional Knowledge Integration**
-
-Initial activities will focus on extensive consultation with local indigenous leaders, elders, and traditional ecological knowledge holders. This phase includes:
-
-- Formal meetings with indigenous organizations and traditional communities
-- Documentation of oral histories related to the study area
-- Integration of traditional place names and cultural landscapes
-- Development of culturally appropriate research protocols
-
-**Phase 2: Non-Invasive Remote Sensing Expansion**
-
-Building on our initial LiDAR analysis, we propose:
-
-- High-resolution drone survey with multispectral imaging
-- Ground-penetrating radar transects along major features
-- Systematic topographic mapping using differential GPS
-- Botanical survey to identify anthropogenic forest signatures
-
-**Phase 3: Limited Test Excavations**
-
-Following community approval and appropriate permitting:
-
-- Strategic test units placed to minimize site disturbance
-- Priority on dating organic materials and ceramic sequences
-- Soil chemistry analysis to identify anthropogenic signatures
-- Detailed stratigraphic documentation of feature construction
-
-#### Capacity Building and Benefit Sharing
-
-Central to our approach is ensuring that local communities benefit from and participate in all aspects of the research. This includes:
-
-- Training programs for community members in archaeological field methods
-- Development of community-controlled cultural heritage management plans
-- Integration of findings into local educational curricula
-- Tourism and economic development opportunities aligned with conservation goals
-
-#### Collaborative Research Framework
-
-We propose establishing a formal research consortium including:
-
-- Local indigenous organizations as primary partners
-- Brazilian archaeological institutions (particularly UNIR and regional museums)
-- International collaborators with expertise in Amazonian archaeology
-- Environmental organizations working on forest conservation
-- Government agencies responsible for heritage protection
-
-#### Ethical Considerations and Protocols
-
-All research activities will adhere to strict ethical guidelines:
-
-- Free, prior, and informed consent from all relevant communities
-- Community ownership of cultural heritage discoveries
-- Transparent sharing of all research data and findings
-- Long-term commitments to site protection and monitoring
-- Integration with existing indigenous territorial rights initiatives
-
-#### Conservation Integration
-
-Archaeological evidence can play a crucial role in present-day debates around indigenous territorial rights, as demonstrated by recent discoveries that confirm the historical presence of indigenous peoples in contested regions. Our research will be designed to support:
-
-- Documentation of indigenous historical presence for land rights cases
-- Integration of archaeological sites into protected area management
-- Development of cultural landscape conservation strategies
-- Strengthening of traditional resource management systems
-
-#### Expected Outcomes and Broader Implications
-
-This collaborative approach should yield:
-
-- Definitive functional interpretation of the hydraulic features
-- Refined chronological framework for regional occupation
-- Enhanced understanding of pre-Columbian landscape management
-- Strengthened indigenous cultural heritage protection
-- Model for community-based archaeological research in Amazonia
-
-The Jamari discoveries represent not just an archaeological site, but a window into sophisticated pre-Columbian environmental management that continued for centuries before European contact. These findings underscore that Amazonia has long been guided by intentional human activity, challenging assumptions about pristine wilderness while highlighting the deep history of sustainable landscape management. Through respectful collaboration with local communities, we can honor this heritage while contributing to both scientific understanding and contemporary conservation efforts.
+Future work should prioritize targeted archaeological excavation at key anomaly sites, radiocarbon dating of stratified deposits, and thorough ethnographic engagement with local communities. Additionally, expanded remote sensing surveys and comparative analyses with nearby regions are essential to understanding the extent and interconnectedness of these potentially significant archaeological landscapes. Ultimately, this integrative approach promises not only to illuminate the archaeological mysteries of Jamari but also to deepen appreciation for the rich cultural heritage of Amazonia.
 
 [1] Pinagé, Ekena & Matricardi, Eraldo & Assis Leal, Fabricio & Pedlowski, Marcos. (2016). Estimates of selective logging impacts in tropical forest canopy cover using RapidEye imagery and field data. iForest - Biogeosciences and Forestry. 9. 10.3832/ifor1534-008.
 
@@ -235,3 +157,5 @@ The Jamari discoveries represent not just an archaeological site, but a window i
 [4] LiDAR Surveys over Selected Forest Research Sites, Brazilian Amazon, 2008-2018, https://catalog.data.gov/dataset/lidar-surveys-over-selected-forest-research-sites-brazilian-amazon-2008-2018-38601
 
 [5] The Discovery of the Amazon: According to the Account of Friar Gaspar de Carvajal and Other Documents https://archive.org/details/discoveryofamazo0000jose
+
+[6] Prümers H, Betancourt CJ, Iriarte J, Robinson M, Schaich M. Lidar reveals pre-Hispanic low-density urbanism in the Bolivian Amazon. Nature. 2022 Jun;606(7913):325-328. doi: 10.1038/s41586-022-04780-4. Epub 2022 May 25. PMID: 35614221; PMCID: PMC9177426.
