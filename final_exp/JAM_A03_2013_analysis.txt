@@ -1,0 +1,52 @@
+anomalies  
+"anomaly_1": {  
+    "description": "A network of low‐relief, rectilinear ridges and troughs forming roughly polygonal cells, visible as subtle linear embankments on the hillshade. Oriented predominantly east–west, these ridges are 5–10 m wide and define enclosures approximately 40–60 m across. Such a regular, grid-like arrangement is unlikely to be natural and is characteristic of raised‐field and drainage‐ditch systems documented elsewhere in Amazonian interfluves.",  
+    "bounding_box": {  
+        "min_lat": -9.08150,  
+        "max_lat": -9.08000,  
+        "min_lon": -63.00700,  
+        "max_lon": -63.00550  
+    }  
+},  
+"anomaly_2": {  
+    "description": "A faint circular mound (c. 15–20 m diameter) with surrounding shallow moat, centered just south of anomaly_1. The concentric relief signature suggests a possible small platform or house mound with an enclosing ditch.",  
+    "bounding_box": {  
+        "min_lat": -9.08220,  
+        "max_lat": -9.08170,  
+        "min_lon": -63.00680,  
+        "max_lon": -63.00630  
+    }  
+},  
+"anomaly_3": {  
+    "description": "Linear lowland channel trending NW–SE, ~100 m long and 3–5 m wide, with paired slight berms on each side. On the NIR band this alignment corresponds to a narrow strip of reduced reflectance (higher moisture or organic‐rich soil), suggesting water retention or former canal fill.",  
+    "bounding_box": {  
+        "min_lat": -9.08100,  
+        "max_lat": -9.08050,  
+        "min_lon": -63.00650,  
+        "max_lon": -63.00610  
+    }  
+}  
+
+Reporting
+
+1. Historical and Geographical Context  
+   - This part of the Jamari interfluve lies within seasonally inundated terrain between tributaries of the Machado (Ji‐Paraná) River. Ethnohistoric and archaeological surveys in nearby sectors of the Floresta Nacional do Jamari have documented sophisticated pre‐Columbian earth‐management systems—raised fields, canals and causeways—used to modulate water in wet–dry cycles.  
+   - Radiocarbon dates from analogous sites range ca. 500 – 1500 CE. The orientation and scale of the embankment network fit regional variants of the so‐called “Amazonian garden cities,” where low‐magnitude elevation changes created cultivable plots and drainage.  
+
+2. Integration with Current Theories  
+   - The discovery of rectilinear raised‐field cells in this hitherto understudied sector challenges the view that pre‐Columbian engineering in the Jamari forest was sparse and localized. Instead it supports models of region‐wide, coordinated landscape modification.  
+   - The existence of smaller mound‐and‐ditch features (anomaly_2) indicates possible habitation or ritual focal points associated with the agricultural grid, consistent with ethnographic analogies of village plazas embedded in field systems.  
+
+3. Advancement of the Discipline  
+   - These finds expand the known footprint of earth‐architecture in the southern Amazon, contributing to debates on societal complexity and landscape planning before European contact.  
+   - They underscore the need to integrate high‐resolution LiDAR DTM derivatives with spectral data to detect low‐relief archaeology under closed canopy.  
+
+4. Actionable Insights  
+
+[[[  
+- When examining Amazonian interfluves, compute multi‐scale hillshade (including 315° solar azimuth) to reveal parallel embankments 5–10 m wide.  
+- Overlay NIR imagery to highlight narrow low‐reflectance bands co‐aligned with ridges; these often mark infilled canals or organic‐rich terra preta.  
+- Look for repeating cell dimensions (40–60 m across) as a diagnostic signature of raised‐field agriculture.  
+- Mask modern features via OSM or recent aerial photography to avoid confusing mechanized trails with ancient causeways.  
+- In other forested regions, small circular depressions (15–20 m diameter) adjacent to linear grids may indicate house mounds; target these for ground‐truth coring.  
+]]]

@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A prominent north\u2013south\u2013oriented linear ridge approximately 3\u20135 m wide and at least 2 km long, showing up as a subtle elevation high in the hillshade and corresponding to a low-reflectance line in NIR suggestive of an engineered canal or causeway.",
+    "min_lat": -9.158,
+    "max_lat": -9.142,
+    "min_lon": -63.006,
+    "max_lon": -63.004
+  },
+  {
+    "description": "An east\u2013west linear feature roughly 2\u20133 m wide, intersecting anomaly_1 at right angles near \u20139.1490 lat; appears as a rectilinear channel or ditch in the slope/curvature derivatives and shows corresponding vegetation stress in the visual bands.",
+    "min_lat": -9.15,
+    "max_lat": -9.148,
+    "min_lon": -63.012,
+    "max_lon": -63.002
+  },
+  {
+    "description": "A meandering, curved channel segment in the southern third of the scene, ~500 m long and 2\u20134 m wide, visible as a positive relief arc in the hillshade and as a brighter line in the NIR image indicating wetter soils.",
+    "min_lat": -9.159,
+    "max_lat": -9.155,
+    "min_lon": -63.007,
+    "max_lon": -63.002
+  }
+]

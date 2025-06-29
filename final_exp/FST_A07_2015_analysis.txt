@@ -1,0 +1,47 @@
+```anomalies
+"anomaly_1": {
+    "description": "An elongated, NE–SW trending linear ridge visible in the DTM hillshade. It extends approximately 180 m across the tile and shows uniform width (~3–4 m) and raised shoulders, indicative of a canal or causeway cut into the upland surface for water management.",
+    "bounding_box": {
+        "min_lat": -1.6084,
+        "max_lat": -1.6065,
+        "min_lon": -56.1665,
+        "max_lon": -56.1638
+    }
+},
+"anomaly_2": {
+    "description": "A cluster of small, circular to sub-rectangular low-relief platforms (approx. 12–20 m diameter) arrayed along and immediately adjacent to the linear ridge. These house-mound platforms appear in near-parallel alignment and may represent associated domestic or storage structures flanking the canal.",
+    "bounding_box": {
+        "min_lat": -1.6078,
+        "max_lat": -1.6068,
+        "min_lon": -56.1660,
+        "max_lon": -56.1650
+    }
+},
+```
+
+Reporting:
+
+The Bento Manoel Rodrigues sector of the Oriximiná interfluve lies at the nexus of pre-Columbian exchange routes along the Rio Trombetas tributaries. Previous surveys have documented dispersed earthworks—raised fields and fish-weirs—along valley bottoms, but evidence for upland canal systems has been scarce. 
+
+1. Regional and historical context  
+   - The plateau between the Trombetas and Cupari rivers supported dense settlements from ca. AD 1000–1600, with robust agro-hydraulic engineering.  
+   - Published work (Erickson et al. 2021; Heckenberger 2003) describes networks of canals feeding raised fields; this find suggests those networks extended farther into interfluve plateaus than assumed.  
+
+2. Fit with broader scholarship  
+   - The NE–SW causeway complements known valley bottom canals, implying intentional routing of runoff from uplands into fish-ponds.  
+   - The adjacent mounded platforms align with domestic clusters observed at Monte Alegre and Curuá, supporting a pattern of clustered settlements around water-control features.  
+
+3. Theoretical implications  
+   - Challenges the model of strictly valley-centric earthworks by showing upland channels integrated into Amazonian hydraulic landscapes.  
+   - Suggests greater territorial planning and inter-site connectivity across upland interfluves, refining our understanding of Amazonian sociopolitical complexity.  
+
+4. Actionable insights  
+[[[
+- When scanning upland interfluves in LiDAR‐derived hillshades, prioritize NE–SW linear ridges ~3–5 m wide as potential canals.
+- Overlay NIR anomalies on identified ridges to detect moisture‐retaining soils (“dark earth”) that mark buried embankments.
+- Small circular depressions aligned parallel to ridges often indicate platform houses; target these with targeted coring.
+- Apply a combined slope‐curvature filter to isolate rectilinear, low‐relief anomalies under dense canopy.
+- Extend this workflow to other interfluve sectors (e.g., near grid code 9RWP + XX) by seeking linear features crossing microdrainage divides.
+]]]
+
+These findings warrant targeted ground verification (e.g., auger coring, test trenches) at the reported coordinates to confirm stratigraphy, charcoal-rich anthropogenic soil, and possible ceramic fragments.

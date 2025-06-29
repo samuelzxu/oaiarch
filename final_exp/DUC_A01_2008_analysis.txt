@@ -1,0 +1,24 @@
+After conducting the four‐step protocol, I did not identify any clear engineered upland water‐management features (raised fields, linear canals, drainage ditches, embankments or causeways) buried beneath the forest canopy in this sector of the 23X9+WW Manaus tile. Below is a concise summary of the analyses:
+
+1. Terrain Analysis  
+   • Slope: The vast majority of the area exhibits very gentle slopes (<2°), but no rectilinear ridges or ditch‐like lineaments were apparent.  
+   • Curvature: Concave‐plan and convex‐plan curvature patterns are present (typical of natural micro‐relief), but none form right‐angle intersections or parallel straight segments that would suggest anthropogenic layout.  
+   • Hillshade: No linear or blocky patterns stand out from ambient, randomly distributed micro‐topography.
+
+2. Spectral Cross‐Checking  
+   • Visual (True-color): Even illumination across canopy; no linear bands of altered leaf color or canopy density.  
+   • NIR: Uniform high reflectance typical of healthy forest; no localized moisture‐retaining “dark earth” signatures aligned with potential earthworks.
+
+3. Modern Structure Masking  
+   • OSM infrastructure (roads, trails, small clearings) are present mostly along margins. None overlap suspected anomalies, nor did any anthropogenic logging roads mimic archaeological patterns.
+
+Because no anomalies meeting the criteria were detected, there are no specific feature bounding boxes to report.
+
+[[[
+Actionable insights for future surveys (generalizable):
+- Prioritize scanning zones where hillshade reveals short, parallel ridges spaced 10–20 m apart forming approximately rectangular grids.
+- In DTM curvature maps, flag any small (<50 m) rectilinear hollows intersecting at right angles under gentle slope (<2°) areas.
+- Overlay multi-date NIR composites to identify persistent moisture-anomalous lines—even faint—indicator of buried canals or feature infills.
+- When OSM trails are dense, focus on adjacent untrammeled forest blocks where modern disturbance is minimal, to reduce false positives.
+- Apply the same protocol systematically to neighboring interfluves (e.g. Tarauacá, Envira) while adjusting scan window sizes based on LiDAR strip orientation.
+]]]

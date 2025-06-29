@@ -1,0 +1,16 @@
+[
+  {
+    "description": "Subtle, low\u2010relief convex linear ridge approximately 1.2 km long, trending NW\u2013SE under closed\u2010canopy forest. The feature exhibits planar curvature values around +0.003 to +0.005, slopes of less than 1\u00b0, and a narrow (5\u20138 m) crest visible in both hillshade and slope\u2010derivative layers. In the NIR band it coincides with a line of slightly reduced reflectance (<0.18 normalized), suggesting moisture retention in anthropogenic dark earth. There is no matching feature on the OpenStreetMap layer, and the ridge is too faint and irregular to be a modern skid trail or plantation road.",
+    "min_lat": -12.2745,
+    "max_lat": -12.27,
+    "min_lon": -55.0545,
+    "max_lon": -55.049
+  },
+  {
+    "description": "Shorter, NE\u2013SW trending channel\u2010like depression about 350 m long and 4\u20136 m wide. In the curvature map it plots as a concave feature (values \u20130.004 to \u20130.006), and hillshade highlights its linear alignment with anomaly_1 at an obtuse intersection. In the visual Sentinel\u20102 image it appears as a faint vegetation stress line, and in NIR as a darker band (<0.17) consistent with richer, moisture\u2010held anthropic soils. It lies entirely within the forest interior and is absent from OSM roads or tracks.",
+    "min_lat": -12.273,
+    "max_lat": -12.271,
+    "min_lon": -55.053,
+    "max_lon": -55.051
+  }
+]

@@ -1,0 +1,37 @@
+anomalies
+"anomaly_1": {
+    "description": "A straight, narrow embankment trending almost exactly north–south, ~600 m long and 4–6 m wide, standing ~0.5–1 m above surrounding terrain. In the hillshade it appears as a crisp, linear positive relief feature with regular width. It has no counterpart in the OpenStreetMap layer or visible roads, and it crops out as a slightly brighter line in the NIR band—consistent with moisture retention in an anthropogenic soil (terra preta) along its crest.",
+    "bounding_box": {
+        "min_lat": -1.6778,
+        "max_lat": -1.6723,
+        "min_lon": -56.3267,
+        "max_lon": -56.3263
+    }
+},
+"anomaly_2": {
+    "description": "A gently curved embankment or causeway ~200 m long running southeast–northwest, 5–7 m wide. It stands ~0.5 m above the natural surface and shows a distinct right‐angle turn at its midsection. In the DTM curvature derivative it generates a rectilinear signature, and in the visual Sentinel-2 band one sees minor vegetation stress along its margins—typical of buried raised‐field platforms.",
+    "bounding_box": {
+        "min_lat": -1.6785,
+        "max_lat": -1.6755,
+        "min_lon": -56.3269,
+        "max_lon": -56.3264
+    }
+},
+
+
+Historical and Regional Context:
+The mapped anomalies lie in the interfluvial uplands of the Lower Amazon adjacent to the Trombetas–Nhamundá subregion, a zone known for pre‐Columbian earth‐management systems (e.g., Santarém and Tapajós cultures). Linear causeways and raised embankments have been previously identified along major rivers, but their occurrence beneath closed canopy in upland interfluves is less documented. The uniform width and rectilinearity of anomaly_1, together with the right‐angle turn in anomaly_2, match known patterns of Marajoara‐phase raised fields and canal networks designed for water control in seasonal flood regimes.
+
+Implications for Theory:
+These features extend the known reach of engineered agrarian complexes beyond floodplain margins into higher ground, suggesting a more extensive upland water‐management strategy. This challenges earlier models that confined large‐scale Amazonian earthworks to varzea environments and supports emerging views of a highly integrated wetland–upland agricultural mosaic.
+
+Future Use:
+Field testing should target the edges of these ridges for terra preta markers and microstratigraphic sampling. High‐resolution soil coring along the N–S embankment could reveal charcoal‐rich horizons, confirming anthropogenic soil amendment. Subsequent magnetometry or GPR surveys can refine the geometry of any buried canal network branching from these causeways.
+
+[[[
+- In upland Amazon interfluves, look for narrow, uniform‐width ridges in LiDAR hillshade that run for hundreds of meters without corresponding modern roads.
+- Identify right‐angle turns or rectilinear curvature in subtle DTM derivatives—these often mark engineered field edges or causeway junctions.
+- Cross‐check such ridges in the NIR band for elevated reflectance indicating moisture retention soils (potential terra preta).
+- Exclude features coincident with OpenStreetMap roads or recent clearings; focus on anomalies concealed under closed forest canopy.
+- Use small‐diameter soil cores at ridge margins to test for charcoal and pottery fragments before large‐scale excavation.
+]]]

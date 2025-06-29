@@ -1,0 +1,42 @@
+```anomalies
+"anomaly_1": {
+    "description": "A linear, rectilinear depression visible in the hillshade, approximately 170 m long and 2–3 m wide, trending NW–SE. In the NIR and visible composites it coincides with a narrow belt of slightly elevated moisture retention and darker vegetation (indicative of organic‐rich fill), while OSM shows no modern feature in this alignment. Likely an ancient drainage canal or ditch.",
+    "bounding_box": {
+        "min_lat": -9.06600,
+        "max_lat": -9.06575,
+        "min_lon": -62.80410,
+        "max_lon": -62.80385
+    }
+},
+"anomaly_2": {
+    "description": "A subtle horseshoe‐shaped embankment roughly 250 m across, open to the east, observed as a low relief arc in hillshade. Corresponding NIR pixels are marginally brighter (suggesting wetter soils) and the true‐color band shows local vegetation stress along its crest. No matching roads or logging tracks on OSM. Interpreted as a water‐retaining embankment or causeway.",
+    "bounding_box": {
+        "min_lat": -9.06620,
+        "max_lat": -9.06550,
+        "min_lon": -62.80370,
+        "max_lon": -62.80320
+    }
+},
+"anomaly_3": {
+    "description": "A cluster of three nearly parallel raised ridges, each ~100 m long and spaced 10–15 m apart, trending NNE–SSW. The ridges appear as positive relief in the DTM derivatives; in the NIR layer the troughs between them show subtle moisture accumulation. No contemporary features overlay these ridges on OSM. Likely remnants of engineered raised‐field agriculture.",
+    "bounding_box": {
+        "min_lat": -9.06630,
+        "max_lat": -9.06590,
+        "min_lon": -62.80420,
+        "max_lon": -62.80390
+    }
+},
+```
+
+
+Drawing on regional context, these anomalies fall within the terra preta–bearing interfluves of the upper Jacundá drainage, an area where pre‐Columbian societies engineered upland fields, canals, and embankments to manage seasonal water and enhance soil fertility. The NW–SE canal (anomaly_1) aligns downslope of known habitation mounds nearby, suggesting a conduit for runoff or irrigation. The horseshoe embankment (anomaly_2) resembles causeways documented at other central‐Amazon sites, potentially marking enclosure boundaries or water management edges. The parallel ridges (anomaly_3) mirror raised‐field grids recorded at Tapajós‐Xingu interfluves, extending their known geographic range into western Rondônia.
+
+These findings challenge the traditional view that Itapuã do Oeste interfluves were marginal to complex landscape modification. Instead, they indicate a more extensive network of upland waterworks, implying denser, coordinated land‐use strategies. This could shift models of pre‐Columbian Amazonia toward broader interfluvial integration, rather than isolated floodplain hubs.
+
+[[[
+– When LiDAR‐derived hillshade reveals subtle, rectilinear low or high relief under closed canopy, overlay multi‐directional hillshade to isolate linear ditches or embankments.
+– Co‐register NIR temporal composites to detect moisture anomalies in subsurface canals; even slight band‐to‐band differences can betray buried watercourses.
+– Mask modern logging roads and trails via OSM before interpreting micro‐topography; focus on features with no modern analogue.
+– Apply transect‐based sampling of adjacent interfluves at regular intervals (e.g., every 500 m) to systematically chart parallel ridge networks.
+– Use parallel spectral indices (e.g., NDWI, red‐edge) alongside hillshade to flag concealed raised‐field clusters, then ground‐truth with targeted coring for Terra Preta signatures.
+]]]

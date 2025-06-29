@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A faint, straight east\u2013west\u2013trending ditch or canal segment approximately 160 m long, cutting across otherwise uniform low\u2010relief terrain. On the DTM hillshade it appears as a narrow linear depression with consistent width (~2\u20133 m), and in the Sentinel-2 NIR it corresponds to a band of elevated moisture/vegetation stress. No modern road or skid trail is mapped here in OpenStreetMap.",
+    "min_lat": -6.609,
+    "max_lat": -6.605,
+    "min_lon": -51.797,
+    "max_lon": -51.789
+  },
+  {
+    "description": "A second straight segment, trending northwest\u2013southeast for roughly 200 m, visible as a shallow ridge-and-furrow pattern on the LiDAR DTM. It forms an unusually rectilinear alignment amidst natural hummocks. The feature also shows a subtle spectral signature in the visual band (slightly higher reflectance) and a contrasting tone in the NIR, indicative of differential soil moisture or anthropogenic soil fill.",
+    "min_lat": -6.615,
+    "max_lat": -6.605,
+    "min_lon": -51.805,
+    "max_lon": -51.795
+  }
+]

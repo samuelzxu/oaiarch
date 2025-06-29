@@ -1,0 +1,40 @@
+```anomalies
+"anomaly_1": {
+    "description": "A curvilinear, bench‐like embankment or causeway trace, ~2 m wide, forming an arc approximately 350 m across. Visible as a low‐amplitude positive relief in the LiDAR hillshade, unaligned with modern trails and roads.",
+    "bounding_box": {
+        "min_lat": -9.39210,
+        "max_lat": -9.38710,
+        "min_lon": -62.94929,
+        "max_lon": -62.94729
+    }
+},
+"anomaly_2": {
+    "description": "A subtle paired linear depression and adjacent parallel ridge, spaced ~30 m apart, trending northwest–southeast over ~450 m. Detected in high‐order plan curvature and weakly in the NIR band as a line of slightly lower reflectance vegetation.",
+    "bounding_box": {
+        "min_lat": -9.38200,
+        "max_lat": -9.37700,
+        "min_lon": -62.94870,
+        "max_lon": -62.94670
+    }
+},
+```
+
+Region & Historical Context  
+This portion of the Vila do Japim interfluve lies between the Japim and Araras igarapés, an area recently recognized for scattered earthworks tied to late‐Holocene agro‐hydraulic systems. Previous survey work noted similar embankments and canal pairs near seasonally inundated lowlands, but never this deep into the forested plateau. The detected features echo the profile‐and‐plan curvature anomalies recorded by Heckenberger et al. (2008) in the Upper Xingu, suggesting extension of that tradition into Rondônia.
+
+Broader Implications  
+– These embankment–ditch pairs, if confirmed by ground inspection, indicate that intensive water‐management was practiced not only along floodplains but well within interfluves, demanding a reevaluation of settlement distribution models in southwestern Amazonia.  
+– The curvilinear causeway implies community‐level coordination in channel routing, challenging the assumption that compact, circular plaza villages dominated this sector. Instead, we may be looking at a semi‐hierarchical network of hamlets linked by engineered watercourses.  
+
+Challenges to Current Theory  
+– Conventional wisdom holds that “terra firme” above levee heights saw minimal earthwork construction. These anomalies push the boundary upslope, indicating designers exploited subtle micro‐topography for hydrological control far from riverbanks.  
+– Models of social complexity in the region emphasize large plazas; these narrow, linear systems suggest an alternative social organization focused on resource‐exchange corridors rather than centralized ceremonial cores.
+
+Actionable Insights  
+[[
+- Target bench‐like ridges on LiDAR curvature maps that are 1–3 m wide and form coherent arcs; these often mark buried causeways in interfluves.  
+- Overlay multi‐date Sentinel‐2 NIR composites to find lines of marginally reduced reflectance, which can flag hidden canal–embankment pairs under closed canopy.  
+- Systematically mask OSM‐mapped trails and agricultural clearings, then prioritize unmapped low‐slope anomalies for UAV‐LiDAR or GPR validation.  
+- In adjacent forested interfluves, scan for evenly spaced paired depressions (20–50 m apart) as they frequently indicate canal networks even when topographic relief is <0.5 m.  
+- Expand mapping zones beyond single‐strip coverage: mosaic all available LiDAR swaths and hillshade azimuths to trace faint alignments over 1–2 km.  
+]]

@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A prominent, straight, NNW\u2013SSE trending linear ridge visible in the DTM hillshade, approximately 900\u2009m in length and 3\u20135\u2009m wide, exhibiting a slight convex cross\u2010section. Corresponding faint dark line in the NIR composite suggests moisture retention consistent with terra preta or canal sediments.",
+    "min_lat": -8.567,
+    "max_lat": -8.552,
+    "min_lon": -62.874,
+    "max_lon": -62.87
+  },
+  {
+    "description": "A shorter, obliquely oriented (NE\u2013SW) linear depression about 400\u2009m long and 2\u20133\u2009m wide, with paired concave flanks and a subtle central berm, characteristic of secondary drainage canals feeding larger causeways.",
+    "min_lat": -8.562,
+    "max_lat": -8.556,
+    "min_lon": -62.872,
+    "max_lon": -62.869
+  }
+]

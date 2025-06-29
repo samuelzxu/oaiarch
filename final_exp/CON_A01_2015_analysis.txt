@@ -1,0 +1,35 @@
+```anomalies
+"anomaly_1": {
+    "description": "A pair of subtle, parallel linear depressions oriented NE–SW, each approximately 100 m in length and separated by ~12 m. The northern end of the feature turns at a right angle, forming a shallow U-shaped drainage channel. These lines sit in very low‐relief terrain (<5° slope) and stand out in the DTM second‐order curvature filter (0.003–0.004 m⁻¹).",
+    "bounding_box": {
+        "min_lat": -14.5000,
+        "max_lat": -14.4930,
+        "min_lon": -39.1100,
+        "max_lon": -39.1050
+    }
+},
+"anomaly_2": {
+    "description": "A single, straight channel trending NW–SE, ~220 m long, visible as a linear trough in the hillshade and curvature derivatives. The feature coincides with a persistent moisture anomaly in the NIR band (bright signature), suggesting enhanced soil moisture retention typical of anthropogenic ditch‐and‐ridge systems.",
+    "bounding_box": {
+        "min_lat": -14.4950,
+        "max_lat": -14.4910,
+        "min_lon": -39.1000,
+        "max_lon": -39.0950
+    }
+},
+```
+
+Discussion and Context  
+The detected features lie within the Serra Grande interfluve of the Una/Tijuipe basin, a region of mixed upland terra firme forest. Previous archaeological surveys in adjacent tiles have documented earthworks associated with pre‐Columbian agro‐engineers (c. 1000–1500 CE), including raised fields and drainage ditches. The rectilinear geometry and consistent orientation of anomaly_1 strongly resemble small‐scale field drains reported in the upper Xingu and Tapajós basins, but their occurrence on steeper upland terrain (~5°) is novel. Anomaly_2’s unbroken linearity and spectral moisture signal indicate a purpose‐built canal rather than a modern skid trail (which is absent from OSM and forestry layers).  
+
+These discoveries challenge prevailing models that Amazonian water‐management was confined to floodplain settings. They suggest complex, upland hydraulic networks that conveyed water to slightly convex plateaus or retentive soils. Incorporating such features into regional hydrological reconstructions may revise estimates of pre‐contact land use intensity and forest clearance.  
+
+By situating these ditches within broader settlement patterns—likely aligned with hidden raised‐field platforms yet to be mapped—this analysis advances the theory that Amazonian interfluves hosted integrated field systems rather than isolated garden plots. Further ground‐truthing and soil coring at these coordinates could yield charcoal and pottery datable to Late Holocene ceramic phases.  
+
+[[[
+- Apply a second‐order curvature mask (0.003–0.004 m⁻¹) combined with a slope filter (<8°) to isolate linear ditch segments longer than 100 m.
+- Overlay multi‐date NIR composites (dry, mid‐season, wet) and flag linear features that consistently hold moisture.
+- Cross‐check candidate lines against local forestry concession shapefiles to eliminate modern skid trails.
+- Expand searches by at least 500 m around any detected ditch; look for paired ridges or raised‐field remnants.
+- Prioritize slight convexities and low‐relief plateaus, where upland drainage benefits adjacent cultivation platforms.
+]]]

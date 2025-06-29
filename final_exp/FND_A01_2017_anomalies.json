@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A paired NW\u2013SE oriented convex ridge and adjacent trough system, ~350 m long, 4\u20135 m wide, with positive curvature ridge flanked by shallow linear depressions. Visible as faint linear shadows in hillshade, lower NIR reflectance over the ridge, slight canopy tone shift in visual imagery.",
+    "min_lat": -12.252,
+    "max_lat": -12.249,
+    "min_lon": -55.098,
+    "max_lon": -55.095
+  },
+  {
+    "description": "A curvilinear concave depression ~250 m long, 3\u20134 m wide, following a sinuous path parallel to the modern Rio Tortuga meander. Exhibits negative curvature, brighter NIR signal indicating moisture retention, subtle visual tone differences under canopy.",
+    "min_lat": -12.255,
+    "max_lat": -12.252,
+    "min_lon": -55.096,
+    "max_lon": -55.093
+  }
+]

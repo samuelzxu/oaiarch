@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A subtle, NE\u2013SW\u2013oriented linear negative feature approximately 600\u2009m long and 3\u20135\u2009m wide, visible as a shallow trench (slope <2\u00b0, negative plan curvature) in the LiDAR-derived DTM. This feature coincides with a narrow, low-NIR\u2013reflectance band suggesting higher soil moisture or terra preta\u2013type enrichment along its trace.",
+    "min_lat": -1.6655,
+    "max_lat": -1.6615,
+    "min_lon": -56.31,
+    "max_lon": -56.306
+  },
+  {
+    "description": "A convex, elongated plateau or embankment c.\u2009100\u2009m\u2009\u00d7\u200910\u201315\u2009m, appearing as a ridge in the DTM with mild positive curvature. In the NIR image it shows anomalous high reflectance at its crest and adjacent low-reflectance swales, consistent with raised-field agriculture or a platform serviced by parallel drainage ditches.",
+    "min_lat": -1.668,
+    "max_lat": -1.667,
+    "min_lon": -56.309,
+    "max_lon": -56.308
+  }
+]

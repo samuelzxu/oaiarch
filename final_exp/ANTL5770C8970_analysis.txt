@@ -1,0 +1,11 @@
+After integrating the hillshade, curvature and slope derivatives of the LiDAR‐derived DTM, none of the classic orthogonal or rectilinear patterns (raised platforms, canals, ditches or embankments) stand out against the naturally rugged ridge–swale microtopography of this interfluve. The visual and NIR Sentinel‐2 layers likewise show a random mosaic of canopy reflectance with no coherent linear or rectangular “dark earth” moisture anomalies. The OpenStreetMap overlay confirms that no modern roads or clearings coincide with potential traces of buried features.
+
+Conclusion: no engineered upland water‐management structures are detectable in the provided imagery over Bujari, Acre at (–9.311562342, –68.29430594).
+
+[[[
+• Employ multi‐azimuthal hillshade and high‐order curvature (e.g. profile and plan) simultaneously to enhance faint anthropogenic grids in otherwise low‐relief interfluves.
+• Integrate Sentinel‐1 radar coherence or polarimetric indicators to reveal sub‐canopy soil–moisture anomalies where NIR is fully attenuated by dense forest.
+• Expand the search window beyond single‐scene endpoints: mosaic multi‐date LiDAR strips to track subtle alignments over broader spatial extents.
+• Systematically exclude all OSM‐mapped infrastructure, then prioritize unmapped, low‐slope bench‐like landforms for targeted UAV LiDAR or ground‐penetrating radar follow‐up.
+• In adjacent interfluves, look for paired linear depressions spaced 20–50 m apart—potential canal–embankment pairs—even if individual traces are <0.5 m high.
+]]]

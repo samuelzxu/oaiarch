@@ -1,0 +1,38 @@
+```anomalies
+"anomaly_1": {
+    "description": "A paired, parallel linear depression–ridge–depression set trending NE–SW, roughly 600 m in length. In the hillshade it appears as two faint concave lines flanking a slight convex spine. The feature is rectilinear, oriented ~045°, and shows uniform spacing (~20 m) between the parallel depressions—classic of canal–causeway complexes.",
+    "bounding_box": {
+        "min_lat": -12.2700,
+        "max_lat": -12.2640,
+        "min_lon": -55.1000,
+        "max_lon": -55.0930
+    }
+},
+"anomaly_2": {
+    "description": "A cluster of low mounded rectangles (approximately 4 × 3 cells), each 15–25 m across, aligned roughly E–W, suggestive of raised agricultural fields. In curvature outputs they register as alternating convex (mound) and concave (furrow) elements. On the NIR band they coincide with slightly darker (moister) patches within the forest interior, consistent with water‐retentive terra preta soils.",
+    "bounding_box": {
+        "min_lat": -12.2790,
+        "max_lat": -12.2740,
+        "min_lon": -55.1020,
+        "max_lon": -55.0950
+    }
+},
+```
+
+
+Contextual Integration  
+The MT-225 sector of Feliz Natal sits on an upland interfluve between the Teles Pires and Juruena tributaries. Pre-Columbian populations here engineered extensive hydraulic landscapes—canals, causeways and raised fields—to manage seasonal water surplus and nutrient‐rich black earth (‘terra preta’). Anomaly 1 fits into the broader network of NE–SW oriented causeway–canal complexes documented less than 10 km to the east, while Anomaly 2 echoes raised‐field clusters found in the adjacent MT-224 survey area.
+
+The orientation and spacing of the canal–causeway complex (Anomaly 1) match regional patterns of upland water control used to shuttle water off plateau tops into adjacent valleys. The raised-field ensemble (Anomaly 2) amplifies known distribution of agricultural cells, extending cultivation zones well into areas formerly considered too drained for intensive horticulture.
+
+Theoretical Implications  
+1. Upland water‐management was more pervasive than models have assumed—these features lie well above any active floodplain and show deliberate engineering of micro-catchments on gentle slopes (<2°).  
+2. The co-occurrence of canal complexes with terra preta indicators in densely forested interfluves suggests a tighter integration of transport corridors and soil‐amendment zones than current ﬂoodplain-centric paradigms allow.  
+3. These discoveries push the known upper‐limits of Amazonian hydraulic networks into plateau core areas, calling for revised population and land-use density estimates in upland sectors.
+
+[[[
+- Look for paired, parallel depressions flanking a subtle central spine in hillshade and curvature derivatives; when they occur in NE–SW alignment they often mark canal–causeway systems.
+- In dense canopy areas, overlay seasonal (dry-season) NIR composites: canal fills and terra preta soils remain moister (darker) than surrounding forest, aiding detection of buried hydraulic features.
+- Target areas of gentle (<2°) slope on interfluves, especially on convex hilltops—these zones frequently hosted raised fields and causeways that are invisible in orthophotos but clear in LiDAR hillshade.
+- Use least‐cost path modeling anchored on any detected causeway to predict vectors of connected field clusters or satellite canals up to 2 km away.
+]]]

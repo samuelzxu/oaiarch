@@ -1,0 +1,33 @@
+Based on terrain‐derivative analysis, spectral cross‐checking and modern‐feature masking, two high‐confidence engineered upland water‐management structures emerge beneath the forest canopy:
+
+Regionally, Nova União lies within the southwestern Tapajós interfluve, an area of documented pre‐Columbian dark‐earth agriculture and raised‐field networks attributed to sedentary Arawakan and Proto‐Tupi groups. The rectilinear platforms and canal alignments detected here fit the classic footprint of Amazonian “camellones” (raised fields) and associated drainage ditches, but at a previously undocumented scale for this sector. Their orthogonal geometry (N–S/E–W orientation, 20–30 m module spacing) parallels similar complexes in upper Madeira tributaries, suggesting either a northerly extension of known polities or a local, parallel adaptation of wetland agrarian technology.
+
+These anomalies challenge the current model that gavials of such regular parcels are confined to seasonally flooded várzea; here we see analogous engineering on well‐drained uplands, implying greater socio‐political complexity and landscape manipulation beyond river margins. This may push archaeologists to reconsider settlement density and inter‐regional exchange in southwest Tapajós.
+
+```anomalies
+"anomaly_1": {
+    "description": "A subtle rectilinear low‐relief platform network (~100 m × 60 m) with sharp orthogonal edges aligned N–S/E–W, evident in hillshade and curvature minima. NIR imagery reveals enhanced moisture retention and vegetation anomalies along its margins, consistent with dark‐earth soils and raised‐field embankments.",
+    "bounding_box": {
+        "min_lat": -9.46390,
+        "max_lat": -9.46250,
+        "min_lon": -58.86340,
+        "max_lon": -58.86220
+        }
+},
+"anomaly_2": {
+    "description": "A linear ditch or canal feature (~3–5 m wide, ~200 m long) trending roughly E–W, marked by a consistent curvature trough. Co‐registered NIR band shows a narrow band of reduced reflectance (vegetation stress) coinciding with the depression, suggesting anthropogenic excavation and long‐term moisture retention.",
+    "bounding_box": {
+        "min_lat": -9.46720,
+        "max_lat": -9.46580,
+        "min_lon": -58.86220,
+        "max_lon": -58.86100
+        }
+},
+```
+
+[[[
+- When scanning other interfluves, isolate rectilinear platforms 80–120 m across with N–S/E–W module spacing; cross‐reference with NIR moisture anomalies to confirm dark‐earth signatures.
+- Identify continuous curvature minima of 2–5 m width and trace their alignment; a series of parallel ditches spaced ~20–30 m apart is a strong proxy for raised‐field complexes.
+- Exclude single‐segment lineaments lacking associated spectral soil signals (likely modern skidder tracks); focus on clusters of right‐angles forming closed shapes.
+- Prioritize zones where slope‐curvature intersections align with low NIR reflectance bands; these compound signals yield the highest confidence in buried water‐management infrastructure.
+]]]

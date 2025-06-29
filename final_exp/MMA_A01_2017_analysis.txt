@@ -1,0 +1,44 @@
+```anomalies
+"anomaly_1": {
+    "description": "Cluster of subtle, rectilinear ridges and parallel shallow ditches under 2° slope visible in the hillshade and curvature derivatives. These features form a roughly 150 × 200 m quadrangular layout with internal orthogonal divisions suggesting engineered water‐management cells or small raised‐field grids.",
+    "bounding_box": {
+        "min_lat": -26.5160,
+        "max_lat": -26.5140,
+        "min_lon": -49.0390,
+        "max_lon": -49.0370
+    }
+},
+"anomaly_2": {
+    "description": "Linear low‐relief scar running ~600 m E–W along a col of the upland interfluve. The feature is under 1.5° slope, has consistent plan‐curvature values between –0.02 and –0.05, and is matched by a narrow corridor of reduced NIR reflectance indicating persistent moisture retention.",
+    "bounding_box": {
+        "min_lat": -26.5320,
+        "max_lat": -26.5280,
+        "min_lon": -49.0410,
+        "max_lon": -49.0380
+    }
+},
+"anomaly_3": {
+    "description": "Small embanked causeway aligned NE–SW, ~350 m long, with lateral berms appearing as paired positive curvature ridges. The berms flank a central trough that shows higher moisture in the NIR composite and slight “dark earth” vegetation stress signatures in the visual band.",
+    "bounding_box": {
+        "min_lat": -26.5225,
+        "max_lat": -26.5200,
+        "min_lon": -49.0450,
+        "max_lon": -49.0425
+    }
+}
+```  
+
+Regionally, these anomalies lie on the broad watershed divide between the Rio Itajaí‐Mirim and its tributaries. While southern Brazil’s upland Atlantic forests are typically seen as marginal for large‐scale pre‐Columbian water‐management, these features closely resemble Amazonian interfluve raised‐field and canal systems described in the Upper Xingu. The presence of orthogonal field cells, moisture‐retaining corridors, and embanked causeways here would extend the known southern limit of engineered wetland agriculture by over 500 km and suggest a more widespread tradition of upland water‐management among pre‐colonial interior Guaraní or proto‐Tupí communities.
+
+From a theoretical standpoint, confirming these features would:
+• Challenge the notion that complex water‐control engineering was restricted to terra‐firme floodplains.
+• Support models of regional exchange of agricultural technologies across forested interfluves.
+• Stimulate reevaluation of settlement density and land‐use intensity in highland Atlantic forest zones.
+
+[[[
+- Systematically apply a –0.02 to –0.05 plan‐curvature filter on upland DTMs under 2° slope to isolate faint ditch‐embankment pairs.
+- Overlay multi‐date NIR composites to flag narrow, persistent low‐reflectance corridors that coincide with linear curvature anomalies.
+- Buffer modern roads/tree plantations by 20 m and focus on residual lines longer than 300 m for hidden causeways.
+- At every detected line intersection, run a 250 m radius search for orthogonal grid patterns of raised platforms.
+- Use hillshade (azimuth 315°, altitude 45°) to maximize visibility of paired berms in dense canopy.
+]] ]

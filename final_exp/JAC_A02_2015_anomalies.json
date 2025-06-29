@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A rectangular, slightly elevated platform measuring roughly 30 \u00d7 60 m with straight edges and near\u2010right\u2010angle corners. In the DTM hillshade it shows up as a low\u2010relief plateau with subtle berms along its north and east margins. The NIR layer shows a narrow zone of higher reflectance along the eastern scarp\u2014consistent with moisture retention in anthropogenic soils (\u2018dark earth\u2019)\u2014while the visual band exhibits muted green tones along the same edge. No matching feature appears in OpenStreetMap.",
+    "min_lat": -8.551,
+    "max_lat": -8.5506,
+    "min_lon": -62.9245,
+    "max_lon": -62.924
+  },
+  {
+    "description": "A linear embankment or causeway oriented NW\u2013SE, approximately 150 m long and 5 m wide. In the multi\u2010azimuth hillshade it casts a consistent shadow on both sides, suggesting a raised ridge. The NIR image shows a faint moisture anomaly along its crest, indicative of buried compacted soils or a remnant water\u2010management channel. It is unrecorded in modern map layers.",
+    "min_lat": -8.5528,
+    "max_lat": -8.5523,
+    "min_lon": -62.9252,
+    "max_lon": -62.9246
+  },
+  {
+    "description": "An east\u2013west trending ditch or canal about 200 m long with concave\u2010plan curvature. In the curvature derivative it stands out as a continuous zone of negative (concave) values on gentle slopes (<2\u00b0). The visual band shows slight chlorophyll stress in a narrow band directly above the feature, and the spectral signature in NIR corresponds to wetter soils\u2014consistent with a former drainage ditch now infilled. No roads or trails align here in OSM.",
+    "min_lat": -8.5509,
+    "max_lat": -8.5504,
+    "min_lon": -62.9241,
+    "max_lon": -62.9235
+  }
+]

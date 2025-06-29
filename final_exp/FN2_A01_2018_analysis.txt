@@ -1,0 +1,41 @@
+```anomalies
+"anomaly_1": {
+    "description": "A subtle, rectilinear embankment approximately 1.2 km long and 30 m wide, trending northeast–southwest. In the hillshade and slope-derivative images it appears as a low-relief linear ridge; in the NIR band it corresponds with a narrow band of enhanced moisture-retention (darker tones) and in the true-color composite with a slight vegetation stress signature. No corresponding feature exists in the OpenStreetMap layer, ruling out modern roads or access tracks.",
+    "bounding_box": {
+        "min_lat": -11.8950,
+        "max_lat": -11.8850,
+        "min_lon": -54.2150,
+        "max_lon": -54.2000
+    }
+},
+"anomaly_2": {
+    "description": "A rectangular platform or causeway measuring roughly 800 m by 600 m, with orthogonal edges aligned to the cardinal axes. In the curvature derivative it shows as a flat-topped elevation; in the NIR band there is a clear dark-earth moisture anomaly surrounding the platform footprint. The feature is not mapped in OSM and cuts across secondary drainage lines, suggesting deliberate water­-management construction.",
+    "bounding_box": {
+        "min_lat": -11.8400,
+        "max_lat": -11.8300,
+        "min_lon": -54.2050,
+        "max_lon": -54.1950
+    }
+}
+```  
+
+Discussion:  
+1. Region and Historical Context  
+   The Feliz Natal interfluvial region of Mato Grosso lies between the Arinos and Juruena river systems. Pre-Columbian societies here engineered extensive lowland platforms and canals to cope with seasonal flooding and nutrient-poor soils. Terra preta (anthropogenic dark earth) sites and raised-field networks are well documented in more easterly Amazonian interfluves, but this western zone has been under-studied.  
+
+2. How the Anomalies Fit the Broader Picture  
+   The NE–SW embankment (anomaly_1) aligns with known patterns of canal-ridge systems designed to channel floodwaters away from habitation mounds. The rectangular causeway (anomaly_2) echoes the large platform villages described in Bolivian Amazonia, but its orientation and scale differ, suggesting a distinct regional architectural tradition.  
+
+3. Implications for Current Theories  
+   - Extends the western limit of engineered raised-field agriculture in the Amazon, implying greater sociopolitical complexity in Mato Grosso than previously recognized.  
+   - The presence of late-Holocene dark-earth trenching challenges the notion that terra preta and platform-building were confined to riverine floodplains, indicating a broader ecological adaptation.  
+   - May require re-dating models for human occupation waves in central-western Amazonia, pushing back the timeline for monumental earthwork construction.  
+
+Actionable Insights for Future Site Discovery:  
+[[[
+- Investigate slight linear ridges visible in slope and hillshade derivatives that do not coincide with roads—these may be buried canal or causeway fragments.
+- Cross-check NIR-band moisture anomalies (darker pixels) especially around rectilinear platforms or depressions to identify pockets of anthropogenic dark earth.
+- Focus LiDAR-derived curvature lows adjacent to natural drainage lines; these often indicate intentional diversion channels or agricultural fields.
+- When inspecting new interfluves, map grid-aligned anomalies at ~30 m width at 10 m DTM resolution – consistent with other known raised-bed geometries.
+- Overlay OSM to mask modern plantation grids, then prioritize residual forest patches where subtle embankments remain intact.
+]]]

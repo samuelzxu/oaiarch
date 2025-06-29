@@ -1,0 +1,45 @@
+Through multi‐derivative terrain analysis, spectral cross‐checking, and exclusion of modern features, I identify two distinct engineered upland water‐management anomalies:
+
+```anomalies
+"anomaly_1": {
+    "description": "A small cluster of gently raised, rectilinear platforms (approx. 30–60 m across) arranged in a loose grid, visible as subtle positive‐relief blocks in the hillshade and concave‐plan curvature, with corresponding lower NIR reflectance (moisture retention) and faint soil‐darkening in the true‐color image. These features sit off modern roads and align with known Terra Preta zones.",
+    "bounding_box": {
+        "min_lat": -9.8760,
+        "max_lat": -9.8740,
+        "min_lon": -67.2870,
+        "max_lon": -67.2850
+    }
+},
+"anomaly_2": {
+    "description": "A linear concave trace, ~300 m long and aligned N–S, showing a shallow channel in the DTM derivatives. It corresponds to a narrow band of higher moisture stress on the NIR band and is unlinked to any OpenStreetMap roadway, suggesting a buried canal or drainage ditch.",
+    "bounding_box": {
+        "min_lat": -9.8780,
+        "max_lat": -9.8740,
+        "min_lon": -67.2870,
+        "max_lon": -67.2860
+    }
+},
+```
+
+Historical Context and Interpretation
+1. Regional Background  
+   - The Santa Maria interfluve in Senador Guiomard (Acre) lies within the headwaters of the Purus–Madeira interfluve, a zone recently recognized for extensive pre‐Columbian land‐use modifications, Terra Preta soils, and raised‐field agriculture.  
+   - Prior surveys have documented large floodplain canals, but upland plateaus were assumed marginal.  
+
+2. How These Anomalies Fit  
+   - Anomaly_1’s rectilinear platforms mirror raised fields seen in lower Amazonia but occur here on slight upland slopes (<2°). This implies managed moisture regimes beyond riparian settings.  
+   - Anomaly_2’s linear drainage indicates an engineered network directing excess rainfall from these uplands into adjacent valleys—a strategy hitherto underappreciated for interfluve soils.  
+
+3. Theoretical Implications  
+   - Challenges the floodplain‐centric model of Amazonian urbanity and agriculture by highlighting upland hydraulic works.  
+   - Suggests integrated water‐management was more widespread, supporting higher population densities on interfluves and a mosaic of Terra Preta and raised‐field plots.  
+   - Prompts reevaluation of site catchment areas and the spatial extent of sociopolitical units in southwestern Amazonia.  
+
+4. Actionable Insights for Future Surveys
+[[[
+- Systematically screen gently sloping (<2°) upland plateaus for concave‐plan curvature signals combined with multi‐azimuth hillshades to highlight subtle raised‐field platforms.
+- Overlay NIR moisture‐stress anomalies to trace linear drainage features (ditches, canals) that do not coincide with modern tracks.
+- Exclude NW–SE linear features >200 m overlapping OpenStreetMap roads; focus on smaller (<150 m) segments forming rectilinear blocks.
+- Extend this workflow to adjacent interfluves (e.g., Tarauacá, Envira) to map hidden agricultural networks on uplands.
+- Prioritize zones with known Terra Preta signatures, as these often underlie raised‐field clusters.
+]]]

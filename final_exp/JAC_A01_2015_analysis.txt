@@ -1,0 +1,30 @@
+```anomalies
+"anomaly_1": {
+    "description": "A long, narrow, slightly meandering linear ridge (approx. 1.0 km in length by 8–12 m in width) visible in the hillshade/DTM as a low‐relief embankment or causeway. It exhibits consistent rectilinear alignment with subtle parallel edges and intermittent terrace‐like scarping. In the true‐color Sentinel‐2 image, it corresponds to a faint yellow‐green line—indicative of vegetation differences—while the NIR band shows reduced reflectance along the same trace, suggesting localized moisture retention or altered soil properties consistent with anthropogenic earthworks.",
+    "bounding_box": {
+        "min_lat": -8.5920,
+        "max_lat": -8.5830,
+        "min_lon": -62.9275,
+        "max_lon": -62.9255
+    }  
+},
+```
+
+
+Background & Interpretation  
+The detected feature lies in the interfluvial uplands of the Candeias do Jamari region, an area where pre‐Columbian populations engineered raised fields, causeways and canals to manage seasonal inundation and to connect dispersed habitations. Its morphology—a continuous linear embankment with slight curvature—matches known Amazonian causeways that linked ceramic‐rich settlement clusters or served as elevated corridors during flood pulses. The alignment does not coincide with any modern roads or tracks in OpenStreetMap, and no plantation grids overlay it, ruling out recent construction.
+
+Contextual Significance  
+Historical surveys in Rondônia have documented extensive water‐management networks along river floodplains; however, inland interfluves were thought to have fewer monumental earthworks. This newly identified causeway suggests that engineered infrastructure was more pervasive away from major watercourses than previously assumed. It supports theories of high‐density interior populations practicing intensive soil and water manipulation, refining current models of Amazonian landscape domestication.
+
+Potential Impact on Theory  
+The anomaly reinforces hypotheses of a regionally integrated agricultural and transport network extending deep into terra firme. It may prompt a reevaluation of lowland settlement dispersion, implying coordinated, landscape‐scale engineering rather than isolated floodplain communities.
+
+Actionable Insights  
+[[[
+- Systematically scan LiDAR‐derived hillshades for similarly oriented narrow ridges; they often appear as subtle linear anomalies even under closed canopy.
+- In spectral datasets, overlay NIR and shortwave infrared bands to highlight moisture‐retentive earthworks: buried canals and causeways typically show lower reflectance and distinct vegetation stress in dry seasons.
+- Mask known modern infrastructure via OSM before final interpretation to avoid misclassifying logging roads or footpaths.
+- Apply curvature and profile‐curvature derivatives on DTM tiles at 5 m resolution to accentuate low‐relief embankments against natural convexities.
+- Extend surveys up to 2 km perpendicular to discovered lineaments; Amazonian causeways often connect to raised‐field grids or secondary canals outside the immediate footprint.
+]]]

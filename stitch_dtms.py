@@ -8,7 +8,7 @@ import zipfile
 import xml.etree.ElementTree as ET
 from typing import List, Dict, Any
 from pyproj import Transformer
-from scipy import ndimage
+import cv2  # Add this import at the top with the others
 
 # --- KMZ Parsing Functions (from display_kmz.py) ---
 
@@ -34,6 +34,45 @@ def extract_polygon_names_from_kml(kml_content: str) -> List[str]:
             if name_elem is not None and name_elem.text:
                 names.append(name_elem.text)
     return names
+
+# --- Hillshade Calculation ---
+
+def calculate_hillshade(dtm_array: np.ndarray, resolution: float, azimuth: float = 315.0, elevation: float = 15.0) -> np.ndarray:
+    """
+    Calculate hillshade from a DTM array.
+    
+    Args:
+        dtm_array: 2D numpy array of elevation values
+        resolution: pixel resolution in map units
+        azimuth: sun azimuth angle in degrees (default 315° = northwest)
+        elevation: sun elevation angle in degrees (default 15°)
+    
+    Returns:
+        2D numpy array of hillshade values (0-255)
+    """
+    # Convert angles to radians
+    azimuth_rad = np.radians(azimuth)
+    elevation_rad = np.radians(elevation)
+    zenith_rad = np.radians(90.0 - elevation)
+    
+    # Calculate gradients using numpy gradient function
+    # Note: gradient returns [dy, dx] for 2D arrays
+    dy, dx = np.gradient(dtm_array, resolution)
+    
+    # Calculate slope and aspect
+    slope_rad = np.arctan(np.sqrt(dx**2 + dy**2))
+    aspect_rad = np.arctan2(-dx, dy)  # Note: negative dx for correct orientation
+    
+    # Calculate hillshade
+    hillshade = (np.cos(zenith_rad) * np.cos(slope_rad) + 
+                 np.sin(zenith_rad) * np.sin(slope_rad) * 
+                 np.cos(azimuth_rad - aspect_rad))
+    
+    # Normalize to 0-255 range and handle NaN values
+    hillshade = np.clip(hillshade * 255, 0, 255)
+    hillshade[np.isnan(dtm_array)] = 0  # Set no-data areas to black
+    
+    return hillshade.astype(np.uint8)
 
 # --- Stitching Logic ---
 
@@ -144,106 +183,59 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
             mask = np.isnan(target_slice) & ~np.isnan(dtm_array)
             target_slice[mask] = dtm_array[mask]
 
-    # ---- Generate Local Relief Model (LRM) ----
-    print(f"  - Generating Local Relief Model...")
-    
-    # Create a copy for LRM processing
-    lrm_array = stitched_array.copy()
-    
-    # Calculate sigma for Gaussian blur based on resolution and desired smoothing scale
-    # Typical smoothing scale for LRM is 50-200 meters
-    smoothing_scale_meters = 300.0  # Adjust this value as needed
-    sigma_pixels = smoothing_scale_meters / resolution
-    
-    print(f"  - Applying Gaussian smoothing with sigma={sigma_pixels:.2f} pixels ({smoothing_scale_meters}m)")
-    
-    # Handle NaN values for smoothing by temporarily filling them
-    valid_mask = ~np.isnan(lrm_array)
-    if np.any(valid_mask):
-        # Fill NaN values with the median of valid data for smoothing
-        median_fill = np.nanmedian(lrm_array[valid_mask])
-        lrm_filled = lrm_array.copy()
-        lrm_filled[~valid_mask] = median_fill
-        
-        # Apply Gaussian blur to create the regional trend surface
-        smoothed_array = ndimage.gaussian_filter(lrm_filled, sigma=sigma_pixels)
-        
-        # Calculate local relief by subtracting smoothed from original
-        lrm_array = lrm_array - smoothed_array
-        
-        # Restore NaN values where original data was missing
-        lrm_array[~valid_mask] = np.nan
-    
-    # ---- Process and save original DTM ----
-    median_val = np.nanmedian(stitched_array)
-    first_quartile = np.nanpercentile(stitched_array, 25)
-    third_quartile = np.nanpercentile(stitched_array, 75)
-    std = np.sqrt(np.nanvar(stitched_array))
-    min_val = np.nanmin(stitched_array)
-    max_val = np.nanmax(stitched_array)
+    # median_val = np.nanmedian(stitched_array)
+    # first_quartile = np.nanpercentile(stitched_array, 25)
+    # third_quartile = np.nanpercentile(stitched_array, 75)
+    # std = np.sqrt(np.nanvar(stitched_array))
+    # min_val = np.nanmin(stitched_array)
+    # max_val = np.nanmax(stitched_array)
 
-    print(f"  - DTM normalization stats:  median={median_val}, "
-          f"Q1={first_quartile}, Q3={third_quartile}, std={std}")
-    if std < (max_val - min_val) * 0.1:
-        print("  - Warning: Standard deviation is too low, using median for clipping.")
-        stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*8, median_val + (third_quartile-median_val)*40)
+    # print(f"  - Normalization stats:  median={median_val}, "
+    #       f"Q1={first_quartile}, Q3={third_quartile}, std={std}")
+    # if std < (max_val - min_val) * 0.1:
+    #     print("  - Warning: Standard deviation is too low, using median for clipping.")
+    #     stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*8, median_val + (third_quartile-median_val)*8)
 
-    # Normalize the DTM array to 0-255 for saving as an image
+    # Normalize the array to 0-255 for saving as an image
+    # We ignore the NaN "no data" values during normalization
     valid_pixels = stitched_array[~np.isnan(stitched_array)]
 
     if valid_pixels.size > 0:
         min_val = np.nanmin(valid_pixels)
         max_val = np.nanmax(valid_pixels)
-        print(f"  - DTM normalization range: min={min_val}, max={max_val}")
+        print(f"  - Normalization range: min={min_val}, max={max_val}")
         if max_val > min_val:
             # Normalize to 0-255
-            normalized_dtm = (stitched_array - min_val) * (255.0 / (max_val - min_val))
+            normalized_array = (stitched_array - min_val) * (255.0 / (max_val - min_val))
             # Set "no data" areas (which are still NaN) to black
-            normalized_dtm[np.isnan(normalized_dtm)] = 0
+            normalized_array[np.isnan(normalized_array)] = 0
         else:
             # Handle case where all valid pixels have the same value
-            normalized_dtm = np.full(stitched_array.shape, 128)
-            normalized_dtm[np.isnan(normalized_dtm)] = 0
+            normalized_array = np.full(stitched_array.shape, 128)
+            normalized_array[np.isnan(normalized_array)] = 0
     else:
         # Handle case where there are no valid pixels at all
-        normalized_dtm = np.zeros(stitched_array.shape)
+        normalized_array = np.zeros(stitched_array.shape)
 
-    # ---- Process and save LRM ----
-    valid_lrm_pixels = lrm_array[~np.isnan(lrm_array)]
+    final_image = Image.fromarray(normalized_array, mode='L')
     
-    if valid_lrm_pixels.size > 0:
-        # For LRM, we typically center around 0 and use symmetric scaling
-        lrm_std = np.nanstd(valid_lrm_pixels)
-        lrm_mean = np.nanmean(valid_lrm_pixels)
-        
-        print(f"  - LRM stats: mean={lrm_mean:.2f}, std={lrm_std:.2f}")
-        
-        # Use 2-3 standard deviations for clipping to preserve detail while avoiding outliers
-        clip_range = 2.5 * lrm_std
-        lrm_clipped = np.clip(lrm_array, lrm_mean - clip_range, lrm_mean + clip_range)
-        
-        # Normalize LRM to 0-255, centered around 128 (gray)
-        if clip_range > 0:
-            normalized_lrm = ((lrm_clipped - lrm_mean) / clip_range) * 100 + 128
-            normalized_lrm = np.clip(normalized_lrm, 0, 255)
-            # Set "no data" areas to black
-            normalized_lrm[np.isnan(normalized_lrm)] = 0
-        else:
-            normalized_lrm = np.full(lrm_array.shape, 128)
-            normalized_lrm[np.isnan(normalized_lrm)] = 0
-    else:
-        normalized_lrm = np.zeros(lrm_array.shape)
-
-    # Save DTM image
-    dtm_image = Image.fromarray(normalized_dtm.astype(np.uint8), mode='L')
-    dtm_output_path = os.path.join(output_dir, f"{group_key}_dtm_stitched.png")
+    output_path = os.path.join(output_dir, f"{group_key}_stitched_raw.png")
     os.makedirs(output_dir, exist_ok=True)
-    dtm_image.save(dtm_output_path)
+
+    final_image.save(output_path)
+    print(f"  -> Saved stitched DTM image to {output_path}")
+
+    # Generate and save hillshade image
+    print(f"  - Calculating hillshade with 15° elevation angle...")
+    hillshade_array = calculate_hillshade(stitched_array, resolution, elevation=12.0)
+    hillshade_array = cv2.resize(hillshade_array, (0,0),fx=0.5, fy=0.5)  # Resize for better visualization
+    hillshade_array = cv2.GaussianBlur(hillshade_array, (5, 5), 0)
+
+    hillshade_image = Image.fromarray(hillshade_array, mode='L')
     
-    # Save LRM image
-    lrm_image = Image.fromarray(normalized_lrm.astype(np.uint8), mode='L')
-    lrm_output_path = os.path.join(output_dir, f"{group_key}_lrm_stitched.png")
-    lrm_image.save(lrm_output_path)
+    hillshade_output_path = os.path.join(output_dir, f"{group_key}_stitched.png")
+    hillshade_image.save(hillshade_output_path)
+    print(f"  -> Saved hillshade image to {hillshade_output_path}")
 
     # ---- Save lon/lat of image center ----
     # Compute center in projected coordinates
@@ -266,16 +258,12 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
             "max_x": global_max_x,
             "min_y": global_min_y,
             "max_y": global_max_y
-        },
-        "lrm_smoothing_scale_meters": smoothing_scale_meters,
-        "lrm_sigma_pixels": sigma_pixels
+        }
     }
     info_path = os.path.join(output_dir, f"{group_key}_stitched_location.json")
     with open(info_path, "w") as f:
         json.dump(info, f, indent=2)
 
-    print(f"  -> Saved DTM image to {dtm_output_path}")
-    print(f"  -> Saved LRM image to {lrm_output_path}")
     print(f"  -> Saved location info to {info_path}")
 
 def main():
@@ -283,7 +271,7 @@ def main():
     # --- Configuration ---
     kmz_file_path = "cms_brazil_lidar_tile_inventory.kmz"
     dtm_images_dir = "exp/dtm_images_csf"
-    stitched_output_dir = "stitched_images_v8"
+    stitched_output_dir = "stitched_images_v12_jam"
     # ---------------------
 
     print("Starting DTM Stitching Process")
@@ -314,9 +302,9 @@ def main():
     # 3. Stitch images for each group
     print("\n3. Stitching images for each group...")
     for group_key, names in groups.items():
-        # if group_key != 'JAM_A03_2014':
-        #     print("Skipping")
-        #     continue
+        if group_key != 'JAM_A03_2013':
+            print("Skipping")
+            continue
         stitch_group_images(
             group_key=group_key,
             polygon_names=names,

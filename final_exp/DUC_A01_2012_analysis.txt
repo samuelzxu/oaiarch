@@ -1,0 +1,23 @@
+After running the four‐step workflow, I was unable to identify any clear, anthropogenic, low‐relief linear or rectilinear features in this 1 × 1 km tile around -2.95047, ‑65.93959. Here is a brief summary of each step:
+
+1. Terrain Analysis  
+   • Slope: almost entirely <2° across the interfluve beyond the active floodplain, but relief is amorphous—no straight crests or paired depressions.  
+   • Curvature & Hillshade: a jumble of convex mounds and concave hollows consistent with natural colluvial/inselberg terrain rather than engineered canals, ditches or causeways. No NE–SW oriented parallel troughs with a central spine.
+
+2. Spectral Cross-Checking  
+   • Visual (true-color): dense canopy with no canopy‐opening lines or soil exposures following a straight course.  
+   • NIR (dry-season composite): uniform forest signature (medium gray) everywhere off‐channel; the floodplain shows bright water and muddy bars but no dark, linear soil or moisture anomalies inland.
+
+3. Modern Structure Masking  
+   • OpenStreetMap shows only the Rio Juruá channel and no roads, trails or plantations in the tile that might confuse interpretation.
+
+Conclusion: within the limits of the LiDAR DTM and Sentinel‐2 imagery provided, there are no detectable raised fields, watercourses or embankments of anthropogenic origin.  
+
+[[[
+Actionable Insights:
+- When searching for concealed causeways in Amazonian interfluves, focus on slope‐break zones between <2° hilltops and adjacent valleys, since gentle convex crest zones often hosted raised‐field systems.
+- Look specifically for paired, linear concavities with a faint central ridge—these “double trough” signatures prove highly diagnostic of canal–causeway alignments when they occur in NE–SW orientation.
+- In dense forest, overlay seasonal dry‐season NIR composites: terra preta infill or canal sediments often retain moisture and appear darker than surrounding canopy—even subtle lines 2–3 m wide can show up.
+- Use least‐cost path models anchored on any candidate causeway fragment to predict the location of linked fields or satellite canals up to ~2 km away, then re‐inspect those areas for repeating patterns.
+- Mask modern linear features (roads, pipelines) with OSM or Sentinel‐1 coherence masks to reduce false positives, especially along river margins where shifting channels can mimic straight lines.
+]]]

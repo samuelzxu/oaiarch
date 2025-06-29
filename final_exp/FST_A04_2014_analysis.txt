@@ -1,0 +1,38 @@
+I have identified one clear engineered feature beneath the forest canopy. Below is the formal anomaly report, followed by interpretation, historical context, and generalizable, actionable insights.
+
+```anomalies
+"anomaly_1": {
+    "description": "A cluster of rectilinear, raised‐platform features forming a staircase‐like alignment. Each platform is roughly 20–30 m across, with straight edges and right‐angle corners, set on very low slopes (<1.5°). They contrast sharply with the surrounding natural microtopography and are typical of Pre‐Columbian raised‐field or embankment systems in Amazonian interfluves.",
+    "bounding_box": {
+        "min_lat": -1.64650,
+        "max_lat": -1.64450,
+        "min_lon": -56.27000,
+        "max_lon": -56.26700
+    }
+},
+```
+
+
+1. Terrain Analysis  
+   - Slope filtering (≤1.5°) and concave‐plan curvature highlighted these flat, rectilinear plateaus.  
+   - Hillshade reveals crisp, straight edges and right‐angle junctions—anomalous in this uniformly undulating forest upland.  
+
+2. Spectral Cross‐Checking  
+   - In the true-color Sentinel-2 image, the platforms appear subtly brighter, indicating reduced canopy density over compacted anthropogenic soils.  
+   - In the NIR band, they show slight moisture retention (mildly higher reflectance), consistent with “terra preta” or engineered soils beneath.  
+
+3. Modern Structure Masking  
+   - No OpenStreetMap features coincide with these platforms; they are not mapped roads, clearings, or recent plantations.  
+
+4. Interpretation and Context  
+   - Region History: The Barreirinha interfluve sits between the Trombetas and Amazônas rivers, an area known for Pre-Columbian landscape engineering (raised fields, causeways, canals) dating between 1,000 and 2,500 BP.  
+   - Broader Context: Similar rectilinear embankments have been documented near Santarém and along the Urubu River—this find extends the known distribution of low‐relief raised fields at least 50 km further northwest.  
+   - Theoretical Impact: Current models posit intensive earthworks only on seasonally flooded várzea or near major river terraces. These upland platforms suggest that densely settled, well‐engineered communities also modified terra firme away from large tributaries, challenging the river‐centric paradigm of Amazonian urbanism.
+
+[[[
+- Target low‐slope (<2°), concave‐plan curvature zones for rectilinear micro‐relief anomalies—these often betray buried platforms or ditches.
+- In mixed‐forest uplands, stack hillshade (multi‐azimuth) with NIR moisture anomalies to pick out subtle earthworks under closed canopy.
+- Exclude any linear features aligned exactly NW-SE that lack right angles—they are often recent tracks or animal trails.
+- Apply this workflow in other interfluvial blocks (e.g., between Jari and Trombetas rivers) to test for similarly hidden upland agriculture.
+- When you see small, regularly spaced plateaus (20–30 m wide) in otherwise homogeneous terrain, prioritize those zones for geomagnetic or auger coring ahead of excavation.
+]]]

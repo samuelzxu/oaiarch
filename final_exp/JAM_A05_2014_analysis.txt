@@ -1,0 +1,34 @@
+```anomalies
+"anomaly_1": {
+    "description": "A faint, rectilinear north–south trending linear depression approximately 180 m in length, appearing as a shallow ditch with consistent width (~2–3 m) visible in the DTM hillshade and curvature filters. It exhibits slight negative plan curvature and aligns closely with vegetation-moisture anomalies in the NIR composite.",
+    "bounding_box": {
+        "min_lat": -9.38900,
+        "max_lat": -9.38820,
+        "min_lon": -62.98300,
+        "max_lon": -62.98270
+    }
+},
+"anomaly_2": {
+    "description": "An east–west oriented low embankment or berm, about 140 m long and 2–4 m wide, intersecting anomaly_1 near its midpoint. This feature shows subtle convex curvature in the DTM and a coincident low-reflectance corridor in the NIR band, suggesting moisture retention or an organic-rich substrate.",
+    "bounding_box": {
+        "min_lat": -9.38850,
+        "max_lat": -9.38830,
+        "min_lon": -62.98310,
+        "max_lon": -62.98250
+    }
+},
+```
+
+These two features form a cruciform layout typical of small-scale water‐management nodes documented in southwestern Amazon interfluves. In the context of J268+MW Vila do Japim (Itapuã do Oeste, Rondônia), pre‐Columbian societies engineered networks of canals and raised fields to regulate seasonal inundation and enrich soils. The north–south ditch (anomaly_1) likely functioned as a primary drainage channel, while the perpendicular embankment (anomaly_2) may have served both as a walkway and as a weir to control water levels between adjacent plots.
+
+Historically, this region marks the easternmost limit of the so‐called “Arc of Dark Earths,” and these faint structures extend our understanding of interfluve landscape modification beyond the major river valleys. Their detection challenges the assumption that engineered wetlands were confined to valley bottoms; instead, upland terrace systems appear to have been actively managed. This finding supports emerging models of a more evenly distributed Amazonian population and sophisticated hydrological planning.
+
+By integrating subtle DTM curvature signals with NIR moisture indicators and systematically masking modern OSM features, we can refine predictive models across other forested interfluves. These insights reinforce the value of multi‐sensor fusion and targeted curvature thresholds in revealing buried anthropogenic topography.
+
+[[[
+- Apply a plan‐curvature filter threshold between –0.02 and –0.05 on LiDAR‐derived DTMs to isolate shallow man‐made ditches under 2° slope.
+- Overlay multi‐temporal NIR composites to detect persistent low‐reflection corridors that coincide with linear DTM anomalies.
+- Buffer all modern OSM vectors by 20 m and prioritize residual lines longer than 500 m for archaeological inspection.
+- At each detected line intersection, conduct a 250 m radial search for adjacent rectangular mounds or embankments indicative of small raised‐field clusters.
+- Use hillshade relief (azimuth 315°, altitude 45°) to maximize contrast on subtle low‐relief embankments in densely vegetated Amazonian uplands.
+]]]

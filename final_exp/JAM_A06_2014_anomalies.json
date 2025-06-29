@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A curvilinear, bench\u2010like embankment or causeway trace, ~2\u2009m wide, forming an arc approximately 350\u2009m across. Visible as a low\u2010amplitude positive relief in the LiDAR hillshade, unaligned with modern trails and roads.",
+    "min_lat": -9.3921,
+    "max_lat": -9.3871,
+    "min_lon": -62.94929,
+    "max_lon": -62.94729
+  },
+  {
+    "description": "A subtle paired linear depression and adjacent parallel ridge, spaced ~30\u2009m apart, trending northwest\u2013southeast over ~450\u2009m. Detected in high\u2010order plan curvature and weakly in the NIR band as a line of slightly lower reflectance vegetation.",
+    "min_lat": -9.382,
+    "max_lat": -9.377,
+    "min_lon": -62.9487,
+    "max_lon": -62.9467
+  }
+]

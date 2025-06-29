@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A low\u2010relief, almost rectangular embanked platform with straight margins visible in the hillshade, roughly 350 m east\u2013west by 200 m north\u2013south. The edges are aligned to the local grid (approximately N85\u00b0E) and are defined by subtle scarps 0.3\u20130.5 m high. In the NIR overlay the interior shows a slightly higher moisture signature compared to the surrounding forest, consistent with anthropogenic dark\u2010earth retention.",
+    "min_lat": -2.557,
+    "max_lat": -2.5535,
+    "min_lon": -46.839,
+    "max_lon": -46.8355
+  },
+  {
+    "description": "A sinuous, low\u2010relief linear depression running roughly north\u2013south through the center of the scene. It extends for ~500 m, is ~5\u20138 m wide, and appears as a dark line in the NIR band (higher moisture) and as a faint concave trench in the DTM-derived hillshade. Its course bypasses natural gullies, suggesting an engineered canal.",
+    "min_lat": -2.5565,
+    "max_lat": -2.5527,
+    "min_lon": -46.8385,
+    "max_lon": -46.836
+  },
+  {
+    "description": "A smaller rectilinear enclosure (~150 m \u00d7 120 m) in the southeastern quadrant. Visible as paired linear ridges in the slope curvature derivative, with a corresponding moisture anomaly in the NIR image. Likely a subsidiary raised plot or diversion channel.",
+    "min_lat": -2.5575,
+    "max_lat": -2.556,
+    "min_lon": -46.8345,
+    "max_lon": -46.833
+  }
+]

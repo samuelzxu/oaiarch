@@ -1,0 +1,26 @@
+After applying the requested workflow—derivative analysis on the DTM (slope, curvature, hillshade), NIR/visible spectral overlay, and masking of all OSM‐identified roads and clearings—no unequivocal engineered upland water‐management structures (raised fields, canals, ditches, embankments or causeways) were detected in this 1 × 1 km tile around (–9.3115, –68.2852). 
+
+1. Terrain Analysis  
+   • Slope values across the tile are dominated by hillside gradients (4–15°), with only small pockets <2° on mid‐slope benches; none show faint rectilinear ridges or channels.  
+   • Curvature highlights natural concave hollows and convex spurs; no straight or orthogonal curvature signatures stand apart from the background relief.  
+   • Hillshade emphasizes a winding feature in the SE quadrant matching an unpaved track on OSM; once masked, no remnant linear anomalies remain.
+
+2. Spectral Cross-Checking  
+   • The true-color band shows a random scatter of canopy gaps and topographic shadows—no elongated dark-earth bands.  
+   • The NIR image likewise lacks continuous high-moisture or low-vegetation‐stress signatures aligning with potential earthworks.  
+
+3. Modern Structure Masking  
+   • All visible alignments coincide with the minor forest track and logging cuts marked in OSM; no novel features survive the mask.  
+
+Conclusion  
+   In this tile of the Bujari interfluve, LiDAR and Sentinel-2 data do not reveal buried water‐management infrastructure. It is likely either (a) features, if present, lie below our current detection threshold or (b) this sector was never engineered for large‐scale upland agriculture.  
+
+[[[
+Actionable insights for future surveys in Amazonian interfluves:
+- Apply a combined slope (<2°) + plan curvature filter to LiDAR derivatives to isolate the faintest embankment/ditch signatures.
+- Focus on broad, flat interfluvial benches 5–20 m above active floodplains, where soil moisture retention earthworks are most likely.
+- Use multi-temporal Sentinel-2 derived NDWI or NIR differencing to amplify ephemeral soil‐moisture anomalies aligned with faint lineaments.
+- Exclude all OSM-mapped roads, trails, and clearings before manual inspection; prioritize true “terra firme” forest patches.
+- When no clear anomalies appear, extend the search window to adjacent 10 × 10 km tiles, looking for cluster patterns or feeder canals feeding known geoglyph belts.
+- Plan UAV or ground-truth campaigns at intersections of any low-relief L-shaped features even if sub-pixel in initial LiDAR derivatives, as these may mark corners of buried enclosures.
+]]]

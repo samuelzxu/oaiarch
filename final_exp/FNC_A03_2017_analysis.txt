@@ -1,0 +1,11 @@
+After a detailed review of the LiDAR‐derived hillshade, the co-registered Sentinel-2 visual and NIR layers, and the OpenStreetMap overlay, I find no clear evidence of rectilinear or linear earthworks, raised fields, embankments or buried canals in this 1 km² scene. The terrain micro-relief appears uniformly random under the forest canopy, and no coherent moisture‐related anomalies align with any subsurface topographic features. The large pale block on the left of the OSM map corresponds to a modern clear-cut or plantation edge and has been masked out as modern infrastructure.
+
+No archaeological anomalies detected.
+
+[[[
+– When initial hillshade reveals no strong linear relief, enhance contrast with multi-directional and steepest-slope shading to suppress canopy noise.
+– Systematically sample adjacent interfluves in a grid (e.g., 500 m spacing) to build statistical expectations of “background” micro-relief versus engineered forms.
+– Incorporate NDWI and red-edge indices alongside NIR to sharpen moisture anomalies over buried channels or ditches, especially after dry seasons.
+– Use small airborne SAR (L-band) acquisitions under leaf-off conditions to penetrate canopy and reveal subtle soil-moisture contrasts over terra preta soils.
+– Always mask known roads, clear-cuts and recent trails via OSM or high-res satellite before subsurface feature interpretation, then verify with ground-truth coring for anthropic soil signatures.
+]]]

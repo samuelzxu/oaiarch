@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A pair of subtle, parallel linear depressions oriented NE\u2013SW, each approximately 100 m in length and separated by ~12 m. The northern end of the feature turns at a right angle, forming a shallow U-shaped drainage channel. These lines sit in very low\u2010relief terrain (<5\u00b0 slope) and stand out in the DTM second\u2010order curvature filter (0.003\u20130.004 m\u207b\u00b9).",
+    "min_lat": -14.5,
+    "max_lat": -14.493,
+    "min_lon": -39.11,
+    "max_lon": -39.105
+  },
+  {
+    "description": "A single, straight channel trending NW\u2013SE, ~220 m long, visible as a linear trough in the hillshade and curvature derivatives. The feature coincides with a persistent moisture anomaly in the NIR band (bright signature), suggesting enhanced soil moisture retention typical of anthropogenic ditch\u2010and\u2010ridge systems.",
+    "min_lat": -14.495,
+    "max_lat": -14.491,
+    "min_lon": -39.1,
+    "max_lon": -39.095
+  }
+]

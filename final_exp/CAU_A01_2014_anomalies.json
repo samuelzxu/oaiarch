@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A rectilinear grid of shallow embankments and parallel channels forming roughly 120 \u00d7 120 m blocks. On the DTM hillshade this appears as paired ridges ~20\u201330 m apart running E\u2013W and intersected by N\u2013S lines, consistent with raised\u2010field agriculture.",
+    "min_lat": -3.7498,
+    "max_lat": -3.7483,
+    "min_lon": -48.4828,
+    "max_lon": -48.4812
+  },
+  {
+    "description": "A linear ditch or causeway ~130 m long trending E\u2013W, connecting to a short N\u2013S segment ~50 m long. It shows a subtle concave\u2010plan curvature in low\u2010relief terrain, with a corresponding moisture anomaly in the NIR band but no match on the OSM layer.",
+    "min_lat": -3.7494,
+    "max_lat": -3.7491,
+    "min_lon": -48.4835,
+    "max_lon": -48.4819
+  }
+]

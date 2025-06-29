@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A subtle, rectilinear embankment approximately 1.2 km long and 30 m wide, trending northeast\u2013southwest. In the hillshade and slope-derivative images it appears as a low-relief linear ridge; in the NIR band it corresponds with a narrow band of enhanced moisture-retention (darker tones) and in the true-color composite with a slight vegetation stress signature. No corresponding feature exists in the OpenStreetMap layer, ruling out modern roads or access tracks.",
+    "min_lat": -11.895,
+    "max_lat": -11.885,
+    "min_lon": -54.215,
+    "max_lon": -54.2
+  },
+  {
+    "description": "A rectangular platform or causeway measuring roughly 800 m by 600 m, with orthogonal edges aligned to the cardinal axes. In the curvature derivative it shows as a flat-topped elevation; in the NIR band there is a clear dark-earth moisture anomaly surrounding the platform footprint. The feature is not mapped in OSM and cuts across secondary drainage lines, suggesting deliberate water\u00ad-management construction.",
+    "min_lat": -11.84,
+    "max_lat": -11.83,
+    "min_lon": -54.205,
+    "max_lon": -54.195
+  }
+]

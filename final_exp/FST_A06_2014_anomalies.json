@@ -1,0 +1,30 @@
+[
+  {
+    "description": "A gently curving sequence of low, linear embankments and paired moats forming a semicircular \u2018half-ring\u2019 approximately 300 m across. The feature exhibits consistent width (~10\u201315 m) and slight elevation (~0.5\u20131 m) above the surrounding terrain, with concave inner slopes suggestive of water\u2010retention bunds.",
+    "min_lat": -1.641,
+    "max_lat": -1.6385,
+    "min_lon": -56.3275,
+    "max_lon": -56.324
+  },
+  {
+    "description": "A faint, straight, NW\u2013SE trending linear ridge extending roughly 800 m, with flanking shallow ditches on both sides. The alignment is rectilinear (bearing ~135\u00b0) and cuts across natural microtopography, indicative of a former causeway or canal bank.",
+    "min_lat": -1.649,
+    "max_lat": -1.6455,
+    "min_lon": -56.33,
+    "max_lon": -56.323
+  },
+  {
+    "description": "An elongate, slightly raised platform (approx. 400 m \u00d7 150 m) with sharp corners and flat summit plateau. Subtle moat\u2010like depressions border three sides; the rectangular geometry strongly departs from natural hill forms.",
+    "min_lat": -1.6565,
+    "max_lat": -1.653,
+    "min_lon": -56.328,
+    "max_lon": -56.324
+  },
+  {
+    "description": "A cluster of small, circular to sub\u2010circular mounds (diameter ~30\u201350 m) arranged along a N\u2013S trending axis. These may represent raised\u2010field cells or garden plots, spaced at regular intervals (~100 m).",
+    "min_lat": -1.65,
+    "max_lat": -1.6475,
+    "min_lon": -56.326,
+    "max_lon": -56.3235
+  }
+]

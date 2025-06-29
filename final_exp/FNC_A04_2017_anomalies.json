@@ -1,0 +1,16 @@
+[
+  {
+    "description": "Subtle NW\u2013SE oriented low-relief trench (~3\u20134 m wide, ~50 m long) visible in filtered hillshade; co-located with a linear NIR-bright band indicating moisture retention or anthropogenic dark earth.",
+    "min_lat": -12.087,
+    "max_lat": -12.083,
+    "min_lon": -54.093,
+    "max_lon": -54.089
+  },
+  {
+    "description": "Right-angled pair of lineations (~20 m on each leg) in the SE quadrant, visible as convex ridges in curvature maps and as NIR-bright/visible-dark vegetation stress, suggestive of embankment corners or raised-field parcels.",
+    "min_lat": -12.091,
+    "max_lat": -12.087,
+    "min_lon": -54.091,
+    "max_lon": -54.087
+  }
+]

@@ -1,0 +1,11 @@
+After applying the prescribed workflow—deriving slope, curvature and hillshade from the LiDAR‐DTM; masking all visible modern roads and logging tracks via OSM; and cross‐checking both visual and NIR Sentinel-2 layers for aligned moisture/vegetation anomalies—I find no clear rectilinear or low-relief linear features that would indicate buried raised fields, canals, ditches or causeways in this 1 × 2 km tile around (−9.1560, −62.9809). The subtle texture in the DTM appears entirely natural (random knolls and hollows), and neither the visual nor the NIR data show persistent “dark earth” signatures organized in straight lines or orthogonal grids. Modern infrastructure is virtually absent in this forest block, so there is no confusion with recent roads or plantations.
+
+Given the negative result, no anomalies are reported.
+
+[[[
+– Before targeting new interfluve sectors, always run an automated curvature filter (0.002–0.005 m⁻¹) and slope threshold (<10°) over a ≥100 km² block to pre-isolate candidate linear segments >150 m in length, then manually vet against up-to-date concession and OSM layers.
+– In regions of dense canopy, consider acquiring multi-season LiDAR (dry vs. wet season) to accentuate microtopographic contrast in buried ditches and channels—sub‐soil moisture differences will amplify curvature signals.
+– Use multi-temporal NIR differencing across at least three dates (wet, mid-season, dry) to distinguish persistent “dark earth” zones from ephemeral drainage features.
+– Integrate forestry management data (e.g. tree-species age, logging-inventory maps) to mask out linear skid trails and re-entrant wagon roads that mimic archaeological causeways.
+– When no candidates emerge in a given tile, expand the search outward in 500 m increments, since many terra preta networks cluster along paleochannels and floodplain edges rather than uniform interfluves.
+]]]

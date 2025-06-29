@@ -1,0 +1,9 @@
+[
+  {
+    "description": "A conspicuous, rectilinear, north\u2013south\u2013trending raised ridge or embankment approximately 350\u2013400 m in length, 15\u201320 m in width and rising ~0.3\u20130.6 m above the surrounding low\u2010relief terrain. The feature shows a subtle paired linear depression immediately to its east, suggesting it may have functioned as a canal\u2013embankment system for water management. It is extremely subtle in the visual Sentinel-2 data but is high-contrast in the LiDAR\u2010derived hillshade and correlates with a narrow band of slightly reduced NIR reflectance (possible soil moisture retention or dark\u2010earth signature).",
+    "min_lat": -8.525,
+    "max_lat": -8.515,
+    "min_lon": -62.926,
+    "max_lon": -62.918
+  }
+]

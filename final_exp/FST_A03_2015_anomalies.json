@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A subtle, straight embankment or raised\u2010causeway feature visible as a narrow, linear positive relief ridge in the DTM hillshade. It trends NE\u2013SW (~045\u00b0) over ~1 200 m, with very low slope (~1\u20132\u00b0) and uniform width (~6\u20138 m). In the NIR layer, vegetation atop this ridge shows slightly lower reflectance (darker tones) relative to surrounding forest, suggesting deeper, more moisture\u2010retentive anthropogenic soils (terra preta) or compacted organic fill.",
+    "min_lat": -1.6165,
+    "max_lat": -1.607,
+    "min_lon": -56.178,
+    "max_lon": -56.1685
+  },
+  {
+    "description": "A second linear feature, trending NW\u2013SE (~135\u00b0), visible in the DTM curvature derivative as a straight line of concave\u2013convex transitions. It spans ~900 m, width ~5\u20137 m, with accompanying paired shallow ditches on either side (total corridor ~15 m). The VNIR true\u2010color composite shows a faint alignment of slightly yellower canopy along this axis, consistent with periodic moisture stress patterns over buried channels.",
+    "min_lat": -1.613,
+    "max_lat": -1.606,
+    "min_lon": -56.1765,
+    "max_lon": -56.169
+  }
+]

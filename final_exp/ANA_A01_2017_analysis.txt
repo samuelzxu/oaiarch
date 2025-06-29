@@ -1,0 +1,32 @@
+Based on the LiDAR‐derived hillshade, slope (<2°) and curvature filters, two clear rectilinear anomalies emerge—neither of which correspond to any road, trail or plantation on OpenStreetMap. Spectral cross‐checking with Sentinel-2 VIS/NIR further highlights moisture‐retaining fills along these features, consistent with ancient ditch-and-berm engineering common to Late Holocene “dark earth” landscapes in the Belterra interfluve.  
+
+Region & Historical Context  
+The Belterra interfluve lies between the Tapajós and Xingu basins and hosts a network of geoglyphs, raised fields and canals dating to ca. AD 500–1250. These earthworks were once thought confined to seasonally flooded várzea, but recent LiDAR work suggests intentional water‐management on terra firme uplands. The rectangular enclosures and L-shaped channels we observe here align with patterns documented near Monte Alegre and the Santarém region, indicating a much broader spatial extent. This challenges the prevailing model that upland Amazonia lacked intensive landscape engineering, reinforcing theories of complex, regionwide agro‐hydraulic systems.  
+
+```anomalies
+"anomaly_1": {
+    "description": "A faint, low‐relief rectangular enclosure (~1.0 × 1.2 km) with continuous berm ridges visible in LiDAR hillshade. Alignment is orthogonal (N–S/E–W), and slope/curvature filters isolate the walls as subtle convex linear features. In Sentinel-2 VIS there is a faint tonal shift along the berm, and in NIR a narrow, darker signature indicates higher moisture—characteristic of silt‐and‐charcoal-enriched ditch fills. No modern infrastructure overlaps in the OSM layer.",
+    "bounding_box": {
+        "min_lat": -3.3695,
+        "max_lat": -3.3595,
+        "min_lon": -55.0075,
+        "max_lon": -54.9875
+    }
+},
+"anomaly_2": {
+    "description": "An L-shaped channel segment (~800 m EW arm, ~600 m NS arm) forming a right‐angle corner. The feature appears as a negative relief lineament with paired slight embankments in the DTM derivatives. Sentinel-2 NIR shows a narrow band of reduced reflectance along the depression, suggesting persistent soil moisture or dark‐earth fill. Absent from OSM basemap.",
+    "bounding_box": {
+        "min_lat": -3.3735,
+        "max_lat": -3.3645,
+        "min_lon": -55.0025,
+        "max_lon": -54.9935
+    }
+},
+```  
+[[[
+- When screening LiDAR DTM across Amazonian interfluves, apply combined slope (<2°) and curvature thresholds to enhance faint linear/rectilinear earthworks.
+- Overlay Sentinel-2 NIR composites on LiDAR‐identified lineaments; look for darker, moisture‐indicative corridors marking anthropogenic ditch fills.
+- Exclude all OSM‐mapped roads/plantations—true archaeological features in terra firme rarely coincide with modern infrastructure.
+- Target ground truth or UAV‐mounted GPR at enclosure corners and channel junctions to confirm fill composition and stratigraphy.
+- Scale this multi‐sensor workflow systematically over adjacent 10 × 10 km tiles to map the full extent of upland water‐management beyond known geoglyph clusters.
+]]]

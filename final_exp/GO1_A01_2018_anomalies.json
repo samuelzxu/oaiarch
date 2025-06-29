@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A series of 8\u201310 parallel, low-relief embankments and intervening channels, spaced ~20\u201330 m apart, trending NE\u2013SW across a gentle interfluve slope. The ridge crests reach ~0.5 m above the surrounding terrain, while the adjacent troughs are ~0.3 m deep. These alignments are not correlated with any modern roads or clearings on OSM and coincide with moisture-retaining patterns in the NIR imagery, consistent with pre-Columbian raised-field agriculture.",
+    "min_lat": -15.809,
+    "max_lat": -15.803,
+    "min_lon": -50.561,
+    "max_lon": -50.553
+  },
+  {
+    "description": "A sinuous linear depression ~1.2 km long and ~3\u20134 m wide, oriented NE\u2013SW, cutting across natural contour lines. It exhibits a consistent depth of ~0.4 m in the DTM curvature maps and corresponds to a moisture anomaly in the NIR band, suggesting an ancient canal or feeder ditch. No matching feature appears in the OSM layer, and it terminates upslope of a minor seasonal stream.",
+    "min_lat": -15.812,
+    "max_lat": -15.8,
+    "min_lon": -50.55,
+    "max_lon": -50.542
+  },
+  {
+    "description": "An east-west oriented causeway\u2013like embankment ~300 m long and ~5 m wide, showing pronounced convex curvature in the hillshade derivative and low curvature values in surrounding terrain. The feature is uplifted ~0.6 m above adjacent ground and displays a subtle NIR reflectance signature of higher moisture retention, typical of compacted anthropogenic substrate.",
+    "min_lat": -15.806,
+    "max_lat": -15.8035,
+    "min_lon": -50.5565,
+    "max_lon": -50.552
+  }
+]

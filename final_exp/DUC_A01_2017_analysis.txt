@@ -1,0 +1,17 @@
+After careful terrain‐derivative analysis, spectral cross‐checking and modern‐feature masking, I find no clear evidence of buried engineered canals, raised fields, embankments or causeways in the 23X6+R5 Manaus tile that would pass our criteria for ancient upland water‐management structures.  
+
+Key points in the assessment:  
+1. Terrain derivatives (slope, curvature, hillshade) reveal only smoothly undulating natural relief with no rectilinear or linear anomalies of the dimensions (150–300 m length, curvature >|0.002 m⁻¹|, slope <10°) expected for prehistoric canals or causeways.  
+2. Multi‐spectral overlay (true color + NIR) shows no persistent “dark‐earth” moisture anomalies or vegetation stress aligned along any linear axes; the slight NIR brightness variations correlate directly with minor topographic hollows and shallow drainage, not anthropogenic features.  
+3. All visible linear traces on the OpenStreetMap layer correspond to recent survey or forestry‐management ditches and access tracks (uniform orientation, regular spacing, terminus points at concession boundaries) rather than ancient infrastructure.  
+
+Because no candidate features meet the combined geomorphological and spectral thresholds after modern‐feature exclusion, I conclude there are no high-priority anomalies in this block at present.  
+
+Actionable insights for future surveys (generalizable):  
+[[[  
+– Always begin by masking modern linear features via up-to-date OSM or concession‐registry data; these often mimic ancient rectilinear patterns.  
+– Apply curvature filters tuned to 0.002–0.005 m⁻¹ on LiDAR‐derived DTM, then restrict attention to linear segments 150–300 m long with slopes under 10°; this isolates likely canals or causeways.  
+– Employ multi-temporal NIR differencing (dry vs. wet season) to flag persistent moisture signatures associated with terra preta (“dark earth”) or buried channels; one‐time anomalies are often natural microdrainage.  
+– Use automated ridge-spacing (15–30 m) and ridge-height (>0.5 m) detection to uncover parallel raised‐field networks in new interfluve zones once modern boundaries are excluded.  
+– Cross-validate LiDAR curvature/anomaly results against independent forestry‐atlas layers to eliminate modern plantation or logging roads before archaeological interpretation.  
+]]]

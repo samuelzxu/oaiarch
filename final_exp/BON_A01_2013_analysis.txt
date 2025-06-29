@@ -1,0 +1,64 @@
+```anomalies
+"anomaly_1": {
+    "description": "A long, straight, low‐relief channel or ditch trending roughly east–west across the upper third of the DTM image. The feature cuts across natural microtopography with uniform width (~5–8 m) and very subtle banks, suggesting engineered drainage rather than natural erosion.",
+    "bounding_box": {
+        "min_lat": -9.8725,
+        "max_lat": -9.8710,
+        "min_lon": -67.2870,
+        "max_lon": -67.2850
+    }
+},
+"anomaly_2": {
+    "description": "A cluster of rectilinear raised platforms, each about 30–50 m across, forming an approximate grid in the mid-left of the DTM. The edges are remarkably linear and right-angled, characteristic of raised agricultural fields or habitation platforms.",
+    "bounding_box": {
+        "min_lat": -9.8765,
+        "max_lat": -9.8750,
+        "min_lon": -67.2890,
+        "max_lon": -67.2875
+    }
+},
+"anomaly_3": {
+    "description": "A linear embankment or causeway trending southwest–northeast in the lower left quadrant of the DTM. This feature appears as a raised ridge (~1–2 m high) with adjacent parallel ditches, consistent with water‐management earthworks.",
+    "bounding_box": {
+        "min_lat": -9.8815,
+        "max_lat": -9.8800,
+        "min_lon": -67.2900,
+        "max_lon": -67.2885
+    }
+},
+"anomaly_4": {
+    "description": "A subtle rectilinear depression detectable in the NIR band (bright signature) just south of the mid-image clearing boundary, aligning with the DTM’s subtle trenches—likely moisture‐retaining anthropogenic soil.",
+    "bounding_box": {
+        "min_lat": -9.8790,
+        "max_lat": -9.8775,
+        "min_lon": -67.2860,
+        "max_lon": -67.2850
+    }
+},
+```
+
+Discussion:
+
+1. Regional Context  
+This sector of the Acre interfluve, between the Madeira and Purus Rivers, lies within the core area of Late Holocene terra preta construction and raised‐field agriculture. Pre‐Columbian groups in the Santa Maria–Senador Guiomard area are known from patchy survey data but have not previously been documented building elaborate upland water‐management systems.
+
+2. Historical Significance  
+The discovery of rectilinear raised fields and drainage canals in a high‐interfluve setting extends the known range of Amazonian hydraulic engineering beyond floodplain and várzea contexts. It suggests these societies adapted water‐management to seasonally drought‐prone uplands, using raised beds to prevent root waterlogging during heavy rains and to retain moisture in the dry season.
+
+3. Theoretical Implications  
+Current models posit that intensive earthworks in Amazonia concentrate on floodplains or seasonally inundated llanos. These anomalies demonstrate that engineered agrarian landscapes also existed in non‐alluvial uplands—challenging the notion of a floodplain-centric distribution of monumental hydraulic features. It implies a broader variability in pre‐Columbian land‐use strategies and soil‐management regimes.
+
+4. Integration with Modern Data  
+Cross‐check with OSM confirms that none of these features coincide with mapped roads or recent clearings. The spectral anomalies in the NIR band (moisture retention signatures) strongly correlate with the DTM-identified features, reinforcing their anthropogenic origin rather than modern logging or trails.
+
+5. Preservation and Next Steps  
+Field validation via targeted coring for terra preta signatures and test pitting along the edges of the raised platforms will confirm construction methods, carbon content, and dating. High‐resolution drone imagery under varying seasonal moisture conditions could refine the planar extents of the ditch networks.
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- Note the presence of uniform‐width linear depressions in LiDAR hillshade that do not align with any modern infrastructure; these often indicate buried canals or ditches.
+- Look for clusters of right-angled platforms or fields in low‐relief upland areas, which can signal raised‐field agriculture outside floodplains.
+- Cross‐reference subtle bright anomalies in NIR imagery with LiDAR‐derived DTM features to pinpoint moisture‐retentive anthropogenic soils.
+- Exclude features that coincide with clearings or OSM roads; focus on anomalies concealed beneath closed‐canopy forest.
+- Use small test cores for terra preta markers at the edges of linear ridges to verify anthropogenic soil enhancement before large‐scale excavation.
+]]]

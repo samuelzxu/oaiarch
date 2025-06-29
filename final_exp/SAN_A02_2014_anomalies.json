@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A cluster of low\u2010relief, parallel ridges approximately 5\u201310 m wide, spaced roughly 20\u201330 m apart, trending NE\u2013SW. These ridges appear as subtle, evenly spaced linear highs on the DTM, cutting across natural micro\u2010drainage. In the NIR they correspond to slightly darker (lower reflectance) bands\u2014consistent with moister \u2018dark earth\u2019 substrates beneath forest. No modern road or trail overlays this feature on OSM.",
+    "min_lat": -3.2995,
+    "max_lat": -3.2955,
+    "min_lon": -54.8865,
+    "max_lon": -54.8825
+  },
+  {
+    "description": "A roughly rectangular platform, about 100 m \u00d7 60 m, with raised margins and a flat interior. On the hillshade it shows crisp, straight edges and corners. Vegetation vigor in the visual/NIR imagery is subtly lower on the platform interior, suggesting anthropogenic soil accumulation or moisture retention. This feature lies well within closed canopy and is not intersected by any mapped plantation boundary.",
+    "min_lat": -3.2915,
+    "max_lat": -3.2895,
+    "min_lon": -54.8835,
+    "max_lon": -54.8805
+  },
+  {
+    "description": "A linear trench or ditch, approximately 500 m long and 3\u20134 m wide, oriented NW\u2013SE. It appears as a narrow sunken line on the DTM and corresponds to a linear moisture\u2010enhanced signature in the NIR band. The alignment does not coincide with any modern access path on OSM, and its profile suggests intentional excavation rather than natural gully formation.",
+    "min_lat": -3.3022,
+    "max_lat": -3.3002,
+    "min_lon": -54.8892,
+    "max_lon": -54.8872
+  }
+]

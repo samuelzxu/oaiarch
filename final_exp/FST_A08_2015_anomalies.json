@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A sinuous, rectilinear embankment approximately 5\u201310 m wide and 400 m long, visible in the hillshade as a low-relief ridge running roughly east\u2013west. This feature exhibits subtle right-angle turns at regular intervals, characteristic of engineered canals or causeways.",
+    "min_lat": -1.6868,
+    "max_lat": -1.6852,
+    "min_lon": -56.2886,
+    "max_lon": -56.2874
+  },
+  {
+    "description": "A cluster of small, circular to ovoid depressions (15\u201320 m diameter) aligned along the southern flank of the embankment. The spacing of these depressions forms a loose grid pattern, suggestive of house-mound platforms or field-cell insets adjacent to canal systems.",
+    "min_lat": -1.685,
+    "max_lat": -1.6842,
+    "min_lon": -56.2892,
+    "max_lon": -56.2884
+  }
+]

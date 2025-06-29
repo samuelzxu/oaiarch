@@ -1,0 +1,38 @@
+```anomalies
+"anomaly_1": {
+    "description": "A sinuous, north–south–oriented linear depression approximately 300 m long and 8–12 m wide, visible in the lower quarter of the LiDAR hillshade as a subtle concavity flanked by low convex berms. In the NIR composite it corresponds to a narrow band of elevated moisture (bright tone) and in the true‐color imagery to a linear zone of lusher, darker foliage consistent with wet‐filled canal sediments or infilled ditch. No matching feature appears on the OpenStreetMap layer, and it lacks modern road or logging tags.",
+    "bounding_box": {
+        "min_lat": -11.8680,
+        "max_lat": -11.8630,
+        "min_lon": -53.8320,
+        "max_lon": -53.8300
+    }
+},
+"anomaly_2": {
+    "description": "A paired set of parallel convex ridges, each ~500 m long and spaced ~30 m apart, trending roughly NW–SE. On the slope derivative they form a low‐slope (≤5°) corridor with alternating positive and negative curvature, indicative of a raised‐field platform system. The NIR band shows these ridges as slightly drier (darker) than surrounding terrain, and the true‐color mosaic reveals subtle vegetation stress aligned with their outlines. Absent from OSM, they also lack any modern intersections.",
+    "bounding_box": {
+        "min_lat": -11.8550,
+        "max_lat": -11.8520,
+        "min_lon": -53.8320,
+        "max_lon": -53.8310
+    }
+},
+```
+
+
+Region and Historical Context  
+The Feliz Natal area in Mato Grosso sits within an interfluvial landscape historically assumed to be of low pre‐Columbian landscape engineering intensity. However, recent LiDAR surveys across adjacent regions (e.g., along the Xingu headwaters) have documented networks of raised fields, canals, and drainage ditches beyond traditional floodplain settlements. The two anomalies identified here extend that pattern farther west, suggesting local groups exploited subtle upland plateaus for horticulture, draining seasonally saturated soils with canal–ridge complexes.
+
+Implications for Archaeological Theory  
+1. Extends the known western limit of upland water‐management systems in southern Amazonia.  
+2. Challenges the notion that intensive earthworks were confined to riverine floodplains; small‐scale forest‐cleared plateaus may have supported productive raised fields.  
+3. Suggests a mosaic model of pre‐Columbian land use where both lowland and upland engineered fields coexisted, linking agricultural corridors across interfluves.
+
+Actionable Insights  
+[[[
+- In upland interfluves with low‐curvature spurs, scan LiDAR slope < 8° corridors for alternating concave/convex signatures >100 m long—they often mark raised platforms.  
+- Overlay dry‐season vs. wet‐season NIR composites: linear bright‐tone features frequently overlie backfilled canals.  
+- Whenever a candidate canal is found, buffer 500 m laterally to search for paired berms or platform edges—they form clusters of raised fields.  
+- Exclude any features intersecting OSM roads or bearing modern tags; pre‐Columbian canals maintain continuous, gently curving traces without abrupt right‐angle turns.  
+- Apply these methods to adjacent Mato Grosso interfluves, focusing on minor ridgelines and forest concession clearings as potential LiDAR coverage windows.  
+]]]

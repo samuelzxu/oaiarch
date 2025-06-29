@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A straight, low\u2010relief embankment approximately 230 m long and 4\u20136 m wide, trending NW\u2013SE. It exhibits a paired depression on its northeast flank, consistent with a small canal or drainage ditch running parallel to the raised feature. The embankment appears as a linear bright ridge in the hillshade and curvature maps, and corresponds to a narrow band of reduced NIR reflectance (darker tone) indicating higher soil moisture or anthropogenic soil enrichment. No modern road or path is mapped at this location in OSM.",
+    "min_lat": -23.1372,
+    "max_lat": -23.1348,
+    "min_lon": -46.2311,
+    "max_lon": -46.2279
+  },
+  {
+    "description": "A cluster of four rectangular, gently elevated platforms (approx. 25 \u00d7 15 m each) arranged in an L-shape. These platforms are visible as discrete convex forms in the DTM hillshade, with surrounding shallow furrows that may represent small-scale canals or field boundaries. The NIR image shows a subtle darkening over each platform, suggestive of moisture\u2010retentive or Terra Preta soils. None of these features coincide with mapped plantations or trails in OSM.",
+    "min_lat": -23.132,
+    "max_lat": -23.1295,
+    "min_lon": -46.228,
+    "max_lon": -46.2245
+  }
+]

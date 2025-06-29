@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A gently raised, sinuous linear ridge trending NE\u2013SW through the center of the LiDAR terrain model, approximately 4\u20136 m wide and standing ~0.5 m above the surrounding low\u2010relief surface. It exhibits straight segments joined by subtle curves at regular intervals\u2014consistent with an engineered causeway or elevated pathway.",
+    "min_lat": -9.305,
+    "max_lat": -9.3025,
+    "min_lon": -68.287,
+    "max_lon": -68.2845
+  },
+  {
+    "description": "A secondary linear feature branching off the main ridge toward the southeast, forming an L\u2010shaped junction. This branch is narrower (~3 m) and slightly lower (~0.3 m), potentially representing a drainage canal feeding into the main causeway system.",
+    "min_lat": -9.304,
+    "max_lat": -9.303,
+    "min_lon": -68.2855,
+    "max_lon": -68.284
+  }
+]

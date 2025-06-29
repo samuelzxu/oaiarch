@@ -1,0 +1,84 @@
+Analysis for BA3_A01_2014
+
+You are an expert in remote‐sensing archaeology. Your task is to identify and map engineered upland water‐management structures—raised fields, linear canals, drainage ditches, embankments or causeways—buried beneath forest canopy in Amazonian interfluves. The images are from the region of Barcelos - State of Amazonas, 69700-000, Brazil, at (-1.6091715135, -61.70292763).
+
+Follow these steps:
+
+1. **Terrain Analysis**  
+   - Compute slope, curvature and hillshade derivatives on the DTM.  
+   - Highlight low‐relief, rectilinear or linear anomalies that contrast with natural terrain.  
+
+2. **Spectral Cross‐Checking**  
+   - Overlay the 10 m NIR and visible bands to detect “dark earth” moisture anomalies or vegetation stress aligned with terrain features.  
+   - Flag spectral signatures indicative of anthropogenic soils or water retention.  
+
+3. **Modern Structure Masking**  
+   - Use the OpenStreetMap layer to exclude or annotate any features matching recent roads, plantations or infrastructure.  
+
+4. **Reporting**  
+If anomalies are found:
+  1. Draw on your knowledge of the region (Barcelos - State of Amazonas, 69700-000, Brazil) and its history.
+  2. Explain how the anomaly fits into the broader historical context.
+  3. Discuss how it might challenge or advance current theories in the field. Give detailed background information on the geographic, historical, and archaeological context of the region.
+  5. Provide actionable insights. These insights will be used as leverage for future discovery of sites, that is, it will be appended to future prompts to AI models. To that end, provide generalizable insights that can be applied to other regions and datasets.
+
+Always include your actionable insights inside triple brackets:
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- "Note the presence of a large, flat area at the coordinates (lat, lon) that could indicate an ancient settlement."
+- "The presence of a linear feature in the LiDAR data suggests a possible ancient road or pathway."
+- "The NIR band shows unusual vegetation patterns that may indicate buried structures or features."
+]]]
+
+If you detect an anomaly, output exactly this format:
+
+```anomalies
+"anomaly_1": {
+    "description": "A detailed description of the anomaly",
+    "bounding_box": {
+        "min_lat": min_lat, 
+        "max_lat": max_lat,
+        "min_lon": min_lon,
+        "max_lon": max_lon
+        },  
+},
+"anomaly_2": {
+    "description": "A detailed description of the anomaly",
+    "bounding_box": {
+        "min_lat": min_lat, 
+        "max_lat": max_lat,
+        "min_lon": min_lon,
+        "max_lon": max_lon
+        },  
+},
+...
+"anomaly_N": {
+    "description": "A detailed description of the anomaly",
+    "bounding_box": {
+        "min_lat": min_lat, 
+        "max_lat": max_lat,
+        "min_lon": min_lon,
+        "max_lon": max_lon
+        },  
+},
+```
+
+
+
+Be sure to pay special attention in reasoning about and calculating the grid coordinates that you return.
+It's important that these are as accurate as possible, and includes the anomaly detected.The images show:
+1. A digital terrain model extracted from LiDAR data using cloth simulation
+2. A true-color (visual) Sentinel-2 satellite image
+3. A near-infrared (NIR) Sentinel-2 band image
+4. An OpenStreetMap rendering showing roads, buildings, and other infrastructure
+
+
+Previous insights:
+- Note the presence of a large, flat bench at approximately (-1.6016, -56.1833) that could indicate an ancient platform or terrace system.
+- The N–S sinuous depression from (-1.6075, -56.1840) to (-1.6015, -56.1830) suggests a canal or drainage ditch; trace similar lines upslope of minor tributaries in other interfluves.
+- Watch for series of parallel ridges ~25 m apart in LiDAR hillshade composites—these may mark raised-field beds for upland agriculture.
+
+
+
+

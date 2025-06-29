@@ -1,0 +1,17 @@
+After a detailed review of the provided DTM, Sentinel-2 visible/NIR imagery, and OpenStreetMap overlay, I find no clear evidence of ancient engineered upland water-management features (raised fields, canals, ditches, embankments or causeways) in this scene. All of the linear and rectilinear relief features visible in the LiDAR hillshade correspond spatially to modern agricultural field boundaries and drainage furrows, which are confirmed by the OSM layer and the pattern of recent land‐use in the Sentinel-2 imagery.
+
+Key points:
+
+• Terrain derivatives (slope, curvature, hillshade) reveal only uniform, parallel linear depressions and ridges spaced at ~10–20 m. These align exactly with the edges of active plantation parcels mapped in OSM and the bright/dark planting rows in the visual/NIR data.  
+• Spectral cross-checking shows vegetation stress and moisture anomalies only over the cleared, farmed areas; the adjacent forest patch (which might be more promising for archaeology) exhibits homogeneous NIR reflectance with no internal rectilinear pattern.  
+• No low-amplitude convex ridges or parallel depressions appear in the intact forest; the only preserved topography is fluvial (stream terraces) rather than anthropogenic.  
+
+Because these features are clearly modern and matched by OSM infrastructure, I recommend focusing fieldwork and further remote analyses on less-disturbed interfluves and forest fragments where ancient terra preta and raised-field systems are known to occur.
+
+[[[
+- Prioritize intact forested interfluves 1–2 km downslope of identified terra preta patches; ancient water-management features are more likely there than under current plantations.
+- In future LiDAR strips, look for subtle, low-relief convex ridges (~0.2–0.5 m high) with parallel troughs at ~100 m spacing—these mark classic raised-field arrays rather than modern furrows.
+- Use multi-temporal NIR composites during the dry season: wet anomalies in terra preta soils will persist and contrast with adjacent upland forest, guiding you to buried canals or field platforms.
+- Extend the mapping window at least 500 m beyond current OSM boundaries to capture long causeways that modern land division often cuts off.
+- Combine high-resolution UAV photogrammetry over remnant forest patches with magnetometry to detect subsurface ditches or embankment fills invisible in plantation LiDAR.
+]]]

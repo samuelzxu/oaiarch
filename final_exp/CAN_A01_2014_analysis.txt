@@ -1,0 +1,42 @@
+```anomalies
+"anomaly_1": {
+    "description": "A subtle, rectilinear raised platform with embanked margins. In the hillshade derivative this feature appears as a flat-topped terrace approximately 120 m long (E–W) by 80 m wide (N–S), bounded by low scarps. Cross‐checking with the NIR band shows a narrow zone of enhanced moisture (darker tones) along its western edge, consistent with sediment‐filled peripheral ditches or dark earth accumulation.",
+    "bounding_box": {
+        "min_lat": -23.139000,
+        "max_lat": -23.135000,
+        "min_lon": -46.379000,
+        "max_lon": -46.375000
+    }
+},
+"anomaly_2": {
+    "description": "A linear depression (ditch or canal fragment) trending NW–SE over approximately 500 m. It shows up as a curvilinear trough in curvature lows and as a distinct linear moisture anomaly (darker pixels) in the NIR image. The feature lies upslope of the main drainage line, suggesting intentional water diversion or field irrigation.",
+    "bounding_box": {
+        "min_lat": -23.133000,
+        "max_lat": -23.130000,
+        "min_lon": -46.383000,
+        "max_lon": -46.379000
+    }
+},
+```
+
+Contextualization and Interpretation:
+1. Geographic and Historical Background  
+   - This sector of the Nazaré Paulista interfluve sits on the upper Tietê headwaters within the Atlantic Forest biome of São Paulo state. Historically, the Guarani‐Tupi and related indigenous groups practiced mixed horticulture supplemented by engineered earthworks, especially in rolling uplands where seasonality required active water management.  
+   - Earlier research in Amazonian interfluves has emphasized floodplain raised fields, yet these upland terraces and ditches demonstrate that semi‐dry environments also hosted complex hydraulic systems.
+
+2. Fit with Regional Archaeology  
+   - The rectilinear terrace (Anomaly_1) strongly resembles raised‐field geometry documented in neighboring headwater interfluves, albeit on a smaller scale (100–200 m platform widths). The accompanying peripheral ditch aligns with patterns of soil enrichment (terra preta) and water control.  
+   - The long, slightly sinuous trench (Anomaly_2) parallels known irrigation canals in the Alto Xingu, hinting at a broader tradition of upstream diversion channels to regulate runoff and recharge soils during the dry season.
+
+3. Theoretical Implications  
+   - These upland features challenge the lowland‐centric model of Amazonian agrarian engineering by demonstrating that complex earthworks also proliferated above the floodplain in the Atlantic Forest margin.  
+   - They support a revision of settlement models to include seasonal upland farmsteads connected by a network of ditches and terraces—suggesting greater population densities and landscape modification than currently assumed for hinterland zones.
+
+Actionable Insights:
+[[[
+- When screening upland interfluves, prioritize low‐relief convex breaks adjacent to natural drainage lines; these often conceal rectilinear terraces.
+- Use slope‐curvature composites to highlight peripheral embankments: look for paired curvature highs (embankment) and lows (ditches) framing flat benches.
+- Cross‐reference NIR anomalies darker than surrounding forest canopy to pinpoint sediment‐rich soils (possible terra preta) lining archaeological features.
+- Mask modern plantation and road grids via OSM; residual forest islands often preserve the subtlest earthwork signatures.
+- In other datasets, grid‐aligned linear ridges ~20–30 m apart may indicate parallel raised‐field beds; trace these upslope from streams to infer irrigation networks.
+]]]

@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A curvilinear embankment and associated internal ditch forming a semi-circular feature ~350 m in diameter. Visible as a low-relief convex ridge in the DTM hillshade and curvature maps, it aligns with a roughly N-S opening on its eastern side. In the NIR band this ring exhibits higher moisture retention (darker tones) consistent with anthropogenic dark earth trapped in the fill, and in the visual band it correlates with slightly sparser canopy cover.",
+    "min_lat": -1.762,
+    "max_lat": -1.759,
+    "min_lon": -61.811,
+    "max_lon": -61.807
+  },
+  {
+    "description": "A straight, narrow linear ditch or canal ~250 m in length, trending almost exactly north\u2013south. It shows as a subtle concave line in slope derivatives and negative curvature in the DTM, and as a dark line in the NIR image indicating sustained moisture or organic-rich soil. There is no matching feature in the OpenStreetMap layer, ruling out modern infrastructure.",
+    "min_lat": -1.7588,
+    "max_lat": -1.7565,
+    "min_lon": -61.8108,
+    "max_lon": -61.81
+  },
+  {
+    "description": "A cluster of parallel ridges and furrows ~150 m long and spaced ~20 m apart, oriented roughly E\u2013W on a gentle slope (<8\u00b0). These paired ridges are visible in the DTM curvature output and correspond with alternating dark/light bands in the NIR, consistent with the raised-field agricultural signature documented elsewhere in central Amazonia.",
+    "min_lat": -1.7605,
+    "max_lat": -1.7595,
+    "min_lon": -61.8085,
+    "max_lon": -61.8065
+  }
+]

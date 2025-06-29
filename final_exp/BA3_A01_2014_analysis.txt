@@ -1,0 +1,36 @@
+```anomalies
+"anomaly_1": {
+    "description": "A set of four nearly parallel, low‐relief linear ridges trending NW–SE, each approximately 20–30 m apart and 200–300 m in length. These ridges appear as positive slope breaks in the hillshade and subtle convex curvature in the DTM. In the NIR image they register as moisture‐retentive dark lines, and in the true‐color composite exhibit darker, more vigourous canopy—consistent with anthropogenic ‘terra preta’ soils along embanked raised‐field beds.",
+    "bounding_box": {
+        "min_lat": -1.6135,
+        "max_lat": -1.6100,
+        "min_lon": -61.7065,
+        "max_lon": -61.7025
+    }
+},
+"anomaly_2": {
+    "description": "A sinuous channel‐like depression connecting the parallel ridges, oriented roughly N–S and curving gently with local microtopography. It is visible as a concave slope in the DTM, a subtle negative curvature line in the hillshade, and as a high‐reflectance (bright) strip in the NIR—suggesting standing or slow‐draining water. The feature is not present in the OSM roads or drainage network, implying an ancient engineered conduit or drainage ditch.",
+    "bounding_box": {
+        "min_lat": -1.6080,
+        "max_lat": -1.6050,
+        "min_lon": -61.7040,
+        "max_lon": -61.7000
+    }
+},
+```
+
+
+Historical and regional context:
+The Barcelos interfluvial zone in Amazonas hosted complex earth‐working societies during the Late Holocene. Raised‐field agriculture and canal networks have been documented on major varzea floodplains, but evidence for upland systems beneath terra firma forest is sparse. These parallel ridges and connecting ditch suggest a small‐scale upland raised‐field array, likely built to improve drainage and soil fertility in seasonally waterlogged patches. The moisture‐retentive signature in the NIR, paired with darker canopy reflectance in true‐color imagery, aligns with patterns of anthropogenic dark earth documented elsewhere in Central Amazonia. 
+
+This find pushes the boundary of known upland water‐management technologies away from large rivers’ floodplains into interior interfluves, indicating that small communities engineered micro‐catchments to support intensive cultivation. It challenges the prevailing view that pre-Columbian terra preta–based agriculture was confined to alluvial plains and suggests a broader ecological niche for these societies. 
+
+Such upland systems imply greater resilience and adaptability to local hydrological conditions, expanding our models of Amazonian landscape domestication. Future models of pre‐Columbian population density and land‐use impact should incorporate small‐scale upland infrastructure.
+
+[[[
+- When scanning other interfluves, apply a multi‐scale slope‐curvature filter to highlight parallel low‐relief ridges ~20–30 m apart—these often mark raised‐field beds.
+- Overlay NIR bands on LiDAR‐derived hillshade to pick out moisture anomalies that trace hidden canals or ditches.
+- Look for dendritic or sinuous depressions intersecting ridge patterns; these may be feeder or outlet channels absent from modern maps.
+- Exclude known OSM roads and clearings but retain narrow linear features under canopy—ancient earthworks will not coincide with modern infrastructure.
+- Prioritize small patches of terra preta–like spectral signature upslope of minor streams; these can indicate human‐built microcatchments.
+]]]

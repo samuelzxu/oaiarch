@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A narrow, rectilinear linear feature trending roughly north\u2013south visible as a subtle concave depression flanked by low embankments. The feature is between 3\u20136 m wide, extends for approximately 1.2 km in the tile, and shows up as a darker band in the NIR composite (moisture\u2010retaining \u201cdark earth\u201d) and as an incised line in the LiDAR hillshade.",
+    "min_lat": -9.303,
+    "max_lat": -9.289,
+    "min_lon": -68.286,
+    "max_lon": -68.28
+  },
+  {
+    "description": "A short east\u2013west\u2013oriented linear segment, ~80 m long and 4 m wide, cutting across a gentle saddle. It appears as a raised berm in the DTM curvature derivative and is accompanied by a coincident low\u2010NIR strip suggestive of an old drainage ditch feeding the main north\u2013south canal.",
+    "min_lat": -9.296,
+    "max_lat": -9.294,
+    "min_lon": -68.283,
+    "max_lon": -68.279
+  }
+]

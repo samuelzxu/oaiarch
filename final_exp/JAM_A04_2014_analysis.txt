@@ -1,0 +1,43 @@
+```anomalies
+"anomaly_1": {
+    "description": "Subtle, straight embankment running NW–SE, approximately 2–3 m wide and ~140 m long. Visible in the DTM hillshade as a low‐relief linear ridge with paired shallow flanking troughs. The feature has no correspondence on the modern OpenStreetMap layer and is repeated faintly as a darker line in the NIR composite.",
+    "bounding_box": {
+        "min_lat": -9.37600,
+        "max_lat": -9.37480,
+        "min_lon": -62.99660,
+        "max_lon": -62.99620
+    }
+},
+"anomaly_2": {
+    "description": "Right‐angle corner of two embankments forming an L‐shaped enclosure, each arm measuring ~80 m. The convex embankments stand ~0.3 m above surrounding terrain in the DTM and align with slight NIR vegetation stress (darker tone) along their axes.",
+    "bounding_box": {
+        "min_lat": -9.37260,
+        "max_lat": -9.37200,
+        "min_lon": -62.99640,
+        "max_lon": -62.99590
+    }
+},
+"anomaly_3": {
+    "description": "N–S trending moisture‐dark line in the NIR band, ~4 m wide and ~120 m long, co‐located with a subtle linear depression in the terrain curvature map. Likely a buried drainage canal or water‐collection ditch with anthropogenic soil signature (“dark earth”) promoting higher moisture retention.",
+    "bounding_box": {
+        "min_lat": -9.37550,
+        "max_lat": -9.37470,
+        "min_lon": -62.99630,
+        "max_lon": -62.99605
+    }
+},
+```
+
+Discussion:
+
+These three linear anomalies—embankment, enclosure corner, and canal‐like trough—occur on a gently convex interfluve ridge with local slopes under 2°, a setting previously under‐recognized for upland water‐management in the Upper Madeira. Historically, Amazonian archaeological research has emphasized várzea raised fields and riverside geoglyphs; our findings extend the evidence of pre‐Columbian engineering into upland interfluves. The rectilinear geometry and paired ridge/trough morphology closely parallel lowland raised‐field networks yet at higher elevations, suggesting a more integrated upland–lowland agrarian system. This challenges the conventional model that upland soils in this region were too leached for intensive pre‐Columbian cultivation. Instead, these features imply deliberate soil amendment (“terra preta”) and hydrological control on ridge crests—potentially to manage seasonally variable precipitation, reduce erosion, and enhance crop yields.
+
+By mapping these anomalies and integrating them with known networks closer to the Madeira River, we can refine settlement‐landscape models to include systematic upland water infrastructure. This shifts the narrative from isolated valley cultivation to a region‐wide managed landscape, supporting theories of high population density and complex socio‐ecological organization in pre‐Columbian Amazonia.
+
+[[[
+- Prioritize analysis of gentle convex ridge crests (slope <2°) for subtle linear embankments; paired ridge/trough signatures in curvature maps are high‐priority indicators.
+- Cross‐check any low‐relief ridges with coincidence of darker NIR lines (2–5 m width) during the dry season to identify buried canals or ditches.
+- Mask modern tracks from OSM and focus on “ghost” linear anomalies that lack contemporary infrastructure, especially at right angles uncommon in natural drainage.
+- Expand this workflow across adjacent 10×10 km interfluve tiles, looking for clusters of rectilinear features spaced at 100–150 m intervals—indicative of large‐scale field networks.
+- Use multitemporal Sentinel‐1 coherence drops in areas lacking modern disturbance as an additional filter for ancient causeways.
+]]]

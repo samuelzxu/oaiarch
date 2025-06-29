@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A subtle, linear ridge trending NE\u2013SW with an average width of ~3\u20135 m and an apparent length of ~160 m. It stands out as a low\u2010relief, rectilinear embankment cutting across minor drainage divides in the hillshade and is paralleled by vegetation stress in the NIR band, suggesting a buried canal or water\u2010retaining channel.",
+    "min_lat": -9.2966,
+    "max_lat": -9.2951,
+    "min_lon": -68.2951,
+    "max_lon": -68.2936
+  },
+  {
+    "description": "A roughly rectangular, raised\u2010platform feature measuring approximately 60 m by 45 m. It appears as a very subtle plateau in the DTM hillshade, with slightly enhanced moisture (darker tones) in the NIR overlay, consistent with anthropogenic dark\u2010earth soils used for intensive cultivation or habitation.",
+    "min_lat": -9.296,
+    "max_lat": -9.2955,
+    "min_lon": -68.2947,
+    "max_lon": -68.2942
+  },
+  {
+    "description": "A cluster of small, circular depressions (~8\u201312 m diameter) aligned parallel to the NE\u2013SW ridge (anomaly_1). These are visible as negative curvatures in the DTM and correspond to slight vegetation anomalies in NIR, suggesting platform\u2010house remains associated with the canal system.",
+    "min_lat": -9.2962,
+    "max_lat": -9.2958,
+    "min_lon": -68.2949,
+    "max_lon": -68.2939
+  }
+]

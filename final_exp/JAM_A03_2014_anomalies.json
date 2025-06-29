@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A subtle, rectilinear corner of raised\u2010field platform with adjoining shallow ditch. In the hillshade it appears as a gentle right\u2010angle ridge (ca. 120\u2009m on each leg) with plan\u2010curvature concavity on the inside corner. The NIR band shows slightly elevated moisture retention along the ditch line, and the true\u2010color image exhibits darker \u2018dark earth\u2019 signatures aligned with this feature. No corresponding modern tracks are mapped in OSM.",
+    "min_lat": -9.078,
+    "max_lat": -9.07,
+    "min_lon": -62.995,
+    "max_lon": -62.988
+  },
+  {
+    "description": "A gently curving linear ditch or canal trending NW\u2013SE for approximately 800\u2009m. Visible as a low\u2010relief trough in the slope and curvature derivatives and multi\u2010azimuth hillshade, with a slight change in vegetation vigor in the visual band and elevated NIR reflectance indicating higher soil moisture. The feature does not align with any modern plantation clearings or roads.",
+    "min_lat": -9.102,
+    "max_lat": -9.095,
+    "min_lon": -63.005,
+    "max_lon": -62.997
+  }
+]

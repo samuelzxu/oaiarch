@@ -1,0 +1,26 @@
+After applying the four‐step pipeline to the São Benedito interfluve data, I find that every linear or rectilinear signature visible in the DTM derivatives and spectral layers coincides with modern clearings, plantation edges, or mapped roads and trails. None of the features exhibit the paired ridge–depression geometry, regular grid spacing or moisture‐retentive “dark earth” spectral signal we would expect from pre‐Columbian earthworks. All of the most prominent anomalies disappear once the OpenStreetMap layer is overlaid and modern infrastructure is masked out.
+
+1. Terrain Analysis  
+   - Hillshade and curvature clearly highlight straight‐edged mounds and depressions, but these align exactly with deforested agricultural plots.  
+   - No isolated low‐relief platforms or canal‐like channels survive beneath intact canopy.  
+
+2. Spectral Cross‐Checking  
+   - The true-color band shows abrupt tonal shifts at forest edges and field boundaries, not within continuous forest.  
+   - The NIR band highlights vigorous regrowth in cleared areas and no distinct moisture anomaly beneath closed canopy.  
+
+3. Modern Structure Masking  
+   - Every candidate traced in the DTM coincides with OSM roads, property lines or plantation contours.  
+   - No unmapped rectilinear features remain after applying the mask.  
+
+4. Reporting  
+   - Conclusion: No evidence for engineered upland water‐management remains in this tile. The shapes in the LiDAR and imagery are modern rather than archaeological.  
+   - Context: In this part of the Belterra interfluve, pre‐Columbian earthworks appear to be rare or deeply buried; most known systems occur closer to the Tapajós floodplain and on more level terraces.  
+   - Implications: This negative result supports models that Woodland‐age complex societies focused hydraulic engineering nearer larger rivers, leaving interior interfluves largely in forest or later cleared for agriculture.  
+
+[[[
+– Maintain a mask of all mapped roads, clearings and cadastral boundaries before interpreting LiDAR derivatives.  
+– Prioritize linear anomalies that persist beneath closed canopy and that do not align with OSM features.  
+– In surveying new interfluve blocks, first search for paired ridge–furrow signatures 200–300 m long on gentle slopes (<10°) using curvature and slope maps.  
+– Cross-reference these with NIR “dark earth” moisture anomalies during dry seasons to reduce false positives from deforestation edges.  
+– Apply the same workflow in adjacent interfluves along the Tapajós and Madeira terraces where pre‐Columbian raised‐field systems are documented, then refine thresholds for ridge width (5–10 m) and spacing (15–30 m).  
+]]]]

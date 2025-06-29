@@ -1,0 +1,42 @@
+```anomalies
+"anomaly_1": {
+    "description": "On the hillshade-derived DTM, there is a cluster of five parallel, low‐relief ridges running roughly NW–SE, each 10–15 m apart and 200–250 m long. In the curvature map these ridges register as subtle convex linements against the otherwise gently undulating interfluve surface (<1.5° slope). The same alignment is faintly echoed in the NIR composite as a narrow band of increased moisture retention (brighter tones), and in the visual band by slightly darker canopy tone, suggesting underlying organic‐rich, anthropogenic soils or infilled canals. Cross‐checking with OpenStreetMap shows no modern trails or logging roads along this lineament.",
+    "bounding_box": {
+        "min_lat": -9.93100,
+        "max_lat": -9.92850,
+        "min_lon": -67.57350,
+        "max_lon": -67.57100
+    }
+},
+"anomaly_2": {
+    "description": "Approximately 300 m south of anomaly_1, the DTM curvature highlights a rectangular hollow about 90 × 60 m, aligned NE–SW, with raised margins on two sides. Hillshade accentuates the straight edges of the depression, inconsistent with natural drainage. In the NIR band this depression appears as a persistent high‐reflectance zone, indicating wetter substrate or charcoal‐enriched dark earth. No corresponding feature exists in the OSM infrastructure layer, ruling out recent excavation or road works.",
+    "bounding_box": {
+        "min_lat": -9.93050,
+        "max_lat": -9.92950,
+        "min_lon": -67.57300,
+        "max_lon": -67.57200
+    }
+},
+```  
+  
+Regional Context and Interpretation  
+1. Geographic & Historical Background  
+   - This sector of the Acre interfluve sits between the Rio Branco tributaries, where pre‐Columbian populations engineered raised fields and canals to buffer seasonal water‐level fluctuations.  
+   - Documented sites around Cruzeiro do Sul and Sena Madureira have similarly patterned earthworks dated between AD 600–1300, attributed to societies with complex agro‐hydraulic systems.  
+
+2. How These Anomalies Fit  
+   - The linear ridge cluster (anomaly_1) closely matches canal–field systems reported to the south, but its NW–SE orientation is rotated compared to the typical N–S alignments, suggesting local adaptation to micro‐topography or hydrological constraints.  
+   - The rectangular hollow (anomaly_2) likely functioned as a water-storage basin or platform for crop rotation, consistent with ethnographically recorded raised‐field practices of the Upper Amazon.  
+
+3. Theoretical Implications  
+   - Discovering engineered features on this interfluve challenges the notion that substantial earthworks were restricted to major floodplain zones. It supports emerging models of diffuse upland water management by small, dispersed polities.  
+   - The orientation variability seen here may require revising regional hydro‐engineering frameworks to incorporate more flexible, site-specific planning.  
+
+4. Actionable Insights for Future Surveys  
+[[[
+- Focus LiDAR‐derived hillshade and curvature outputs on spotting parallel convex/concave linements spaced 10–20 m apart in low‐slope zones (<2°).
+- In Sentinel‐2 NIR composites, flag any narrow linear moisture anomalies that align with DTM ridges or hollows, even if only faintly brighter.
+- Exclude features matching OSM vectors; concentrate on unmarked ridges and depressions within contiguous forest.
+- When mapping neighboring interfluves (e.g., Tarauacá, Envira), apply the same slope, curvature, NIR overlay protocol but adjust the scan orientation by ±15° to account for local drainage patterns.
+- Prioritize ground‐truthing in areas where DTM-derived hollows form right‐angle intersections, as these often indicate canal–field junctions or storage basins.
+]]]

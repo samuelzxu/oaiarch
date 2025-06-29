@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A subtle, rectilinear raised platform with embanked margins. In the hillshade derivative this feature appears as a flat-topped terrace approximately 120\u2009m long (E\u2013W) by 80\u2009m wide (N\u2013S), bounded by low scarps. Cross\u2010checking with the NIR band shows a narrow zone of enhanced moisture (darker tones) along its western edge, consistent with sediment\u2010filled peripheral ditches or dark earth accumulation.",
+    "min_lat": -23.139,
+    "max_lat": -23.135,
+    "min_lon": -46.379,
+    "max_lon": -46.375
+  },
+  {
+    "description": "A linear depression (ditch or canal fragment) trending NW\u2013SE over approximately 500\u2009m. It shows up as a curvilinear trough in curvature lows and as a distinct linear moisture anomaly (darker pixels) in the NIR image. The feature lies upslope of the main drainage line, suggesting intentional water diversion or field irrigation.",
+    "min_lat": -23.133,
+    "max_lat": -23.13,
+    "min_lon": -46.383,
+    "max_lon": -46.379
+  }
+]

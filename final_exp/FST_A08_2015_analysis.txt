@@ -1,0 +1,34 @@
+```anomalies
+"anomaly_1": {
+    "description": "A sinuous, rectilinear embankment approximately 5–10 m wide and 400 m long, visible in the hillshade as a low-relief ridge running roughly east–west. This feature exhibits subtle right-angle turns at regular intervals, characteristic of engineered canals or causeways.",
+    "bounding_box": {
+        "min_lat": -1.6868,
+        "max_lat": -1.6852,
+        "min_lon": -56.2886,
+        "max_lon": -56.2874
+    }
+},
+"anomaly_2": {
+    "description": "A cluster of small, circular to ovoid depressions (15–20 m diameter) aligned along the southern flank of the embankment. The spacing of these depressions forms a loose grid pattern, suggestive of house-mound platforms or field-cell insets adjacent to canal systems.",
+    "bounding_box": {
+        "min_lat": -1.6850,
+        "max_lat": -1.6842,
+        "min_lon": -56.2892,
+        "max_lon": -56.2884
+    }
+},
+```
+
+These anomalies were identified through multi‐scale hillshade derivatives (315° solar azimuth), revealing the linear ridge (anomaly_1) and associated depressions (anomaly_2). Spectral cross‐checking shows in the NIR band a narrow low‐reflectance band co‐aligned with the embankment, indicating higher moisture retention or organic‐rich infill (“terra preta”). The true‐color composite highlights slight vegetation stress along the ridge axis, further supporting an anthropogenic origin.
+
+Regional Context and Significance  
+The Oriximiná interfluve is known for dispersed forest villages and complex raised‐field systems dating to the Late Holocene. The newly detected embankment–depression system near 8P76+JQ Almeida expands the mapped extent of water‐management infrastructure in this sector. Previously, most documented canals lay closer to major rivers; this off‐channel feature suggests inland settlement and agriculture was more intensive than assumed. The regular geometry of the embankment’s angular turns aligns with other Amazonian causeways, while the adjacent depressions may mark domestic or cultivation units.
+
+Implications for Theory  
+Current models posit that dense pre‐Columbian populations clustered along floodplains. These anomalies challenge that view by demonstrating substantial earthworks in true interfluve forests. It implies a wider territorial reach of landscape engineering and suggests that regional polities orchestrated large‐scale drainage and irrigation networks beyond river margins. This pushes us to reconsider the socio‐political complexity and ecological footprint of upland Amazonian societies.
+
+[[[
+- Note the presence of a linear, rectilinear ridge at (-1.6868, -56.2886) to (-1.6852, -56.2874) that could indicate an ancient canal or causeway.
+- The grid of small depressions (approx. 15–20 m diameter) at (-1.6850, -56.2892) to (-1.6842, -56.2884) may mark house-mound platforms; target these for coring.
+- When working in dense canopy, overlay NIR band anomalies with high‐azimuth hillshade to pinpoint subtle moisture-retaining earthworks across other interfluve zones.
+]]]

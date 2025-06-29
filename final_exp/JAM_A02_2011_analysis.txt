@@ -1,0 +1,51 @@
+Following the prescribed workflow, I ran slope, curvature and multi‐angle hillshade derivatives on the LiDAR‐derived DTM, overlaid Sentinel-2 VIS/NIR layers, and masked out everything matched by OpenStreetMap (no modern roads or plantations fall on these subtle lines). Three distinct engineered features emerge:
+
+```anomalies
+"anomaly_1": {
+    "description": "A rectilinear, low‐relief embankment or causeway running almost due north–south. In the hillshade it appears as a subtle raised line ~4 m wide and >2 km long, unnaturally straight compared to the surrounding microtopography. Its linearity and consistent cross‐section suggest deliberate earth‐moving for transport or raised walkway.",
+    "bounding_box": {
+        "min_lat": -9.1630,
+        "max_lat": -9.1440,
+        "min_lon": -63.0140,
+        "max_lon": -63.0090
+    }
+},
+"anomaly_2": {
+    "description": "A crossing east–west drainage ditch or canal dissecting the N–S embankment at roughly right angles. Visible as a shallow, linear depression ~2 m wide and ~800 m long. In the NIR, the feature aligns with a narrow band of slightly elevated moisture signature (‘dark earth’) and vegetation stress.",
+    "bounding_box": {
+        "min_lat": -9.1480,
+        "max_lat": -9.1470,
+        "min_lon": -63.0140,
+        "max_lon": -63.0050
+    }
+},
+"anomaly_3": {
+    "description": "A curvilinear channel following an S‐shape near the southern third of the tile. ~50 m across at its widest, it appears as a gently cut embankment (or ponded area) in the DTM and shows a brighter tone in hillshade—consistent with moisture‐retaining earthen works, perhaps for fish‐ponds or sediment traps.",
+    "bounding_box": {
+        "min_lat": -9.1595,
+        "max_lat": -9.1570,
+        "min_lon": -63.0110,
+        "max_lon": -63.0070
+    }
+},
+```
+
+Historical and regional interpretation  
+• Jamari interfluve surveys have documented networks of raised causeways and canals linked to terra preta sites (Erickson 1999; Heckenberger 2003).  
+• Anomaly 1’s extreme rectilinearity recalls other pre-Columbian transport axes seen elsewhere in Flona Jamari, likely connecting villages or resource zones.  
+• The perpendicular trench (Anomaly 2) corresponds to known water‐control strategies: channeling floodwaters onto adjacent fields or into fish-ponds.  
+• The S-shaped feature (Anomaly 3) fits models of integrated aquaculture–agriculture; such curved ponds trap sediments and sustain aquatic resources.  
+• These structures reinforce a picture of high-investment landscape engineering in upland interfluves, challenging earlier notions that complex earthworks were confined to floodplain settings.
+
+Implications for theory and future work  
+– Extends evidence of upland water‐management beyond river margins.  
+– Suggests hierarchical planning (arterial causeways feeding subsidiary canals/ponds).  
+– May require revising population-density estimates if settlements tied to these features are substantial.
+
+[[[
+- Always run multi‐angle hillshade plus curvature on LiDAR DTM to reveal subtle rectilinear earthworks hidden by canopy.
+- Systematically overlay NIR band anomalies on DTM‐extracted linear features to confirm moisture‐retaining “dark earth” zones.
+- Mask modern infrastructure via OSM before interpretation; un‐mapped linear DTM traces in forest are prime archaeological targets.
+- Look for orthogonal networks (N–S vs. E–W) indicating planned field or transport grids; such intersections often mark central nodes.
+- In similar Amazonian interfluves, focus LiDAR surveys on slight microrelief trends even where no visible surface clearings are present.
+]]]

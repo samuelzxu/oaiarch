@@ -1,0 +1,37 @@
+```anomalies
+"anomaly_1": {
+    "description": "A prominent, straight, NNW–SSE trending linear ridge visible in the DTM hillshade, approximately 900 m in length and 3–5 m wide, exhibiting a slight convex cross‐section. Corresponding faint dark line in the NIR composite suggests moisture retention consistent with terra preta or canal sediments.",
+    "bounding_box": {
+        "min_lat": -8.567000, 
+        "max_lat": -8.552000,
+        "min_lon": -62.874000,
+        "max_lon": -62.870000
+    }
+},
+"anomaly_2": {
+    "description": "A shorter, obliquely oriented (NE–SW) linear depression about 400 m long and 2–3 m wide, with paired concave flanks and a subtle central berm, characteristic of secondary drainage canals feeding larger causeways.",
+    "bounding_box": {
+        "min_lat": -8.562000,
+        "max_lat": -8.556000,
+        "min_lon": -62.872000,
+        "max_lon": -62.869000
+    }
+},
+```
+
+Background & Historical Context:
+The Candeias do Jamari interfluve lies on the upland terra firme just north of the Jamari River, an area where pre‐Columbian societies engineered raised‐field agriculture and canal networks to manage seasonal water. Previous surveys have documented similar causeways along the Guaporé and Madeira interfluves, but this is among the first candidates identified north of Porto Velho at this scale. The long NNW–SSE alignment parallels local watershed divides and fits models of community‐level field complexes connected by spine‐like embankments. If confirmed, these features extend known hydraulic engineering farther into upland terra firme, challenging the idea that intensive earthworks in Rondônia were restricted to major floodplain terraces.
+
+Implications for Theory:
+1. Expands the mapped distribution of earth‐engineering beyond Amazon ribeirinhos to truly upland interfluves, implying broader social coordination and landscape investment.
+2. Supports hypotheses of integrated field–canal systems rather than isolated raised beds, suggesting larger population densities and systemic water control.
+3. Highlights the potential for upland terra preta pockets along canal margins, which could revise carbon sequestration and soil‐management models in these forests.
+
+Actionable insights:
+[[[
+- Plot the NNW–SSE ridge line at -8.5595, -62.8720 and run a least‐cost path analysis upslope to predict connected field blocks up to 2 km away.
+- In similar interfluve settings, target gently sloping convex‐concave transitions (<2°) by computing curvature on LiDAR DTMs to highlight paired trough‐and‐ridge patterns.
+- Overlay dry‐season NIR composites: look for narrow (2–5 m) moisture‐dark lines aligned with subtle terrain anomalies, as these often betray terra preta‐filled canals.
+- Mask OSM linear features (roads, logging tracks) and cross‐check with Sentinel‐1 coherence to rule out recent disturbances; ancient causeways have consistently low backscatter coherence through wet/dry seasons.
+- Apply this multi‐sensor workflow (DTM derivatives + NIR + curvature + OSM filtering) across adjacent 10 × 10 km quadrants to systematically locate further upland water‐management networks.
+]]]

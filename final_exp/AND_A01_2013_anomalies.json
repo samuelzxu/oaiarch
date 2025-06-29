@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A large, low\u2010relief, rectilinear enclosure (~400\u2009m\u2009\u00d7\u2009200\u2009m) with evenly spaced subtle berms forming a grid of ~50\u2009m\u2010spaced raised platforms. Oriented precisely N\u2013S/E\u2013W, the edges are straighter and more regular than natural colluvial ridges and align with faint vegetation\u2010stress patterns in the NIR band.",
+    "min_lat": -2.557,
+    "max_lat": -2.553,
+    "min_lon": -46.839,
+    "max_lon": -46.835
+  },
+  {
+    "description": "A narrow, linear causeway or ditch roughly 180\u2009m long, running N\u2013S through the center of anomaly_1. Presents as a slight embankment on the eastern side and a paired depression on the west. Coincides with a line of darker (moister) pixels in the NIR overlay, consistent with subsurface channel retention.",
+    "min_lat": -2.5565,
+    "max_lat": -2.5545,
+    "min_lon": -46.8375,
+    "max_lon": -46.8365
+  }
+]

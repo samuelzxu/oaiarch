@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A faint rectangular enclosure measuring approximately 600 m (N\u2013S) by 400 m (E\u2013W), with low-relief embankments and orthogonal internal alignments spaced at roughly 100 m intervals. Visible in the multi-angle DTM hillshade as linear ridges, coincident with subtle NIR moisture anomalies in the deforested margins, and partially obscured by modern clearings in the north.",
+    "min_lat": -6.417,
+    "max_lat": -6.408,
+    "min_lon": -52.909,
+    "max_lon": -52.899
+  },
+  {
+    "description": "A straight, shallow ditch or canal ca. 500 m long oriented NNE\u2013SSW, cutting beneath forest canopy, apparent as a linear concave feature in the DTM curvature and as a narrow moisture\u2010retaining strip (darker tone) in the NIR band. No matching modern infrastructure appears in the OSM layer.",
+    "min_lat": -6.4145,
+    "max_lat": -6.41,
+    "min_lon": -52.9048,
+    "max_lon": -52.903
+  }
+]

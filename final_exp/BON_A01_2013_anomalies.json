@@ -1,0 +1,30 @@
+[
+  {
+    "description": "A long, straight, low\u2010relief channel or ditch trending roughly east\u2013west across the upper third of the DTM image. The feature cuts across natural microtopography with uniform width (~5\u20138 m) and very subtle banks, suggesting engineered drainage rather than natural erosion.",
+    "min_lat": -9.8725,
+    "max_lat": -9.871,
+    "min_lon": -67.287,
+    "max_lon": -67.285
+  },
+  {
+    "description": "A cluster of rectilinear raised platforms, each about 30\u201350 m across, forming an approximate grid in the mid-left of the DTM. The edges are remarkably linear and right-angled, characteristic of raised agricultural fields or habitation platforms.",
+    "min_lat": -9.8765,
+    "max_lat": -9.875,
+    "min_lon": -67.289,
+    "max_lon": -67.2875
+  },
+  {
+    "description": "A linear embankment or causeway trending southwest\u2013northeast in the lower left quadrant of the DTM. This feature appears as a raised ridge (~1\u20132 m high) with adjacent parallel ditches, consistent with water\u2010management earthworks.",
+    "min_lat": -9.8815,
+    "max_lat": -9.88,
+    "min_lon": -67.29,
+    "max_lon": -67.2885
+  },
+  {
+    "description": "A subtle rectilinear depression detectable in the NIR band (bright signature) just south of the mid-image clearing boundary, aligning with the DTM\u2019s subtle trenches\u2014likely moisture\u2010retaining anthropogenic soil.",
+    "min_lat": -9.879,
+    "max_lat": -9.8775,
+    "min_lon": -67.286,
+    "max_lon": -67.285
+  }
+]

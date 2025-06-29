@@ -1,0 +1,36 @@
+anomalies
+"anomaly_1": {
+    "description": "A faint, rectilinear enclosure network consisting of two parallel embankment segments connected by orthogonal cross‐bars (approximately NE–SW and NW–SE orientation). The linearities are 3–5 m wide, with subtle convex profiles set into otherwise low‐relief upland forest. These features are consistent with ancient causeways or canal embankments buried beneath vegetation.",
+    "bounding_box": {
+        "min_lat": -12.5030,
+        "max_lat": -12.5005,
+        "min_lon": -55.0135,
+        "max_lon": -55.0110
+    }
+},
+"anomaly_2": {
+    "description": "A sinuous ridge‐ditch system running roughly parallel to the modern riverbank. This feature exhibits alternating convex (ridge) and concave (ditch) curvatures over a 400 m stretch, likely representing a raised field dyke or drainage channel designed to intercept seasonal overflows.",
+    "bounding_box": {
+        "min_lat": -12.5025,
+        "max_lat": -12.4980,
+        "min_lon": -55.0180,
+        "max_lon": -55.0125
+    }
+},
+
+Historical and Archaeological Context:
+The upland interfluve around Feliz Natal (FXXP+CG) lies within the southern margin of the Upper Xingu watershed, a zone increasingly recognized for its complex pre-Columbian earthworks. Until recently, most documented earth-management systems in Mato Grosso were concentrated along major rivers; these new upland anomalies suggest that local communities engineered smaller tributary interfluves for water control, perhaps to extend seasonal agriculture or manage water during drier intervals. The rectilinear embankment network (anomaly_1) recalls similar enclosures in the Acre uplands attributed to Late Holocene agro-engineering (circa AD 1000–1400). The sinuous ridge‐ditch (anomaly_2) parallels bank-side paleochannels documented elsewhere in western Amazonia, indicating local adaptation to microtopography rather than reliance on main channel flooding.
+
+Implications for Current Theories:
+1. Expanded spatial scope of Amazonian hydraulic engineering beyond floodplains into upland interfluves, challenging models that restrict major earthworks to terra firme adjacent to large rivers.
+2. Demonstrates a dual-scale network: large riverine canals and smaller, localized tributary systems, implying hierarchical water-management strategies integrated across catchments.
+3. Suggests that anthropogenic soils (“dark earth”) may align with upland embankments, extending the known distribution of terra preta into non-alluvial settings.
+
+Actionable Insights for Future Site Discovery:
+[[[
+- Systematically apply hillshade and slope derivatives on LiDAR over upland interfluves, prioritizing NE–SW trending linearities under forest canopy.
+- In Sentinel-2 NIR bands, flag narrow zones of reduced reflectance (<0.2 standardized) that align with LiDAR-detected ridges as potential buried canals.
+- Use curvature maps to distinguish subtle convex ridges (embankments) from concave channels; threshold planar curvature values between –0.005 and +0.005 to isolate low-relief engineered features.
+- Cross-reference any LiDAR‐identified rectilinear anomalies with OSM and Sentinel imagery to eliminate modern plantations or logging roads (which exhibit sharper edges and regular spacing).
+- Target ground-truthing in forest fragments that remain uncleared on OSM, especially where multiple parallel ridges converge—these loci often mark nodal points in prehistoric hydraulic networks.
+]]]

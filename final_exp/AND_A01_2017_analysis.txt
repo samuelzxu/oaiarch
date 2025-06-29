@@ -1,0 +1,46 @@
+```anomalies
+"anomaly_1": {
+    "description": "A low‐relief, almost rectangular embanked platform with straight margins visible in the hillshade, roughly 350 m east–west by 200 m north–south. The edges are aligned to the local grid (approximately N85°E) and are defined by subtle scarps 0.3–0.5 m high. In the NIR overlay the interior shows a slightly higher moisture signature compared to the surrounding forest, consistent with anthropogenic dark‐earth retention.",
+    "bounding_box": {
+        "min_lat": -2.5570,
+        "max_lat": -2.5535,
+        "min_lon": -46.8390,
+        "max_lon": -46.8355
+    }
+},
+"anomaly_2": {
+    "description": "A sinuous, low‐relief linear depression running roughly north–south through the center of the scene. It extends for ~500 m, is ~5–8 m wide, and appears as a dark line in the NIR band (higher moisture) and as a faint concave trench in the DTM-derived hillshade. Its course bypasses natural gullies, suggesting an engineered canal.",
+    "bounding_box": {
+        "min_lat": -2.5565,
+        "max_lat": -2.5527,
+        "min_lon": -46.8385,
+        "max_lon": -46.8360
+    }
+},
+"anomaly_3": {
+    "description": "A smaller rectilinear enclosure (~150 m × 120 m) in the southeastern quadrant. Visible as paired linear ridges in the slope curvature derivative, with a corresponding moisture anomaly in the NIR image. Likely a subsidiary raised plot or diversion channel.",
+    "bounding_box": {
+        "min_lat": -2.5575,
+        "max_lat": -2.5560,
+        "min_lon": -46.8345,
+        "max_lon": -46.8330
+    }
+}
+```
+
+Contextual Interpretation and Implications:
+- These features fall within the interfluve landscape where pre‐Columbian societies engineered upland raised fields and canals to buffer flood seasonality and improve soil fertility. Comparable systems have been documented in Bolivia and Peru, but in Brazil they remain under‐reported.
+- The large embanked platform (anomaly_1) aligns with patterns of Amazonian dark earth (‘terra preta’) field systems described by Roosevelt (1991) and Heckenberger et al. (2003). The combination of rectilinear earthworks with moisture‐retaining soils suggests intentional water‐management agriculture rather than purely habitation mounds.
+- The sinuous canal (anomaly_2) challenges the model that upland interfluve engineering was limited to orthogonal grids. Instead, it implies flexible routing to intercept sub‐surface groundwater or divert ephemeral streams into raised plots.
+- The small enclosure (anomaly_3) may represent localized experimentation with plot sizes or crop‐rotation blocks, aligning with ethnographic analogs of manioc cultivation on raised beds.
+
+Broader Theoretical Impact:
+These mapped anomalies extend the geographic range of engineered Amazonian upland systems into eastern Pará, suggesting a more continuous zone of landscape modification than previously hypothesized. They support a model of dispersed but technologically sophisticated polities capable of coordinated earthwork construction.
+
+[[[
+– When scanning upland interfluves, look for faint rectilinear edges in multi‐azimuth hillshade composites even if slope is <2°.  
+– Overlay NIR and SWIR anomalies on LiDAR‐derived slope curvature: moisture‐retaining dark earth often coincides precisely with embankment margins.  
+– Linear channels not associated with modern roads or streams, especially those that avoid natural drainage lines, are strong candidates for pre‐Columbian canals.  
+– Small, isolated enclosures (<200 m per side) at terrace margins warrant ground‐truthing as potential raised‐field plots.  
+– Apply this combined terrain/spectral masking workflow across other Amazonian interfluves to reveal under‐documented water‐management networks.
+]]]

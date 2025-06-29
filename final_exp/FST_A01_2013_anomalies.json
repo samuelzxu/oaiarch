@@ -1,0 +1,9 @@
+[
+  {
+    "description": "A faint, straight linear feature ~2\u20134 m wide with a distinct right\u2010angle bend visible in the LiDAR\u2010derived hillshade and curvature outputs. This lineament runs roughly NW\u2013SE across the canopy\u2010covered terrace surface and is partially echoed as a pale line in the true-color image but shows no corresponding moisture anomaly in NIR (no dark\u2010earth signature). It does not align with any OpenStreetMap roads or clearings.",
+    "min_lat": -1.624,
+    "max_lat": -1.62,
+    "min_lon": -56.224,
+    "max_lon": -56.22
+  }
+]

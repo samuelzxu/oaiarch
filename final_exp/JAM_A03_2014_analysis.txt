@@ -1,0 +1,36 @@
+Following the four‐step workflow, I have identified two buried linear features in the DTM/hillshade that do not correspond to any modern roads or infrastructure on OpenStreetMap and which show subtle NIR/visual anomalies consistent with anthropogenic water‐management. These are reported below.
+
+```anomalies
+"anomaly_1": {
+    "description": "A subtle, rectilinear corner of raised‐field platform with adjoining shallow ditch. In the hillshade it appears as a gentle right‐angle ridge (ca. 120 m on each leg) with plan‐curvature concavity on the inside corner. The NIR band shows slightly elevated moisture retention along the ditch line, and the true‐color image exhibits darker ‘dark earth’ signatures aligned with this feature. No corresponding modern tracks are mapped in OSM.",
+    "bounding_box": {
+        "min_lat": -9.0780,
+        "max_lat": -9.0700,
+        "min_lon": -62.9950,
+        "max_lon": -62.9880
+    }
+},
+"anomaly_2": {
+    "description": "A gently curving linear ditch or canal trending NW–SE for approximately 800 m. Visible as a low‐relief trough in the slope and curvature derivatives and multi‐azimuth hillshade, with a slight change in vegetation vigor in the visual band and elevated NIR reflectance indicating higher soil moisture. The feature does not align with any modern plantation clearings or roads.",
+    "bounding_box": {
+        "min_lat": -9.1020,
+        "max_lat": -9.0950,
+        "min_lon": -63.0050,
+        "max_lon": -62.9970
+    }
+},
+```
+
+Historical and regional context  
+The Jamari interfluve around rodovia RO-452 has long been suspected to contain smaller, dispersed upland earthworks linked to broader Terra Preta–using societies that engineered micro‐catchments and raised‐fields. While extensive networks of platforms and canals have been documented along major rivers (e.g., Madeira, Purus), these upland features in Itapuã do Oeste suggest a complementary system of small‐scale water‐management on higher ground. They likely date to the Late Holocene when pre‐Columbian groups adapted to seasonal water scarcity by constructing finely tuned irrigation and drainage grids. Finding rectilinear raised‐fields off the major floodplains expands our understanding of how interior uplands were intensively managed.
+
+Implications for current theory  
+Current models emphasize large floodplain agrarian hubs; these anomalies point to decentralized upland agriculture supporting smaller settlements or specialized fields. This challenges the notion that Amazonian intensification was confined strictly to várzea/floodplain zones, suggesting instead a landscape mosaic of upland–lowland interplay. It advances the hypothesis that upland regions hosted autonomous agrarian nodes, integrated through occasional causeways or footpaths to larger riverine centers.
+
+[[[
+- Systematically screen gentle slopes (<2°) with concave‐plan curvature for right‐angle or rectilinear ridge/ditch intersections—these can reveal small raised‐field corners.
+- Overlay NIR vs. visible-band composites to flag linear moisture anomalies (dark earth soils often show elevated moisture retention).
+- Exclude features >150 m overlapping OSM roads; prioritize smaller, isolated segments forming block‐like patterns.
+- Extend this protocol to neighboring interfluves (Tarauacá, Envira) to map upland water networks beyond known floodplain sites.
+- Focus field validation on locations where subtle NIR tone shifts coincide with rectilinear DTM anomalies, even under closed canopy.
+]]]

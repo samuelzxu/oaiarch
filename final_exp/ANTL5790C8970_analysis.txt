@@ -1,0 +1,11 @@
+After a detailed terrain‐derivative analysis (slope, curvature, hillshade), spectral cross‐checking (VIS/NIR), and masking of modern infrastructure via OpenStreetMap, no clear evidence of engineered upland water‐management features (raised fields, rectilinear canals or ditches, embankments, causeways) could be identified in the study area. The only prominent linear element visible in the DTM hillshade appears to follow a sinuous alignment consistent with a modern track or small unpaved road (confirmed on OSM) rather than a panel of orthogonal earthworks. Sentinel-2 visible and NIR layers show random vegetation and moisture variations but lack the systematic low-relief right‐angle geometries or parallel ditch‐field complexes typical of Amazonian anthropogenic terrain modifications.
+
+Given the negative result for this tile, further efforts should refine thresholds and integrate additional data streams:
+
+[[
+- Systematically scan adjacent interfluve blocks at 1–2 m LiDAR resolution for subtle parallel ridges 2–5 m wide spaced 20–30 m apart, indicative of raised‐field grids.
+- Combine seasonal SAR (Sentinel-1) coherence change detection with NIR anomalies to isolate “dark earth” signatures under canopy.
+- Apply object‐based image analysis to hillshade curvature minima, flagging closed rectilinear polygons 80–120 m on a side for targeted field survey.
+- Integrate high-resolution planet imagery during dry‐season leaf‐off windows to amplify soil moisture contrasts along buried ditches.
+- Prioritize local valley‐bottom flats with minimal natural slope (<2°) for excavation of dark earth and test‐pits, since ancient farmers favored these for water management.
+]]

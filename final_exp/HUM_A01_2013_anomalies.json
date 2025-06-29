@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A sinuous, rectilinear canal\u2013embankment complex running roughly NW\u2013SE across the central LiDAR strip. The feature comprises a linear depression ~2\u20133\u2009m wide flanked on its northeast side by a raised berm 4\u20136\u2009m wide. It exhibits consistent plan curvature (concave cross\u2013section) and slopes under 2\u00b0, typical of engineered drainage channels in other Acre interfluves.",
+    "min_lat": -9.7589,
+    "max_lat": -9.7547,
+    "min_lon": -67.6479,
+    "max_lon": -67.6428
+  },
+  {
+    "description": "A cluster of low rectangular platforms (raised fields) located at the eastern end of the LiDAR swath. Each platform measures approximately 40\u2009\u00d7\u200960\u2009m and stands 0.5\u20131.0\u2009m above the surrounding terrain. The platforms are arranged on a gentle slope (<1.5\u00b0) with small connecting ditches visible in the DTM and faint \u2018dark earth\u2019 signatures in the co\u2013registered NIR.",
+    "min_lat": -9.7572,
+    "max_lat": -9.7562,
+    "min_lon": -67.6415,
+    "max_lon": -67.6402
+  },
+  {
+    "description": "A straight, narrow causeway trending E\u2013W in the western third of the dataset. It is 3\u20134\u2009m wide, with slightly elevated shoulders and a flat top. The feature casts a distinct ridge\u2013and\u2013furrow hillshade signature and corresponds to a linear NIR moisture anomaly (lower reflectance) in the Sentinel-2 band 8 image.",
+    "min_lat": -9.7575,
+    "max_lat": -9.756,
+    "min_lon": -67.6465,
+    "max_lon": -67.6452
+  }
+]

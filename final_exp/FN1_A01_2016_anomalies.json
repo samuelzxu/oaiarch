@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A cluster of four low\u2010relief, parallel ridges trending NW\u2013SE, each ~200 m long, spaced ~20\u201330 m apart and rising ~0.3\u20130.6 m above the surrounding terrain. These align precisely with linear moisture\u2010anomaly signatures in the NIR band (darker tones) and are emphasized in slope\u2010curvature derivatives as convex (ridge) features. No corresponding modern road or cleared line appears in the OSM layer, and the width (4\u20136 m) and spacing are consistent with raised\u2010field agriculture known from other Amazonian interfluves.",
+    "min_lat": -11.8625,
+    "max_lat": -11.8595,
+    "min_lon": -53.833,
+    "max_lon": -53.831
+  },
+  {
+    "description": "A sinuous, narrow (2\u20134 m) linear depression trending NNE\u2013SSW over ~150 m, visible as a low\u2010value trough in hillshade and curvature maps and as a high reflectance band in the NIR image (indicating retained moisture or peat accumulation). The alignment does not coincide with any mapped trail or pipeline in OSM, and its meandering course suggests an engineered canal or drainage ditch.",
+    "min_lat": -11.866,
+    "max_lat": -11.862,
+    "min_lon": -53.833,
+    "max_lon": -53.8305
+  }
+]

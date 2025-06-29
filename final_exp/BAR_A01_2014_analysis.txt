@@ -1,0 +1,56 @@
+anomalies
+"anomaly_1": {
+    "description": "A subtle, rectilinear ridge‐and‐ditch structure trending NW–SE, approximately 120 m long and 5 m wide, with positive curvature in the DTM. The feature shows a faint ‘shadow’ in the hillshade and slope derivatives, and corresponds to a narrow linear moisture anomaly (darker tone) in the NIR. No modern road or trail coincides with its course.",
+    "bounding_box": {
+        "min_lat": -1.68220,
+        "max_lat": -1.68080,
+        "min_lon": -61.83720,
+        "max_lon": -61.83550
+    }
+},
+"anomaly_2": {
+    "description": "A small, rectangular platform or raised‐field remnant (ca. 60 m × 40 m), with very low relief (+0.5–1 m relative to surroundings) evident in the curvature map. The platform margins appear slightly depressed in slope derivatives, and the interior shows reduced NIR reflectance consistent with higher moisture or anthropic soil. It lies entirely outside mapped roads or clearings.",
+    "bounding_box": {
+        "min_lat": -1.67950,
+        "max_lat": -1.67830,
+        "min_lon": -61.83450,
+        "max_lon": -61.83290
+    }
+},
+
+
+Report:
+
+1. Terrain Analysis  
+   • Slope: Slope derivatives revealed very low‐angle planar surfaces (<2°) that are anomalously rectilinear.  
+   • Curvature: Convex curvature highlights the narrow ridge of anomaly_1; concave curvature outlines the platform margins of anomaly_2.  
+   • Hillshade: Subtle ‘shadow lines’ along both features stand out against the gently undulating natural interfluve.
+
+2. Spectral Cross‐Checking  
+   • In true‐color imagery, the surrounding primary forest is homogenous, while the anomaly footprints remain unbroken.  
+   • In NIR, anomaly_1 coincides with a narrow band of lower reflectance (darker tone) indicating higher moisture retention—consistent with infilled ditch behind a raised berm.  
+   • Anomaly_2’s interior shows a diffuse NIR low‐reflectance patch, suggesting enriched soils (“terra preta” signature) or retained moisture, surrounded by a slightly more reflective margin.
+
+3. Modern Structure Masking  
+   • OpenStreetMap shows no roads, trails, or plantations over these two features.  
+   • The nearest mapped infrastructure (a small riverside path at Terra Nova) lies >200 m from both anomalies.
+
+4. Interpretation & Historical Context  
+   • Archaeologically, Barcelos and adjacent interfluvial zones along the Rio Unini are known for pre‐Columbian raised fields ("camellones") and causeways dating from ca. AD 500–1400.  
+   • Anomaly_1’s NW–SE alignment parallels documented causeways linking riverbanks to interior raised‐field complexes. It may represent a segment of such a causeway, now buried and forest‐recovered.  
+   • Anomaly_2’s rectangular shape and soil/moisture signature closely match small raised fields used for wet‐season cultivation of manioc and maize, suggesting an upland cultivation plot.  
+   • These detections extend known land‐use beyond proximity to major rivers, indicating a more dispersed network of management features in higher interfluves, challenging the notion that pre‐Columbian earthworks were restricted to seasonally flooded terraces.
+
+5. Implications for Theory  
+   • Supports models of landscape‐scale anthropogenic soil enrichment and water management deep in upland forests.  
+   • Suggests pre‐Columbian societies in Barcelos had logistical capacity to build and maintain earthworks away from the main river channel, implying a denser settlement pattern.  
+   • Encourages a re‐evaluation of “terra preta” distribution models to include subtle upland relief features.
+
+[[[
+actionable insights that can be used to discover new sites, such as:
+- Note that low‐angle slope anomalies (<2°) in LiDAR DTM, when rectilinear or linear over 50–200 m, are strong candidates for buried causeways or embankments.
+- Use curvature maps to highlight convex ridges and concave margins; small raised platforms often register <1 m of relief but clear curvature signatures.
+- Cross‐reference NIR dark bands (higher moisture / organic content) with LiDAR linear features to flag potential earth‐formed agricultural platforms.
+- Exclude all features coincident with modern road or trail vectors (OpenStreetMap) to isolate prehistoric constructs.
+- Target interfluve zones 200–500 m inland from main rivers, where subtle upland anthropogenic features may lie beneath closed canopy.
+]]]

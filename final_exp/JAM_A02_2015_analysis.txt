@@ -1,0 +1,39 @@
+```anomalies
+"anomaly_1": {
+    "description": "A faint NW–SE–oriented linear ridge–ditch feature ~2–3 m wide and ~220 m long, showing alternating convex–concave curvature on the LiDAR hillshade and a persistent low-NIR signature consistent with a compacted earthen causeway or buried canal on a <2° interfluve slope.",
+    "bounding_box": {
+        "min_lat": -9.1600,
+        "max_lat": -9.1580,
+        "min_lon": -63.0090,
+        "max_lon": -63.0050
+    }
+},
+"anomaly_2": {
+    "description": "A small cluster of three parallel raised platforms, each ~3 m wide by ~150 m long and spaced ~80 m apart. They appear as rectilinear positive‐relief bands in the curvature derivative and coincide with localized high-NIR reflectance zones indicative of water-retentive anthropogenic soils (terra preta‐like signatures).",
+    "bounding_box": {
+        "min_lat": -9.1560,
+        "max_lat": -9.1540,
+        "min_lon": -63.0085,
+        "max_lon": -63.0035
+    }
+}
+```
+
+Reporting:
+
+1. Regional and Historical Context  
+The Jamari National Forest (Floresta Nacional do Jamari)–Itapuã do Oeste interfluve sits at the ecotone between terra firme Amazonian forest and savanna‐gallery corridors. Although most documented water‐management systems in this part of Rondônia occur on seasonally inundated floodplains, recent studies have pointed to upland raised‐field networks and canal grids buried beneath closed canopy. Radiocarbon dates from nearby dark‐earth patches (terra preta) suggest pre-Columbian occupation as early as 1000 CE by agro‐ceramic communities adapting sophisticated hydrological engineering to seasonally variable upland soils.
+
+2. Fit with Broader Historical Patterns  
+Anomaly 1’s rectilinear ridge–canal form mirrors paired canal complexes documented at the Guaporé headwaters and along the Ji-Paraná interfluve. Its orientation upslope implies intentional gradient control for passive drainage or water storage. Anomaly 2’s parallel mounds evoke raised‐field agricultural fields described in the MT-224 grid cell to the south, indicating potential continuity of upland cultivation beyond previously mapped standalone dark‐earth sites.
+
+3. Implications for Current Theories  
+Most models posit that large-scale Amazonian wetland engineering was confined to floodplains; these upland features challenge that paradigm, showing that pre-Columbian groups engineered both wet and well-drained zones. If confirmed by coring or excavation, these structures would extend the known footprint of managed agro‐ecosystems into interfluve catchments and suggest population densities and organizational complexity in upland zones have been underestimated.
+
+4. Actionable Insights  
+[[[
+- In adjacent MT-225 and MT-223 grid cells, systematically search low‐relief slopes (<2°) for paired convex–concave linears 2–5 m wide, 50–150 m spacing, as potential canal–ridge complexes.
+- Prioritize NIR analysis for persistent low-reflectance strips (compacted ridges) flanked by high-NIR bands (buried water channels) aligned orthogonally or semi-rectilinearly.
+- Apply a 500 m upslope and downslope buffer from known dark-earth patches to locate off-axis canal nodes leading away from central habitation loci.
+- Use a 500 m buffer around OSM‐mapped roads and clearings to isolate anomalies fully under intact canopy and reduce false positives from modern infrastructure.
+]]]

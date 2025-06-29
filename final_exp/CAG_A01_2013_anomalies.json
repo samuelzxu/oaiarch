@@ -1,0 +1,23 @@
+[
+  {
+    "description": "A contiguous network of gently curving, contour\u2010parallel embankments and shallow channels forming irregular polygons approximately 80\u2013120 m across. The raised rims are \u22480.5 m high and follow the natural slope lines, suggesting deliberate micro\u2010terracing or water\u2010diversion works.",
+    "min_lat": -26.6785,
+    "max_lat": -26.673,
+    "min_lon": -49.6115,
+    "max_lon": -49.605
+  },
+  {
+    "description": "An array of rectilinear depressions and narrow ridges, each roughly 30\u201350 m in length, arranged in parallel contour strips on a slight bench. In the NIR band these trenches appear darker (higher moisture retention), consistent with backfilled ditches or moisture\u2010harvesting furrows.",
+    "min_lat": -26.6825,
+    "max_lat": -26.679,
+    "min_lon": -49.604,
+    "max_lon": -49.5985
+  },
+  {
+    "description": "A semi\u2010circular embanked enclosure, approximately 100 m in diameter, with an inward\u2010opening gap to the north. Hillshade and curvature highlight a smooth berm ~0.4 m high; vegetation on its crest shows slight stress in the visual band, and enhanced moisture in NIR.",
+    "min_lat": -26.672,
+    "max_lat": -26.6675,
+    "min_lon": -49.613,
+    "max_lon": -49.607
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "description": "A faint, low\u2010relief rectangular enclosure (~1.0\u2009\u00d7\u20091.2\u2009km) with continuous berm ridges visible in LiDAR hillshade. Alignment is orthogonal (N\u2013S/E\u2013W), and slope/curvature filters isolate the walls as subtle convex linear features. In Sentinel-2 VIS there is a faint tonal shift along the berm, and in NIR a narrow, darker signature indicates higher moisture\u2014characteristic of silt\u2010and\u2010charcoal-enriched ditch fills. No modern infrastructure overlaps in the OSM layer.",
+    "min_lat": -3.3695,
+    "max_lat": -3.3595,
+    "min_lon": -55.0075,
+    "max_lon": -54.9875
+  },
+  {
+    "description": "An L-shaped channel segment (~800\u2009m EW arm, ~600\u2009m NS arm) forming a right\u2010angle corner. The feature appears as a negative relief lineament with paired slight embankments in the DTM derivatives. Sentinel-2 NIR shows a narrow band of reduced reflectance along the depression, suggesting persistent soil moisture or dark\u2010earth fill. Absent from OSM basemap.",
+    "min_lat": -3.3735,
+    "max_lat": -3.3645,
+    "min_lon": -55.0025,
+    "max_lon": -54.9935
+  }
+]
