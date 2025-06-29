@@ -9,6 +9,7 @@ import xml.etree.ElementTree as ET
 from typing import List, Dict, Any
 from pyproj import Transformer
 from scipy import ndimage
+import matplotlib.pyplot as plt
 
 # --- KMZ Parsing Functions (from display_kmz.py) ---
 
@@ -186,7 +187,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
           f"Q1={first_quartile}, Q3={third_quartile}, std={std}")
     if std < (max_val - min_val) * 0.1:
         print("  - Warning: Standard deviation is too low, using median for clipping.")
-        stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*8, median_val + (third_quartile-median_val)*40)
+        stitched_array = np.clip(stitched_array, median_val - (median_val-first_quartile)*8, median_val + (third_quartile-median_val)*8)
 
     # Normalize the DTM array to 0-255 for saving as an image
     valid_pixels = stitched_array[~np.isnan(stitched_array)]
@@ -195,6 +196,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
         min_val = np.nanmin(valid_pixels)
         max_val = np.nanmax(valid_pixels)
         print(f"  - DTM normalization range: min={min_val}, max={max_val}")
+        print(f"  - Peak height: {max_val:.2f} meters")
         if max_val > min_val:
             # Normalize to 0-255
             normalized_dtm = (stitched_array - min_val) * (255.0 / (max_val - min_val))
@@ -207,6 +209,31 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     else:
         # Handle case where there are no valid pixels at all
         normalized_dtm = np.zeros(stitched_array.shape)
+
+    # ---- Generate Contour Map (Green to Red) ----
+    print(f"  - Generating contour map with green-to-red colormap...")
+    
+    if valid_pixels.size > 0 and max_val > min_val:
+        # Create a colormap from green to red
+        # Using RdYlGn_r (Red-Yellow-Green reversed) so green=low, red=high
+        colormap = plt.cm.RdYlGn_r
+        
+        # Normalize elevation data to 0-1 range for colormap
+        normalized_elevation = (stitched_array - min_val) / (max_val - min_val)
+        
+        # Apply colormap to get RGB values
+        contour_rgb = colormap(normalized_elevation)
+        
+        # Convert to 0-255 range and handle alpha channel
+        contour_rgb_255 = (contour_rgb[:, :, :3] * 255).astype(np.uint8)
+        
+        # Set NaN areas to black
+        nan_mask = np.isnan(stitched_array)
+        contour_rgb_255[nan_mask] = [0, 0, 0]  # Black for no-data areas
+        
+    else:
+        # Handle edge cases with no valid data or uniform elevation
+        contour_rgb_255 = np.zeros((stitched_array.shape[0], stitched_array.shape[1], 3), dtype=np.uint8)
 
     # ---- Process and save LRM ----
     valid_lrm_pixels = lrm_array[~np.isnan(lrm_array)]
@@ -245,6 +272,11 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
     lrm_output_path = os.path.join(output_dir, f"{group_key}_lrm_stitched.png")
     lrm_image.save(lrm_output_path)
 
+    # Save Contour Map image
+    contour_image = Image.fromarray(contour_rgb_255, mode='RGB')
+    contour_output_path = os.path.join(output_dir, f"{group_key}_contour_stitched.png")
+    contour_image.save(contour_output_path)
+
     # ---- Save lon/lat of image center ----
     # Compute center in projected coordinates
     center_x = (global_min_x + global_max_x) / 2
@@ -267,6 +299,11 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
             "min_y": global_min_y,
             "max_y": global_max_y
         },
+        "elevation_stats": {
+            "min_height_meters": float(min_val) if valid_pixels.size > 0 else None,
+            "max_height_meters": float(max_val) if valid_pixels.size > 0 else None,
+            "peak_height_meters": float(max_val) if valid_pixels.size > 0 else None
+        },
         "lrm_smoothing_scale_meters": smoothing_scale_meters,
         "lrm_sigma_pixels": sigma_pixels
     }
@@ -276,6 +313,7 @@ def stitch_group_images(group_key: str, polygon_names: List[str], dtm_dir: str, 
 
     print(f"  -> Saved DTM image to {dtm_output_path}")
     print(f"  -> Saved LRM image to {lrm_output_path}")
+    print(f"  -> Saved contour map to {contour_output_path}")
     print(f"  -> Saved location info to {info_path}")
 
 def main():
